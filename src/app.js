@@ -11,16 +11,15 @@ import {
 const app = document.querySelector("#app");
 const page = document.body.dataset.page;
 const memorialStorageKey = "career-graveyard-memorials";
+const statusOrder = Object.keys(statusMeta);
 
 const routes = {
   home: "/",
   archive: "/archive.html",
   memorial: "/memorial.html",
   about: "/about.html",
-  detail: (slug) => `/career.html?slug=${slug}`
+  detail: (slug) => `/career.html?slug=${encodeURIComponent(slug)}`
 };
-
-const statusOrder = Object.keys(statusMeta);
 
 function escapeHtml(value) {
   return String(value)
@@ -31,17 +30,45 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-function renderNavigation(active, showBack, backHref) {
+function setDocumentTitle(title) {
+  document.title = title;
+}
+
+function bindHistoryBackLinks() {
+  document.querySelectorAll(".site-nav__back").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const referrer = document.referrer;
+      const hasSameOriginReferrer =
+        referrer && new URL(referrer, window.location.origin).origin === window.location.origin;
+
+      if (window.history.length > 1 && hasSameOriginReferrer) {
+        event.preventDefault();
+        window.history.back();
+      }
+    });
+  });
+}
+
+function renderNavigation({ active = "", showBack = false, backHref = routes.home } = {}) {
+  const navClass = showBack ? "site-nav site-nav--page" : "site-nav site-nav--home";
+  const linkClass = (key) => `site-nav__link ${active === key ? "is-active" : ""}`;
+
   return `
-    <nav class="site-nav" aria-label="主导航">
-      <div class="site-nav__cluster">
-        ${showBack ? `<a class="nav-back" href="${backHref}">BACK / 返回</a>` : ""}
-        <a class="nav-logo" href="${routes.home}">职业墓场</a>
-      </div>
-      <div class="site-nav__links">
-        <a class="nav-link ${active === "archive" ? "is-active" : ""}" href="${routes.archive}">ARCHIVE / 归档</a>
-        <a class="nav-link ${active === "memorial" ? "is-active" : ""}" href="${routes.memorial}">MEMORIAL / 祭奠</a>
-        <a class="nav-link ${active === "about" ? "is-active" : ""}" href="${routes.about}">INFO / 关于</a>
+    <nav class="${navClass}" aria-label="主导航">
+      <div class="site-nav__inner">
+        <div class="site-nav__cluster">
+          ${
+            showBack
+              ? `<a class="site-nav__back" href="${backHref}"><span aria-hidden="true">←</span><span>BACK / 返回</span></a>`
+              : ""
+          }
+          <a class="site-nav__logo" href="${routes.home}">职业墓场</a>
+        </div>
+        <div class="site-nav__links">
+          <a class="${linkClass("archive")}" href="${routes.archive}">ARCHIVE / 归档</a>
+          <a class="${linkClass("memorial")}" href="${routes.memorial}">MEMORIAL / 祭奠</a>
+          <a class="${linkClass("about")}" href="${routes.about}">INFO / 关于</a>
+        </div>
       </div>
     </nav>
   `;
@@ -50,131 +77,149 @@ function renderNavigation(active, showBack, backHref) {
 function renderFooter() {
   return `
     <footer class="site-footer">
-      <div class="site-footer__copy">© 2024 CAREER CEMETERY / 职业墓场</div>
-      <div class="site-footer__links">
-        <a href="${routes.about}#legal">Legal</a>
-        <a href="${routes.about}#methodology">Policy</a>
-        <a href="${routes.about}#contributors">Connect</a>
+      <div class="site-footer__inner">
+        <div class="site-footer__copy">© 2024 CAREER CEMETERY / 职业墓场</div>
+        <div class="site-footer__links">
+          <a href="${routes.about}#legal">Legal</a>
+          <a href="${routes.about}#methodology">Policy</a>
+          <a href="${routes.about}#contributors">Connect</a>
+        </div>
       </div>
     </footer>
   `;
 }
 
 function renderShell(content, options = {}) {
-  const { active = "", showBack = false, backHref = routes.home } = options;
-
   app.innerHTML = `
-    <div class="grain"></div>
-    <div class="page-shell">
-      ${renderNavigation(active, showBack, backHref)}
+    <div class="grain" aria-hidden="true"></div>
+    <div class="site-shell">
+      ${renderNavigation(options)}
       ${content}
       ${renderFooter()}
     </div>
   `;
+  bindHistoryBackLinks();
 }
 
-function careerLink(slug) {
-  return routes.detail(slug);
-}
-
-function renderMonolith(career, variant = "home") {
+function renderCareerCard(career, variant = "home") {
   const status = statusMeta[career.status];
-  const classes =
+  const slabWidth = variant === "archive" || variant === "related" ? 3 : 4;
+  const slabHeight =
     variant === "archive"
-      ? "monolith monolith--archive"
+      ? Math.round(career.slabHeight * 0.86)
       : variant === "related"
-        ? "monolith monolith--related"
-        : "monolith";
+        ? Math.round(career.slabHeight * 0.5)
+        : career.slabHeight;
+  const teaser = variant === "archive" ? career.teaser.split("，")[0] : career.teaser;
 
   return `
-    <a class="career-card career-card--${variant}" href="${careerLink(career.slug)}">
+    <a class="career-card career-card--${variant}" href="${routes.detail(career.slug)}">
       <div class="career-card__heading">
-        <p class="eyebrow">${status.label}</p>
-        <h2>${career.name}</h2>
+        <p class="career-card__status">${escapeHtml(status.label)}</p>
+        <h2>${escapeHtml(career.name)}</h2>
       </div>
-      <div class="${classes}" style="--slab-height:${career.slabHeight}px"></div>
-      <div class="career-card__quote">
-        <p>“${career.teaser}”</p>
-      </div>
+      <div class="career-card__slab" style="--slab-height:${slabHeight}px;--slab-width:${slabWidth}px"></div>
+      ${
+        variant === "related"
+          ? ""
+          : `<div class="career-card__teaser"><p>“${escapeHtml(teaser)}”</p></div>`
+      }
     </a>
   `;
 }
 
 function renderHome() {
+  setDocumentTitle("职业墓场");
   const featured = careers.slice(0, 6);
 
   renderShell(
     `
       <main class="page-main page-main--home">
         <header class="hero">
-          <div class="hero__center reveal">
+          <div class="hero__inner reveal" style="--stagger:0.05s">
             <h1>职业墓场</h1>
             <p class="hero__subtitle">THE CEMETERY OF CAREERS</p>
           </div>
-          <div class="hero__marker">
+          <div class="hero__question">
             <p>这个职业还值不值得做？</p>
-            <div class="vertical-rule"></div>
+            <div class="hero__rule"></div>
           </div>
         </header>
 
-        <section class="monolith-grid monolith-grid--home reveal">
-          ${featured.map((career) => renderMonolith(career, "home")).join("")}
+        <section class="career-grid career-grid--home reveal" style="--stagger:0.12s">
+          ${featured.map((career) => renderCareerCard(career, "home")).join("")}
         </section>
 
-        <section class="quote-section reveal">
-          <div class="section-header section-header--centered">
-            <p class="eyebrow eyebrow--wide">Voices from the Silent</p>
+        <section class="home-quote reveal" style="--stagger:0.18s">
+          <div class="home-quote__inner">
+            <p class="section-eyebrow">Voices from the Silent</p>
+            <blockquote>${escapeHtml(homeQuote.text)}</blockquote>
+            <p class="home-quote__author">— ${escapeHtml(homeQuote.author).toUpperCase()}</p>
           </div>
-          <blockquote>${homeQuote.text}</blockquote>
-          <p class="quote-signature">${homeQuote.author}</p>
           <a class="outline-button" href="${routes.archive}">View All Slabs / 查看全部</a>
         </section>
       </main>
     `,
-    { active: "" }
+    { active: "", showBack: false }
   );
 }
 
+function renderArchiveGrid(grid, status, sort) {
+  const filtered =
+    status === "all" ? [...careers] : careers.filter((career) => career.status === status);
+
+  filtered.sort((left, right) => {
+    if (sort === "timeline") {
+      return left.declineYear - right.declineYear;
+    }
+    return left.name.localeCompare(right.name, "zh-Hans-CN");
+  });
+
+  grid.innerHTML = filtered.map((career) => renderCareerCard(career, "archive")).join("");
+}
+
 function renderArchive() {
+  setDocumentTitle("职业归档");
+
   renderShell(
     `
-      <main class="page-main page-main--archive">
-        <header class="page-header reveal">
+      <main class="page-main page-main--wide">
+        <header class="page-header reveal" style="--stagger:0.05s">
           <h1>归档 / ARCHIVE</h1>
-          <p class="lede">Complete list of the departed and the decaying</p>
-          <div class="vertical-rule vertical-rule--short"></div>
+          <p class="page-header__subtitle">Complete list of the departed and the decaying</p>
+          <div class="page-header__marker"></div>
         </header>
 
-        <section class="archive-controls reveal">
-          <div class="filter-group">
-            <p class="eyebrow eyebrow--wide">Filter by status</p>
-            <div class="pill-row" id="filter-row">
-              <button class="pill is-active" data-status="all">All</button>
+        <section class="archive-controls reveal" style="--stagger:0.1s">
+          <div class="archive-controls__group">
+            <p class="section-eyebrow">Filter by status</p>
+            <div class="archive-controls__actions" id="filter-row">
+              <button class="text-toggle is-active" data-status="all">All</button>
               ${statusOrder
                 .map(
                   (key) =>
-                    `<button class="pill" data-status="${key}">${statusMeta[key].label}</button>`
+                    `<button class="text-toggle" data-status="${key}">${statusMeta[key].label}</button>`
                 )
                 .join("")}
             </div>
           </div>
-          <div class="sort-group">
-            <p class="eyebrow eyebrow--wide">Sort by</p>
-            <div class="sort-row">
-              <button class="sort-toggle is-active" data-sort="alphabetical">Alphabetical</button>
-              <button class="sort-toggle" data-sort="timeline">Timeline</button>
+          <div class="archive-controls__group archive-controls__group--right">
+            <p class="section-eyebrow">Sort by</p>
+            <div class="archive-controls__actions">
+              <button class="text-toggle is-active" data-sort="alphabetical">Alphabetical</button>
+              <button class="text-toggle" data-sort="timeline">Timeline</button>
             </div>
           </div>
         </section>
 
-        <section class="monolith-grid monolith-grid--archive reveal" id="archive-grid"></section>
+        <section class="career-grid career-grid--archive reveal" id="archive-grid" style="--stagger:0.15s"></section>
 
-        <section class="archive-tail reveal">
+        <section class="archive-tail reveal" style="--stagger:0.2s">
           <p>More records are being unearthed...</p>
         </section>
       </main>
     `,
-    { active: "archive" }
+    { active: "archive", showBack: false }
   );
 
   const grid = document.querySelector("#archive-grid");
@@ -183,51 +228,29 @@ function renderArchive() {
   let currentStatus = "all";
   let currentSort = "alphabetical";
 
-  function renderGrid() {
-    const filtered =
-      currentStatus === "all"
-        ? [...careers]
-        : careers.filter((career) => career.status === currentStatus);
-
-    filtered.sort((left, right) => {
-      if (currentSort === "timeline") {
-        return left.declineYear - right.declineYear;
-      }
-      return left.name.localeCompare(right.name, "zh-Hans-CN");
-    });
-
-    grid.innerHTML = filtered
-      .map((career) => renderMonolith(career, "archive"))
-      .join("");
-  }
-
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       currentStatus = button.dataset.status;
-      filterButtons.forEach((item) =>
-        item.classList.toggle("is-active", item === button)
-      );
-      renderGrid();
+      filterButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+      renderArchiveGrid(grid, currentStatus, currentSort);
     });
   });
 
   sortButtons.forEach((button) => {
     button.addEventListener("click", () => {
       currentSort = button.dataset.sort;
-      sortButtons.forEach((item) =>
-        item.classList.toggle("is-active", item === button)
-      );
-      renderGrid();
+      sortButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+      renderArchiveGrid(grid, currentStatus, currentSort);
     });
   });
 
-  renderGrid();
+  renderArchiveGrid(grid, currentStatus, currentSort);
 }
 
 function buildRelatedCareers(currentCareer) {
   return careers
     .filter((career) => career.slug !== currentCareer.slug)
-    .filter((career) => career.status !== currentCareer.status)
+    .sort((left, right) => statusMeta[left.status].order - statusMeta[right.status].order)
     .slice(0, 4);
 }
 
@@ -237,34 +260,35 @@ function renderDetail() {
   const status = statusMeta[career.status];
   const related = buildRelatedCareers(career);
 
-  document.title = `职业详情 | ${career.name} - 职业墓场`;
+  setDocumentTitle(`职业详情 | ${career.name} - 职业墓场`);
 
   renderShell(
     `
       <main class="page-main page-main--detail">
-        <header class="detail-header reveal">
-          <div class="detail-header__title">
-            <h1>${career.name}</h1>
+        <header class="detail-header reveal" style="--stagger:0.05s">
+          <div class="detail-header__row">
+            <h1>${escapeHtml(career.name)}</h1>
             <div class="detail-header__status">
-              <p class="eyebrow eyebrow--wide">Status</p>
-              <span>${status.label} / ${status.zh}</span>
+              <p class="section-eyebrow">Status</p>
+              <span>${escapeHtml(status.label)} / ${escapeHtml(status.zh)}</span>
             </div>
           </div>
-          <div class="horizontal-rule">
-            <div class="horizontal-rule__marker"></div>
+          <div class="detail-header__rule">
+            <div class="detail-header__marker"></div>
           </div>
         </header>
 
         <div class="detail-layout">
-          <section class="detail-side reveal">
-            <h3 class="eyebrow eyebrow--wide">Timeline / 衰落轨迹</h3>
-            <div class="timeline">
+          <section class="detail-timeline reveal" style="--stagger:0.1s">
+            <h3 class="section-eyebrow">Timeline / 衰落轨迹</h3>
+            <div class="timeline-list">
               ${career.timeline
                 .map(
                   (item) => `
-                    <article class="timeline__item">
-                      <p class="timeline__year">${item.year} / ${item.title}</p>
-                      <p>${item.text}</p>
+                    <article class="timeline-item">
+                      <div class="timeline-item__dot"></div>
+                      <p class="timeline-item__year">${escapeHtml(item.year)} — ${escapeHtml(item.title)}</p>
+                      <p class="timeline-item__text">${escapeHtml(item.text)}</p>
                     </article>
                   `
                 )
@@ -272,21 +296,21 @@ function renderDetail() {
             </div>
           </section>
 
-          <section class="detail-main reveal">
-            <div class="detail-block">
-              <h3 class="eyebrow eyebrow--wide">Profile / 职业讣告</h3>
-              <p class="detail-summary">${career.summary}</p>
+          <section class="detail-content">
+            <div class="detail-section reveal" style="--stagger:0.14s">
+              <h3 class="section-eyebrow">Profile / 职业讣告</h3>
+              <p class="detail-summary">${escapeHtml(career.summary)}</p>
             </div>
 
-            <div class="detail-block">
-              <h3 class="eyebrow eyebrow--wide">Factors / 消逝因子</h3>
+            <div class="detail-section reveal" style="--stagger:0.18s">
+              <h3 class="section-eyebrow">Factors / 消逝因子</h3>
               <div class="factor-grid">
                 ${career.factors
                   .map(
                     (factor) => `
                       <article class="factor-card">
-                        <h4>${factor.title}</h4>
-                        <p>${factor.text}</p>
+                        <h4>${escapeHtml(factor.title)}</h4>
+                        <p>${escapeHtml(factor.text)}</p>
                       </article>
                     `
                   )
@@ -294,17 +318,17 @@ function renderDetail() {
               </div>
             </div>
 
-            <div class="detail-block">
-              <h3 class="eyebrow eyebrow--wide">Voices / 悼亡回声</h3>
+            <div class="detail-section reveal" style="--stagger:0.22s">
+              <h3 class="section-eyebrow">Voices / 悼唁录</h3>
               <div class="voice-list">
                 ${career.voices
                   .map(
                     (voice) => `
                       <article class="voice-card">
-                        <p class="voice-card__text">“${voice.text}”</p>
+                        <p class="voice-card__text">“${escapeHtml(voice.text)}”</p>
                         <div class="voice-card__meta">
-                          <span>${voice.author}</span>
-                          <span>${voice.date}</span>
+                          <span>— ${escapeHtml(voice.author)}</span>
+                          <span>${escapeHtml(voice.date)}</span>
                         </div>
                       </article>
                     `
@@ -315,10 +339,10 @@ function renderDetail() {
           </section>
         </div>
 
-        <section class="related-section reveal">
-          <h3 class="eyebrow eyebrow--wide">Similar Fates / 同病相怜</h3>
-          <div class="monolith-grid monolith-grid--related">
-            ${related.map((item) => renderMonolith(item, "related")).join("")}
+        <section class="related-section reveal" style="--stagger:0.26s">
+          <h3 class="section-eyebrow section-eyebrow--centered">Similar Fates / 同病相怜</h3>
+          <div class="career-grid career-grid--related">
+            ${related.map((item) => renderCareerCard(item, "related")).join("")}
           </div>
         </section>
       </main>
@@ -327,34 +351,34 @@ function renderDetail() {
   );
 }
 
-function loadMemorials() {
+function readStoredMemorials() {
   try {
     const raw = localStorage.getItem(memorialStorageKey);
-    const stored = raw ? JSON.parse(raw) : [];
-    return [...stored, ...initialMemorials];
+    if (!raw) {
+      return [];
+    }
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
   } catch {
-    return [...initialMemorials];
+    return [];
   }
 }
 
-function saveMemorial(memorial) {
-  const raw = localStorage.getItem(memorialStorageKey);
-  const stored = raw ? JSON.parse(raw) : [];
-  stored.unshift(memorial);
-  localStorage.setItem(memorialStorageKey, JSON.stringify(stored));
+function writeStoredMemorials(items) {
+  localStorage.setItem(memorialStorageKey, JSON.stringify(items));
 }
 
 function renderMemorialList(items) {
   return items
     .map(
-      (item) => `
-        <article class="memorial-entry">
-          <div class="memorial-entry__head">
-            <h4>${escapeHtml(item.career)}</h4>
-            <span>${escapeHtml(item.date)}</span>
+      (entry) => `
+        <article class="memorial-item">
+          <div class="memorial-item__head">
+            <h4>${escapeHtml(entry.career)}</h4>
+            <span>${escapeHtml(entry.date)}</span>
           </div>
-          <p class="memorial-entry__text">“${escapeHtml(item.text)}”</p>
-          <p class="memorial-entry__signature">${escapeHtml(item.signature)}</p>
+          <p class="memorial-item__text">“${escapeHtml(entry.text)}”</p>
+          <p class="memorial-item__signature">— ${escapeHtml(entry.signature)}</p>
         </article>
       `
     )
@@ -362,114 +386,138 @@ function renderMemorialList(items) {
 }
 
 function renderMemorial() {
-  const memorials = loadMemorials();
-  const total = baseMemorialCount + memorials.length;
+  const storedMemorials = readStoredMemorials();
+  const allMemorials = [...storedMemorials, ...initialMemorials];
+  let visibleCount = Math.max(4, Math.min(allMemorials.length, 4));
+
+  setDocumentTitle("祭奠 | 职业墓场");
 
   renderShell(
     `
-      <main class="page-main page-main--memorial">
-        <header class="detail-header reveal">
-          <div class="detail-header__title">
+      <main class="page-main page-main--detail">
+        <header class="detail-header reveal" style="--stagger:0.05s">
+          <div class="detail-header__row">
             <h1>祭奠 / Memorial</h1>
             <div class="detail-header__status">
-              <p class="eyebrow eyebrow--wide">Volume</p>
-              <span id="memorial-total">${total.toLocaleString("en-US")} TRIBUTES / 悼词</span>
+              <p class="section-eyebrow">Volume</p>
+              <span>${(baseMemorialCount + storedMemorials.length).toLocaleString("en-US")} TRIBUTES / 悼唁</span>
             </div>
           </div>
-          <div class="horizontal-rule">
-            <div class="horizontal-rule__marker"></div>
+          <div class="detail-header__rule">
+            <div class="detail-header__marker"></div>
           </div>
         </header>
 
-        <div class="detail-layout detail-layout--memorial">
-          <section class="memorial-form-wrap reveal">
-            <div class="sticky-panel">
-              <h3 class="eyebrow eyebrow--wide">Leave a Message / 留下悼词</h3>
-              <form id="memorial-form" class="memorial-form">
+        <div class="memorial-layout">
+          <section class="memorial-form reveal" style="--stagger:0.1s">
+            <div class="memorial-form__sticky">
+              <h3 class="section-eyebrow">Leave a Message / 留下悼唁</h3>
+              <form id="memorial-form" class="memorial-form__fields">
                 <label>
                   <span>Select Career / 选择职业</span>
-                  <select name="career">
+                  <select class="memorial-input" name="career" aria-label="Select Career / 选择职业">
                     ${careers
-                      .map(
-                        (career) =>
-                          `<option value="${career.name}">${career.name}</option>`
-                      )
+                      .map((career) => `<option value="${escapeHtml(career.name)}">${escapeHtml(career.name)}</option>`)
                       .join("")}
+                    <option value="其他职业">其他职业</option>
                   </select>
                 </label>
                 <label>
                   <span>Signature / 称呼</span>
-                  <input name="signature" type="text" placeholder="匿名 / 你的职业身份" required />
+                  <input class="memorial-input" name="signature" aria-label="Signature / 称呼" placeholder="匿名 或 你的职业身份" required />
                 </label>
                 <label>
-                  <span>Memorial Text / 悼词文字</span>
-                  <textarea name="text" rows="7" placeholder="写下你对这个消逝职业的最后告别..." required></textarea>
+                  <span>Memorial Text / 悼唁文字</span>
+                  <textarea class="memorial-input memorial-input--area" name="text" rows="6" aria-label="Memorial Text / 悼唁文字" placeholder="写下你对这个消逝职业的最后告别..." required></textarea>
                 </label>
                 <button class="outline-button outline-button--full" type="submit">Submit to Cemetery / 提交</button>
               </form>
             </div>
           </section>
 
-          <section class="memorial-stream reveal">
-            <h3 class="eyebrow eyebrow--wide">Recent Tributes / 最近悼词</h3>
-            <div id="memorial-list" class="memorial-list">${renderMemorialList(memorials)}</div>
+          <section class="memorial-feed reveal" style="--stagger:0.14s">
+            <h3 class="section-eyebrow">Recent Tributes / 最近悼唁</h3>
+            <div class="memorial-feed__list" id="memorial-list"></div>
+            <div class="memorial-feed__actions" id="memorial-actions"></div>
           </section>
         </div>
       </main>
     `,
-    { active: "memorial", showBack: true, backHref: routes.home }
+    { active: "memorial", showBack: false }
   );
 
-  const form = document.querySelector("#memorial-form");
   const list = document.querySelector("#memorial-list");
-  const totalNode = document.querySelector("#memorial-total");
+  const actions = document.querySelector("#memorial-actions");
+  const form = document.querySelector("#memorial-form");
+
+  function redrawFeed() {
+    list.innerHTML = renderMemorialList(allMemorials.slice(0, visibleCount));
+    actions.innerHTML =
+      visibleCount < allMemorials.length
+        ? '<button class="text-button" id="load-more-memorials" type="button">Load More / 加载更多</button>'
+        : "";
+
+    const loadMore = document.querySelector("#load-more-memorials");
+    if (loadMore) {
+      loadMore.addEventListener("click", () => {
+        visibleCount = Math.min(visibleCount + 4, allMemorials.length);
+        redrawFeed();
+      });
+    }
+  }
+
+  redrawFeed();
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     const formData = new FormData(form);
-    const entry = {
-      career: String(formData.get("career")),
-      signature: String(formData.get("signature")).trim(),
-      text: String(formData.get("text")).trim(),
+    const nextEntry = {
+      career: String(formData.get("career") || "其他职业").trim(),
+      signature: String(formData.get("signature") || "匿名").trim(),
+      text: String(formData.get("text") || "").trim(),
       date: new Date().toISOString().slice(0, 10).replaceAll("-", ".")
     };
 
-    if (!entry.signature || !entry.text) {
+    if (!nextEntry.text || !nextEntry.signature) {
       return;
     }
 
-    saveMemorial(entry);
-    const updated = loadMemorials();
-    list.innerHTML = renderMemorialList(updated);
-    totalNode.textContent = `${(baseMemorialCount + updated.length).toLocaleString(
-      "en-US"
-    )} TRIBUTES / 悼词`;
+    storedMemorials.unshift(nextEntry);
+    allMemorials.unshift(nextEntry);
+    writeStoredMemorials(storedMemorials);
+    visibleCount = Math.min(Math.max(4, visibleCount), allMemorials.length);
     form.reset();
+    redrawFeed();
+
+    const volume = document.querySelector(".detail-header__status span");
+    volume.textContent = `${(baseMemorialCount + storedMemorials.length).toLocaleString("en-US")} TRIBUTES / 悼唁`;
   });
 }
 
 function renderAbout() {
+  setDocumentTitle("关于 & 信息 | 职业墓场");
+
   renderShell(
     `
-      <main class="page-main page-main--about">
-        <header class="about-hero reveal">
-          <div class="about-hero__inner">
-            <p class="eyebrow eyebrow--wide">Mission / 项目使命</p>
-            <h1>${aboutData.missionTitle}</h1>
-            <p class="detail-summary">${aboutData.missionBody}</p>
+      <main class="page-main page-main--detail page-main--about">
+        <header class="about-hero reveal" style="--stagger:0.05s">
+          <div class="about-hero__copy">
+            <h2 class="section-eyebrow">Mission / 项目使命</h2>
+            <h1>${escapeHtml(aboutData.missionTitle)}</h1>
+            <p>${escapeHtml(aboutData.missionBody)}</p>
           </div>
-          <div class="horizontal-rule horizontal-rule--spacious"></div>
+          <div class="about-hero__rule"></div>
         </header>
 
-        <section id="methodology" class="about-section reveal">
-          <h2 class="eyebrow eyebrow--wide">Methodology / 评估准则</h2>
-          <div class="factor-grid factor-grid--about">
+        <section class="about-section reveal" style="--stagger:0.1s" id="methodology">
+          <h2 class="section-eyebrow">Methodology / 评估准则</h2>
+          <div class="method-grid">
             ${aboutData.methodology
               .map(
                 (item, index) => `
-                  <article class="factor-card ${index === 0 ? "factor-card--dark" : ""}">
-                    <h4>${item.title}</h4>
-                    <p>${item.text}</p>
+                  <article class="method-card ${index === 0 ? "method-card--active" : ""}">
+                    <h3>${escapeHtml(item.title)}</h3>
+                    <p>${escapeHtml(item.text)}</p>
                   </article>
                 `
               )
@@ -477,61 +525,64 @@ function renderAbout() {
           </div>
         </section>
 
-        <section class="about-columns reveal">
-          <div class="about-panel">
-            <h2 class="eyebrow eyebrow--wide">Standards / 评估指标</h2>
-            <div class="standard-list">
-              ${aboutData.standards
-                .map(
-                  ([label, value]) => `
-                    <div class="standard-row">
-                      <span>${label}</span>
-                      <strong>${value}</strong>
-                    </div>
-                  `
-                )
-                .join("")}
+        <section class="about-section reveal" style="--stagger:0.14s">
+          <div class="about-columns">
+            <div>
+              <h2 class="section-eyebrow">Standards / 评估指标</h2>
+              <div class="standard-list">
+                ${aboutData.standards
+                  .map(
+                    ([label, value]) => `
+                      <div class="standard-item">
+                        <span>${escapeHtml(label)}</span>
+                        <strong>${escapeHtml(value)}</strong>
+                      </div>
+                    `
+                  )
+                  .join("")}
+              </div>
             </div>
-          </div>
-          <div class="about-panel">
-            <h2 class="eyebrow eyebrow--wide">Timeline / 项目简史</h2>
-            <div class="timeline timeline--soft">
-              ${aboutData.timeline
-                .map(
-                  ([year, text]) => `
-                    <article class="timeline__item">
-                      <p class="timeline__year">${year}</p>
-                      <p>${text}</p>
-                    </article>
-                  `
-                )
-                .join("")}
+            <div>
+              <h2 class="section-eyebrow">Timeline / 项目简史</h2>
+              <div class="project-timeline">
+                ${aboutData.timeline
+                  .map(
+                    ([date, text], index) => `
+                      <article class="project-timeline__item">
+                        <div class="project-timeline__dot ${index === 0 ? "is-active" : ""}"></div>
+                        <p class="project-timeline__date">${escapeHtml(date).replace(" / ", " — ")}</p>
+                        <p>${escapeHtml(text)}</p>
+                      </article>
+                    `
+                  )
+                  .join("")}
+              </div>
             </div>
           </div>
         </section>
 
-        <section class="stats-strip reveal">
+        <section class="stats-band reveal" style="--stagger:0.18s">
           ${aboutData.stats
             .map(
-              ([value, label]) => `
-                <article class="stat-block">
-                  <p>${value}</p>
-                  <span>${label}</span>
-                </article>
+              ([value, label], index) => `
+                <div class="stats-band__item ${index === 1 ? "stats-band__item--bordered" : ""}">
+                  <p class="stats-band__value">${escapeHtml(value)}</p>
+                  <p class="stats-band__label">${escapeHtml(label)}</p>
+                </div>
               `
             )
             .join("")}
         </section>
 
-        <section id="contributors" class="about-section reveal">
-          <h2 class="eyebrow eyebrow--wide">Contributors / 贡献者</h2>
+        <section class="about-section reveal" style="--stagger:0.22s" id="contributors">
+          <h2 class="section-eyebrow">Contributors / 贡献者</h2>
           <div class="contributors-grid">
             ${aboutData.contributors
               .map(
-                ([name, role]) => `
-                  <article class="contributor-card ${name === "Join Us" ? "contributor-card--muted" : ""}">
-                    <h3>${name}</h3>
-                    <p>${role}</p>
+                ([name, role], index) => `
+                  <article class="contributor-card ${index === aboutData.contributors.length - 1 ? "contributor-card--muted" : ""}">
+                    <h3>${escapeHtml(name)}</h3>
+                    <p>${escapeHtml(role)}</p>
                   </article>
                 `
               )
@@ -540,7 +591,7 @@ function renderAbout() {
         </section>
       </main>
     `,
-    { active: "about", showBack: true, backHref: routes.home }
+    { active: "about", showBack: false }
   );
 }
 
@@ -564,7 +615,6 @@ function boot() {
       break;
     default:
       renderHome();
-      break;
   }
 }
 
