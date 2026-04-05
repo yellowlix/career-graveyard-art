@@ -1,16 +1,16 @@
 import "./styles.css";
 import {
   aboutData,
-  baseMemorialCount,
   careers,
   homeQuote,
   initialMemorials,
+  siteCopy,
+  siteMeta,
   statusMeta
 } from "./data.js";
 
 const app = document.querySelector("#app");
 const page = document.body.dataset.page;
-const memorialStorageKey = "career-graveyard-memorials";
 const statusOrder = Object.keys(statusMeta);
 
 const routes = {
@@ -18,6 +18,7 @@ const routes = {
   archive: "/archive.html",
   memorial: "/memorial.html",
   about: "/about.html",
+  notFound: "/404.html",
   detail: (slug) => `/career.html?slug=${encodeURIComponent(slug)}`
 };
 
@@ -30,8 +31,103 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-function setDocumentTitle(title) {
+function normalizePath(path) {
+  if (!path || path === "/index.html") {
+    return "/";
+  }
+  return path;
+}
+
+function toAbsoluteUrl(path) {
+  return `${siteMeta.siteUrl}${normalizePath(path)}`;
+}
+
+function ensureHeadElement(selector, tagName, attributes = {}) {
+  let node = document.head.querySelector(selector);
+  if (!node) {
+    node = document.createElement(tagName);
+    Object.entries(attributes).forEach(([key, value]) => node.setAttribute(key, value));
+    document.head.append(node);
+  }
+  return node;
+}
+
+function setPageMetadata({
+  title,
+  description = siteMeta.defaultDescription,
+  path = window.location.pathname + window.location.search,
+  type = "website",
+  robots = "index,follow"
+}) {
+  const canonicalUrl = toAbsoluteUrl(path);
+
   document.title = title;
+
+  ensureHeadElement('meta[name="description"]', "meta", { name: "description" }).setAttribute(
+    "content",
+    description
+  );
+  ensureHeadElement('meta[name="theme-color"]', "meta", { name: "theme-color" }).setAttribute(
+    "content",
+    siteMeta.themeColor
+  );
+  ensureHeadElement('meta[name="robots"]', "meta", { name: "robots" }).setAttribute(
+    "content",
+    robots
+  );
+
+  ensureHeadElement('meta[property="og:site_name"]', "meta", { property: "og:site_name" }).setAttribute(
+    "content",
+    siteMeta.siteName
+  );
+  ensureHeadElement('meta[property="og:title"]', "meta", { property: "og:title" }).setAttribute(
+    "content",
+    title
+  );
+  ensureHeadElement(
+    'meta[property="og:description"]',
+    "meta",
+    { property: "og:description" }
+  ).setAttribute("content", description);
+  ensureHeadElement('meta[property="og:type"]', "meta", { property: "og:type" }).setAttribute(
+    "content",
+    type
+  );
+  ensureHeadElement('meta[property="og:url"]', "meta", { property: "og:url" }).setAttribute(
+    "content",
+    canonicalUrl
+  );
+  ensureHeadElement('meta[property="og:image"]', "meta", { property: "og:image" }).setAttribute(
+    "content",
+    siteMeta.socialImage
+  );
+
+  ensureHeadElement('meta[name="twitter:card"]', "meta", { name: "twitter:card" }).setAttribute(
+    "content",
+    "summary_large_image"
+  );
+  ensureHeadElement('meta[name="twitter:title"]', "meta", { name: "twitter:title" }).setAttribute(
+    "content",
+    title
+  );
+  ensureHeadElement(
+    'meta[name="twitter:description"]',
+    "meta",
+    { name: "twitter:description" }
+  ).setAttribute("content", description);
+  ensureHeadElement('meta[name="twitter:image"]', "meta", { name: "twitter:image" }).setAttribute(
+    "content",
+    siteMeta.socialImage
+  );
+
+  ensureHeadElement('link[rel="canonical"]', "link", { rel: "canonical" }).setAttribute(
+    "href",
+    canonicalUrl
+  );
+  ensureHeadElement('link[rel="icon"]', "link", {
+    rel: "icon",
+    type: "image/svg+xml"
+  }).setAttribute("href", "/favicon.svg");
 }
 
 function bindHistoryBackLinks() {
@@ -59,15 +155,15 @@ function renderNavigation({ active = "", showBack = false, backHref = routes.hom
         <div class="site-nav__cluster">
           ${
             showBack
-              ? `<a class="site-nav__back" href="${backHref}"><span aria-hidden="true">←</span><span>BACK / 返回</span></a>`
+              ? `<a class="site-nav__back" href="${backHref}"><span aria-hidden="true">←</span><span>${siteCopy.navigation.back}</span></a>`
               : ""
           }
-          <a class="site-nav__logo" href="${routes.home}">职业墓场</a>
+          <a class="site-nav__logo" href="${routes.home}">${siteMeta.siteName}</a>
         </div>
         <div class="site-nav__links">
-          <a class="${linkClass("archive")}" href="${routes.archive}">ARCHIVE / 归档</a>
-          <a class="${linkClass("memorial")}" href="${routes.memorial}">MEMORIAL / 祭奠</a>
-          <a class="${linkClass("about")}" href="${routes.about}">INFO / 关于</a>
+          <a class="${linkClass("archive")}" href="${routes.archive}">${siteCopy.navigation.archive}</a>
+          <a class="${linkClass("memorial")}" href="${routes.memorial}">${siteCopy.navigation.memorial}</a>
+          <a class="${linkClass("about")}" href="${routes.about}">${siteCopy.navigation.about}</a>
         </div>
       </div>
     </nav>
@@ -78,11 +174,11 @@ function renderFooter() {
   return `
     <footer class="site-footer">
       <div class="site-footer__inner">
-        <div class="site-footer__copy">© 2024 CAREER CEMETERY / 职业墓场</div>
+        <div class="site-footer__copy">${siteCopy.footer.copyright}</div>
         <div class="site-footer__links">
-          <a href="${routes.about}#legal">Legal</a>
-          <a href="${routes.about}#methodology">Policy</a>
-          <a href="${routes.about}#contributors">Connect</a>
+          <a href="${routes.about}#legal">${siteCopy.footer.legal}</a>
+          <a href="${routes.about}#policy">${siteCopy.footer.policy}</a>
+          <a href="${routes.about}#contact">${siteCopy.footer.connect}</a>
         </div>
       </div>
     </footer>
@@ -91,6 +187,7 @@ function renderFooter() {
 
 function renderShell(content, options = {}) {
   app.innerHTML = `
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
     <div class="grain" aria-hidden="true"></div>
     <div class="site-shell">
       ${renderNavigation(options)}
@@ -128,17 +225,48 @@ function renderCareerCard(career, variant = "home") {
   `;
 }
 
+function renderNotFound({
+  heading = siteCopy.notFound.heading,
+  body = siteCopy.notFound.body,
+  primaryHref = routes.archive,
+  primaryLabel = siteCopy.notFound.primaryLabel,
+  secondaryHref = routes.home,
+  secondaryLabel = siteCopy.notFound.secondaryLabel
+} = {}) {
+  renderShell(
+    `
+      <main id="main-content" class="page-main page-main--detail">
+        <section class="not-found-panel reveal" style="--stagger:0.05s">
+          <p class="section-eyebrow">404 / Not Found</p>
+          <h1>${escapeHtml(heading)}</h1>
+          <p class="not-found-panel__body">${escapeHtml(body)}</p>
+          <div class="not-found-panel__actions">
+            <a class="outline-button" href="${primaryHref}">${escapeHtml(primaryLabel)}</a>
+            <a class="text-button text-button--inline" href="${secondaryHref}">${escapeHtml(secondaryLabel)}</a>
+          </div>
+        </section>
+      </main>
+    `,
+    { active: "", showBack: false }
+  );
+}
+
 function renderHome() {
-  setDocumentTitle("职业墓场");
   const featured = careers.slice(0, 6);
+
+  setPageMetadata({
+    title: `${siteMeta.siteName} | ${siteMeta.siteNameEn}`,
+    description: siteCopy.pageDescriptions.home,
+    path: routes.home
+  });
 
   renderShell(
     `
-      <main class="page-main page-main--home">
+      <main id="main-content" class="page-main page-main--home">
         <header class="hero">
           <div class="hero__inner reveal" style="--stagger:0.05s">
-            <h1>职业墓场</h1>
-            <p class="hero__subtitle">THE CEMETERY OF CAREERS</p>
+            <h1>${siteMeta.siteName}</h1>
+            <p class="hero__subtitle">${siteMeta.siteNameEn}</p>
           </div>
           <div class="hero__question">
             <p>这个职业还值不值得做？</p>
@@ -156,7 +284,7 @@ function renderHome() {
             <blockquote>${escapeHtml(homeQuote.text)}</blockquote>
             <p class="home-quote__author">— ${escapeHtml(homeQuote.author).toUpperCase()}</p>
           </div>
-          <a class="outline-button" href="${routes.archive}">View All Slabs / 查看全部</a>
+          <a class="outline-button" href="${routes.archive}">查看全部墓碑 / View All</a>
         </section>
       </main>
     `,
@@ -179,11 +307,15 @@ function renderArchiveGrid(grid, status, sort) {
 }
 
 function renderArchive() {
-  setDocumentTitle("职业归档");
+  setPageMetadata({
+    title: `归档 | ${siteMeta.siteName}`,
+    description: siteCopy.pageDescriptions.archive,
+    path: routes.archive
+  });
 
   renderShell(
     `
-      <main class="page-main page-main--wide">
+      <main id="main-content" class="page-main page-main--wide">
         <header class="page-header reveal" style="--stagger:0.05s">
           <h1>归档 / ARCHIVE</h1>
           <p class="page-header__subtitle">Complete list of the departed and the decaying</p>
@@ -215,7 +347,7 @@ function renderArchive() {
         <section class="career-grid career-grid--archive reveal" id="archive-grid" style="--stagger:0.15s"></section>
 
         <section class="archive-tail reveal" style="--stagger:0.2s">
-          <p>More records are being unearthed...</p>
+          <p>更多记录仍在被挖掘中……</p>
         </section>
       </main>
     `,
@@ -254,17 +386,46 @@ function buildRelatedCareers(currentCareer) {
     .slice(0, 4);
 }
 
+function renderDetailNotFound(slug) {
+  setPageMetadata({
+    title: `未找到职业 | ${siteMeta.siteName}`,
+    description: siteCopy.pageDescriptions.notFound,
+    path: `${routes.detail(slug || "")}`,
+    robots: "noindex,follow"
+  });
+
+  renderNotFound({
+    heading: "未找到这座墓碑",
+    body: `没有找到 slug 为“${slug || "空值"}”的职业条目。你可以返回归档继续浏览，或者从首页重新进入。`,
+    primaryHref: routes.archive,
+    primaryLabel: "返回归档",
+    secondaryHref: routes.home,
+    secondaryLabel: "回到首页"
+  });
+}
+
 function renderDetail() {
   const slug = new URLSearchParams(window.location.search).get("slug");
-  const career = careers.find((item) => item.slug === slug) ?? careers[0];
+  const career = careers.find((item) => item.slug === slug);
+
+  if (!career) {
+    renderDetailNotFound(slug);
+    return;
+  }
+
   const status = statusMeta[career.status];
   const related = buildRelatedCareers(career);
 
-  setDocumentTitle(`职业详情 | ${career.name} - 职业墓场`);
+  setPageMetadata({
+    title: `${career.name} | ${siteMeta.siteName}`,
+    description: career.summary,
+    path: routes.detail(career.slug),
+    type: "article"
+  });
 
   renderShell(
     `
-      <main class="page-main page-main--detail">
+      <main id="main-content" class="page-main page-main--detail">
         <header class="detail-header reveal" style="--stagger:0.05s">
           <div class="detail-header__row">
             <h1>${escapeHtml(career.name)}</h1>
@@ -303,7 +464,7 @@ function renderDetail() {
             </div>
 
             <div class="detail-section reveal" style="--stagger:0.18s">
-              <h3 class="section-eyebrow">Factors / 消逝因子</h3>
+              <h3 class="section-eyebrow">Factors / 消逝因素</h3>
               <div class="factor-grid">
                 ${career.factors
                   .map(
@@ -319,7 +480,7 @@ function renderDetail() {
             </div>
 
             <div class="detail-section reveal" style="--stagger:0.22s">
-              <h3 class="section-eyebrow">Voices / 悼唁录</h3>
+              <h3 class="section-eyebrow">Voices / 悼词节录</h3>
               <div class="voice-list">
                 ${career.voices
                   .map(
@@ -347,25 +508,8 @@ function renderDetail() {
         </section>
       </main>
     `,
-    { active: "", showBack: true, backHref: routes.home }
+    { active: "", showBack: true, backHref: routes.archive }
   );
-}
-
-function readStoredMemorials() {
-  try {
-    const raw = localStorage.getItem(memorialStorageKey);
-    if (!raw) {
-      return [];
-    }
-    const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
-}
-
-function writeStoredMemorials(items) {
-  localStorage.setItem(memorialStorageKey, JSON.stringify(items));
 }
 
 function renderMemorialList(items) {
@@ -385,22 +529,46 @@ function renderMemorialList(items) {
     .join("");
 }
 
-function renderMemorial() {
-  const storedMemorials = readStoredMemorials();
-  const allMemorials = [...storedMemorials, ...initialMemorials];
-  let visibleCount = Math.max(4, Math.min(allMemorials.length, 4));
+function interpolateTemplate(template, values) {
+  return Object.entries(values).reduce(
+    (content, [key, value]) => content.replaceAll(`{${key}}`, String(value)),
+    template
+  );
+}
 
-  setDocumentTitle("祭奠 | 职业墓场");
+function buildMemorialDraft({ career, signature, text }) {
+  const normalizedSignature = signature.trim() || "匿名";
+  const normalizedText = text.trim() || "（请在这里写下你的悼词）";
+  const subject = `${siteCopy.memorialEmail.subjectPrefix} ${career} - ${normalizedSignature}`;
+  const body = interpolateTemplate(siteCopy.memorialEmail.bodyTemplate, {
+    career,
+    signature: normalizedSignature,
+    text: normalizedText
+  });
+
+  return { subject, body };
+}
+
+function buildMailtoUrl(email, subject, body) {
+  return `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function renderMemorial() {
+  setPageMetadata({
+    title: `祭奠 | ${siteMeta.siteName}`,
+    description: siteCopy.pageDescriptions.memorial,
+    path: routes.memorial
+  });
 
   renderShell(
     `
-      <main class="page-main page-main--detail">
+      <main id="main-content" class="page-main page-main--detail">
         <header class="detail-header reveal" style="--stagger:0.05s">
           <div class="detail-header__row">
             <h1>祭奠 / Memorial</h1>
             <div class="detail-header__status">
-              <p class="section-eyebrow">Volume</p>
-              <span>${(baseMemorialCount + storedMemorials.length).toLocaleString("en-US")} TRIBUTES / 悼唁</span>
+              <p class="section-eyebrow">Channel</p>
+              <span>EMAIL / 邮箱投稿</span>
             </div>
           </div>
           <div class="detail-header__rule">
@@ -411,34 +579,61 @@ function renderMemorial() {
         <div class="memorial-layout">
           <section class="memorial-form reveal" style="--stagger:0.1s">
             <div class="memorial-form__sticky">
-              <h3 class="section-eyebrow">Leave a Message / 留下悼唁</h3>
+              <div class="memorial-note">
+                <p class="section-eyebrow">${siteCopy.memorialNotice.eyebrow}</p>
+                <p class="memorial-note__text">${escapeHtml(siteCopy.memorialNotice.text)}</p>
+              </div>
+              <h3 class="section-eyebrow">${siteCopy.memorialForm.heading}</h3>
               <form id="memorial-form" class="memorial-form__fields">
                 <label>
-                  <span>Select Career / 选择职业</span>
-                  <select class="memorial-input" name="career" aria-label="Select Career / 选择职业">
+                  <span>${siteCopy.memorialForm.careerLabel}</span>
+                  <select class="memorial-input" name="career" aria-label="${siteCopy.memorialForm.careerLabel}">
                     ${careers
                       .map((career) => `<option value="${escapeHtml(career.name)}">${escapeHtml(career.name)}</option>`)
                       .join("")}
-                    <option value="其他职业">其他职业</option>
                   </select>
                 </label>
                 <label>
-                  <span>Signature / 称呼</span>
-                  <input class="memorial-input" name="signature" aria-label="Signature / 称呼" placeholder="匿名 或 你的职业身份" required />
+                  <span>${siteCopy.memorialForm.signatureLabel}</span>
+                  <input class="memorial-input" name="signature" aria-label="${siteCopy.memorialForm.signatureLabel}" placeholder="${siteCopy.memorialForm.signaturePlaceholder}" required />
                 </label>
                 <label>
-                  <span>Memorial Text / 悼唁文字</span>
-                  <textarea class="memorial-input memorial-input--area" name="text" rows="6" aria-label="Memorial Text / 悼唁文字" placeholder="写下你对这个消逝职业的最后告别..." required></textarea>
+                  <span>${siteCopy.memorialForm.textLabel}</span>
+                  <textarea class="memorial-input memorial-input--area" name="text" rows="6" aria-label="${siteCopy.memorialForm.textLabel}" placeholder="${siteCopy.memorialForm.textPlaceholder}" required></textarea>
                 </label>
-                <button class="outline-button outline-button--full" type="submit">Submit to Cemetery / 提交</button>
+                <button class="outline-button outline-button--full" type="submit">${siteCopy.memorialForm.submitLabel}</button>
               </form>
+              <div class="memorial-fallback" aria-live="polite">
+                <p class="section-eyebrow">${siteCopy.memorialEmail.fallbackTitle}</p>
+                <p class="memorial-fallback__text">${escapeHtml(siteCopy.memorialEmail.fallbackBody)}</p>
+                <p class="memorial-fallback__hint">${escapeHtml(siteCopy.memorialEmail.manualCopyHint)}</p>
+                <div class="memorial-fallback__meta">
+                  <div class="memorial-fallback__field">
+                    <span>Email / 邮箱</span>
+                    <a class="memorial-fallback__link" href="mailto:${siteMeta.contactEmail}">${siteMeta.contactEmail}</a>
+                  </div>
+                  <div class="memorial-fallback__field">
+                    <span>Subject / 主题预览</span>
+                    <p class="memorial-fallback__subject" id="memorial-subject-preview"></p>
+                  </div>
+                </div>
+                <div class="memorial-fallback__field">
+                  <span>Body / 正文预览</span>
+                  <pre class="memorial-fallback__body" id="memorial-body-preview"></pre>
+                </div>
+                <a class="text-button text-button--inline memorial-fallback__launch" id="memorial-mailto-link" href="#">
+                  Open Email App / 打开邮件客户端
+                </a>
+              </div>
             </div>
           </section>
 
           <section class="memorial-feed reveal" style="--stagger:0.14s">
-            <h3 class="section-eyebrow">Recent Tributes / 最近悼唁</h3>
+            <div class="memorial-feed__intro">
+              <h3 class="section-eyebrow">Curated Tributes / 示例悼词</h3>
+              <p class="memorial-feed__note">以下内容为静态示例，用于展示页面氛围，并非当前访客的实时投稿。</p>
+            </div>
             <div class="memorial-feed__list" id="memorial-list"></div>
-            <div class="memorial-feed__actions" id="memorial-actions"></div>
           </section>
         </div>
       </main>
@@ -447,59 +642,70 @@ function renderMemorial() {
   );
 
   const list = document.querySelector("#memorial-list");
-  const actions = document.querySelector("#memorial-actions");
   const form = document.querySelector("#memorial-form");
+  const subjectPreview = document.querySelector("#memorial-subject-preview");
+  const bodyPreview = document.querySelector("#memorial-body-preview");
+  const mailtoLink = document.querySelector("#memorial-mailto-link");
 
-  function redrawFeed() {
-    list.innerHTML = renderMemorialList(allMemorials.slice(0, visibleCount));
-    actions.innerHTML =
-      visibleCount < allMemorials.length
-        ? '<button class="text-button" id="load-more-memorials" type="button">Load More / 加载更多</button>'
-        : "";
+  list.innerHTML = renderMemorialList(initialMemorials);
 
-    const loadMore = document.querySelector("#load-more-memorials");
-    if (loadMore) {
-      loadMore.addEventListener("click", () => {
-        visibleCount = Math.min(visibleCount + 4, allMemorials.length);
-        redrawFeed();
-      });
-    }
+  function updateDraftPreview() {
+    const formData = new FormData(form);
+    const draft = buildMemorialDraft({
+      career: String(formData.get("career") || careers[0]?.name || "").trim(),
+      signature: String(formData.get("signature") || "").trim(),
+      text: String(formData.get("text") || "").trim()
+    });
+    const href = buildMailtoUrl(siteMeta.contactEmail, draft.subject, draft.body);
+
+    subjectPreview.textContent = draft.subject;
+    bodyPreview.textContent = draft.body;
+    mailtoLink.setAttribute("href", href);
+    return href;
   }
 
-  redrawFeed();
+  updateDraftPreview();
+  form.addEventListener("input", updateDraftPreview);
+  form.addEventListener("change", updateDraftPreview);
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    const formData = new FormData(form);
-    const nextEntry = {
-      career: String(formData.get("career") || "其他职业").trim(),
-      signature: String(formData.get("signature") || "匿名").trim(),
-      text: String(formData.get("text") || "").trim(),
-      date: new Date().toISOString().slice(0, 10).replaceAll("-", ".")
-    };
-
-    if (!nextEntry.text || !nextEntry.signature) {
-      return;
-    }
-
-    storedMemorials.unshift(nextEntry);
-    allMemorials.unshift(nextEntry);
-    writeStoredMemorials(storedMemorials);
-    visibleCount = Math.min(Math.max(4, visibleCount), allMemorials.length);
-    form.reset();
-    redrawFeed();
-
-    const volume = document.querySelector(".detail-header__status span");
-    volume.textContent = `${(baseMemorialCount + storedMemorials.length).toLocaleString("en-US")} TRIBUTES / 悼唁`;
+    window.location.href = updateDraftPreview();
   });
 }
 
+function renderAboutInfoSection(id, config) {
+  return `
+    <article class="info-card" id="${id}">
+      <p class="section-eyebrow">${escapeHtml(config.eyebrow)}</p>
+      <h3>${escapeHtml(config.title)}</h3>
+      ${config.paragraphs.map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+      ${
+        config.actions?.length
+          ? `<div class="info-card__actions">
+              ${config.actions
+                .map(
+                  (action) =>
+                    `<a class="text-button text-button--inline" href="${escapeHtml(action.href)}"${action.href.startsWith("http") ? ' target="_blank" rel="noreferrer"' : ""}>${escapeHtml(action.label)}</a>`
+                )
+                .join("")}
+            </div>`
+          : ""
+      }
+    </article>
+  `;
+}
+
 function renderAbout() {
-  setDocumentTitle("关于 & 信息 | 职业墓场");
+  setPageMetadata({
+    title: `信息 | ${siteMeta.siteName}`,
+    description: siteCopy.pageDescriptions.about,
+    path: routes.about
+  });
 
   renderShell(
     `
-      <main class="page-main page-main--detail page-main--about">
+      <main id="main-content" class="page-main page-main--detail page-main--about">
         <header class="about-hero reveal" style="--stagger:0.05s">
           <div class="about-hero__copy">
             <h2 class="section-eyebrow">Mission / 项目使命</h2>
@@ -589,10 +795,28 @@ function renderAbout() {
               .join("")}
           </div>
         </section>
+
+        <section class="about-section reveal" style="--stagger:0.26s">
+          <div class="info-grid">
+            ${renderAboutInfoSection("legal", siteCopy.aboutInfo.legal)}
+            ${renderAboutInfoSection("policy", siteCopy.aboutInfo.policy)}
+            ${renderAboutInfoSection("contact", siteCopy.aboutInfo.contact)}
+          </div>
+        </section>
       </main>
     `,
     { active: "about", showBack: false }
   );
+}
+
+function renderSite404() {
+  setPageMetadata({
+    title: `404 | ${siteMeta.siteName}`,
+    description: siteCopy.pageDescriptions.notFound,
+    path: routes.notFound,
+    robots: "noindex,follow"
+  });
+  renderNotFound();
 }
 
 function boot() {
@@ -612,6 +836,9 @@ function boot() {
       break;
     case "about":
       renderAbout();
+      break;
+    case "not-found":
+      renderSite404();
       break;
     default:
       renderHome();

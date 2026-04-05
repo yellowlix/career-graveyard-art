@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="职业墓场图标">
+  <rect width="64" height="64" fill="#ffffff" />
+  <path d="M22 16c0-5.523 4.477-10 10-10s10 4.477 10 10v26H22V16Z" fill="#000000" />
+  <rect x="18" y="42" width="28" height="4" fill="#000000" />
+  <rect x="15" y="48" width="34" height="6" fill="#000000" />
+  <rect x="30" y="14" width="4" height="12" fill="#ffffff" />
+  <rect x="26" y="18" width="12" height="4" fill="#ffffff" />
+</svg>

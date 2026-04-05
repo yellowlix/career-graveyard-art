@@ -65,6 +65,15 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #000000;
+  outline-offset: 3px;
+}
+
 button,
 input,
 textarea,
@@ -81,6 +90,25 @@ button {
 #app,
 .site-shell {
   min-height: 100vh;
+}
+
+.skip-link {
+  position: fixed;
+  left: 50%;
+  top: -4rem;
+  transform: translateX(-50%);
+  z-index: 120;
+  padding: 0.85rem 1.15rem;
+  background: #000000;
+  color: #ffffff;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
 }
 
 .site-shell {
@@ -723,6 +751,81 @@ button {
   gap: 2rem;
 }
 
+.memorial-note {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--surface-soft) 100%, transparent);
+}
+
+.memorial-note__text {
+  margin: 0;
+  color: #555555;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.memorial-fallback {
+  display: grid;
+  gap: 1rem;
+  padding: 1.4rem 1.5rem;
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--surface-soft) 100%, transparent);
+}
+
+.memorial-fallback__text,
+.memorial-fallback__hint,
+.memorial-feed__note {
+  margin: 0;
+  color: #555555;
+  font-size: 0.88rem;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.memorial-fallback__meta {
+  display: grid;
+  gap: 1rem;
+}
+
+.memorial-fallback__field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.memorial-fallback__field span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.memorial-fallback__link,
+.memorial-fallback__subject,
+.memorial-fallback__body {
+  margin: 0;
+  color: var(--page-fg);
+  font-size: 0.92rem;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.memorial-fallback__body {
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.75);
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+  font-size: 0.84rem;
+}
+
+.memorial-fallback__launch {
+  justify-self: start;
+}
+
 .memorial-form__fields label {
   display: grid;
   gap: 0.8rem;
@@ -759,6 +862,11 @@ button {
 .memorial-feed__list {
   display: grid;
   gap: 2.5rem;
+}
+
+.memorial-feed__intro {
+  display: grid;
+  gap: 0.8rem;
 }
 
 .memorial-item {
@@ -800,6 +908,12 @@ button {
 
 .text-button {
   padding: 0.5rem 0;
+}
+
+.text-button--inline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .about-hero {
@@ -897,6 +1011,42 @@ button {
   gap: 2rem;
 }
 
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.info-card {
+  display: grid;
+  gap: 1.2rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--line-soft);
+  background: color-mix(in srgb, var(--surface-soft) 100%, transparent);
+}
+
+.info-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.info-card p {
+  margin: 0;
+  color: #555555;
+  font-size: 0.94rem;
+  line-height: 1.85;
+  font-weight: 300;
+}
+
+.info-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  padding-top: 0.4rem;
+}
+
 .contributor-card {
   display: grid;
   gap: 0.3rem;
@@ -924,6 +1074,37 @@ button {
 
 .site-footer__links {
   gap: 2.25rem;
+}
+
+.not-found-panel {
+  max-width: 42rem;
+  margin: 4rem auto 0;
+  display: grid;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.not-found-panel h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 300;
+  letter-spacing: 0.14em;
+}
+
+.not-found-panel__body {
+  margin: 0;
+  color: #555555;
+  font-size: 1rem;
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+.not-found-panel__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
 }
 
 .reveal {
@@ -1018,6 +1199,7 @@ button {
 
   .factor-grid,
   .method-grid,
+  .info-grid,
   .contributors-grid,
   .stats-band {
     grid-template-columns: 1fr;
@@ -1271,6 +1453,29 @@ button {
     gap: 1.2rem;
   }
 
+  .info-card {
+    padding: 1.1rem 1rem;
+  }
+
+  .info-card p,
+  .memorial-note__text,
+  .memorial-fallback__text,
+  .memorial-fallback__hint,
+  .memorial-feed__note,
+  .not-found-panel__body {
+    font-size: 0.82rem;
+    line-height: 1.75;
+  }
+
+  .not-found-panel {
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+
+  .not-found-panel__actions {
+    gap: 0.8rem;
+  }
+
   .hero__question p {
     white-space: normal;
     max-width: 12rem;
@@ -1333,5 +1538,25 @@ button {
   .related-section,
   .about-section {
     margin-bottom: 6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }

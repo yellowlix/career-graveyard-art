@@ -6,6 +6,117 @@ export const statusMeta = {
   obsolete: { label: "OBSOLETE", zh: "过时", order: 5 }
 };
 
+export const siteMeta = {
+  siteName: "职业墓场",
+  siteNameEn: "Career Graveyard",
+  siteUrl: "https://career-graveyard.art",
+  contactEmail: "mahrovandrei@gmail.com",
+  themeColor: "#ffffff",
+  socialImage: "https://career-graveyard.art/favicon.svg",
+  defaultDescription:
+    "职业墓场以数字档案、时间线与悼词的形式，记录那些正在衰退、冻结、被替代或被重新定价的职业。"
+};
+
+export const siteCopy = {
+  navigation: {
+    back: "BACK / 返回",
+    archive: "ARCHIVE / 归档",
+    memorial: "MEMORIAL / 祭奠",
+    about: "INFO / 信息"
+  },
+  footer: {
+    copyright: "© 2024 CAREER GRAVEYARD / 职业墓场",
+    legal: "Legal",
+    policy: "Policy",
+    connect: "Connect"
+  },
+  pageDescriptions: {
+    home:
+      "职业墓场记录那些正在被算法、平台和效率逻辑吞没的职业，把它们整理成一座可浏览的数字墓园。",
+    archive: "查看全部已归档职业，按状态和时间线追踪它们被削弱、冻结或消失的路径。",
+    memorial: "为正在消失的职业填写悼词邮件草稿，并通过项目邮箱提交祭奠留言或新增职业建议。",
+    about: "了解职业墓场的方法论、静态展示边界、邮箱投稿方式与项目协作入口。",
+    notFound: "你访问的页面不存在，或这座墓碑尚未被正式收入职业墓场。"
+  },
+  memorialNotice: {
+    eyebrow: "Notice / 邮箱投稿说明",
+    text:
+      "当前版本不提供在线留言存储。填写表单后，页面会帮你生成一封投稿邮件；如果邮件客户端没有自动打开，你仍可手动复制邮箱、主题与正文发送。"
+  },
+  memorialForm: {
+    heading: "Leave a Message / 留下悼词",
+    careerLabel: "Select Career / 选择职业",
+    signatureLabel: "Signature / 称呼",
+    signaturePlaceholder: "匿名 / 你的职业身份",
+    textLabel: "Memorial Text / 悼词文字",
+    textPlaceholder: "写下你对这个消逝职业的最后告别……",
+    submitLabel: "打开邮件客户端 / Compose Email"
+  },
+  memorialEmail: {
+    subjectPrefix: "[Career Graveyard Memorial]",
+    bodyTemplate: [
+      "职业：{career}",
+      "署名：{signature}",
+      "悼词：{text}",
+      "来源页面：Memorial"
+    ].join("\n"),
+    fallbackTitle: "Fallback / 手动发送",
+    fallbackBody:
+      "如果系统没有自动打开你的邮件客户端，请复制下面的邮箱、主题和正文内容后手动发送。",
+    manualCopyHint: "邮箱、主题和正文预览会随着你填写表单实时更新。"
+  },
+  contactEmail: {
+    subjectPrefix: "[Career Graveyard Submission]",
+    bodyChecklist: [
+      "职业名称：",
+      "简要说明：",
+      "推荐入库原因：",
+      "可选参考资料："
+    ].join("\n"),
+    manualCopyHint: "新增职业与祭奠留言目前都通过项目邮箱处理。"
+  },
+  notFound: {
+    heading: "这座墓碑暂未找到",
+    body:
+      "你访问的页面不存在，或者对应职业尚未被正式收入职业墓场。你可以返回归档继续浏览，也可以回到首页重新进入。",
+    primaryLabel: "返回归档",
+    secondaryLabel: "回到首页"
+  },
+  aboutInfo: {
+    legal: {
+      eyebrow: "Legal / 使用说明",
+      title: "这是一个公开展示的静态项目",
+      paragraphs: [
+        "职业墓场当前版本为公开展示用途的静态网站，所有职业判断、状态标签与说明文案均用于讨论职业变化，不构成法律、投资、就业或教育建议。",
+        "如果你在此站点中看到与你自身经历相似的职业描述，请把它视为一份观察档案，而非对任何个人、公司或机构的最终定论。"
+      ]
+    },
+    policy: {
+      eyebrow: "Policy / 数据与内容说明",
+      title: "当前版本是静态展示站，不提供在线留言存储",
+      paragraphs: [
+        "站内职业卡、时间线、项目说明与静态示例内容都由项目维护者整理后发布。当前版本不接入数据库，不提供在线投稿存储，也没有后台审核系统。",
+        "祭奠留言与新增职业建议都通过项目邮箱接收，维护者会在邮箱中人工筛选、整理，并在后续静态更新中决定是否纳入公开内容。"
+      ]
+    },
+    contact: {
+      eyebrow: "Connect / 联系方式",
+      title: "通过邮箱投稿，通过 GitHub 协作",
+      paragraphs: [
+        "祭奠留言与新增职业建议请发送到项目邮箱：mahrovandrei@gmail.com。站点不会自动公开你的投稿，维护者会以邮箱收件箱作为原始素材池。",
+        "如果你想参与代码、设计、文案或结构性改进，仍然推荐通过 GitHub 仓库发起 issue 或 pull request。"
+      ],
+      actions: [
+        { label: "Email / 邮箱投稿", href: `mailto:${siteMeta.contactEmail}` },
+        {
+          label: "GitHub / 协作仓库",
+          href: "https://github.com/yellowlix/career-graveyard-art"
+        }
+      ]
+    }
+  }
+};
+
 export const careers = [
   {
     slug: "graphic-designer",
@@ -476,13 +587,13 @@ export const aboutData = {
   ],
   timeline: [
     ["2023.11 / 起源", "项目由三位前创意人发起，旨在记录大模型时代下的行业坍塌。"],
-    ["2024.01 / 建立祭奠区", "开放社区贡献，收录超过 1,200 条来自各行各业的职业悼词。"],
-    ["NOW / 持续观察", "通过算法与社会调研，不断扩充这片数字公墓的版图。"]
+    ["2024.01 / 建立祭奠页", "祭奠页作为静态投稿入口上线，用于收集外部来信与职业样本。"],
+    ["NOW / 邮箱投稿版 V1", "当前版本以静态发布和邮箱整理为主，不承诺在线存储、审核或实时社区流。"]
   ],
   stats: [
-    ["128", "Slabs / 已入库职业"],
-    ["42,901", "Voices / 悼词留言"],
-    ["202", "Days / 运行天数"]
+    [String(careers.length), "Slabs / 已入库职业"],
+    ["Email", "Submissions / 投稿渠道"],
+    ["Static", "Mode / 发布模式"]
   ],
   contributors: [
     ["Elias Chen", "Founder / Curation"],
@@ -493,8 +604,6 @@ export const aboutData = {
     ["Join Us", "Open Source"]
   ]
 };
-
-export const baseMemorialCount = 1248;
 
 export const initialMemorials = [
   {
