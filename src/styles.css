@@ -73,6 +73,9 @@
   --home-columns: 2;
   --archive-columns: 2;
   --related-columns: 2;
+  /* 首页首屏（≥768px）：变量为「距底边的比例」fb（0=底、1=顶）；块中心用 top: calc((1 - fb) * 100%) */
+  --home-hero-title-from-bottom: 0.63;
+  --home-hero-question-from-bottom: 0.16;
 }
 
 * {
@@ -494,6 +497,45 @@ button {
   align-items: center;
   justify-content: center;
   gap: clamp(3rem, 6vh, 5rem);
+}
+
+@media (min-width: 768px) {
+  body[data-page="home"] .home-panel--hero .home-panel__inner--hero {
+    position: relative;
+    gap: 0;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  body[data-page="home"] .home-panel--hero .hero {
+    position: absolute;
+    left: 50%;
+    top: calc((1 - var(--home-hero-title-from-bottom)) * 100%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 100%;
+  }
+
+  body[data-page="home"] .home-panel--hero .hero-axis {
+    position: absolute;
+    left: 50%;
+    top: calc((1 - var(--home-hero-question-from-bottom)) * 100%);
+    transform: translate(-50%, -50%);
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@keyframes reveal-home-axis {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 20px));
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .home-panel__inner--careers,
@@ -1485,6 +1527,14 @@ button {
   animation-delay: var(--stagger, 0s);
 }
 
+@media (min-width: 768px) {
+  body[data-page="home"] .home-panel--hero .hero-axis.reveal {
+    transform: translate(-50%, calc(-50% + 20px));
+    animation: reveal-home-axis 1.05s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--stagger, 0s);
+  }
+}
+
 @keyframes reveal {
   to {
     opacity: 1;
@@ -2142,5 +2192,12 @@ button {
     opacity: 1;
     transform: none;
     animation: none;
+  }
+
+  /* 大屏：提问条仍用 translate(-50%,-50%) 与 left:50% 居中，避免被上一则 transform:none 拉偏 */
+  @media (min-width: 768px) {
+    body[data-page="home"] .home-panel--hero .hero-axis.reveal {
+      transform: translate(-50%, -50%);
+    }
   }
 }
