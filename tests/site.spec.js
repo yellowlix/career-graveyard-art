@@ -19,8 +19,39 @@ async function switchLocale(page, locale) {
   await page.getByRole("button", { name: locale === "zh" ? "中文" : "EN", exact: true }).click();
 }
 
-test("home page defaults to Chinese-only navigation and metadata", async ({ page }) => {
+function getViewportTier(testInfo) {
+  const projectName = testInfo.project.name;
+
+  if (projectName.includes("mobile")) {
+    return "mobile";
+  }
+  if (projectName.includes("tablet")) {
+    return "tablet";
+  }
+  if (projectName.includes("1440")) {
+    return "desktop-1440";
+  }
+
+  return "desktop-1280";
+}
+
+async function expectGridTrackCount(locator, expectedCount) {
+  const trackCount = await locator.evaluate((element) => {
+    const template = window.getComputedStyle(element).gridTemplateColumns;
+    return template.split(" ").filter(Boolean).length;
+  });
+
+  expect(trackCount).toBe(expectedCount);
+}
+
+async function expectNoHorizontalOverflow(page) {
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(overflow).toBeLessThanOrEqual(1);
+}
+
+test("home page defaults to Chinese-only navigation and metadata", async ({ page }, testInfo) => {
   await visit(page, "/");
+  const viewportTier = getViewportTier(testInfo);
 
   await expect(page).toHaveTitle(pick(siteMeta.siteName, "zh"));
   await expect(page.getByRole("heading", { level: 1, name: pick(siteMeta.siteName, "zh") })).toBeVisible();
@@ -38,6 +69,10 @@ test("home page defaults to Chinese-only navigation and metadata", async ({ page
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
     "https://career-graveyard.art/"
+  );
+  await expectGridTrackCount(
+    page.locator(".career-grid--home"),
+    viewportTier === "mobile" ? 2 : viewportTier === "tablet" ? 3 : 6
   );
   await expect(page).toHaveScreenshot("home-page.png", {
     animations: "disabled",
@@ -80,11 +115,16 @@ test("locale preference persists across navigation and reload", async ({ page })
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
 });
 
-test("archive page can filter careers by localized status", async ({ page }) => {
+test("archive page can filter careers by localized status", async ({ page }, testInfo) => {
   await visit(page, "/archive.html");
+  const viewportTier = getViewportTier(testInfo);
 
   await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.archive.title, "zh") })).toBeVisible();
   await expect(page.locator(".career-card")).toHaveCount(careers.length);
+  await expectGridTrackCount(
+    page.locator(".career-grid--archive"),
+    viewportTier === "mobile" ? 2 : viewportTier === "tablet" ? 4 : viewportTier === "desktop-1440" ? 8 : 6
+  );
   await expect(page).toHaveScreenshot("archive-page.png", {
     animations: "disabled",
     caret: "hide",
@@ -125,6 +165,11 @@ test("career detail page localizes content and invalid slugs stay explicit", asy
   await expect(page).toHaveTitle(new RegExp(pick(siteCopy.notFound.detailTitle, "zh")));
   await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.notFound.detailTitle, "zh") })).toBeVisible();
   await expect(page.getByRole("link", { name: pick(siteCopy.notFound.primaryLabel, "zh") })).toBeVisible();
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex,follow");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    "https://career-graveyard.art/archive.html"
+  );
 
   await switchLocale(page, "en");
   await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.notFound.detailTitle, "en") })).toBeVisible();
@@ -149,7 +194,8 @@ test("memorial page builds localized email drafts and keeps static tributes", as
 
   await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.memorial.title, "zh") })).toBeVisible();
   await expect(page.getByText(pick(siteCopy.memorial.noticeText, "zh"))).toBeVisible();
-  await expect(page.getByText(pick(siteCopy.detail.voicesEyebrow, "zh"))).toBeVisible();
+  await expect(page.getByText(pick(siteCopy.memorial.curatedEyebrow, "zh"))).toBeVisible();
+  await expect(page.getByText(pick(siteCopy.memorial.curatedNote, "zh"))).toBeVisible();
 
   await page.getByLabel(pick(siteCopy.memorial.signatureLabel, "zh")).fill("Playwright Visitor");
   await page.getByLabel(pick(siteCopy.memorial.textLabel, "zh")).fill("测试留下了一段新的悼词，用来确认页面会同步更新邮件草稿。");
@@ -163,6 +209,8 @@ test("memorial page builds localized email drafts and keeps static tributes", as
 
   await switchLocale(page, "en");
   await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.memorial.title, "en") })).toBeVisible();
+  await expect(page.getByText(pick(siteCopy.memorial.curatedEyebrow, "en"))).toBeVisible();
+  await expect(page.getByText(pick(siteCopy.memorial.curatedNote, "en"))).toBeVisible();
   await expect(page.locator("#memorial-subject-preview")).toContainText(
     `${pick(siteCopy.memorialEmail.subjectPrefix, "en")} ${pick(designer.name, "en")} - Playwright Visitor`
   );
@@ -171,6 +219,21 @@ test("memorial page builds localized email drafts and keeps static tributes", as
   await expect(page.locator("#memorial-mailto-link")).toHaveAttribute(
     "href",
     /mailto:mahrovandrei%40gmail\.com\?subject=/
+  );
+});
+
+test("memorial page adapts across the four viewport baselines", async ({ page }, testInfo) => {
+  await visit(page, "/memorial.html");
+  const viewportTier = getViewportTier(testInfo);
+
+  await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.memorial.title, "zh") })).toBeVisible();
+  await expect(page.locator(".memorial-form__fields")).toBeVisible();
+  await expect(page.locator(".memorial-feed__list")).toBeVisible();
+  await expect(page.locator(".site-footer__links")).toBeVisible();
+  await expectNoHorizontalOverflow(page);
+  await expectGridTrackCount(
+    page.locator(".memorial-layout"),
+    viewportTier === "desktop-1280" || viewportTier === "desktop-1440" ? 2 : 1
   );
 });
 
@@ -189,6 +252,22 @@ test("about page keeps repo-truth wording in both locales", async ({ page }) => 
   await expect(page.getByRole("heading", { level: 1, name: pick(aboutData.missionTitle, "en") })).toBeVisible();
   await expect(page.locator("#policy")).toContainText("does not store online submissions");
   await expect(page.locator("#contact")).toContainText("Submit by Email, Collaborate on GitHub");
+});
+
+test("about page adapts across the four viewport baselines", async ({ page }, testInfo) => {
+  await visit(page, "/about.html");
+  const viewportTier = getViewportTier(testInfo);
+
+  await expect(page.getByRole("heading", { level: 1, name: pick(aboutData.missionTitle, "zh") })).toBeVisible();
+  await expect(page.locator(".method-grid")).toBeVisible();
+  await expect(page.locator(".info-grid")).toBeVisible();
+  await expect(page.locator(".contributors-grid")).toBeVisible();
+  await expect(page.locator(".site-footer__links")).toBeVisible();
+  await expectNoHorizontalOverflow(page);
+  await expectGridTrackCount(
+    page.locator(".about-columns"),
+    viewportTier === "desktop-1280" || viewportTier === "desktop-1440" ? 2 : 1
+  );
 });
 
 test("footer links land on valid information anchors", async ({ page }) => {
@@ -215,6 +294,16 @@ test("404 page is reachable as a standalone route in both locales", async ({ pag
 
   await switchLocale(page, "en");
   await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.notFound.heading, "en") })).toBeVisible();
+});
+
+test("404 page stays readable across the four viewport baselines", async ({ page }) => {
+  await visit(page, "/404.html");
+
+  await expect(page.locator(".not-found-panel")).toBeVisible();
+  await expect(page.locator(".not-found-panel__body")).toBeVisible();
+  await expect(page.locator(".not-found-panel__actions")).toBeVisible();
+  await expect(page.locator(".site-footer__links")).toBeVisible();
+  await expectNoHorizontalOverflow(page);
 });
 
 test("robots sitemap and favicon are served", async ({ request }) => {
