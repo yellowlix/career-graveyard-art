@@ -847,15 +847,15 @@ export const aboutData = {
   ],
   timeline: [
     {
-      date: l("2023.11 / 概念立项", "2023.11 / Origin"),
+      date: l("2026.3 / 概念立项", "2026.3 / Origin"),
       text: l("项目最初只是一个关于“哪些工作正在被悄悄抽空”的内部备忘录，后来才发展成公开站点。", "The project was started by three former creatives to document professional collapse in the age of large models.")
     },
     {
-      date: l("2024.01 / 静态页面上线", "2024.01 / Memorial Page"),
+      date: l("2026.4 / 静态页面上线", "2026.4 / Static Launch"),
       text: l("展览、详情、祭奠和关于页逐步成形，项目从概念表达转向可浏览、可协作的前端成品。", "The exhibition, detail, memorial, and about pages gradually took shape as the project moved from concept expression to a browsable, collaborative frontend artifact.")
     },
     {
-      date: l("现在 / 邮箱投稿版 V1", "Now / Email Submission V1"),
+      date: l("现在", "Now"),
       text: l("当前版本继续以静态发布和邮箱整理为主，优先把收录标准、项目语气和页面结构打磨清楚。", "The current version is centered on static publishing and inbox curation, with no promise of online storage, moderation, or real-time community flow.")
     }
   ],
