@@ -33,9 +33,19 @@ const uiState = {
     sort: "alphabetical"
   },
   memorial: {
-    careerSlug: careers[0]?.slug ?? "",
-    signature: "",
-    text: ""
+    activeMode: "existing",
+    existing: {
+      careerSlug: careers[0]?.slug ?? "",
+      signature: "",
+      text: ""
+    },
+    unlisted: {
+      careerName: "",
+      introduction: "",
+      signature: "",
+      text: "",
+      references: ""
+    }
   }
 };
 
@@ -214,9 +224,24 @@ function renderLanguageSwitch() {
 
 function renderNavigation({ active = "", showBack = false, backHref = routes.home } = {}) {
   const navLinks = [
-    { key: "archive", href: routes.archive, label: t(siteCopy.navigation.archive) },
-    { key: "memorial", href: routes.memorial, label: t(siteCopy.navigation.memorial) },
-    { key: "about", href: routes.about, label: t(siteCopy.navigation.about) }
+    {
+      key: "archive",
+      href: routes.archive,
+      label: t(siteCopy.navigation.archive),
+      hint: t(siteCopy.navigationHints.archive)
+    },
+    {
+      key: "memorial",
+      href: routes.memorial,
+      label: t(siteCopy.navigation.memorial),
+      hint: t(siteCopy.navigationHints.memorial)
+    },
+    {
+      key: "about",
+      href: routes.about,
+      label: t(siteCopy.navigation.about),
+      hint: t(siteCopy.navigationHints.about)
+    }
   ];
 
   return `
@@ -236,9 +261,14 @@ function renderNavigation({ active = "", showBack = false, backHref = routes.hom
             ${navLinks
               .map(
                 (link) => `
-                  <a class="site-nav__link${active === link.key ? " is-active" : ""}" href="${link.href}">
-                    ${escapeHtml(link.label)}
-                  </a>
+                  <span class="site-nav__item">
+                    <a class="site-nav__link${active === link.key ? " is-active" : ""}" href="${link.href}">
+                      <span class="site-nav__link-label">${escapeHtml(link.label)}</span>
+                    </a>
+                    <span class="site-nav__hint" id="site-nav-hint-${link.key}" role="tooltip">${escapeHtml(
+                      link.hint
+                    )}</span>
+                  </span>
                 `
               )
               .join("")}
@@ -295,7 +325,8 @@ function renderShell(content, options = {}) {
     showBack = false,
     backHref = routes.home,
     mainClassName = "",
-    mainId = "main-content"
+    mainId = "main-content",
+    footerInMain = false
   } = options;
 
   applyLocaleDocumentState();
@@ -307,8 +338,9 @@ function renderShell(content, options = {}) {
       ${renderNavigation({ active, showBack, backHref })}
       <main id="${mainId}" class="page-main ${mainClassName}">
         ${content}
+        ${footerInMain ? renderFooter() : ""}
       </main>
-      ${renderFooter()}
+      ${footerInMain ? "" : renderFooter()}
     </div>
   `;
 
@@ -368,37 +400,59 @@ function renderHome() {
 
   renderShell(
     `
-      <section class="hero">
-        <div class="hero__inner reveal">
-          <h1>${escapeHtml(t(siteMeta.siteName))}</h1>
-          <p class="hero__subtitle">${escapeHtml(t(siteCopy.home.subtitle))}</p>
-        </div>
-      </section>
+      <div class="home-snap-shell" aria-label="${escapeHtml(t(siteCopy.pageDescriptions.home))}">
+        <section class="home-panel home-panel--hero" data-home-panel="hero">
+          <div class="home-panel__inner home-panel__inner--hero">
+            <section class="hero">
+              <div class="hero__inner reveal">
+                <h1>${escapeHtml(t(siteMeta.siteName))}</h1>
+                <p class="hero__subtitle">${escapeHtml(t(siteCopy.home.subtitle))}</p>
+              </div>
+            </section>
 
-      <section class="hero-axis reveal" style="--stagger:0.18s;">
-        <p class="hero__question-copy">${escapeHtml(t(siteCopy.home.question))}</p>
-        <div class="hero__rule" aria-hidden="true"></div>
-      </section>
+            <section class="hero-axis reveal" style="--stagger:0.18s;">
+              <p class="hero__question-copy">${escapeHtml(t(siteCopy.home.question))}</p>
+              <div class="hero__rule" aria-hidden="true"></div>
+            </section>
+          </div>
+        </section>
 
-      <section class="career-grid career-grid--home">
-        ${featured.map((career) => renderCareerCard(career, "home")).join("")}
-      </section>
+        <section
+          class="home-panel home-panel--careers"
+          data-home-panel="careers"
+          aria-labelledby="home-panel-careers-title"
+        >
+          <div class="home-panel__inner home-panel__inner--careers">
+            <h2 id="home-panel-careers-title" class="sr-only">${escapeHtml(
+              t(siteCopy.navigation.archive)
+            )}</h2>
+            <section class="career-grid career-grid--home">
+              ${featured.map((career) => renderCareerCard(career, "home")).join("")}
+            </section>
+          </div>
+        </section>
 
-      <section class="home-quote reveal" style="--stagger:0.35s;">
-        <p class="section-eyebrow section-eyebrow--centered">${escapeHtml(
-          t(siteCopy.home.quoteEyebrow)
-        )}</p>
-        <div class="home-quote__inner">
-          <blockquote>${escapeHtml(t(homeQuote.text))}</blockquote>
-          <p class="home-quote__author">${escapeHtml(t(homeQuote.author))}</p>
-        </div>
-        <a class="outline-button" href="${routes.archive}">${escapeHtml(t(siteCopy.home.cta))}</a>
-      </section>
+        <section class="home-panel home-panel--quote" data-home-panel="quote">
+          <div class="home-panel__inner home-panel__inner--quote">
+            <section class="home-quote reveal" style="--stagger:0.35s;">
+              <p class="section-eyebrow section-eyebrow--centered">${escapeHtml(
+                t(siteCopy.home.quoteEyebrow)
+              )}</p>
+              <div class="home-quote__inner">
+                <blockquote>${escapeHtml(t(homeQuote.text))}</blockquote>
+                <p class="home-quote__author">${escapeHtml(t(homeQuote.author))}</p>
+              </div>
+              <a class="outline-button" href="${routes.archive}">${escapeHtml(t(siteCopy.home.cta))}</a>
+            </section>
+          </div>
+        </section>
+      </div>
     `,
     {
       active: "",
       showBack: false,
-      mainClassName: "page-main--home"
+      mainClassName: "page-main--home",
+      footerInMain: true
     }
   );
 }
@@ -513,7 +567,7 @@ function renderArchive() {
     `,
     {
       active: "archive",
-      mainClassName: "page-main--wide"
+      mainClassName: "page-main--exhibition"
     }
   );
 
@@ -673,32 +727,128 @@ function renderDetail() {
   );
 }
 
-function buildMemorialDraft({ careerSlug, signature, text }) {
-  const career = getCareerBySlug(careerSlug) ?? careers[0];
-  const safeSignature = signature.trim() || t(siteCopy.memorialEmail.emptySignature);
-  const safeText = text.trim() || t(siteCopy.memorialEmail.emptyText);
-  const careerName = getCareerName(career);
-  const subject = `${t(siteCopy.memorialEmail.subjectPrefix)} ${careerName} - ${safeSignature}`;
-  const body = interpolateTemplate(siteCopy.memorialEmail.bodyTemplate, {
-    career: careerName,
-    signature: safeSignature,
-    text: safeText
-  });
-
-  return {
-    subject,
-    body,
-    email: siteMeta.contactEmail
-  };
-}
-
 function buildMailtoUrl({ email, subject, body }) {
   return `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-function renderMemorialList(items) {
+function getMemorialModeCopy(modeKey = uiState.memorial.activeMode) {
+  return siteCopy.memorial.modes[modeKey];
+}
+
+function getMemorialModeState(modeKey = uiState.memorial.activeMode) {
+  return uiState.memorial[modeKey];
+}
+
+function buildExistingMemorialDraft({ careerSlug, signature, text }) {
+  const career = getCareerBySlug(careerSlug) ?? careers[0];
+  const safeSignature = signature.trim() || t(siteCopy.memorialEmail.emptySignature);
+  const safeText = text.trim() || t(siteCopy.memorialEmail.emptyText);
+  const careerName = getCareerName(career);
+
+  return {
+    subject: `${t(siteCopy.memorialEmail.subjectPrefix)} ${careerName} - ${safeSignature}`,
+    body: interpolateTemplate(siteCopy.memorialEmail.bodyTemplate, {
+      career: careerName,
+      signature: safeSignature,
+      text: safeText
+    }),
+    email: siteMeta.contactEmail
+  };
+}
+
+function buildUnlistedMemorialDraft({ careerName, introduction, signature, text, references }) {
+  const safeCareer = careerName.trim() || t(siteCopy.memorial.modes.unlisted.careerNamePlaceholder);
+  const safeIntroduction = introduction.trim() || t(siteCopy.contactEmail.emptyIntroduction);
+  const safeSignature = signature.trim() || t(siteCopy.contactEmail.emptySignature);
+  const safeText = text.trim() || t(siteCopy.contactEmail.emptyText);
+  const safeReferences = references.trim();
+  const referencesBlock = safeReferences
+    ? `${t(siteCopy.contactEmail.referencesLabel)}${currentLocale === "zh" ? "：" : ": "}${safeReferences}`
+    : "";
+
+  return {
+    subject: `${t(siteCopy.contactEmail.subjectPrefix)} ${safeCareer} - ${safeSignature}`,
+    body: interpolateTemplate(siteCopy.contactEmail.bodyTemplate, {
+      career: safeCareer,
+      introduction: safeIntroduction,
+      signature: safeSignature,
+      text: safeText,
+      referencesBlock
+    })
+      .replace(/\n{2,}/g, "\n")
+      .trim(),
+    email: siteMeta.contactEmail
+  };
+}
+
+function buildUnlistedMemorialDraftResolved({ careerName, introduction, signature, text, references }) {
+  const safeCareer = careerName.trim() || t(siteCopy.memorial.modes.unlisted.careerNamePlaceholder);
+  const safeIntroduction = introduction.trim() || t(siteCopy.contactEmail.emptyIntroduction);
+  const safeSignature = signature.trim() || t(siteCopy.contactEmail.emptySignature);
+  const safeText = text.trim() || t(siteCopy.contactEmail.emptyText);
+  const safeReferences = references.trim();
+  const referencesBlock = safeReferences
+    ? `${t(siteCopy.contactEmail.referencesLabel)}${currentLocale === "zh" ? "：" : ": "}${safeReferences}`
+    : "";
+
+  return {
+    subject: `${t(siteCopy.contactEmail.subjectPrefix)} ${safeCareer} - ${safeSignature}`,
+    body: interpolateTemplate(siteCopy.contactEmail.bodyTemplate, {
+      career: safeCareer,
+      introduction: safeIntroduction,
+      signature: safeSignature,
+      text: safeText,
+      referencesBlock
+    })
+      .replace(/\n{2,}/g, "\n")
+      .trim(),
+    email: siteMeta.contactEmail
+  };
+}
+
+function isMemorialModeValid(modeKey, state) {
+  if (modeKey === "existing") {
+    return Boolean(state.signature.trim() && state.text.trim());
+  }
+
+  return Boolean(
+    state.careerName.trim() && state.introduction.trim() && state.signature.trim() && state.text.trim()
+  );
+}
+
+function buildMemorialDraft(modeKey = uiState.memorial.activeMode) {
+  const state = getMemorialModeState(modeKey);
+  const draft =
+    modeKey === "existing" ? buildExistingMemorialDraft(state) : buildUnlistedMemorialDraftResolved(state);
+
+  return {
+    ...draft,
+    isValid: isMemorialModeValid(modeKey, state)
+  };
+}
+
+function renderMemorialList(items, modeKey) {
   return items
     .map((item) => {
+      if (modeKey === "unlisted") {
+        return `
+          <article class="memorial-item memorial-item--unlisted">
+            <div class="memorial-item__head">
+              <h4>${escapeHtml(t(item.careerName))}</h4>
+              <span>${escapeHtml(t(item.date))}</span>
+            </div>
+            <p class="memorial-item__intro">${escapeHtml(t(item.introduction))}</p>
+            <p class="memorial-item__text">${escapeHtml(t(item.text))}</p>
+            ${
+              item.references
+                ? `<p class="memorial-item__references">${escapeHtml(t(item.references))}</p>`
+                : ""
+            }
+            <p class="memorial-item__signature">${escapeHtml(t(item.signature))}</p>
+          </article>
+        `;
+      }
+
       const career = getCareerBySlug(item.careerSlug);
       return `
         <article class="memorial-item">
@@ -714,22 +864,181 @@ function renderMemorialList(items) {
     .join("");
 }
 
+function renderMemorialModeSwitcher() {
+  const buttons = [
+    { key: "existing", label: t(siteCopy.memorial.modes.existing.tabLabel) },
+    { key: "unlisted", label: t(siteCopy.memorial.modes.unlisted.tabLabel) }
+  ];
+
+  return `
+    <section class="memorial-mode-switch reveal" style="--stagger:0.04s;" aria-label="${escapeHtml(
+      t(siteCopy.memorial.switcherLabel)
+    )}">
+      <div class="memorial-mode-switch__tabs" role="tablist" aria-label="${escapeHtml(
+        t(siteCopy.memorial.switcherLabel)
+      )}">
+        ${buttons
+          .map(
+            (button) => `
+              <button
+                class="memorial-mode-switch__button${
+                  uiState.memorial.activeMode === button.key ? " is-active" : ""
+                }"
+                type="button"
+                role="tab"
+                aria-selected="${uiState.memorial.activeMode === button.key ? "true" : "false"}"
+                data-memorial-mode="${button.key}"
+              >
+                ${escapeHtml(button.label)}
+              </button>
+            `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderExistingMemorialFields(modeCopy) {
+  const state = getMemorialModeState("existing");
+
+  return `
+    <p class="section-eyebrow">${escapeHtml(t(modeCopy.formHeading))}</p>
+    <p class="memorial-form__description">${escapeHtml(t(modeCopy.description))}</p>
+    <label for="memorial-career">
+      <span>${escapeHtml(t(modeCopy.careerLabel))}</span>
+      <select id="memorial-career" class="memorial-input">
+        ${careers
+          .map(
+            (career) => `
+              <option value="${career.slug}"${state.careerSlug === career.slug ? " selected" : ""}>
+                ${escapeHtml(getCareerName(career))}
+              </option>
+            `
+          )
+          .join("")}
+      </select>
+    </label>
+
+    <label for="memorial-signature">
+      <span>${escapeHtml(t(modeCopy.signatureLabel))}</span>
+      <input
+        id="memorial-signature"
+        class="memorial-input"
+        type="text"
+        value="${escapeHtml(state.signature)}"
+        placeholder="${escapeHtml(t(modeCopy.signaturePlaceholder))}"
+      />
+    </label>
+
+    <label for="memorial-text">
+      <span>${escapeHtml(t(modeCopy.textLabel))}</span>
+      <textarea
+        id="memorial-text"
+        class="memorial-input memorial-input--area"
+        rows="8"
+        placeholder="${escapeHtml(t(modeCopy.textPlaceholder))}"
+      >${escapeHtml(state.text)}</textarea>
+    </label>
+  `;
+}
+
+function renderUnlistedMemorialFields(modeCopy) {
+  const state = getMemorialModeState("unlisted");
+
+  return `
+    <p class="section-eyebrow">${escapeHtml(t(modeCopy.formHeading))}</p>
+    <p class="memorial-form__description">${escapeHtml(t(modeCopy.description))}</p>
+    <label for="memorial-new-career">
+      <span>${escapeHtml(t(modeCopy.careerNameLabel))}</span>
+      <input
+        id="memorial-new-career"
+        class="memorial-input"
+        type="text"
+        value="${escapeHtml(state.careerName)}"
+        placeholder="${escapeHtml(t(modeCopy.careerNamePlaceholder))}"
+      />
+    </label>
+
+    <label for="memorial-new-introduction">
+      <span>${escapeHtml(t(modeCopy.careerIntroLabel))}</span>
+      <textarea
+        id="memorial-new-introduction"
+        class="memorial-input memorial-input--area"
+        rows="5"
+        placeholder="${escapeHtml(t(modeCopy.careerIntroPlaceholder))}"
+      >${escapeHtml(state.introduction)}</textarea>
+    </label>
+
+    <label for="memorial-new-signature">
+      <span>${escapeHtml(t(modeCopy.signatureLabel))}</span>
+      <input
+        id="memorial-new-signature"
+        class="memorial-input"
+        type="text"
+        value="${escapeHtml(state.signature)}"
+        placeholder="${escapeHtml(t(modeCopy.signaturePlaceholder))}"
+      />
+    </label>
+
+    <label for="memorial-new-text">
+      <span>${escapeHtml(t(modeCopy.textLabel))}</span>
+      <textarea
+        id="memorial-new-text"
+        class="memorial-input memorial-input--area"
+        rows="8"
+        placeholder="${escapeHtml(t(modeCopy.textPlaceholder))}"
+      >${escapeHtml(state.text)}</textarea>
+    </label>
+
+    <label for="memorial-new-references">
+      <span>${escapeHtml(t(modeCopy.referencesLabel))}</span>
+      <textarea
+        id="memorial-new-references"
+        class="memorial-input memorial-input--area"
+        rows="4"
+        placeholder="${escapeHtml(t(modeCopy.referencesPlaceholder))}"
+      >${escapeHtml(state.references)}</textarea>
+    </label>
+  `;
+}
+
 function bindMemorialForm() {
-  const careerSelect = document.querySelector("#memorial-career");
-  const signatureInput = document.querySelector("#memorial-signature");
-  const textInput = document.querySelector("#memorial-text");
+  const modeButtons = document.querySelectorAll("[data-memorial-mode]");
   const mailtoLink = document.querySelector("#memorial-mailto-link");
   const subjectPreview = document.querySelector("#memorial-subject-preview");
   const bodyPreview = document.querySelector("#memorial-body-preview");
+  const validationHint = document.querySelector("#memorial-validation-hint");
+
+  const inputMap = {
+    existing: {
+      careerSlug: document.querySelector("#memorial-career"),
+      signature: document.querySelector("#memorial-signature"),
+      text: document.querySelector("#memorial-text")
+    },
+    unlisted: {
+      careerName: document.querySelector("#memorial-new-career"),
+      introduction: document.querySelector("#memorial-new-introduction"),
+      signature: document.querySelector("#memorial-new-signature"),
+      text: document.querySelector("#memorial-new-text"),
+      references: document.querySelector("#memorial-new-references")
+    }
+  };
 
   const syncDraft = () => {
-    uiState.memorial.careerSlug = careerSelect?.value ?? uiState.memorial.careerSlug;
-    uiState.memorial.signature = signatureInput?.value ?? "";
-    uiState.memorial.text = textInput?.value ?? "";
+    const activeMode = uiState.memorial.activeMode;
+    const activeInputs = inputMap[activeMode];
+    const activeState = getMemorialModeState(activeMode);
 
-    const draft = buildMemorialDraft(uiState.memorial);
+    Object.entries(activeInputs).forEach(([key, field]) => {
+      activeState[key] = field?.value ?? activeState[key] ?? "";
+    });
+
+    const draft = buildMemorialDraft(activeMode);
     if (mailtoLink) {
-      mailtoLink.setAttribute("href", buildMailtoUrl(draft));
+      mailtoLink.setAttribute("href", draft.isValid ? buildMailtoUrl(draft) : "#");
+      mailtoLink.setAttribute("aria-disabled", draft.isValid ? "false" : "true");
+      mailtoLink.classList.toggle("is-disabled", !draft.isValid);
     }
     if (subjectPreview) {
       subjectPreview.textContent = draft.subject;
@@ -737,11 +1046,32 @@ function bindMemorialForm() {
     if (bodyPreview) {
       bodyPreview.textContent = draft.body;
     }
+    if (validationHint) {
+      validationHint.hidden = draft.isValid;
+    }
   };
 
-  [careerSelect, signatureInput, textInput].forEach((field) => {
+  modeButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const nextMode = button.getAttribute("data-memorial-mode");
+      if (!nextMode || nextMode === uiState.memorial.activeMode) {
+        return;
+      }
+
+      uiState.memorial.activeMode = nextMode;
+      renderMemorial();
+    });
+  });
+
+  Object.values(inputMap[uiState.memorial.activeMode]).forEach((field) => {
     field?.addEventListener("input", syncDraft);
     field?.addEventListener("change", syncDraft);
+  });
+
+  mailtoLink?.addEventListener("click", (event) => {
+    if (!buildMemorialDraft().isValid) {
+      event.preventDefault();
+    }
   });
 
   syncDraft();
@@ -754,7 +1084,9 @@ function renderMemorial() {
     path: routes.memorial
   });
 
-  const draft = buildMemorialDraft(uiState.memorial);
+  const modeCopy = getMemorialModeCopy();
+  const draft = buildMemorialDraft();
+  const memorialExamples = initialMemorials[uiState.memorial.activeMode];
 
   renderShell(
     `
@@ -764,96 +1096,79 @@ function renderMemorial() {
         <div class="page-header__marker" aria-hidden="true"></div>
       </header>
 
-      <section class="memorial-layout">
-        <aside class="memorial-form__sticky reveal" style="--stagger:0.08s;">
-          <div class="memorial-note">
-            <p class="section-eyebrow">${escapeHtml(t(siteCopy.memorial.noticeEyebrow))}</p>
-            <p class="memorial-note__text">${escapeHtml(t(siteCopy.memorial.noticeText))}</p>
-          </div>
+      <section class="memorial-main">
+        <div class="memorial-layout">
+          <aside class="memorial-form__sticky reveal" style="--stagger:0.08s;">
+            ${renderMemorialModeSwitcher()}
 
-          <div class="memorial-form__fields">
-            <p class="section-eyebrow">${escapeHtml(t(siteCopy.memorial.formHeading))}</p>
-            <label for="memorial-career">
-              <span>${escapeHtml(t(siteCopy.memorial.careerLabel))}</span>
-              <select id="memorial-career" class="memorial-input">
-                ${careers
-                  .map(
-                    (career) => `
-                      <option value="${career.slug}"${
-                        uiState.memorial.careerSlug === career.slug ? " selected" : ""
-                      }>${escapeHtml(getCareerName(career))}</option>
-                    `
-                  )
-                  .join("")}
-              </select>
-            </label>
+            <div class="memorial-note">
+              <p class="section-eyebrow">${escapeHtml(t(siteCopy.memorial.noticeEyebrow))}</p>
+              <p class="memorial-note__text">${escapeHtml(t(siteCopy.memorial.noticeText))}</p>
+            </div>
 
-            <label for="memorial-signature">
-              <span>${escapeHtml(t(siteCopy.memorial.signatureLabel))}</span>
-              <input
-                id="memorial-signature"
-                class="memorial-input"
-                type="text"
-                value="${escapeHtml(uiState.memorial.signature)}"
-                placeholder="${escapeHtml(t(siteCopy.memorial.signaturePlaceholder))}"
-              />
-            </label>
+            <div class="memorial-form__fields">
+              ${
+                uiState.memorial.activeMode === "existing"
+                  ? renderExistingMemorialFields(modeCopy)
+                  : renderUnlistedMemorialFields(modeCopy)
+              }
+            </div>
 
-            <label for="memorial-text">
-              <span>${escapeHtml(t(siteCopy.memorial.textLabel))}</span>
-              <textarea
-                id="memorial-text"
-                class="memorial-input memorial-input--area"
-                rows="8"
-                placeholder="${escapeHtml(t(siteCopy.memorial.textPlaceholder))}"
-              >${escapeHtml(uiState.memorial.text)}</textarea>
-            </label>
+            <div class="memorial-form__actions">
+              <a
+                id="memorial-mailto-link"
+                class="outline-button outline-button--full${draft.isValid ? "" : " is-disabled"}"
+                href="${draft.isValid ? buildMailtoUrl(draft) : "#"}"
+                aria-disabled="${draft.isValid ? "false" : "true"}"
+              >
+                ${escapeHtml(t(modeCopy.submitLabel))}
+              </a>
+              <p id="memorial-validation-hint" class="memorial-form__hint"${draft.isValid ? " hidden" : ""}>
+                ${escapeHtml(t(modeCopy.validationHint))}
+              </p>
+            </div>
 
-            <a id="memorial-mailto-link" class="outline-button outline-button--full" href="${buildMailtoUrl(
-              draft
-            )}">
-              ${escapeHtml(t(siteCopy.memorial.submitLabel))}
-            </a>
-          </div>
-
-          <div class="memorial-fallback">
-            <p class="section-eyebrow">${escapeHtml(t(siteCopy.memorial.fallbackTitle))}</p>
-            <p class="memorial-fallback__text">${escapeHtml(t(siteCopy.memorial.fallbackBody))}</p>
-            <p class="memorial-fallback__hint">${escapeHtml(t(siteCopy.memorial.fallbackHint))}</p>
-            <div class="memorial-fallback__meta">
-              <div class="memorial-fallback__field">
-                <span>${escapeHtml(t(siteCopy.memorial.emailLabel))}</span>
-                <p class="memorial-fallback__link">${escapeHtml(siteMeta.contactEmail)}</p>
-              </div>
-              <div class="memorial-fallback__field">
-                <span>${escapeHtml(t(siteCopy.memorial.subjectLabel))}</span>
-                <p id="memorial-subject-preview" class="memorial-fallback__subject">${escapeHtml(
-                  draft.subject
-                )}</p>
-              </div>
-              <div class="memorial-fallback__field">
-                <span>${escapeHtml(t(siteCopy.memorial.bodyLabel))}</span>
-                <pre id="memorial-body-preview" class="memorial-fallback__body">${escapeHtml(
-                  draft.body
-                )}</pre>
+            <div class="memorial-fallback">
+              <p class="section-eyebrow">${escapeHtml(t(siteCopy.memorial.fallbackTitle))}</p>
+              <p class="memorial-fallback__text">${escapeHtml(t(siteCopy.memorial.fallbackBody))}</p>
+              <p class="memorial-fallback__hint">${escapeHtml(t(siteCopy.memorial.fallbackHint))}</p>
+              <div class="memorial-fallback__meta">
+                <div class="memorial-fallback__field">
+                  <span>${escapeHtml(t(siteCopy.memorial.emailLabel))}</span>
+                  <p class="memorial-fallback__link">${escapeHtml(siteMeta.contactEmail)}</p>
+                </div>
+                <div class="memorial-fallback__field">
+                  <span>${escapeHtml(t(siteCopy.memorial.subjectLabel))}</span>
+                  <p id="memorial-subject-preview" class="memorial-fallback__subject">${escapeHtml(
+                    draft.subject
+                  )}</p>
+                </div>
+                <div class="memorial-fallback__field">
+                  <span>${escapeHtml(t(siteCopy.memorial.bodyLabel))}</span>
+                  <pre id="memorial-body-preview" class="memorial-fallback__body">${escapeHtml(
+                    draft.body
+                  )}</pre>
+                </div>
               </div>
             </div>
-          </div>
-        </aside>
+          </aside>
 
-        <section class="memorial-feed reveal" style="--stagger:0.16s;">
-          <div class="memorial-feed__intro">
-            <p class="section-eyebrow">${escapeHtml(t(siteCopy.memorial.curatedEyebrow))}</p>
-            <p class="memorial-feed__note">${escapeHtml(t(siteCopy.memorial.curatedNote))}</p>
-          </div>
-          <div class="memorial-feed__list">
-            ${renderMemorialList(initialMemorials)}
-          </div>
-        </section>
+          <section class="memorial-feed reveal" style="--stagger:0.16s;">
+            <div class="memorial-feed__intro">
+              <p class="section-eyebrow">${escapeHtml(t(modeCopy.introEyebrow))}</p>
+              <p class="memorial-feed__lede">${escapeHtml(t(modeCopy.introText))}</p>
+              <p class="memorial-feed__note">${escapeHtml(t(modeCopy.curatedNote))}</p>
+            </div>
+            <div class="memorial-feed__list">
+              ${renderMemorialList(memorialExamples, uiState.memorial.activeMode)}
+            </div>
+          </section>
+        </div>
       </section>
     `,
     {
-      active: "memorial"
+      active: "memorial",
+      mainClassName: "page-main--exhibition"
     }
   );
 
@@ -996,7 +1311,8 @@ function renderAbout() {
       </section>
     `,
     {
-      active: "about"
+      active: "about",
+      mainClassName: "page-main--exhibition"
     }
   );
 }
