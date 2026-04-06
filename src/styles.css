@@ -16,23 +16,51 @@
   --surface: rgba(255, 255, 255, 0.94);
   --surface-soft: rgba(249, 249, 249, 0.72);
   --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.18);
-  --tracking-extreme: 0.5em;
-  --tracking-wide: 0.4em;
+  --text-caption: 0.75rem;
+  --text-label: 0.875rem;
+  --text-body: 1rem;
+  --text-body-strong: 1.125rem;
+  --text-title-sm: 1.5rem;
+  --text-title-md: 2rem;
+  --text-display-home: clamp(2.35rem, 6vw, 4.1rem);
+  --text-display-page: clamp(2.25rem, 5.8vw, 4.5rem);
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --line-height-tight: 1.2;
+  --line-height-tight-reading: 1.6;
+  --line-height-body-snug: 1.65;
+  --line-height-body: 1.8;
+  --line-height-body-compact: 1.75;
+  --line-height-body-dense: 1.55;
+  --line-height-body-relaxed: 1.9;
+  --line-height-body-loose: 1.95;
+  --line-height-display: 1.2;
+  --tracking-tight-zh: 0.16em;
+  --tracking-tight-zh-ui: 0.12em;
+  --tracking-tight-zh-display: 0.18em;
+  --tracking-input: 0.08em;
+  --tracking-heading: 0.1em;
+  --tracking-title: 0.14em;
+  --tracking-card: 0.16em;
+  --tracking-label: 0.4em;
+  --tracking-display: 0.5em;
+  --tracking-home-nav: 0.28em;
   --page-gutter: 16px;
   --content-narrow-max: 1280px;
   --content-wide-max: 1440px;
   --content-narrow: min(var(--content-narrow-max), calc(100vw - (var(--page-gutter) + var(--page-gutter))));
   --content-wide: min(var(--content-wide-max), calc(100vw - (var(--page-gutter) + var(--page-gutter))));
-  --nav-font-size: 0.725rem;
-  --eyebrow-font-size: clamp(0.72rem, 0.7rem + 0.08vw, 0.76rem);
-  --button-font-size: clamp(0.75rem, 0.72rem + 0.12vw, 0.82rem);
+  --nav-font-size: var(--text-caption);
+  --eyebrow-font-size: var(--text-caption);
+  --button-font-size: var(--text-label);
   --logo-size: clamp(1rem, 0.96rem + 0.14vw, 1.125rem);
   --nav-cluster-gap: clamp(2rem, 1.6rem + 0.9vw, 3rem);
   --nav-link-gap: clamp(1.5rem, 1rem + 1.1vw, 3rem);
-  --hero-title-size: clamp(2.35rem, 6vw, 4.1rem);
-  --hero-subtitle-size: 0.64rem;
-  --home-question-size: 0.68rem;
-  --page-title-size: clamp(2.25rem, 5.8vw, 4.5rem);
+  --hero-title-size: var(--text-display-home);
+  --hero-subtitle-size: var(--text-caption);
+  --home-question-size: var(--text-label);
+  --page-title-size: var(--text-display-page);
   --home-columns: 2;
   --archive-columns: 2;
   --related-columns: 2;
@@ -76,11 +104,11 @@ body[data-locale="zh"] .memorial-item__head span,
 body[data-locale="zh"] .memorial-item__signature,
 body[data-locale="zh"] .stats-band__label,
 body[data-locale="zh"] .contributor-card p {
-  letter-spacing: 0.16em;
+  letter-spacing: var(--tracking-tight-zh);
 }
 
 body[data-locale="zh"] .site-nav__locale-button {
-  letter-spacing: 0.12em;
+  letter-spacing: var(--tracking-tight-zh-ui);
 }
 
 body[data-locale="zh"] .hero h1,
@@ -88,7 +116,7 @@ body[data-locale="zh"] .page-header h1,
 body[data-locale="zh"] .detail-header h1,
 body[data-locale="zh"] .about-hero h1,
 body[data-locale="zh"] .outline-button {
-  letter-spacing: 0.18em;
+  letter-spacing: var(--tracking-tight-zh-display);
 }
 
 ::selection {
@@ -137,8 +165,8 @@ button {
   padding: 0.85rem 1.15rem;
   background: #000000;
   color: #ffffff;
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   transition: top 0.2s ease;
 }
@@ -211,6 +239,12 @@ button {
   gap: var(--nav-link-gap);
 }
 
+.site-nav__item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
 .site-nav__locale-switch {
   display: inline-flex;
   align-items: center;
@@ -230,8 +264,8 @@ button {
   min-width: 3.1rem;
   padding: 0.5rem 0.8rem;
   color: var(--muted);
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-home-nav);
   text-transform: uppercase;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
@@ -244,15 +278,15 @@ button {
 
 .site-nav__logo {
   font-size: var(--logo-size);
-  font-weight: 500;
-  letter-spacing: var(--tracking-extreme);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-display);
   color: var(--page-fg);
 }
 
 .site-nav--home .site-nav__logo {
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.42em;
+  font-size: var(--text-body-strong);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-home-nav);
 }
 
 .site-nav__back,
@@ -270,11 +304,14 @@ button {
 .contributor-card p,
 .text-button {
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: var(--tracking-label);
 }
 
 .site-nav__back,
-.site-nav__link,
+.site-nav__link {
+  font-size: var(--text-label);
+}
+
 .section-eyebrow,
 .site-footer__copy,
 .site-footer__links a,
@@ -300,7 +337,36 @@ button {
 }
 
 .site-nav__link {
+  display: inline-flex;
+  align-items: center;
   opacity: 1;
+}
+
+.site-nav__link-label {
+  display: inline-block;
+}
+
+.site-nav__hint {
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  left: 0;
+  z-index: 12;
+  min-width: 11rem;
+  max-width: 14rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid var(--line-soft);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-soft);
+  color: var(--muted);
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-tight-reading);
+  letter-spacing: normal;
+  text-transform: none;
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 0.24s ease, transform 0.24s ease;
 }
 
 .site-nav--home .site-nav__links {
@@ -309,8 +375,7 @@ button {
 
 .site-nav--home .site-nav__link {
   color: color-mix(in srgb, var(--muted) 86%, white);
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
+  letter-spacing: var(--tracking-home-nav);
 }
 
 .site-nav__back:hover {
@@ -344,6 +409,14 @@ button {
 .site-nav__link.is-active,
 .text-toggle.is-active {
   color: var(--page-fg);
+}
+
+@media (hover: hover) {
+  .site-nav__item:hover .site-nav__hint,
+  .site-nav__item:focus-within .site-nav__hint {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .page-main {
@@ -389,19 +462,20 @@ button {
 .detail-header h1,
 .about-hero h1 {
   margin: 0;
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
 }
 
 .hero h1 {
   font-size: var(--hero-title-size);
-  letter-spacing: 0.3em;
+  line-height: var(--line-height-display);
+  letter-spacing: var(--tracking-display);
 }
 
 .hero__subtitle {
   margin: 0;
   color: var(--muted);
-  font-size: 0.54rem;
-  letter-spacing: 0.36em;
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
@@ -417,8 +491,8 @@ button {
 .archive-tail p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.62rem;
-  letter-spacing: 0.34em;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   text-align: center;
   white-space: nowrap;
@@ -457,13 +531,12 @@ button {
 }
 
 .career-card--home .career-card__status {
-  font-size: 0.58rem;
-  letter-spacing: 0.28em;
+  letter-spacing: var(--tracking-home-nav);
 }
 
 .career-card--home h2 {
-  font-size: 0.74rem;
-  letter-spacing: 0.13em;
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-heading);
 }
 
 .career-card--home .career-card__teaser {
@@ -472,8 +545,8 @@ button {
 }
 
 .career-card--home .career-card__teaser p {
-  font-size: 0.6rem;
-  line-height: 1.75;
+  font-size: var(--text-caption);
+  line-height: var(--line-height-body);
 }
 
 .career-grid--archive {
@@ -505,22 +578,22 @@ button {
 .career-card__status {
   margin: 0;
   color: var(--muted);
-  font-size: 0.62rem;
-  letter-spacing: 0.34em;
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
 .career-card h2,
 .career-card h4 {
   margin: 0;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
+  font-size: var(--text-label);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-card);
 }
 
 .career-card--archive h2,
 .career-card--related h4 {
-  font-size: 0.78rem;
+  font-size: var(--text-caption);
 }
 
 .career-card__slab {
@@ -547,9 +620,9 @@ button {
 .career-card__teaser p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.66rem;
+  font-size: var(--text-caption);
   font-style: italic;
-  line-height: 1.8;
+  line-height: var(--line-height-body);
 }
 
 .career-card:hover .career-card__teaser {
@@ -575,9 +648,9 @@ button {
 .home-quote blockquote {
   margin: 0;
   color: var(--muted);
-  font-size: 0.84rem;
-  line-height: 2.05;
-  font-weight: 300;
+  font-size: var(--text-body);
+  line-height: var(--line-height-body-relaxed);
+  font-weight: var(--font-weight-light);
 }
 
 .outline-button {
@@ -588,7 +661,7 @@ button {
   border: 1px solid var(--line);
   min-height: 48px;
   font-size: var(--button-font-size);
-  letter-spacing: 0.5em;
+  letter-spacing: var(--tracking-display);
   text-transform: uppercase;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
@@ -597,8 +670,8 @@ button {
   padding-inline: 2.4rem;
   min-width: 14rem;
   min-height: 42px;
-  font-size: 0.62rem;
-  letter-spacing: 0.24em;
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
 }
 
 .outline-button:hover {
@@ -619,14 +692,15 @@ button {
 .page-header h1,
 .detail-header h1 {
   font-size: var(--page-title-size);
-  letter-spacing: var(--tracking-extreme);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--tracking-display);
 }
 
 .page-header__subtitle {
   margin: 1rem 0 0;
   color: var(--muted);
-  font-size: 0.9rem;
-  letter-spacing: 0.4em;
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
@@ -689,9 +763,9 @@ button {
 }
 
 .detail-header__status span {
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.6em;
+  font-size: var(--text-label);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-display);
 }
 
 .detail-header__rule {
@@ -775,8 +849,8 @@ button {
 .method-card p,
 .standard-item span,
 .contributor-card h3 {
-  font-weight: 300;
-  line-height: 1.9;
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-body-relaxed);
 }
 
 .timeline-item__text,
@@ -790,7 +864,7 @@ button {
 .project-timeline__item p:last-child {
   margin: 0;
   color: #666666;
-  font-size: 1rem;
+  font-size: var(--text-body);
 }
 
 .detail-content {
@@ -804,7 +878,7 @@ button {
 
 .detail-summary {
   max-width: 48rem;
-  font-size: 1.02rem;
+  font-size: var(--text-body-strong);
   color: #555555;
 }
 
@@ -824,9 +898,9 @@ button {
 .contributor-card h3,
 .method-card h3 {
   margin: 0 0 1rem;
-  font-size: 0.96rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-size: var(--text-label);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-heading);
 }
 
 .voice-list {
@@ -848,7 +922,7 @@ button {
 .voice-card__text {
   font-style: italic;
   color: #222222;
-  font-size: 1.02rem;
+  font-size: var(--text-body-strong);
   margin-bottom: 1.75rem;
 }
 
@@ -856,7 +930,7 @@ button {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  font-size: 0.72rem;
+  font-size: var(--text-caption);
 }
 
 .related-section {
@@ -896,9 +970,9 @@ button {
 .memorial-note__text {
   margin: 0;
   color: #555555;
-  font-size: 0.88rem;
-  line-height: 1.8;
-  font-weight: 300;
+  font-size: var(--text-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-light);
 }
 
 .memorial-fallback {
@@ -914,9 +988,9 @@ button {
 .memorial-feed__note {
   margin: 0;
   color: #555555;
-  font-size: 0.88rem;
-  line-height: 1.8;
-  font-weight: 300;
+  font-size: var(--text-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-light);
 }
 
 .memorial-fallback__meta {
@@ -931,9 +1005,9 @@ button {
 
 .memorial-fallback__field span {
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: var(--text-caption);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: var(--tracking-label);
 }
 
 .memorial-fallback__link,
@@ -941,9 +1015,9 @@ button {
 .memorial-fallback__body {
   margin: 0;
   color: var(--page-fg);
-  font-size: 0.92rem;
-  line-height: 1.8;
-  font-weight: 300;
+  font-size: var(--text-body);
+  line-height: var(--line-height-body);
+  font-weight: var(--font-weight-light);
 }
 
 .memorial-fallback__body {
@@ -953,7 +1027,7 @@ button {
   white-space: pre-wrap;
   word-break: break-word;
   font-family: "IBM Plex Mono", "Courier New", monospace;
-  font-size: 0.84rem;
+  font-size: var(--text-caption);
 }
 
 .memorial-fallback__launch {
@@ -967,9 +1041,9 @@ button {
 
 .memorial-form__fields label span {
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: var(--text-caption);
   text-transform: uppercase;
-  letter-spacing: var(--tracking-wide);
+  letter-spacing: var(--tracking-label);
 }
 
 .memorial-input {
@@ -978,9 +1052,9 @@ button {
   background: transparent;
   border: 1px solid #e5e7eb;
   color: var(--page-fg);
-  font-size: 0.95rem;
-  font-weight: 300;
-  letter-spacing: 0.08em;
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--tracking-input);
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
@@ -1025,14 +1099,14 @@ button {
 
 .memorial-item__text {
   color: #1f1f1f;
-  font-size: 1rem;
+  font-size: var(--text-body);
   font-style: italic;
   margin-bottom: 1.5rem;
 }
 
 .memorial-item__signature {
   margin: 0;
-  font-size: 0.72rem;
+  font-size: var(--text-caption);
 }
 
 .memorial-feed__actions {
@@ -1059,14 +1133,14 @@ button {
 }
 
 .about-hero h1 {
-  font-size: clamp(2.6rem, 5vw, 4.7rem);
-  line-height: 1.2;
+  font-size: var(--page-title-size);
+  line-height: var(--line-height-display);
   margin: 0 0 2rem;
 }
 
 .about-hero p {
   max-width: 42rem;
-  font-size: 1.05rem;
+  font-size: var(--text-body-strong);
   color: #202020;
 }
 
@@ -1111,9 +1185,9 @@ button {
 }
 
 .standard-item strong {
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.3em;
+  font-size: var(--text-caption);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-home-nav);
 }
 
 .stats-band {
@@ -1135,8 +1209,8 @@ button {
 
 .stats-band__value {
   margin: 0 0 0.5rem;
-  font-size: 2rem;
-  font-weight: 300;
+  font-size: var(--text-title-md);
+  font-weight: var(--font-weight-light);
 }
 
 .contributors-grid {
@@ -1161,17 +1235,17 @@ button {
 
 .info-card h3 {
   margin: 0;
-  font-size: 1rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--tracking-input);
 }
 
 .info-card p {
   margin: 0;
   color: #555555;
-  font-size: 0.94rem;
-  line-height: 1.85;
-  font-weight: 300;
+  font-size: var(--text-body);
+  line-height: var(--line-height-body-relaxed);
+  font-weight: var(--font-weight-light);
 }
 
 .info-card__actions {
@@ -1206,8 +1280,8 @@ button {
 .site-footer--home .site-footer__copy,
 .site-footer--home .site-footer__links a {
   color: color-mix(in srgb, var(--muted) 88%, white);
-  font-size: 0.62rem;
-  letter-spacing: 0.24em;
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
 }
 
 .site-footer--home .site-footer__links {
@@ -1237,17 +1311,18 @@ button {
 
 .not-found-panel h1 {
   margin: 0;
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  font-weight: 300;
-  letter-spacing: 0.14em;
+  font-size: var(--page-title-size);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--tracking-title);
 }
 
 .not-found-panel__body {
   margin: 0;
   color: #555555;
-  font-size: 1rem;
-  line-height: 1.9;
-  font-weight: 300;
+  font-size: var(--text-body);
+  line-height: var(--line-height-body-relaxed);
+  font-weight: var(--font-weight-light);
 }
 
 .not-found-panel__actions {
@@ -1276,10 +1351,10 @@ button {
 @media (min-width: 768px) and (max-width: 1279px) {
   :root {
     --page-gutter: 24px;
-    --hero-title-size: clamp(2.9rem, 7vw, 4.2rem);
-    --hero-subtitle-size: 0.7rem;
-    --home-question-size: 0.7rem;
-    --page-title-size: clamp(2.7rem, 6vw, 4.2rem);
+    --text-display-home: clamp(2.9rem, 7vw, 4.2rem);
+    --hero-subtitle-size: var(--text-caption);
+    --home-question-size: var(--text-label);
+    --text-display-page: clamp(2.7rem, 6vw, 4.2rem);
     --home-columns: 3;
     --archive-columns: 4;
     --related-columns: 4;
@@ -1298,10 +1373,10 @@ button {
 @media (min-width: 1280px) and (max-width: 1439px) {
   :root {
     --page-gutter: 32px;
-    --hero-title-size: clamp(3.2rem, 5vw, 4.35rem);
-    --hero-subtitle-size: 0.72rem;
-    --home-question-size: 0.68rem;
-    --page-title-size: clamp(3rem, 5.5vw, 4.4rem);
+    --text-display-home: clamp(3.2rem, 5vw, 4.35rem);
+    --hero-subtitle-size: var(--text-caption);
+    --home-question-size: var(--text-label);
+    --text-display-page: clamp(3rem, 5.5vw, 4.4rem);
     --home-columns: 6;
     --archive-columns: 6;
     --related-columns: 4;
@@ -1316,10 +1391,10 @@ button {
 @media (min-width: 1440px) {
   :root {
     --page-gutter: 32px;
-    --hero-title-size: clamp(3.35rem, 4.8vw, 4.7rem);
-    --hero-subtitle-size: 0.75rem;
-    --home-question-size: 0.68rem;
-    --page-title-size: clamp(3.1rem, 5vw, 4.8rem);
+    --text-display-home: clamp(3.35rem, 4.8vw, 4.7rem);
+    --hero-subtitle-size: var(--text-caption);
+    --home-question-size: var(--text-label);
+    --text-display-page: clamp(3.1rem, 5vw, 4.8rem);
     --home-columns: 6;
     --archive-columns: 8;
     --related-columns: 4;
@@ -1371,10 +1446,10 @@ button {
 @media (max-width: 767px) {
   :root {
     --page-gutter: 16px;
-    --hero-title-size: 2.35rem;
-    --hero-subtitle-size: 0.62rem;
-    --home-question-size: 0.68rem;
-    --page-title-size: 2.25rem;
+    --text-display-home: 2.35rem;
+    --hero-subtitle-size: var(--text-caption);
+    --home-question-size: var(--text-label);
+    --text-display-page: 2.25rem;
     --home-columns: 2;
     --archive-columns: 2;
     --related-columns: 2;
@@ -1448,8 +1523,8 @@ button {
   .site-nav__locale-button {
     min-width: 2.7rem;
     padding: 0.42rem 0.65rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-tight-zh-display);
   }
 
   .page-main {
@@ -1462,19 +1537,23 @@ button {
   }
 
   .site-nav__logo {
-    font-size: 0.92rem;
-    letter-spacing: 0.42em;
+    font-size: var(--text-body);
+    letter-spacing: var(--tracking-home-nav);
   }
 
   .site-nav__link,
-  .site-nav__back,
+  .site-nav__back {
+    font-size: var(--text-label);
+    letter-spacing: var(--tracking-home-nav);
+  }
+
   .site-footer__copy,
   .site-footer__links a,
   .section-eyebrow,
   .home-quote__author,
   .text-button {
-    font-size: 0.7rem;
-    letter-spacing: 0.28em;
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-home-nav);
   }
 
   .hero {
@@ -1486,7 +1565,7 @@ button {
   }
 
   .hero h1 {
-    letter-spacing: 0.22em;
+    letter-spacing: var(--tracking-tight-zh-display);
   }
 
   .hero-axis {
@@ -1498,13 +1577,13 @@ button {
   .hero__question-copy,
   .page-header__subtitle,
   .detail-header__status span {
-    letter-spacing: 0.18em;
+    letter-spacing: var(--tracking-tight-zh-display);
   }
 
   .hero__question-copy {
     white-space: normal;
     max-width: 12rem;
-    line-height: 1.6;
+    line-height: var(--line-height-tight-reading);
   }
 
   .page-header,
@@ -1514,8 +1593,8 @@ button {
   }
 
   .page-header__subtitle {
-    font-size: 0.62rem;
-    line-height: 1.65;
+    font-size: var(--text-caption);
+    line-height: var(--line-height-body-snug);
   }
 
   .page-header__marker,
@@ -1564,8 +1643,8 @@ button {
   .timeline-item__year,
   .project-timeline__date {
     margin-bottom: 0.35rem;
-    font-size: 0.62rem;
-    letter-spacing: 0.18em;
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-tight-zh-display);
   }
 
   .timeline-item__text,
@@ -1576,8 +1655,8 @@ button {
   .about-hero p,
   .method-card p,
   .standard-item span {
-    font-size: 0.82rem;
-    line-height: 1.75;
+    font-size: var(--text-body);
+    line-height: var(--line-height-body-compact);
   }
 
   .voice-card {
@@ -1586,15 +1665,15 @@ button {
   }
 
   .voice-card__text {
-    font-size: 0.82rem;
-    line-height: 1.75;
+    font-size: var(--text-body);
+    line-height: var(--line-height-body-compact);
     margin-bottom: 0.9rem;
   }
 
   .voice-card__meta,
   .memorial-item__head {
     flex-wrap: wrap;
-    font-size: 0.6rem;
+    font-size: var(--text-caption);
     gap: 0.45rem 0.8rem;
   }
 
@@ -1611,7 +1690,7 @@ button {
   }
 
   .career-card--related h4 {
-    font-size: 0.68rem;
+    font-size: var(--text-caption);
   }
 
   .memorial-item {
@@ -1625,7 +1704,7 @@ button {
   .memorial-item__head h4,
   .factor-card h4,
   .method-card h3 {
-    font-size: 0.8rem;
+    font-size: var(--text-label);
     margin-bottom: 0.55rem;
   }
 
@@ -1644,8 +1723,8 @@ button {
   .memorial-fallback__hint,
   .memorial-feed__note,
   .not-found-panel__body {
-    font-size: 0.82rem;
-    line-height: 1.75;
+    font-size: var(--text-body);
+    line-height: var(--line-height-body-compact);
   }
 
   .not-found-panel {
@@ -1670,13 +1749,13 @@ button {
   }
 
   .career-card h2 {
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-heading);
   }
 
   .career-card__status {
-    font-size: 0.56rem;
-    letter-spacing: 0.22em;
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-home-nav);
   }
 
   .career-card__teaser {
@@ -1685,8 +1764,8 @@ button {
   }
 
   .career-card__teaser p {
-    font-size: 0.56rem;
-    line-height: 1.55;
+    font-size: var(--text-caption);
+    line-height: var(--line-height-body-dense);
   }
 
   .home-quote {
@@ -1699,8 +1778,8 @@ button {
   }
 
   .home-quote blockquote {
-    font-size: 0.78rem;
-    line-height: 1.95;
+    font-size: var(--text-body);
+    line-height: var(--line-height-body-loose);
   }
 
   .outline-button,
@@ -1708,8 +1787,8 @@ button {
     padding: 0.95rem 1.2rem;
     min-width: auto;
     min-height: auto;
-    font-size: 0.62rem;
-    letter-spacing: 0.22em;
+    font-size: var(--text-caption);
+    letter-spacing: var(--tracking-label);
   }
 
   .home-quote,
