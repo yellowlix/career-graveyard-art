@@ -55,6 +55,42 @@ body {
   min-height: 100vh;
 }
 
+body[data-locale="zh"] .site-nav__logo,
+body[data-locale="zh"] .site-nav__back,
+body[data-locale="zh"] .site-nav__link,
+body[data-locale="zh"] .section-eyebrow,
+body[data-locale="zh"] .text-toggle,
+body[data-locale="zh"] .text-button,
+body[data-locale="zh"] .site-footer__copy,
+body[data-locale="zh"] .site-footer__links a,
+body[data-locale="zh"] .hero__subtitle,
+body[data-locale="zh"] .hero__question p,
+body[data-locale="zh"] .page-header__subtitle,
+body[data-locale="zh"] .detail-header__status span,
+body[data-locale="zh"] .career-card__status,
+body[data-locale="zh"] .memorial-form__fields label span,
+body[data-locale="zh"] .memorial-fallback__field span,
+body[data-locale="zh"] .timeline-item__year,
+body[data-locale="zh"] .voice-card__meta,
+body[data-locale="zh"] .memorial-item__head span,
+body[data-locale="zh"] .memorial-item__signature,
+body[data-locale="zh"] .stats-band__label,
+body[data-locale="zh"] .contributor-card p {
+  letter-spacing: 0.16em;
+}
+
+body[data-locale="zh"] .site-nav__locale-button {
+  letter-spacing: 0.12em;
+}
+
+body[data-locale="zh"] .hero h1,
+body[data-locale="zh"] .page-header h1,
+body[data-locale="zh"] .detail-header h1,
+body[data-locale="zh"] .about-hero h1,
+body[data-locale="zh"] .outline-button {
+  letter-spacing: 0.18em;
+}
+
 ::selection {
   background: #000000;
   color: #ffffff;
@@ -154,12 +190,43 @@ button {
   align-items: baseline;
 }
 
+.site-nav__controls {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 0.7rem + 1vw, 2.5rem);
+}
+
 .site-nav__cluster {
   gap: var(--nav-cluster-gap);
 }
 
 .site-nav__links {
   gap: var(--nav-link-gap);
+}
+
+.site-nav__locale-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.18rem;
+  border: 1px solid var(--line-soft);
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.site-nav__locale-button {
+  min-width: 3.1rem;
+  padding: 0.5rem 0.8rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.site-nav__locale-button:hover,
+.site-nav__locale-button.is-active {
+  background: #000000;
+  color: #ffffff;
 }
 
 .site-nav__logo {
@@ -1259,6 +1326,13 @@ button {
     padding: 0;
   }
 
+  .site-nav__controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
   .site-nav--home .site-nav__link {
     color: var(--muted);
     opacity: 1;
@@ -1275,6 +1349,17 @@ button {
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 0.6rem 1rem;
+  }
+
+  .site-nav__locale-switch {
+    padding: 0.14rem;
+  }
+
+  .site-nav__locale-button {
+    min-width: 2.7rem;
+    padding: 0.42rem 0.65rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
   }
 
   .page-main {

@@ -1,20 +1,40 @@
 import { expect, test } from "@playwright/test";
-import { careers } from "../src/data.js";
+import { aboutData, careers, siteCopy, siteMeta, statusMeta } from "../src/data.js";
+
+function pick(value, locale) {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return value ?? "";
+  }
+
+  return value[locale] ?? value.zh ?? "";
+}
 
 async function visit(page, url) {
   await page.goto(url, { waitUntil: "domcontentloaded" });
-  await page.waitForLoadState("networkidle");
+  await expect(page.locator(".site-shell")).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
 }
 
-test("home page renders the cemetery landing view", async ({ page }) => {
+async function switchLocale(page, locale) {
+  await page.getByRole("button", { name: locale === "zh" ? "中文" : "EN", exact: true }).click();
+}
+
+test("home page defaults to Chinese-only navigation and metadata", async ({ page }) => {
   await visit(page, "/");
 
-  await expect(page).toHaveTitle(/职业墓场/);
-  await expect(page.getByRole("heading", { level: 1, name: "职业墓场" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "ARCHIVE / 归档" })).toBeVisible();
+  await expect(page).toHaveTitle(pick(siteMeta.siteName, "zh"));
+  await expect(page.getByRole("heading", { level: 1, name: pick(siteMeta.siteName, "zh") })).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: pick(siteCopy.navigation.archive, "zh"), exact: true })
+  ).toBeVisible();
+  await expect(page.locator(".site-nav__links")).toContainText(pick(siteCopy.navigation.memorial, "zh"));
+  await expect(page.locator(".site-nav__links")).toContainText(pick(siteCopy.navigation.about, "zh"));
+  await expect(page.locator(".site-nav__links")).not.toContainText("/");
   await expect(page.locator(".career-card")).toHaveCount(6);
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /职业墓场记录/);
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+    "content",
+    pick(siteCopy.pageDescriptions.home, "zh")
+  );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
     "https://career-graveyard.art/"
@@ -26,20 +46,44 @@ test("home page renders the cemetery landing view", async ({ page }) => {
   });
 });
 
-test("home page keeps navigation readable across design baselines", async ({ page }) => {
+test("home navigation stays readable with the locale switcher", async ({ page }) => {
   await visit(page, "/");
 
-  await expect(page.getByRole("link", { name: "ARCHIVE / 归档" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "中文", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "EN", exact: true })).toBeVisible();
   await expect(page.locator(".site-nav")).toHaveScreenshot("home-nav.png", {
     animations: "disabled",
     caret: "hide"
   });
 });
 
-test("archive page can filter careers by status", async ({ page }) => {
+test("locale preference persists across navigation and reload", async ({ page }) => {
+  await visit(page, "/");
+  await switchLocale(page, "en");
+
+  await expect(page).toHaveTitle(pick(siteMeta.siteName, "en"));
+  await expect(
+    page.getByRole("link", { name: pick(siteCopy.navigation.archive, "en"), exact: true })
+  ).toBeVisible();
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+    "content",
+    pick(siteCopy.pageDescriptions.home, "en")
+  );
+
+  await page.getByRole("link", { name: pick(siteCopy.navigation.archive, "en"), exact: true }).click();
+  await expect(page).toHaveURL(/\/archive\.html$/);
+  await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.archive.title, "en") })).toBeVisible();
+
+  await page.reload();
+  await page.waitForLoadState("networkidle");
+  await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.archive.title, "en") })).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+});
+
+test("archive page can filter careers by localized status", async ({ page }) => {
   await visit(page, "/archive.html");
 
-  await expect(page.getByRole("heading", { level: 1, name: /归档/ })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.archive.title, "zh") })).toBeVisible();
   await expect(page.locator(".career-card")).toHaveCount(careers.length);
   await expect(page).toHaveScreenshot("archive-page.png", {
     animations: "disabled",
@@ -47,20 +91,26 @@ test("archive page can filter careers by status", async ({ page }) => {
     fullPage: true
   });
 
-  await page.getByRole("button", { name: "FROZEN" }).click();
+  await page.getByRole("button", { name: pick(statusMeta.frozen.label, "zh"), exact: true }).click();
 
   await expect(page.locator(".career-card")).toHaveCount(2);
-  await expect(page.getByRole("heading", { name: "教培名师" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "线下导游" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: pick(careers.find((career) => career.slug === "cram-school-teacher").name, "zh") })
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: pick(careers.find((career) => career.slug === "offline-tour-guide").name, "zh") })
+  ).toBeVisible();
 });
 
-test("career detail page renders selected career content", async ({ page }) => {
+test("career detail page localizes content and invalid slugs stay explicit", async ({ page }) => {
+  const designer = careers.find((career) => career.slug === "graphic-designer");
+
   await visit(page, "/career.html?slug=graphic-designer");
 
-  await expect(page).toHaveTitle(/平面设计师/);
-  await expect(page.getByRole("heading", { level: 1, name: "平面设计师" })).toBeVisible();
-  await expect(page.getByText("技术降维")).toBeVisible();
-  await expect(page.getByText("前 4A 公司美术指导")).toBeVisible();
+  await expect(page).toHaveTitle(new RegExp(pick(designer.name, "zh")));
+  await expect(page.getByRole("heading", { level: 1, name: pick(designer.name, "zh") })).toBeVisible();
+  await expect(page.getByText(pick(designer.factors[0].title, "zh"))).toBeVisible();
+  await expect(page.getByText(pick(designer.voices[0].author, "zh"))).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
     "https://career-graveyard.art/career.html?slug=graphic-designer"
@@ -70,6 +120,15 @@ test("career detail page renders selected career content", async ({ page }) => {
     caret: "hide",
     fullPage: true
   });
+
+  await visit(page, "/career.html?slug=does-not-exist");
+  await expect(page).toHaveTitle(new RegExp(pick(siteCopy.notFound.detailTitle, "zh")));
+  await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.notFound.detailTitle, "zh") })).toBeVisible();
+  await expect(page.getByRole("link", { name: pick(siteCopy.notFound.primaryLabel, "zh") })).toBeVisible();
+
+  await switchLocale(page, "en");
+  await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.notFound.detailTitle, "en") })).toBeVisible();
+  await expect(page.getByText('slug "does-not-exist"')).toBeVisible();
 });
 
 test("career detail back returns to the previous page when navigated from archive", async ({ page }) => {
@@ -83,79 +142,79 @@ test("career detail back returns to the previous page when navigated from archiv
   await expect(page.locator(".career-card").first()).toBeVisible();
 });
 
-test("invalid detail slug shows a not found state instead of falling back", async ({ page }) => {
-  await visit(page, "/career.html?slug=does-not-exist");
+test("memorial page builds localized email drafts and keeps static tributes", async ({ page }) => {
+  const designer = careers.find((career) => career.slug === "graphic-designer");
 
-  await expect(page).toHaveTitle(/未找到职业/);
-  await expect(page.getByRole("heading", { level: 1, name: "未找到这座墓碑" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "返回归档" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "平面设计师" })).toHaveCount(0);
-});
-
-test("memorial page builds an email draft and shows curated static tributes", async ({ page }) => {
   await visit(page, "/memorial.html");
 
-  await expect(page.getByRole("heading", { level: 1, name: /祭奠/ })).toBeVisible();
-  await expect(page.getByText("当前版本不提供在线留言存储")).toBeVisible();
-  await expect(page.getByText("Curated Tributes / 示例悼词")).toBeVisible();
-  await expect(page.getByText("静态示例")).toBeVisible();
-  await expect(page.getByRole("option", { name: "其他职业" })).toHaveCount(0);
+  await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.memorial.title, "zh") })).toBeVisible();
+  await expect(page.getByText(pick(siteCopy.memorial.noticeText, "zh"))).toBeVisible();
+  await expect(page.getByText(pick(siteCopy.detail.voicesEyebrow, "zh"))).toBeVisible();
 
-  await page.getByLabel("Signature / 称呼").fill("Playwright Visitor");
-  await page
-    .getByLabel("Memorial Text / 悼词文字")
-    .fill("测试留下了一段新的悼词，确认页面可以接收并渲染新的数据。");
+  await page.getByLabel(pick(siteCopy.memorial.signatureLabel, "zh")).fill("Playwright Visitor");
+  await page.getByLabel(pick(siteCopy.memorial.textLabel, "zh")).fill("测试留下了一段新的悼词，用来确认页面会同步更新邮件草稿。");
 
-  await expect(page.getByText("mahrovandrei@gmail.com")).toBeVisible();
   await expect(page.locator("#memorial-subject-preview")).toContainText(
-    "[Career Graveyard Memorial] 平面设计师 - Playwright Visitor"
+    `${pick(siteCopy.memorialEmail.subjectPrefix, "zh")} ${pick(designer.name, "zh")} - Playwright Visitor`
   );
-  await expect(page.locator("#memorial-body-preview")).toContainText("职业：平面设计师");
+  await expect(page.locator("#memorial-body-preview")).toContainText(`职业：${pick(designer.name, "zh")}`);
   await expect(page.locator("#memorial-body-preview")).toContainText("署名：Playwright Visitor");
-  await expect(page.locator("#memorial-body-preview")).toContainText(
-    "悼词：测试留下了一段新的悼词，确认页面可以接收并渲染新的数据。"
+  await expect(page.locator("#memorial-body-preview")).toContainText("悼词：测试留下了一段新的悼词");
+
+  await switchLocale(page, "en");
+  await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.memorial.title, "en") })).toBeVisible();
+  await expect(page.locator("#memorial-subject-preview")).toContainText(
+    `${pick(siteCopy.memorialEmail.subjectPrefix, "en")} ${pick(designer.name, "en")} - Playwright Visitor`
   );
+  await expect(page.locator("#memorial-body-preview")).toContainText(`Career: ${pick(designer.name, "en")}`);
+  await expect(page.locator("#memorial-body-preview")).toContainText("Signature: Playwright Visitor");
   await expect(page.locator("#memorial-mailto-link")).toHaveAttribute(
     "href",
     /mailto:mahrovandrei%40gmail\.com\?subject=/
   );
 });
 
-test("about page renders methodology, legal, policy and contact sections", async ({ page }) => {
+test("about page keeps repo-truth wording in both locales", async ({ page }) => {
   await visit(page, "/about.html");
 
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("记录那些正在消逝的职业灵魂");
-  await expect(page.getByText("Methodology / 评估准则")).toBeVisible();
-  await expect(page.locator("#legal")).toContainText("这是一个公开展示的静态项目");
-  await expect(page.locator("#policy")).toContainText("当前版本是静态展示站");
-  await expect(page.locator("#contact")).toContainText("mahrovandrei@gmail.com");
-  await expect(page.locator("#contact")).toContainText("GitHub");
-  await expect(page.locator("#contact")).toContainText("Email / 邮箱投稿");
-  await expect(page.locator("#contact")).toContainText("GitHub / 协作仓库");
+  await expect(page.getByRole("heading", { level: 1, name: pick(aboutData.missionTitle, "zh") })).toBeVisible();
+  await expect(page.locator("#legal")).toContainText(pick(siteCopy.aboutInfo.legal.title, "zh"));
+  await expect(page.locator("#policy")).toContainText(pick(siteCopy.aboutInfo.policy.title, "zh"));
+  await expect(page.locator("#contact")).toContainText(siteMeta.contactEmail);
+  await expect(page.locator("#contact")).toContainText(pick(siteCopy.aboutInfo.contact.actions[0].label, "zh"));
+  await expect(page.locator("#contact")).toContainText(pick(siteCopy.aboutInfo.contact.actions[1].label, "zh"));
   await expect(page.getByText("42,901")).toHaveCount(0);
+
+  await switchLocale(page, "en");
+  await expect(page.getByRole("heading", { level: 1, name: pick(aboutData.missionTitle, "en") })).toBeVisible();
+  await expect(page.locator("#policy")).toContainText("does not store online submissions");
+  await expect(page.locator("#contact")).toContainText("Submit by Email, Collaborate on GitHub");
 });
 
 test("footer links land on valid information anchors", async ({ page }) => {
   await visit(page, "/");
 
-  await page.getByRole("link", { name: "Legal" }).click();
+  await page.getByRole("link", { name: pick(siteCopy.footer.legal, "zh"), exact: true }).click();
   await expect(page).toHaveURL(/\/about\.html#legal$/);
   await expect(page.locator("#legal")).toBeVisible();
 
   await page.goto("/about.html");
-  await page.getByRole("link", { name: "Policy" }).click();
+  await page.getByRole("link", { name: pick(siteCopy.footer.policy, "zh"), exact: true }).click();
   await expect(page).toHaveURL(/\/about\.html#policy$/);
 
   await page.goto("/about.html");
-  await page.getByRole("link", { name: "Connect" }).click();
+  await page.getByRole("link", { name: pick(siteCopy.footer.connect, "zh"), exact: true }).click();
   await expect(page).toHaveURL(/\/about\.html#contact$/);
 });
 
-test("404 page is reachable as a standalone route", async ({ page }) => {
+test("404 page is reachable as a standalone route in both locales", async ({ page }) => {
   await visit(page, "/404.html");
 
   await expect(page).toHaveTitle(/404/);
-  await expect(page.getByRole("heading", { level: 1, name: "这座墓碑暂未找到" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.notFound.heading, "zh") })).toBeVisible();
+
+  await switchLocale(page, "en");
+  await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.notFound.heading, "en") })).toBeVisible();
 });
 
 test("robots sitemap and favicon are served", async ({ request }) => {
