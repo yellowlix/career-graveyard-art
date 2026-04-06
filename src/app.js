@@ -252,7 +252,7 @@ function renderNavigation({ active = "", showBack = false, backHref = routes.hom
 
 function renderFooter() {
   return `
-    <footer class="site-footer">
+    <footer class="site-footer${page === "home" ? " site-footer--home" : ""}">
       <div class="site-footer__inner">
         <p class="site-footer__copy">${escapeHtml(t(siteCopy.footer.copyright))}</p>
         <div class="site-footer__links">
@@ -370,13 +370,14 @@ function renderHome() {
     `
       <section class="hero">
         <div class="hero__inner reveal">
-          <p class="hero__subtitle">${escapeHtml(t(siteCopy.home.subtitle))}</p>
           <h1>${escapeHtml(t(siteMeta.siteName))}</h1>
+          <p class="hero__subtitle">${escapeHtml(t(siteCopy.home.subtitle))}</p>
         </div>
-        <div class="hero__question reveal" style="--stagger:0.18s;">
-          <div class="hero__rule" aria-hidden="true"></div>
-          <p>${escapeHtml(t(siteCopy.home.question))}</p>
-        </div>
+      </section>
+
+      <section class="hero-axis reveal" style="--stagger:0.18s;">
+        <p class="hero__question-copy">${escapeHtml(t(siteCopy.home.question))}</p>
+        <div class="hero__rule" aria-hidden="true"></div>
       </section>
 
       <section class="career-grid career-grid--home">
@@ -535,7 +536,8 @@ function renderDetailNotFound(slug) {
   setPageMetadata({
     title: t(siteCopy.notFound.detailTitle),
     description: siteCopy.pageDescriptions.notFound,
-    path: window.location.pathname + window.location.search
+    path: routes.archive,
+    robots: "noindex,follow"
   });
 
   renderShell(
@@ -841,8 +843,8 @@ function renderMemorial() {
 
         <section class="memorial-feed reveal" style="--stagger:0.16s;">
           <div class="memorial-feed__intro">
-            <p class="section-eyebrow">${escapeHtml(t(siteCopy.detail.voicesEyebrow))}</p>
-            <p class="memorial-feed__note">${escapeHtml(t(siteCopy.pageDescriptions.memorial))}</p>
+            <p class="section-eyebrow">${escapeHtml(t(siteCopy.memorial.curatedEyebrow))}</p>
+            <p class="memorial-feed__note">${escapeHtml(t(siteCopy.memorial.curatedNote))}</p>
           </div>
           <div class="memorial-feed__list">
             ${renderMemorialList(initialMemorials)}
