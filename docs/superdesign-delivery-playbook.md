@@ -27,6 +27,7 @@
 - 视觉样式: [src/styles.css](F:\Work\Web\career-graveyard-art\src\styles.css)
 - 页面数据: [src/data.js](F:\Work\Web\career-graveyard-art\src\data.js)
 - 响应式规范: [docs/responsive-spec.md](F:\Work\Web\career-graveyard-art\docs\responsive-spec.md)
+- 字体规格: [docs/typography-tokens.md](F:\Work\Web\career-graveyard-art\docs\typography-tokens.md)
 
 ### 2.5 验收事实源
 - 构建命令: `npm run build`
@@ -90,6 +91,10 @@ superdesign get-design --draft-id <draft-id> --output .superdesign\latest-html\<
 - 详情页 `BACK` 优先使用浏览器历史返回；无有效历史时再走兜底链接。
 - 响应式基准固定为 `1440 / 1280 / 768 / 390`。
 - 双容器策略固定为 `content-narrow = 1280`、`content-wide = 1440`。
+- 全站正文与 UI 字级统一收口到 `12 / 14 / 16 / 18 / 24 / 32` 六档。
+- 页面级标题继续使用 `display token` 的响应式 `clamp()`，不另开第二套标题体系。
+- 字重、行高、字距优先复用 typography token，不再零散追加裸值。
+- `Memorial` 页当前锁定为单页双模式邮箱投稿页，且主内容区沿用 detail 页级别的统一左右内缩边界。
 
 ### 4.3 禁止事项
 - 不允许只改单页而不看共享导航和共享样式。
@@ -106,12 +111,13 @@ superdesign get-design --draft-id <draft-id> --output .superdesign\latest-html\<
 - 测试视口与回归矩阵: [playwright.config.js](F:\Work\Web\career-graveyard-art\playwright.config.js)
 - 验收脚本: [tests/site.spec.js](F:\Work\Web\career-graveyard-art\tests\site.spec.js)
 - 规范更新: [docs/responsive-spec.md](F:\Work\Web\career-graveyard-art\docs\responsive-spec.md)
+- 字体规范更新: [docs/typography-tokens.md](F:\Work\Web\career-graveyard-art\docs\typography-tokens.md)
 
 ### 5.2 页面级修改边界
 - 首页: 首屏、问题文案、墓碑阵列、引用区。
 - 归档: 筛选区、排序区、墓碑矩阵密度。
 - 详情: 标题层级、状态区、时间线、因素卡、back 行为。
-- 祭奠: 表单布局、列表层级、悬停反馈。
+- 祭奠: 双模式切换、表单布局、邮件预览、静态示例层级，以及切换区与正文共用的左右内缩边界。
 - 关于: 使命区、方法论、指标区、贡献者网格。
 
 ## 6. 审核工具与顺序

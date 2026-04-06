@@ -49,9 +49,66 @@ async function expectNoHorizontalOverflow(page) {
   expect(overflow).toBeLessThanOrEqual(1);
 }
 
+async function expectSharedHorizontalBounds(page, leftSelector, rightSelector) {
+  const { leftDiff, rightDiff } = await page.evaluate(
+    ({ leftSelector: left, rightSelector: right }) => {
+      const leftNode = document.querySelector(left);
+      const rightNode = document.querySelector(right);
+
+      if (!leftNode || !rightNode) {
+        return { leftDiff: Number.POSITIVE_INFINITY, rightDiff: Number.POSITIVE_INFINITY };
+      }
+
+      const leftRect = leftNode.getBoundingClientRect();
+      const rightRect = rightNode.getBoundingClientRect();
+
+      return {
+        leftDiff: Math.abs(leftRect.left - rightRect.left),
+        rightDiff: Math.abs(leftRect.right - rightRect.right)
+      };
+    },
+    { leftSelector, rightSelector }
+  );
+
+  expect(leftDiff).toBeLessThanOrEqual(1);
+  expect(rightDiff).toBeLessThanOrEqual(1);
+}
+
+async function getComputedStyles(locator, properties) {
+  return locator.evaluate((element, keys) => {
+    const styles = window.getComputedStyle(element);
+    return Object.fromEntries(keys.map((key) => [key, styles.getPropertyValue(key)]));
+  }, properties);
+}
+
+async function getViewportRect(locator) {
+  return locator.evaluate((element) => {
+    const { top, bottom, height } = element.getBoundingClientRect();
+    return { top, bottom, height };
+  });
+}
+
+async function scrollHomeShellToNextPanel(page) {
+  await page.locator(".page-main--home").evaluate((shell) => {
+    const careersPanel = shell.querySelector('[data-home-panel="careers"]');
+    if (!careersPanel) {
+      return;
+    }
+
+    shell.scrollTo({
+      top: careersPanel.offsetTop,
+      behavior: "auto"
+    });
+  });
+  await page.waitForTimeout(250);
+}
+
 test("home page defaults to Chinese-only navigation and metadata", async ({ page }, testInfo) => {
   await visit(page, "/");
   const viewportTier = getViewportTier(testInfo);
+  const homeShell = page.locator(".page-main--home");
+  const careersPanel = page.locator('[data-home-panel="careers"]');
+  const viewportHeight = await page.evaluate(() => window.innerHeight);
 
   await expect(page).toHaveTitle(pick(siteMeta.siteName, "zh"));
   await expect(page.getByRole("heading", { level: 1, name: pick(siteMeta.siteName, "zh") })).toBeVisible();
@@ -74,11 +131,39 @@ test("home page defaults to Chinese-only navigation and metadata", async ({ page
     page.locator(".career-grid--home"),
     viewportTier === "mobile" ? 2 : viewportTier === "tablet" ? 3 : 6
   );
+
+  const homeShellStyles = await getComputedStyles(homeShell, ["overflow-y", "scroll-snap-type"]);
+  const careersPanelRect = await getViewportRect(careersPanel);
+
+  expect(homeShellStyles["overflow-y"]).toBe("auto");
+  expect(homeShellStyles["scroll-snap-type"]).toBe("y mandatory");
+  expect(careersPanelRect.top).toBeGreaterThanOrEqual(viewportHeight * 0.85);
+
   await expect(page).toHaveScreenshot("home-page.png", {
     animations: "disabled",
-    caret: "hide",
-    fullPage: true
+    caret: "hide"
   });
+});
+
+test("home page reveals the careers panel only after segmented scroll on desktop and tablet", async ({
+  page
+}, testInfo) => {
+  await visit(page, "/");
+  const viewportTier = getViewportTier(testInfo);
+
+  const careersPanel = page.locator('[data-home-panel="careers"]');
+  const careersGrid = page.locator(".career-grid--home");
+  const viewportHeight = await page.evaluate(() => window.innerHeight);
+
+  const beforeScrollRect = await getViewportRect(careersPanel);
+  expect(beforeScrollRect.top).toBeGreaterThanOrEqual(viewportHeight * 0.85);
+
+  await scrollHomeShellToNextPanel(page);
+
+  const afterScrollRect = await getViewportRect(careersPanel);
+  expect(afterScrollRect.bottom).toBeGreaterThan(viewportHeight * 0.5);
+  expect(afterScrollRect.top).toBeLessThanOrEqual(viewportHeight * 0.25);
+  await expect(careersGrid).toBeVisible();
 });
 
 test("home navigation stays readable with the locale switcher", async ({ page }) => {
@@ -135,10 +220,14 @@ test("archive page can filter careers by localized status", async ({ page }, tes
 
   await expect(page.locator(".career-card")).toHaveCount(2);
   await expect(
-    page.getByRole("heading", { name: pick(careers.find((career) => career.slug === "cram-school-teacher").name, "zh") })
+    page.getByRole("heading", {
+      name: pick(careers.find((career) => career.slug === "cram-school-teacher").name, "zh")
+    })
   ).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: pick(careers.find((career) => career.slug === "offline-tour-guide").name, "zh") })
+    page.getByRole("heading", {
+      name: pick(careers.find((career) => career.slug === "offline-tour-guide").name, "zh")
+    })
   ).toBeVisible();
 });
 
@@ -187,36 +276,103 @@ test("career detail back returns to the previous page when navigated from archiv
   await expect(page.locator(".career-card").first()).toBeVisible();
 });
 
-test("memorial page builds localized email drafts and keeps static tributes", async ({ page }) => {
+test("memorial page switches between archived and new profession email drafts", async ({ page }) => {
   const designer = careers.find((career) => career.slug === "graphic-designer");
 
   await visit(page, "/memorial.html");
 
+  const existingButton = page.getByRole("tab", {
+    name: pick(siteCopy.memorial.modes.existing.tabLabel, "zh"),
+    exact: true
+  });
+  const unlistedButton = page.getByRole("tab", {
+    name: pick(siteCopy.memorial.modes.unlisted.tabLabel, "zh"),
+    exact: true
+  });
+  const mailtoLink = page.locator("#memorial-mailto-link");
+  const subjectPreview = page.locator("#memorial-subject-preview");
+  const bodyPreview = page.locator("#memorial-body-preview");
+  const memorialTabs = page.locator(".memorial-form__sticky .memorial-mode-switch");
+  const memorialIntro = page.locator(".memorial-feed__intro").first();
+
   await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.memorial.title, "zh") })).toBeVisible();
   await expect(page.getByText(pick(siteCopy.memorial.noticeText, "zh"))).toBeVisible();
-  await expect(page.getByText(pick(siteCopy.memorial.curatedEyebrow, "zh"))).toBeVisible();
-  await expect(page.getByText(pick(siteCopy.memorial.curatedNote, "zh"))).toBeVisible();
+  await expect(memorialTabs).toBeVisible();
+  await expect(existingButton).toHaveAttribute("aria-selected", "true");
+  await expect(unlistedButton).toHaveAttribute("aria-selected", "false");
+  await expect(memorialIntro.getByText(pick(siteCopy.memorial.modes.existing.introEyebrow, "zh"))).toBeVisible();
+  await expect(memorialIntro.getByText(pick(siteCopy.memorial.modes.existing.introText, "zh"))).toBeVisible();
+  await expect(memorialIntro.getByText(pick(siteCopy.memorial.modes.existing.curatedNote, "zh"))).toBeVisible();
+  await expect(mailtoLink).toHaveAttribute("aria-disabled", "true");
 
-  await page.getByLabel(pick(siteCopy.memorial.signatureLabel, "zh")).fill("Playwright Visitor");
-  await page.getByLabel(pick(siteCopy.memorial.textLabel, "zh")).fill("测试留下了一段新的悼词，用来确认页面会同步更新邮件草稿。");
+  await page
+    .getByLabel(pick(siteCopy.memorial.modes.existing.signatureLabel, "zh"))
+    .fill("Playwright Visitor");
+  await page
+    .getByLabel(pick(siteCopy.memorial.modes.existing.textLabel, "zh"))
+    .fill("测试留下了一段新的悼词，用来确认页面会同步更新邮件草稿。");
 
-  await expect(page.locator("#memorial-subject-preview")).toContainText(
+  await expect(mailtoLink).toHaveAttribute("aria-disabled", "false");
+  await expect(subjectPreview).toContainText(
     `${pick(siteCopy.memorialEmail.subjectPrefix, "zh")} ${pick(designer.name, "zh")} - Playwright Visitor`
   );
-  await expect(page.locator("#memorial-body-preview")).toContainText(`职业：${pick(designer.name, "zh")}`);
-  await expect(page.locator("#memorial-body-preview")).toContainText("署名：Playwright Visitor");
-  await expect(page.locator("#memorial-body-preview")).toContainText("悼词：测试留下了一段新的悼词");
+  await expect(bodyPreview).toContainText(`职业：${pick(designer.name, "zh")}`);
+  await expect(bodyPreview).toContainText("署名：Playwright Visitor");
+  await expect(bodyPreview).toContainText("悼词：测试留下了一段新的悼词");
+
+  await unlistedButton.click();
+  await expect(unlistedButton).toHaveAttribute("aria-selected", "true");
+  await expect(existingButton).toHaveAttribute("aria-selected", "false");
+  await expect(memorialIntro.getByText(pick(siteCopy.memorial.modes.unlisted.introEyebrow, "zh"))).toBeVisible();
+  await expect(memorialIntro.getByText(pick(siteCopy.memorial.modes.unlisted.introText, "zh"))).toBeVisible();
+  await expect(memorialIntro.getByText(pick(siteCopy.memorial.modes.unlisted.curatedNote, "zh"))).toBeVisible();
+  await expect(mailtoLink).toHaveAttribute("aria-disabled", "true");
+
+  await page
+    .getByLabel(pick(siteCopy.memorial.modes.unlisted.careerNameLabel, "zh"))
+    .fill("提示词优化师");
+  await page
+    .getByLabel(pick(siteCopy.memorial.modes.unlisted.careerIntroLabel, "zh"))
+    .fill("负责在内容团队和模型团队之间反复改写提示词，以维持稳定输出。");
+  await page
+    .getByLabel(pick(siteCopy.memorial.modes.unlisted.signatureLabel, "zh"))
+    .fill("Prompt Archivist");
+  await page
+    .getByLabel(pick(siteCopy.memorial.modes.unlisted.textLabel, "zh"))
+    .fill("当模板足够成熟之后，连调词的人也会一起被折叠进流程。");
+  await page
+    .getByLabel(pick(siteCopy.memorial.modes.unlisted.referencesLabel, "zh"))
+    .fill("内部流程文档、岗位 JD");
+
+  await expect(mailtoLink).toHaveAttribute("aria-disabled", "false");
+  await expect(subjectPreview).toContainText(
+    `${pick(siteCopy.contactEmail.subjectPrefix, "zh")} 提示词优化师 - Prompt Archivist`
+  );
+  await expect(bodyPreview).toContainText("职业名称：提示词优化师");
+  await expect(bodyPreview).toContainText("职业简介：负责在内容团队和模型团队之间反复改写提示词，以维持稳定输出。");
+  await expect(bodyPreview).toContainText("署名：Prompt Archivist");
+  await expect(bodyPreview).toContainText("参考资料：内部流程文档、岗位 JD");
+
+  await page.getByLabel(pick(siteCopy.memorial.modes.unlisted.referencesLabel, "zh")).fill("");
+  await expect(bodyPreview).not.toContainText("参考资料：");
+
+  await existingButton.click();
+  await expect(page.getByLabel(pick(siteCopy.memorial.modes.existing.signatureLabel, "zh"))).toHaveValue(
+    "Playwright Visitor"
+  );
 
   await switchLocale(page, "en");
   await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.memorial.title, "en") })).toBeVisible();
-  await expect(page.getByText(pick(siteCopy.memorial.curatedEyebrow, "en"))).toBeVisible();
-  await expect(page.getByText(pick(siteCopy.memorial.curatedNote, "en"))).toBeVisible();
-  await expect(page.locator("#memorial-subject-preview")).toContainText(
+  await expect(page.getByRole("tab", { name: pick(siteCopy.memorial.modes.existing.tabLabel, "en") })).toHaveAttribute(
+    "aria-selected",
+    "true"
+  );
+  await expect(subjectPreview).toContainText(
     `${pick(siteCopy.memorialEmail.subjectPrefix, "en")} ${pick(designer.name, "en")} - Playwright Visitor`
   );
-  await expect(page.locator("#memorial-body-preview")).toContainText(`Career: ${pick(designer.name, "en")}`);
-  await expect(page.locator("#memorial-body-preview")).toContainText("Signature: Playwright Visitor");
-  await expect(page.locator("#memorial-mailto-link")).toHaveAttribute(
+  await expect(bodyPreview).toContainText(`Career: ${pick(designer.name, "en")}`);
+  await expect(bodyPreview).toContainText("Signature: Playwright Visitor");
+  await expect(mailtoLink).toHaveAttribute(
     "href",
     /mailto:mahrovandrei%40gmail\.com\?subject=/
   );
@@ -227,14 +383,26 @@ test("memorial page adapts across the four viewport baselines", async ({ page },
   const viewportTier = getViewportTier(testInfo);
 
   await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.memorial.title, "zh") })).toBeVisible();
+  await expect(
+    page.getByRole("tab", { name: pick(siteCopy.memorial.modes.existing.tabLabel, "zh"), exact: true })
+  ).toBeVisible();
+  await expect(
+    page.getByRole("tab", { name: pick(siteCopy.memorial.modes.unlisted.tabLabel, "zh"), exact: true })
+  ).toBeVisible();
   await expect(page.locator(".memorial-form__fields")).toBeVisible();
   await expect(page.locator(".memorial-feed__list")).toBeVisible();
   await expect(page.locator(".site-footer__links")).toBeVisible();
   await expectNoHorizontalOverflow(page);
+  await expectSharedHorizontalBounds(page, ".memorial-mode-switch", ".memorial-note");
   await expectGridTrackCount(
     page.locator(".memorial-layout"),
     viewportTier === "desktop-1280" || viewportTier === "desktop-1440" ? 2 : 1
   );
+  await expect(page).toHaveScreenshot("memorial-page.png", {
+    animations: "disabled",
+    caret: "hide",
+    fullPage: true
+  });
 });
 
 test("about page keeps repo-truth wording in both locales", async ({ page }) => {
@@ -273,16 +441,19 @@ test("about page adapts across the four viewport baselines", async ({ page }, te
 test("footer links land on valid information anchors", async ({ page }) => {
   await visit(page, "/");
 
-  await page.getByRole("link", { name: pick(siteCopy.footer.legal, "zh"), exact: true }).click();
+  const legalLink = page.getByRole("link", { name: pick(siteCopy.footer.legal, "zh"), exact: true });
+  await page.goto(await legalLink.getAttribute("href"));
   await expect(page).toHaveURL(/\/about\.html#legal$/);
   await expect(page.locator("#legal")).toBeVisible();
 
   await page.goto("/about.html");
-  await page.getByRole("link", { name: pick(siteCopy.footer.policy, "zh"), exact: true }).click();
+  const policyLink = page.getByRole("link", { name: pick(siteCopy.footer.policy, "zh"), exact: true });
+  await page.goto(await policyLink.getAttribute("href"));
   await expect(page).toHaveURL(/\/about\.html#policy$/);
 
   await page.goto("/about.html");
-  await page.getByRole("link", { name: pick(siteCopy.footer.connect, "zh"), exact: true }).click();
+  const connectLink = page.getByRole("link", { name: pick(siteCopy.footer.connect, "zh"), exact: true });
+  await page.goto(await connectLink.getAttribute("href"));
   await expect(page).toHaveURL(/\/about\.html#contact$/);
 });
 

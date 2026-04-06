@@ -30,9 +30,14 @@ export const siteCopy = {
   },
   navigation: {
     back: l("返回", "Back"),
-    archive: l("归档", "Archive"),
+    archive: l("展览", "Exhibition"),
     memorial: l("祭奠", "Memorial"),
-    about: l("信息", "Info")
+    about: l("关于", "About")
+  },
+  navigationHints: {
+    archive: l("浏览已收录职业与正在消逝的工作样本。", "Browse archived professions and disappearing work."),
+    memorial: l("为消失中的职业留下悼词或提交新样本。", "Leave a memorial or submit a new profession sample."),
+    about: l("查看项目方法、边界与协作方式。", "See the project's method, boundaries, and collaboration path.")
   },
   footer: {
     copyright: l("© 2024 职业墓场", "© 2024 Career Graveyard"),
@@ -42,19 +47,19 @@ export const siteCopy = {
   },
   pageDescriptions: {
     home: l(
-      "职业墓场记录那些正在被算法、平台和效率逻辑吞没的职业，把它们整理成一座可浏览的数字墓园。",
+      "职业墓场把那些正在被算法、平台与效率逻辑挤压的职业，整理成一座可以慢慢阅读的数字墓园。",
       "Career Graveyard turns professions being swallowed by algorithms, platforms, and efficiency into a navigable digital cemetery."
     ),
     archive: l(
-      "查看全部已归档职业，按状态和时间线追踪它们被削弱、冻结或消失的路径。",
-      "Browse every catalogued profession and track how each one has been weakened, frozen, or erased over time."
+      "查看全部展陈职业，按状态和时间线追踪它们被削弱、冻结或消失的路径。",
+      "Browse every profession in the exhibition and track how each one has been weakened, frozen, or erased over time."
     ),
     memorial: l(
       "为正在消失的职业填写悼词邮件草稿，并通过项目邮箱提交祭奠留言或新增职业建议。",
       "Draft a memorial email for a disappearing profession and submit tributes or new profession suggestions through the project inbox."
     ),
     about: l(
-      "了解职业墓场的方法论、静态展示边界、邮箱投稿方式与项目协作入口。",
+      "了解职业墓场的项目目标、收录方法、内容边界，以及如何通过邮箱或 GitHub 参与协作。",
       "Learn the methodology behind Career Graveyard, its static-site boundaries, its email-based submission flow, and how to collaborate on the project."
     ),
     detail: l(
@@ -67,14 +72,14 @@ export const siteCopy = {
     )
   },
   home: {
-    subtitle: l("职业消逝档案", "Archive of Disappearing Work"),
-    question: l("这个职业还值不值得做？", "Is this career still worth pursuing?"),
-    quoteEyebrow: l("沉默者的回声", "Voices from the Silent"),
-    cta: l("查看全部墓碑", "View All Slabs")
+    subtitle: l("消逝职业展览", "Exhibition of Disappearing Work"),
+    question: l("这个职业，还值得继续投入吗？", "Is this career still worth pursuing?"),
+    quoteEyebrow: l("来自沉默者的回声", "Voices from the Silent"),
+    cta: l("进入职业展览", "Enter the Exhibition")
   },
   archive: {
-    title: l("归档", "Archive"),
-    subtitle: l("全部已入库职业与正在衰败的岗位名单", "A complete index of departed and decaying professions"),
+    title: l("展览", "Exhibition"),
+    subtitle: l("已收录职业与正在衰败岗位的完整展览索引", "A complete exhibition index of departed and decaying professions"),
     filterEyebrow: l("按状态筛选", "Filter by status"),
     sortEyebrow: l("排序方式", "Sort by"),
     all: l("全部", "All"),
@@ -96,34 +101,79 @@ export const siteCopy = {
     channelValue: l("邮箱投稿", "Email Submission"),
     noticeEyebrow: l("投稿说明", "Submission Note"),
     noticeText: l(
-      "当前版本不提供在线留言存储。填写表单后，页面会帮你生成一封投稿邮件；如果邮件客户端没有自动打开，你仍可手动复制邮箱、主题和正文发送。",
-      "This version does not store submissions online. After you fill out the form, the page prepares an email draft for you; if your mail client does not open automatically, you can still copy the address, subject, and body manually."
+      "当前版本不提供在线留言存储。你可以在这里祭奠已收录职业，也可以为尚未收录的新职业提交带悼词的投稿邮件；如果邮件客户端没有自动打开，你仍可手动复制邮箱、主题和正文发送。",
+      "This version does not store submissions online. Here you can memorialize an archived profession or submit a new profession with an accompanying memorial by email; if your mail client does not open automatically, you can still copy the address, subject, and body manually."
     ),
-    formHeading: l("留下悼词", "Leave a Memorial"),
-    careerLabel: l("选择职业", "Career"),
-    signatureLabel: l("署名", "Signature"),
-    signaturePlaceholder: l("匿名 / 你的职业身份", "Anonymous / your role"),
-    textLabel: l("悼词正文", "Memorial Text"),
-    textPlaceholder: l("写下你对这个消逝职业的最后告别……", "Write your final goodbye to this disappearing profession…"),
-    submitLabel: l("打开邮件客户端", "Open Email App"),
+    switcherLabel: l("祭奠模式切换", "Memorial mode switcher"),
+    modes: {
+      existing: {
+        tabLabel: l("祭奠已收录职业", "Memorialize Archived Profession"),
+        introEyebrow: l("已收录职业祭奠示例", "Archived Profession Memorial Example"),
+        introText: l(
+          "基于已收录职业的祭奠样本。用于给既有职业档案补充一段带署名的告别。",
+          "A memorial sample for a profession already in the archive. Use it to add a signed farewell to an existing career record."
+        ),
+        formHeading: l("留下悼词", "Leave a Memorial"),
+        description: l(
+          "为已收录职业留下悼词，系统会生成一封祭奠邮件供你发送。",
+          "Leave a memorial for an already archived profession and the page will prepare an email draft for you."
+        ),
+        careerLabel: l("选择职业", "Career"),
+        signatureLabel: l("署名", "Signature"),
+        signaturePlaceholder: l("匿名 / 你的职业身份", "Anonymous / your role"),
+        textLabel: l("悼词正文", "Memorial Text"),
+        textPlaceholder: l("写下你对这个消逝职业的最后告别……", "Write your final goodbye to this disappearing profession…"),
+        validationHint: l("请至少填写署名与悼词后再生成邮件。", "Fill in at least the signature and memorial before generating the email."),
+        submitLabel: l("生成祭奠邮件", "Generate Memorial Email"),
+        curatedEyebrow: l("已收录职业祭奠示例", "Archived Profession Memorial Examples"),
+        curatedNote: l(
+          "以下内容为静态示例，用于展示已收录职业的祭奠语气，并非当前访客的实时投稿。",
+          "The entries below are static examples showing the tone for memorializing archived professions. They are not live visitor submissions."
+        )
+      },
+      unlisted: {
+        tabLabel: l("新增职业投稿", "Submit New Profession"),
+        introEyebrow: l("新增职业投稿示例", "New Profession Submission Example"),
+        introText: l(
+          "为尚未收录的职业补充简介与悼词，让维护者能判断它是否应被纳入后续展览。",
+          "Add a short introduction and memorial for an unlisted profession so the maintainers can assess whether it belongs in a future exhibition update."
+        ),
+        formHeading: l("提名并祭奠新职业", "Nominate and Memorialize a New Profession"),
+        description: l(
+          "这是“新增职业 + 悼词”一起提交的入口。请写清职业名称、职业简介与悼词，系统会生成一封结构化投稿邮件。",
+          "This mode submits a new profession and a memorial together. Provide the profession name, a short introduction, and the memorial, and the page will prepare a structured submission email."
+        ),
+        careerNameLabel: l("职业名称", "Profession Name"),
+        careerNamePlaceholder: l("例如：AI 标注审核员", "For example: AI Annotation Reviewer"),
+        careerIntroLabel: l("职业简介", "Profession Introduction"),
+        careerIntroPlaceholder: l("用一两句话说明这个职业在做什么，以及它为什么值得被记录。", "Use one or two sentences to explain what this profession does and why it deserves to be recorded."),
+        signatureLabel: l("署名", "Signature"),
+        signaturePlaceholder: l("匿名 / 你的职业身份", "Anonymous / your role"),
+        textLabel: l("悼词正文", "Memorial Text"),
+        textPlaceholder: l("写下你对这个新职业样本的悼词，或它正在消逝的原因。", "Write a memorial for this new profession sample, or explain how it is disappearing."),
+        referencesLabel: l("参考资料（选填）", "References (Optional)"),
+        referencesPlaceholder: l("可粘贴链接、报告名或案例线索。", "Paste links, report names, or case references if you have them."),
+        validationHint: l("请先填写职业名称、职业简介、署名与悼词后再生成邮件。", "Fill in the profession name, introduction, signature, and memorial before generating the email."),
+        submitLabel: l("生成投稿邮件", "Generate Submission Email"),
+        curatedEyebrow: l("新增职业投稿示例", "New Profession Submission Examples"),
+        curatedNote: l(
+          "以下内容为静态示例，用于展示“职业简介 + 悼词”的投稿格式，并非当前访客的实时投稿。",
+          "The entries below are static examples showing the expected format for a new profession submission with an introduction and memorial. They are not live visitor submissions."
+        )
+      }
+    },
     fallbackTitle: l("手动发送", "Manual Fallback"),
     fallbackBody: l(
       "如果系统没有自动打开你的邮件客户端，请复制下面的邮箱、主题和正文内容后手动发送。",
       "If your system does not open a mail client automatically, copy the address, subject, and body below and send the message manually."
     ),
     fallbackHint: l(
-      "邮箱、主题和正文预览会随着你填写表单实时更新。",
-      "The address, subject, and message preview update live as you edit the form."
+      "邮箱、主题和正文预览会随着你填写内容实时更新；按钮会在必填项齐全后启用。",
+      "The address, subject, and message preview update live as you edit the form, and the button only becomes active after the required fields are complete."
     ),
     emailLabel: l("邮箱", "Email"),
     subjectLabel: l("主题预览", "Subject Preview"),
-    bodyLabel: l("正文预览", "Body Preview"),
-    launch: l("打开邮件客户端", "Open Email App"),
-    curatedEyebrow: l("示例悼词", "Curated Tributes"),
-    curatedNote: l(
-      "以下内容为静态示例，用于展示页面氛围，并非当前访客的实时投稿。",
-      "The entries below are static examples used to establish tone. They are not live visitor submissions."
-    )
+    bodyLabel: l("正文预览", "Body Preview")
   },
   memorialEmail: {
     subjectPrefix: l("[职业墓场祭奠投稿]", "[Career Graveyard Memorial]"),
@@ -136,10 +186,14 @@ export const siteCopy = {
   },
   contactEmail: {
     subjectPrefix: l("[职业墓场新增职业投稿]", "[Career Graveyard Submission]"),
-    bodyChecklist: l(
-      ["职业名称：", "简要说明：", "推荐入库原因：", "可选参考资料："].join("\n"),
-      ["Career name:", "Short summary:", "Why it should be archived:", "Optional references:"].join("\n")
+    bodyTemplate: l(
+      ["职业名称：{career}", "职业简介：{introduction}", "悼词：{text}", "署名：{signature}", "{referencesBlock}", "来源页面：祭奠页"].join("\n"),
+      ["Profession name: {career}", "Profession introduction: {introduction}", "Memorial: {text}", "Signature: {signature}", "{referencesBlock}", "Source page: Memorial"].join("\n")
     ),
+    referencesLabel: l("参考资料", "References"),
+    emptySignature: l("匿名", "Anonymous"),
+    emptyText: l("（请在这里写下你的悼词）", "(Write your memorial text here)"),
+    emptyIntroduction: l("（请在这里简要介绍这个职业）", "(Briefly introduce this profession here)"),
     manualCopyHint: l(
       "新增职业与祭奠留言目前都通过项目邮箱处理。",
       "New profession suggestions and memorial submissions are currently handled through the project inbox."
@@ -149,63 +203,63 @@ export const siteCopy = {
     eyebrow: l("404 / 未找到", "404 / Not Found"),
     heading: l("这座墓碑暂未找到", "This Tombstone Could Not Be Found"),
     body: l(
-      "你访问的页面不存在，或者对应职业尚未被正式收入职业墓场。你可以返回归档继续浏览，也可以回到首页重新进入。",
-      "The page you requested does not exist, or the related profession has not yet been formally archived by Career Graveyard. You can return to the archive or head back to the homepage."
+      "你访问的页面不存在，或者对应职业尚未被正式收入职业墓场。你可以返回展览继续浏览，也可以回到首页重新进入。",
+      "The page you requested does not exist, or the related profession has not yet been formally included in the Career Graveyard exhibition. You can return to the exhibition or head back to the homepage."
     ),
-    primaryLabel: l("返回归档", "Back to Archive"),
+    primaryLabel: l("返回展览", "Back to Exhibition"),
     secondaryLabel: l("回到首页", "Return Home"),
     detailTitle: l("未找到职业", "Career Not Found"),
     detailBodyTemplate: l(
-      "没有找到 slug 为“{slug}”的职业条目。你可以返回归档继续浏览，或者从首页重新进入。",
-      'No career entry was found for the slug "{slug}". You can return to the archive or go back to the homepage.'
+      "没有找到 slug 为“{slug}”的职业条目。你可以返回展览继续浏览，或者从首页重新进入。",
+      'No career entry was found for the slug "{slug}". You can return to the exhibition or go back to the homepage.'
     )
   },
   about: {
-    heroEyebrow: l("项目使命", "Mission"),
-    methodologyEyebrow: l("评估准则", "Methodology"),
-    standardsEyebrow: l("评估指标", "Standards"),
+    heroEyebrow: l("关于项目", "Mission"),
+    methodologyEyebrow: l("我们如何收录", "Methodology"),
+    standardsEyebrow: l("当前判断维度", "Standards"),
     timelineEyebrow: l("项目简史", "Timeline"),
-    contributorsEyebrow: l("贡献者", "Contributors")
+    contributorsEyebrow: l("这个版本包含什么", "This Version Includes")
   },
   aboutInfo: {
     legal: {
       eyebrow: l("使用说明", "Legal"),
-      title: l("这是一个公开展示的静态项目", "This Is a Public-Facing Static Project"),
+      title: l("它是一份公共叙事档案，不是职业裁决书", "This Is a Public-Facing Static Project"),
       paragraphs: [
         l(
-          "职业墓场当前版本为公开展示用途的静态网站，所有职业判断、状态标签与说明文案均用于讨论职业变化，不构成法律、投资、就业或教育建议。",
+          "职业墓场当前版本是一个公开展示的静态项目。这里的职业判断、状态标签和说明文字，目的是帮助人们讨论工作如何变化，而不是替任何人下最终结论。",
           "The current version of Career Graveyard is a public-facing static site. Its career judgments, status labels, and editorial notes exist to discuss changes in work, and should not be treated as legal, investment, employment, or education advice."
         ),
         l(
-          "如果你在此站点中看到与你自身经历相似的职业描述，请把它视为一份观察档案，而非对任何个人、公司或机构的最终定论。",
+          "如果你在这里看到与你经历相似的职业描述，请把它视为一份观察样本、一种编辑立场，而不是对某个个人、公司或机构的盖棺定论。",
           "If you see a profession here that resembles your own experience, treat it as an observational archive rather than a final verdict on any individual, company, or institution."
         )
       ]
     },
     policy: {
       eyebrow: l("内容说明", "Policy"),
-      title: l("当前版本是静态展示站，不提供在线留言存储", "This Version Is Static and Does Not Store Live Submissions"),
+      title: l("当前版本只做静态发布，不提供在线留言存储", "This Version Is Static and Does Not Store Live Submissions"),
       paragraphs: [
         l(
-          "站内职业卡、时间线、项目说明与静态示例内容都由项目维护者整理后发布。当前版本不接入数据库，不提供在线投稿存储，也没有后台审核系统。",
+          "站内的职业卡、时间线、项目说明和示例悼词都由维护者手动整理后发布。当前版本不接数据库，不保存在线投稿，也没有后台审核面板。",
           "Career cards, timelines, project notes, and static sample content are curated and published by the maintainers. This version does not connect to a database, does not store online submissions, and does not provide an admin review backend."
         ),
         l(
-          "祭奠留言与新增职业建议都通过项目邮箱接收，维护者会在邮箱中人工筛选、整理，并在后续静态更新中决定是否纳入公开内容。",
-          "Memorial messages and new profession suggestions are received through the project inbox. Maintainers review them manually in email and decide whether to include them in later static updates."
+          "祭奠页现在既支持已收录职业祭奠，也支持未收录职业的提名式祭奠。这两类内容都会先进入项目邮箱，由维护者人工筛选、补充和整理，再决定是否进入后续的静态更新。",
+          "The memorial page now supports both archived-profession memorials and nomination-style memorials for unlisted professions. Both kinds of submissions go to the project inbox first, where maintainers review, expand, and curate them before deciding whether to include them in later static updates."
         )
       ]
     },
     contact: {
       eyebrow: l("联系方式", "Contact"),
-      title: l("通过邮箱投稿，通过 GitHub 协作", "Submit by Email, Collaborate on GitHub"),
+      title: l("投稿走邮箱，改站走 GitHub", "Submit by Email, Collaborate on GitHub"),
       paragraphs: [
         l(
-          "祭奠留言与新增职业建议请发送到项目邮箱：mahrovandrei@gmail.com。站点不会自动公开你的投稿，维护者会以邮箱收件箱作为原始素材池。",
-          "Send memorial messages and new profession suggestions to mahrovandrei@gmail.com. The site does not publish your submission automatically; the maintainers use the inbox as a raw material pool."
+          "如果你想给已收录职业留下悼词，或想为一个尚未收录的职业补充简介并发起投稿，请发送到项目邮箱：mahrovandrei@gmail.com。站点不会自动公开来稿，邮箱只是素材入口。",
+          "If you want to leave a memorial for an archived profession, or introduce and submit an unlisted profession, send it to mahrovandrei@gmail.com. The site does not publish your submission automatically; the maintainers use the inbox as a raw material pool."
         ),
         l(
-          "如果你想参与代码、设计、文案或结构性改进，仍然推荐通过 GitHub 仓库发起 issue 或 pull request。",
+          "如果你想参与代码、设计、文案、信息架构或测试，推荐直接在 GitHub 仓库发起 issue 或 pull request，这会比邮件往返更高效。",
           "If you want to contribute code, design, copy, or structural improvements, GitHub issues and pull requests remain the preferred collaboration path."
         )
       ],
@@ -748,113 +802,145 @@ export const homeQuote = {
 
 export const aboutData = {
   missionTitle: l(
-    "在这个算法与效率至上的时代，我们记录那些正在消逝的职业灵魂。",
+    "职业墓场记录那些正在失去议价权、入口、稳定性与尊严的工作。",
     "In an era ruled by algorithms and efficiency, we document the professional souls now disappearing."
   ),
   missionBody: l(
-    "职业墓场不仅是一座档案库，更是一件数字装置。我们通过解构“职业”这一概念，讨论在技术降临、平台统治与算力霸权之下，人类创造力最后还能在哪里停留。",
+    "它不是职业预测器，也不是焦虑制造机。我们把分散在新闻、平台规则、行业经验和个人叙述里的变化整理成可浏览的档案，让“一个职业如何慢慢被削弱”这件事，有证据、有语气，也有记忆。",
     "Career Graveyard is not only an archive but a digital installation. By dismantling the very idea of a profession, it asks where human creativity can still rest under technological descent, platform rule, and computational power."
   ),
   methodology: [
     {
-      title: l("01 / 存在定义", "01 / Defining Existence"),
+      title: l("01 / 看核心价值", "01 / Core Value"),
       text: l(
-        "界定该职业的核心价值是否能被标准化 prompt 或流水线完全替代。",
+        "先判断这个职业最重要的部分是什么，再看它是否已经被标准化流程、平台模板或 AI 输出覆盖。",
         "Define whether the core value of a profession can be fully replaced by standardized prompts or production pipelines."
       )
     },
     {
-      title: l("02 / 溢价消减", "02 / Premium Erosion"),
+      title: l("02 / 看入口变化", "02 / Entry Pressure"),
       text: l(
-        "追踪该行业的报酬趋势，判断是否出现不可逆的廉价化过程。",
+        "观察新人是否还能以合理成本进入、学习并获得成长空间，而不是一开始就被压进低价竞争。",
         "Track compensation trends and determine whether an irreversible slide toward commoditization has begun."
       )
     },
     {
-      title: l("03 / 情感剥离", "03 / Emotional Extraction"),
+      title: l("03 / 看议价能力", "03 / Bargaining Power"),
       text: l(
-        "分析人与人之间的情感连接，是否正在被冷冰冰的接口接管。",
+        "跟踪收入、稳定性、话语权和工作边界是否持续下滑，确认它是不是正在走向廉价化和可替换化。",
         "Study whether the emotional link between people is being taken over by cold interfaces."
       )
     },
     {
-      title: l("04 / 历史定格", "04 / Historical Fixing"),
+      title: l("04 / 看人的剩余价值", "04 / Human Residue"),
       text: l(
-        "一旦确认职业进入不可挽回状态，就将其封存为时代的见证。",
+        "最后再看这个职业还剩下多少必须依赖人的判断、关系、经验与现场感；如果这些部分也在收缩，它就值得被立碑记录。",
         "Once a profession is confirmed to have entered an irreversible state, archive it as evidence of the age."
       )
     }
   ],
   standards: [
-    { label: l("AI 替代风险", "AI Replacement Risk"), value: l("高", "High") },
-    { label: l("市场需求趋势", "Market Demand Trend"), value: l("衰退中", "Decaying") },
-    { label: l("职业社会溢价", "Social Status Value"), value: l("趋近于零", "Near Zero") },
-    { label: l("创意独立性", "Creative Independence"), value: l("脆弱", "Vulnerable") }
+    { label: l("替代压力", "Replacement Pressure"), value: l("持续上升", "Rising") },
+    { label: l("岗位入口", "Entry Path"), value: l("持续收缩", "Narrowing") },
+    { label: l("议价能力", "Bargaining Power"), value: l("持续下滑", "Falling") },
+    { label: l("人的不可替代部分", "Human Advantage"), value: l("正在收缩", "Shrinking") }
   ],
   timeline: [
     {
-      date: l("2023.11 / 起源", "2023.11 / Origin"),
-      text: l("项目由三位前创意人发起，旨在记录大模型时代下的行业坍塌。", "The project was started by three former creatives to document professional collapse in the age of large models.")
+      date: l("2026.3 / 概念立项", "2026.3 / Origin"),
+      text: l("项目最初只是一个关于“哪些工作正在被悄悄抽空”的内部备忘录，后来才发展成公开站点。", "The project was started by three former creatives to document professional collapse in the age of large models.")
     },
     {
-      date: l("2024.01 / 建立祭奠页", "2024.01 / Memorial Page"),
-      text: l("祭奠页作为静态投稿入口上线，用于收集外部来信与职业样本。", "The memorial page launched as a static submission entry point to collect letters and profession samples.")
+      date: l("2026.4 / 静态页面上线", "2026.4 / Static Launch"),
+      text: l("展览、详情、祭奠和关于页逐步成形，项目从概念表达转向可浏览、可协作的前端成品。", "The exhibition, detail, memorial, and about pages gradually took shape as the project moved from concept expression to a browsable, collaborative frontend artifact.")
     },
     {
-      date: l("现在 / 邮箱投稿版 V1", "Now / Email Submission V1"),
-      text: l("当前版本以静态发布和邮箱整理为主，不承诺在线存储、审核或实时社区流。", "The current version is centered on static publishing and inbox curation, with no promise of online storage, moderation, or real-time community flow.")
+      date: l("现在", "Now"),
+      text: l("当前版本继续以静态发布和邮箱整理为主，优先把收录标准、项目语气和页面结构打磨清楚。", "The current version is centered on static publishing and inbox curation, with no promise of online storage, moderation, or real-time community flow.")
     }
   ],
   stats: [
-    { value: same(String(careers.length)), label: l("已入库职业", "Catalogued Careers") },
-    { value: l("邮箱", "Email"), label: l("投稿渠道", "Submission Channel") },
-    { value: l("静态", "Static"), label: l("发布模式", "Publishing Mode") }
+    { value: same(String(careers.length)), label: l("已收录职业样本", "Catalogued Careers") },
+    { value: l("2 种", "2"), label: l("参与入口：邮箱 / GitHub", "Ways to Contribute") },
+    { value: l("0 个", "0"), label: l("在线账户与后台系统", "Live Accounts / Admin") }
   ],
   contributors: [
-    { name: same("Elias Chen"), role: l("发起人 / 策展", "Founder / Curation") },
-    { name: same("Mavis Zhang"), role: l("视觉设计", "Visual Design") },
-    { name: same("Jun-Ho Lee"), role: l("研究负责人", "Research Lead") },
-    { name: same("Sarah J."), role: l("数据工程", "Data Engineering") },
-    { name: same("Anon User #21"), role: l("核心贡献者", "Lead Contributor") },
-    { name: l("加入我们", "Join Us"), role: l("开源协作", "Open Source") }
+    { name: l("展览页", "Exhibition Page"), role: l("浏览展览中的职业、状态标签和衰落时间线。", "Browse professions in the exhibition, status labels, and decline timelines.") },
+    { name: l("详情页", "Career Detail"), role: l("查看每个职业的摘要、因素、节录与相关职业。", "Read each profession's summary, factors, excerpts, and related entries.") },
+    { name: l("祭奠页", "Memorial"), role: l("通过邮件草稿提交悼词或新增职业建议。", "Submit memorial text or new profession suggestions through an email draft.") },
+    { name: l("关于页", "About"), role: l("理解项目目标、收录方法、内容边界和协作方式。", "Understand the project's purpose, curation method, boundaries, and collaboration path.") },
+    { name: l("当前限制", "Current Limits"), role: l("没有账户系统、在线存储、后台审核或实时社区流。", "There are no accounts, online storage, admin moderation, or real-time community features.") },
+    { name: l("欢迎协作", "Contribute"), role: l("如果你想改代码、文案或信息结构，GitHub issue 和 PR 是首选入口。", "If you want to improve code, copy, or information architecture, GitHub issues and PRs are the preferred path.") }
   ]
 };
 
-export const initialMemorials = [
-  {
-    careerSlug: "graphic-designer",
-    signature: l("匿名悼词者 / 前资深视觉设计", "Anonymous Tribute / Former Senior Visual Designer"),
-    date: same("2024.03.20"),
-    text: l(
-      "在这个一切皆可生成的年代，我怀念那些通宵改稿、为了 1 像素的间距而争执的夜晚。那是我们作为“人”对审美的最后坚持。再见了，画笔。",
-      "In an era where everything can be generated, I miss the nights of endless revisions and arguments over a single pixel. That was our final insistence on taste as humans. Goodbye, brush."
-    )
-  },
-  {
-    careerSlug: "cram-school-teacher",
-    signature: l("某数学主讲老师", "Former Math Lecturer"),
-    date: same("2024.03.18"),
-    text: l(
-      "屏幕另一端的孩子，也许还会想起那些充满激情的周五晚上。知识没变，但传授它的方式，已不再需要我们这些“人”的温度。",
-      "The children on the other side of the screen may still remember those electric Friday nights. Knowledge remains, but the method of delivering it no longer seems to need the warmth of people like us."
-    )
-  },
-  {
-    careerSlug: "content-editor",
-    signature: l("匿名内容运营", "Anonymous Content Operator"),
-    date: same("2024.03.15"),
-    text: l(
-      "算法根据点击率切割了文章，灵魂在 Feed 流中被无声淹没。如果字数决定了价值，那思考本身便是多余。我决定离开这片名为“内容”的废墟。",
-      "Algorithms sliced articles according to click-through rate, and their soul drowned quietly in the feed. If word count decides value, then thought itself becomes excess. I have decided to leave this ruin called content."
-    )
-  },
-  {
-    careerSlug: "junior-translator",
-    signature: l("翻译从业者", "Working Translator"),
-    date: same("2024.03.12"),
-    text: l(
-      "翻译不再是信达雅的博弈，而是对模型输出的纠偏。我们从跨越文明的信使，变成了给 AI 打工的质检员。这不仅是职业的衰落，更是母语的退化。",
-      "Translation is no longer a contest of fidelity and grace, but a correction layer over model output. We have gone from messengers between civilizations to quality inspectors for AI. This is not only the decline of a profession, but the erosion of the mother tongue itself."
-    )
-  }
-];
+export const initialMemorials = {
+  existing: [
+    {
+      careerSlug: "graphic-designer",
+      signature: l("匿名悼词者 / 前资深视觉设计", "Anonymous Tribute / Former Senior Visual Designer"),
+      date: same("2024.03.20"),
+      text: l(
+        "在这个一切皆可生成的年代，我怀念那些通宵改稿、为了 1 像素的间距而争执的夜晚。那是我们作为“人”对审美的最后坚持。再见了，画笔。",
+        "In an era where everything can be generated, I miss the nights of endless revisions and arguments over a single pixel. That was our final insistence on taste as humans. Goodbye, brush."
+      )
+    },
+    {
+      careerSlug: "cram-school-teacher",
+      signature: l("某数学主讲老师", "Former Math Lecturer"),
+      date: same("2024.03.18"),
+      text: l(
+        "屏幕另一端的孩子，也许还会想起那些充满激情的周五晚上。知识没变，但传授它的方式，已不再需要我们这些“人”的温度。",
+        "The children on the other side of the screen may still remember those electric Friday nights. Knowledge remains, but the method of delivering it no longer seems to need the warmth of people like us."
+      )
+    },
+    {
+      careerSlug: "content-editor",
+      signature: l("匿名内容运营", "Anonymous Content Operator"),
+      date: same("2024.03.15"),
+      text: l(
+        "算法根据点击率切割了文章，灵魂在 Feed 流中被无声淹没。如果字数决定了价值，那思考本身便是多余。我决定离开这片名为“内容”的废墟。",
+        "Algorithms sliced articles according to click-through rate, and their soul drowned quietly in the feed. If word count decides value, then thought itself becomes excess. I have decided to leave this ruin called content."
+      )
+    },
+    {
+      careerSlug: "junior-translator",
+      signature: l("翻译从业者", "Working Translator"),
+      date: same("2024.03.12"),
+      text: l(
+        "翻译不再是信达雅的博弈，而是对模型输出的纠偏。我们从跨越文明的信使，变成了给 AI 打工的质检员。这不仅是职业的衰落，更是母语的退化。",
+        "Translation is no longer a contest of fidelity and grace, but a correction layer over model output. We have gone from messengers between civilizations to quality inspectors for AI. This is not only the decline of a profession, but the erosion of the mother tongue itself."
+      )
+    }
+  ],
+  unlisted: [
+    {
+      careerName: l("AI 标注审核员", "AI Annotation Reviewer"),
+      introduction: l(
+        "负责检查和修正模型训练前的标注结果，夹在平台速度与低价外包之间，很快变成一类被忽视的临时工劳动。",
+        "A role responsible for checking and correcting annotations before model training, squeezed between platform speed and low-cost outsourcing until it becomes a disposable layer of temporary labor."
+      ),
+      signature: l("匿名数据承包者", "Anonymous Data Contractor"),
+      date: same("2024.04.02"),
+      text: l(
+        "我们被要求教会机器如何理解世界，但没有人愿意记住是谁在深夜里一格格修正这些错误。这个职业还没来得及被命名，就已经开始消失。",
+        "We were asked to teach machines how to read the world, yet no one cared who spent the night correcting these errors one box at a time. This profession began disappearing before it was ever properly named."
+      ),
+      references: l("可参考：外包标注平台招募页面、生成式 AI 数据清洗案例。", "References: outsourced annotation platform postings and case studies on generative AI data cleaning.")
+    },
+    {
+      careerName: l("直播脚本拼接师", "Livestream Script Stitcher"),
+      introduction: l(
+        "为直播电商或短视频团队快速拼接脚本段落、情绪节点和成交话术，是一种高度模板化却又被频繁消耗的内容劳动。",
+        "A role that rapidly stitches together script beats, emotional cues, and conversion phrases for livestream commerce teams, combining extreme templating with relentless content churn."
+      ),
+      signature: l("前直播内容执行", "Former Livestream Content Executor"),
+      date: same("2024.03.27"),
+      text: l(
+        "脚本越来越像算法生成前的垫片，我们只是把情绪和促销句子粘成一条流水线。等模型彻底接手后，连这层薄薄的人工痕迹也会被抹掉。",
+        "The script increasingly feels like a spacer before full algorithmic generation. We merely glue emotion and sales lines into a conveyor belt, and once the model takes over, even this thin trace of human labor will disappear."
+      ),
+      references: l("可参考：直播招聘 JD、带货脚本模板库。", "References: livestream job descriptions and commerce script template libraries.")
+    }
+  ]
+};
