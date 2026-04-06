@@ -412,7 +412,6 @@ function renderHome() {
 
             <section class="hero-axis reveal" style="--stagger:0.18s;">
               <p class="hero__question-copy">${escapeHtml(t(siteCopy.home.question))}</p>
-              <div class="hero__rule" aria-hidden="true"></div>
             </section>
           </div>
         </section>

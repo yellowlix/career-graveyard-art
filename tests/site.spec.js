@@ -132,18 +132,12 @@ test("home page defaults to Chinese-only navigation and metadata", async ({ page
     viewportTier === "mobile" ? 2 : viewportTier === "tablet" ? 3 : 6
   );
 
-  if (viewportTier === "mobile") {
-    const homeShellStyles = await getComputedStyles(homeShell, ["overflow-y", "scroll-snap-type"]);
-    expect(homeShellStyles["scroll-snap-type"]).toBe("none");
-    expect(["visible", "clip"]).toContain(homeShellStyles["overflow-y"]);
-  } else {
-    const homeShellStyles = await getComputedStyles(homeShell, ["overflow-y", "scroll-snap-type"]);
-    const careersPanelRect = await getViewportRect(careersPanel);
+  const homeShellStyles = await getComputedStyles(homeShell, ["overflow-y", "scroll-snap-type"]);
+  const careersPanelRect = await getViewportRect(careersPanel);
 
-    expect(homeShellStyles["overflow-y"]).toBe("auto");
-    expect(homeShellStyles["scroll-snap-type"]).toBe("y mandatory");
-    expect(careersPanelRect.top).toBeGreaterThanOrEqual(viewportHeight * 0.85);
-  }
+  expect(homeShellStyles["overflow-y"]).toBe("auto");
+  expect(homeShellStyles["scroll-snap-type"]).toBe("y mandatory");
+  expect(careersPanelRect.top).toBeGreaterThanOrEqual(viewportHeight * 0.85);
 
   await expect(page).toHaveScreenshot("home-page.png", {
     animations: "disabled",
@@ -156,8 +150,6 @@ test("home page reveals the careers panel only after segmented scroll on desktop
 }, testInfo) => {
   await visit(page, "/");
   const viewportTier = getViewportTier(testInfo);
-
-  test.skip(viewportTier === "mobile", "Mobile keeps natural scrolling without snap panels.");
 
   const careersPanel = page.locator('[data-home-panel="careers"]');
   const careersGrid = page.locator(".career-grid--home");
