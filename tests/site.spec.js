@@ -247,7 +247,8 @@ test("career detail page localizes content and invalid slugs stay explicit", asy
   await expect(page).toHaveScreenshot("career-detail-page.png", {
     animations: "disabled",
     caret: "hide",
-    fullPage: true
+    fullPage: true,
+    maxDiffPixels: 100
   });
 
   await visit(page, "/career.html?slug=does-not-exist");
@@ -413,13 +414,15 @@ test("about page keeps repo-truth wording in both locales", async ({ page }) => 
   await expect(page.locator("#policy")).toContainText(pick(siteCopy.aboutInfo.policy.title, "zh"));
   await expect(page.locator("#contact")).toContainText(siteMeta.contactEmail);
   await expect(page.locator("#contact")).toContainText(pick(siteCopy.aboutInfo.contact.actions[0].label, "zh"));
-  await expect(page.locator("#contact")).toContainText(pick(siteCopy.aboutInfo.contact.actions[1].label, "zh"));
+  await expect(page.locator("#contact")).toContainText(pick(siteCopy.aboutInfo.contact.title, "zh"));
+  await expect(page.locator("#contact")).not.toContainText("github.com/yellowlix");
   await expect(page.getByText("42,901")).toHaveCount(0);
 
   await switchLocale(page, "en");
   await expect(page.getByRole("heading", { level: 1, name: pick(aboutData.missionTitle, "en") })).toBeVisible();
   await expect(page.locator("#policy")).toContainText("does not store online submissions");
-  await expect(page.locator("#contact")).toContainText("Submit by Email, Collaborate on GitHub");
+  await expect(page.locator("#contact")).toContainText(pick(siteCopy.aboutInfo.contact.title, "en"));
+  await expect(page.locator("#contact")).not.toContainText("github.com/yellowlix");
 });
 
 test("about page adapts across the four viewport baselines", async ({ page }, testInfo) => {

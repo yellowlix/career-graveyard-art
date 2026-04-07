@@ -77,7 +77,7 @@
   --home-hero-title-from-bottom: 0.63;
   --home-hero-question-from-bottom: 0.16;
   /* 固定顶栏占位：锚点跳转（#legal / #policy / #contact 等）时避免标题被遮挡 */
-  --anchor-scroll-padding: 9rem;
+  --anchor-scroll-padding: 10rem;
 }
 
 * {
