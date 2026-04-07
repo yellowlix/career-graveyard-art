@@ -35,6 +35,11 @@ function getViewportTier(testInfo) {
   return "desktop-1280";
 }
 
+/** Mirrors `getArchivePageSize()` in app.js (≥1440px → 16, else 12). */
+function getExpectedArchivePageSize(testInfo) {
+  return getViewportTier(testInfo) === "desktop-1440" ? 16 : 12;
+}
+
 async function expectGridTrackCount(locator, expectedCount) {
   const trackCount = await locator.evaluate((element) => {
     const template = window.getComputedStyle(element).gridTemplateColumns;
@@ -205,7 +210,9 @@ test("archive page can filter careers by localized status", async ({ page }, tes
   const viewportTier = getViewportTier(testInfo);
 
   await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.archive.title, "zh") })).toBeVisible();
-  await expect(page.locator(".career-card")).toHaveCount(careers.length);
+  await expect(page.locator(".career-card")).toHaveCount(
+    Math.min(getExpectedArchivePageSize(testInfo), careers.length)
+  );
   await expectGridTrackCount(
     page.locator(".career-grid--archive"),
     viewportTier === "mobile" ? 2 : viewportTier === "tablet" ? 4 : viewportTier === "desktop-1440" ? 8 : 6
