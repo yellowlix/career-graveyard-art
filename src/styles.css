@@ -734,9 +734,9 @@ button {
 }
 
 .home-quote {
-  border-top: 1px solid var(--line-soft);
+  border-top: none;
   width: 100%;
-  padding-top: clamp(3rem, 6vh, 5rem);
+  padding-block: clamp(1.5rem, 3vh, 2.75rem);
   display: grid;
   gap: 2.75rem;
   justify-items: center;
@@ -2100,7 +2100,7 @@ body[data-page="about"] .info-card[id] {
   }
 
   .home-quote {
-    padding-top: 5.5rem;
+    padding-block: clamp(1.25rem, 3vh, 2rem);
     gap: 2rem;
   }
 
@@ -2159,6 +2159,10 @@ body[data-page="about"] .info-card[id] {
     min-height: 100%;
     padding-top: clamp(5rem, 14vw, 6.5rem);
     padding-bottom: clamp(1.5rem, 3vh, 2.75rem);
+  }
+
+  body[data-page="home"] .home-panel--quote .home-panel__inner--quote {
+    justify-content: center;
   }
 
   body[data-page="home"] .site-footer--home {
