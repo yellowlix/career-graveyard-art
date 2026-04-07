@@ -589,8 +589,7 @@ button {
   margin: 0;
 }
 
-.hero__question-copy,
-.archive-tail p {
+.hero__question-copy {
   margin: 0;
   color: var(--muted);
   font-size: var(--text-label);
@@ -653,8 +652,9 @@ button {
 }
 
 .career-grid--archive {
+  --archive-career-row-gap: 8rem;
   grid-template-columns: repeat(var(--archive-columns), minmax(0, 1fr));
-  gap: 8rem 2rem;
+  gap: var(--archive-career-row-gap) 2rem;
 }
 
 .career-grid--related {
@@ -821,12 +821,216 @@ button {
 
 .archive-controls {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 3rem;
+  flex-direction: column;
+  gap: 2.25rem;
   padding-bottom: 3rem;
   border-bottom: 1px solid var(--line-soft);
   margin-bottom: 6rem;
+}
+
+.archive-controls__filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 3rem;
+  width: 100%;
+}
+
+.archive-controls__search {
+  display: grid;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 28rem;
+}
+
+.archive-search-form {
+  display: grid;
+  gap: 0.35rem;
+  position: relative;
+}
+
+.archive-search-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.65rem 0.75rem;
+}
+
+.archive-search-row .archive-search-input-wrap {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.archive-search-input-wrap {
+  position: relative;
+  display: block;
+}
+
+/* 去掉 Edge / IE 文本框自带清除、WebKit search 装饰，避免系统蓝 × */
+.archive-search-input::-ms-clear {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.archive-search-input::-webkit-search-cancel-button,
+.archive-search-input::-webkit-search-decoration,
+.archive-search-input::-webkit-search-results-button,
+.archive-search-input::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.archive-search-clear {
+  position: absolute;
+  right: 0.35rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.archive-search-input-wrap.is-nonempty .archive-search-clear {
+  opacity: 0.55;
+  pointer-events: auto;
+}
+
+.archive-search-clear:hover,
+.archive-search-clear:focus-visible {
+  opacity: 1;
+  color: var(--line);
+  outline: none;
+}
+
+.archive-search-clear__glyph {
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.archive-search-input-wrap.is-nonempty .archive-search-input {
+  padding-right: 2rem;
+}
+
+.outline-button--compact {
+  padding: 0.65rem 1.25rem;
+  min-height: 44px;
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.archive-search-suggestions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 0.25rem);
+  z-index: 10;
+  margin: 0;
+  padding: 0.35rem 0;
+  list-style: none;
+  background: #ffffff;
+  border: 1px solid var(--line-soft);
+  box-shadow: var(--shadow-soft);
+  max-height: 14rem;
+  overflow-y: auto;
+}
+
+.archive-search-suggestions__option {
+  display: block;
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+
+.archive-search-suggestions__option:hover,
+.archive-search-suggestions__option:focus-visible {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.archive-search-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--line-soft);
+  border-radius: 0;
+  font-size: var(--text-body);
+  line-height: var(--line-height-body-snug);
+  letter-spacing: inherit;
+  background: #ffffff;
+}
+
+.archive-search-input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.archive-search-input::placeholder {
+  color: var(--muted);
+}
+
+.archive-search-input:focus {
+  outline: none;
+  border-color: var(--line);
+}
+
+.archive-pagination {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+}
+
+.archive-pagination__summary {
+  margin: 0;
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+  color: var(--muted);
+}
+
+.archive-pagination__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem 1.5rem;
+}
+
+.archive-pagination__nav .text-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.archive-pagination__page {
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+  color: var(--muted);
+}
+
+.archive-empty {
+  margin: 0;
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--muted);
+  font-size: var(--text-body);
+  line-height: var(--line-height-body-relaxed);
 }
 
 .archive-controls__group {
@@ -853,9 +1057,22 @@ button {
   border-color: var(--line);
 }
 
-.archive-tail {
-  margin-top: 12rem;
+.archive-tail--end {
+  grid-column: 1 / -1;
+  /* 抵消 career-grid--archive 的 row-gap：尾注在下一行时不会与卡片行距同样拉开 8rem */
+  margin-top: calc(clamp(1.25rem, 2.5vw, 2rem) - var(--archive-career-row-gap, 8rem));
   text-align: center;
+}
+
+.archive-tail--end p {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  text-align: center;
+  line-height: var(--line-height-body-relaxed);
+  white-space: normal;
 }
 
 .detail-header__row {
@@ -1464,6 +1681,21 @@ body[data-page="about"] .info-card[id] {
   border-top: 1px solid var(--line-soft);
 }
 
+/* 展览页：分页区与页脚之间留白过长（主区底 padding + footer 的 margin-top:auto 叠加） */
+body[data-page="archive"] .page-main {
+  padding-bottom: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+body[data-page="archive"] .site-footer {
+  margin-top: 0;
+  padding-top: clamp(2rem, 3vw, 2.75rem);
+  padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+body[data-page="archive"] .archive-pagination {
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
 .site-footer--home {
   padding-top: 4.8rem;
   padding-bottom: 4rem;
@@ -1689,7 +1921,6 @@ body[data-page="about"] .info-card[id] {
 
 /* Shared stacked layout for tablet and mobile reading modes. */
 @media (max-width: 1279px) {
-  .archive-controls,
   .detail-header__row,
   .detail-layout,
   .memorial-layout,
@@ -1697,6 +1928,16 @@ body[data-page="about"] .info-card[id] {
   .site-footer__inner {
     grid-template-columns: 1fr;
     display: grid;
+  }
+
+  .archive-controls__filters {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .archive-controls__search {
+    max-width: none;
   }
 
   .archive-controls__group--right,

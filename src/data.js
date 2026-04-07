@@ -85,7 +85,20 @@ export const siteCopy = {
     all: l("全部", "All"),
     alphabetical: l("按名称", "Alphabetical"),
     timeline: l("按时间线", "Timeline"),
-    tail: l("更多记录仍在被挖掘中……", "More records are still being unearthed…")
+    tail: l("更多记录仍在被挖掘中……", "More records are still being unearthed…"),
+    searchEyebrow: l("搜索", "Search"),
+    searchPlaceholder: l("按名称或摘要关键词…", "Search by name or keywords…"),
+    searchAriaLabel: l("搜索展览条目", "Search the exhibition list"),
+    searchSubmit: l("搜索", "Search"),
+    searchSuggestionsLabel: l("匹配的职业", "Matching professions"),
+    searchClearAriaLabel: l("清空搜索框", "Clear search field"),
+    searchNoSuggestions: l("无匹配项", "No matches"),
+    emptyResults: l("没有匹配当前筛选与关键词的职业。", "No professions match the current filters and search."),
+    paginationPrev: l("上一页", "Previous"),
+    paginationNext: l("下一页", "Next"),
+    paginationNavAria: l("展览分页", "Exhibition pagination"),
+    paginationSummary: l("第 {from}–{to} 条，共 {total} 条", "Showing {from}–{to} of {total}"),
+    paginationPageStatus: l("第 {page} / {totalPages} 页", "Page {page} of {totalPages}")
   },
   detail: {
     statusEyebrow: l("状态", "Status"),
