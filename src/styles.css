@@ -76,6 +76,8 @@
   /* 首页首屏（≥768px）：变量为「距底边的比例」fb（0=底、1=顶）；块中心用 top: calc((1 - fb) * 100%) */
   --home-hero-title-from-bottom: 0.63;
   --home-hero-question-from-bottom: 0.16;
+  /* 固定顶栏占位：锚点跳转（#legal / #policy / #contact 等）时避免标题被遮挡 */
+  --anchor-scroll-padding: 9rem;
 }
 
 * {
@@ -1412,6 +1414,10 @@ button {
   gap: 2rem;
 }
 
+body[data-page="about"] .info-card[id] {
+  scroll-margin-top: var(--anchor-scroll-padding);
+}
+
 .info-card {
   display: grid;
   gap: 1.2rem;
@@ -1733,6 +1739,7 @@ button {
 /* Baseline 390: mobile reference. */
 @media (max-width: 767px) {
   :root {
+    --anchor-scroll-padding: 9rem;
     --page-gutter: 16px;
     --text-display-home: 2.35rem;
     --hero-subtitle-size: var(--text-caption);
