@@ -355,11 +355,11 @@ function renderCareerCard(career, variant = "home") {
       style="--slab-height:${career.slabHeight}px; --stagger:${0.08 * careers.indexOf(career)}s;"
       href="${routes.detail(career.slug)}"
     >
-      <div class="career-card__heading">
-        <p class="career-card__status">${escapeHtml(getStatusLabel(career.status))}</p>
-        <${headingTag}>${escapeHtml(getCareerName(career))}</${headingTag}>
+      <div class="career-card__cross">
+        <span class="career-card__bar career-card__bar--top" aria-hidden="true"></span>
+        <${headingTag} class="career-card__title">${escapeHtml(getCareerName(career))}</${headingTag}>
+        <span class="career-card__bar career-card__bar--bottom" aria-hidden="true"></span>
       </div>
-      <div class="career-card__slab" aria-hidden="true"></div>
       <div class="career-card__teaser">
         <p>${escapeHtml(t(career.teaser))}</p>
       </div>
