@@ -809,12 +809,12 @@ export const homeQuote = {
 
 export const aboutData = {
   missionTitle: l(
-    "职业墓场记录那些正在失去议价权、入口、稳定性与尊严的工作。",
-    "In an era ruled by algorithms and efficiency, we document the professional souls now disappearing."
+    "在这个算法与效率至上的时代，我们记录那些正在消逝的职业灵魂。",
+    "In this age of algorithms and efficiency above all else, we record the souls of professions now fading away."
   ),
   missionBody: l(
-    "它不是职业预测器，也不是焦虑制造机。我们把分散在新闻、平台规则、行业经验和个人叙述里的变化整理成可浏览的档案，让“一个职业如何慢慢被削弱”这件事，有证据、有语气，也有记忆。",
-    "Career Graveyard is not only an archive but a digital installation. By dismantling the very idea of a profession, it asks where human creativity can still rest under technological descent, platform rule, and computational power."
+    "它不是职业预测器，也不是焦虑制造机，而是让那些正在无声退场的职业，也能拥有被记录、被阅读、被悼念的权利。",
+    "It is neither a career predictor nor an anxiety machine, but a place where professions leaving the stage in silence may still claim the right to be recorded, read, and mourned."
   ),
   methodology: [
     {
