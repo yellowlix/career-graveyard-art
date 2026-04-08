@@ -1750,6 +1750,21 @@ body[data-page="archive"] .archive-pagination {
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
+/* 关于页：支持区已是最后一个模块，收口底部留白，避免主区 padding / section margin / footer auto 叠加。 */
+body[data-page="about"] .about-section--support {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+body[data-page="about"] .page-main {
+  padding-bottom: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+body[data-page="about"] .site-footer {
+  margin-top: 0;
+  padding-top: clamp(2rem, 3vw, 2.75rem);
+  padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+
 .site-footer--home {
   padding-top: 4.8rem;
   padding-bottom: 4rem;
