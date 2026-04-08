@@ -505,6 +505,7 @@ function renderFooter() {
           <a href="${routes.about}#legal">${escapeHtml(t(siteCopy.footer.legal))}</a>
           <a href="${routes.about}#policy">${escapeHtml(t(siteCopy.footer.policy))}</a>
           <a href="${routes.about}#contact">${escapeHtml(t(siteCopy.footer.connect))}</a>
+          <a href="${routes.about}#support">${escapeHtml(t(siteCopy.footer.support))}</a>
         </div>
       </div>
     </footer>
@@ -1691,6 +1692,29 @@ function renderAboutInfoSection(id, config) {
   `;
 }
 
+function renderAboutSupportSection() {
+  if (currentLocale !== "zh") {
+    return "";
+  }
+
+  return `
+    <section id="support" class="about-section about-section--support reveal" style="--stagger:0.28s;">
+      <div class="about-support">
+        <p class="section-eyebrow section-eyebrow--centered">${escapeHtml(t(siteCopy.about.supportEyebrow))}</p>
+        <div class="about-support__inner">
+          <blockquote>${escapeHtml(t(siteCopy.about.supportTitle))}</blockquote>
+          <p class="about-support__note">${escapeHtml(t(siteCopy.about.supportBody))}</p>
+        </div>
+        <div class="about-support__actions">
+          <a class="outline-button" href="${siteMeta.afdianUrl}" target="_blank" rel="noreferrer">
+            ${escapeHtml(t(siteCopy.about.supportCta))}
+          </a>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 function renderAbout() {
   setPageMetadata({
     title: t(siteCopy.navigation.about),
@@ -1798,6 +1822,8 @@ function renderAbout() {
           ${renderAboutInfoSection("contact", siteCopy.aboutInfo.contact)}
         </div>
       </section>
+
+      ${renderAboutSupportSection()}
     `,
     {
       active: "about",

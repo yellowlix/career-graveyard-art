@@ -1635,6 +1635,10 @@ body[data-page="about"] .info-card[id] {
   scroll-margin-top: var(--anchor-scroll-padding);
 }
 
+body[data-page="about"] #support {
+  scroll-margin-top: var(--anchor-scroll-padding);
+}
+
 .info-card {
   display: grid;
   gap: 1.2rem;
@@ -1663,6 +1667,56 @@ body[data-page="about"] .info-card[id] {
   flex-wrap: wrap;
   gap: 1rem 1.5rem;
   padding-top: 0.4rem;
+}
+
+.about-section--support {
+  margin-top: 2rem;
+}
+
+.about-support {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding-top: 5rem;
+  border-top: 1px solid var(--line-soft);
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 2.75rem;
+}
+
+.about-support__inner {
+  max-width: 40rem;
+  display: grid;
+  gap: 1.8rem;
+}
+
+.about-support blockquote {
+  margin: 0;
+  color: #555555;
+  font-size: var(--text-body);
+  line-height: var(--line-height-body-relaxed);
+  font-weight: var(--font-weight-light);
+}
+
+.about-support__note {
+  margin: 0;
+  max-width: 34rem;
+  color: #555555;
+  font-size: var(--text-body);
+  line-height: var(--line-height-body-relaxed);
+  font-weight: var(--font-weight-light);
+}
+
+.about-support__actions {
+  padding-top: 0;
+}
+
+.about-support .outline-button {
+  padding-inline: 2.4rem;
+  min-width: 14rem;
+  min-height: 42px;
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
 }
 
 .contributor-card {
@@ -1694,6 +1748,21 @@ body[data-page="archive"] .site-footer {
 
 body[data-page="archive"] .archive-pagination {
   margin-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+/* 关于页：支持区已是最后一个模块，收口底部留白，避免主区 padding / section margin / footer auto 叠加。 */
+body[data-page="about"] .about-section--support {
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+body[data-page="about"] .page-main {
+  padding-bottom: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+body[data-page="about"] .site-footer {
+  margin-top: 0;
+  padding-top: clamp(2rem, 3vw, 2.75rem);
+  padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
 }
 
 .site-footer--home {
@@ -2278,6 +2347,15 @@ body[data-page="archive"] .archive-pagination {
 
   .info-card {
     padding: 1.1rem 1rem;
+  }
+
+  .about-support {
+    padding-top: 3.5rem;
+    gap: 2rem;
+  }
+
+  .about-support__inner {
+    gap: 1.4rem;
   }
 
   .info-card p,
