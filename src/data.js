@@ -13,6 +13,7 @@ export const siteMeta = {
   siteName: l("职业墓场", "Career Graveyard"),
   siteUrl: "https://career-graveyard.art",
   contactEmail: "mahrovandrei@gmail.com",
+  afdianUrl: "https://afdian.com/a/yellowaurora",
   themeColor: "#ffffff",
   socialImage: "https://career-graveyard.art/favicon.svg",
   defaultDescription: l(
@@ -40,9 +41,10 @@ export const siteCopy = {
     about: l("查看项目方法、边界与协作方式。", "See the project's method, boundaries, and collaboration path.")
   },
   footer: {
-    copyright: l("© 2024 职业墓场", "© 2024 Career Graveyard"),
+    copyright: l("© 2026 职业墓场", "© 2026 Career Graveyard"),
     legal: l("使用说明", "Legal"),
     policy: l("内容说明", "Policy"),
+    support: l("支持", "Support"),
     connect: l("联系", "Contact")
   },
   pageDescriptions: {
@@ -232,7 +234,14 @@ export const siteCopy = {
     methodologyEyebrow: l("我们如何收录", "Methodology"),
     standardsEyebrow: l("当前判断维度", "Standards"),
     timelineEyebrow: l("项目简史", "Timeline"),
-    contributorsEyebrow: l("这个版本包含什么", "This Version Includes")
+    contributorsEyebrow: l("这个版本包含什么", "This Version Includes"),
+    supportEyebrow: l("支持这座墓园", "Support"),
+    supportTitle: l("如果你愿意，可以为这座墓园添一束花。", "Support this archive."),
+    supportBody: l(
+      "你的支持会帮助新的职业档案、悼词与观察继续被写下去，也会让这座仍在扩建中的数字墓园有机会被维护得更久一点。",
+      "Your support helps keep new entries, memorials, and observations alive."
+    ),
+    supportCta: l("前往爱发电", "Support on Afdian")
   },
   aboutInfo: {
     legal: {
