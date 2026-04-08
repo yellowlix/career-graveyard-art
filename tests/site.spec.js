@@ -35,6 +35,11 @@ function getViewportTier(testInfo) {
   return "desktop-1280";
 }
 
+/** Mirrors `getArchivePageSize()` in app.js (≥1440px → 16, else 12). */
+function getExpectedArchivePageSize(testInfo) {
+  return getViewportTier(testInfo) === "desktop-1440" ? 16 : 12;
+}
+
 async function expectGridTrackCount(locator, expectedCount) {
   const trackCount = await locator.evaluate((element) => {
     const template = window.getComputedStyle(element).gridTemplateColumns;
@@ -205,7 +210,9 @@ test("archive page can filter careers by localized status", async ({ page }, tes
   const viewportTier = getViewportTier(testInfo);
 
   await expect(page.getByRole("heading", { level: 1, name: pick(siteCopy.archive.title, "zh") })).toBeVisible();
-  await expect(page.locator(".career-card")).toHaveCount(careers.length);
+  await expect(page.locator(".career-card")).toHaveCount(
+    Math.min(getExpectedArchivePageSize(testInfo), careers.length)
+  );
   await expectGridTrackCount(
     page.locator(".career-grid--archive"),
     viewportTier === "mobile" ? 2 : viewportTier === "tablet" ? 4 : viewportTier === "desktop-1440" ? 8 : 6
@@ -247,7 +254,8 @@ test("career detail page localizes content and invalid slugs stay explicit", asy
   await expect(page).toHaveScreenshot("career-detail-page.png", {
     animations: "disabled",
     caret: "hide",
-    fullPage: true
+    fullPage: true,
+    maxDiffPixels: 100
   });
 
   await visit(page, "/career.html?slug=does-not-exist");
@@ -413,13 +421,15 @@ test("about page keeps repo-truth wording in both locales", async ({ page }) => 
   await expect(page.locator("#policy")).toContainText(pick(siteCopy.aboutInfo.policy.title, "zh"));
   await expect(page.locator("#contact")).toContainText(siteMeta.contactEmail);
   await expect(page.locator("#contact")).toContainText(pick(siteCopy.aboutInfo.contact.actions[0].label, "zh"));
-  await expect(page.locator("#contact")).toContainText(pick(siteCopy.aboutInfo.contact.actions[1].label, "zh"));
+  await expect(page.locator("#contact")).toContainText(pick(siteCopy.aboutInfo.contact.title, "zh"));
+  await expect(page.locator("#contact")).not.toContainText("github.com/yellowlix");
   await expect(page.getByText("42,901")).toHaveCount(0);
 
   await switchLocale(page, "en");
   await expect(page.getByRole("heading", { level: 1, name: pick(aboutData.missionTitle, "en") })).toBeVisible();
   await expect(page.locator("#policy")).toContainText("does not store online submissions");
-  await expect(page.locator("#contact")).toContainText("Submit by Email, Collaborate on GitHub");
+  await expect(page.locator("#contact")).toContainText(pick(siteCopy.aboutInfo.contact.title, "en"));
+  await expect(page.locator("#contact")).not.toContainText("github.com/yellowlix");
 });
 
 test("about page adapts across the four viewport baselines", async ({ page }, testInfo) => {

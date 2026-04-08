@@ -59,8 +59,8 @@ export const siteCopy = {
       "Draft a memorial email for a disappearing profession and submit tributes or new profession suggestions through the project inbox."
     ),
     about: l(
-      "了解职业墓场的项目目标、收录方法、内容边界，以及如何通过邮箱或 GitHub 参与协作。",
-      "Learn the methodology behind Career Graveyard, its static-site boundaries, its email-based submission flow, and how to collaborate on the project."
+      "了解职业墓场的项目目标、收录方法、内容边界，以及如何通过项目邮箱提交投稿或表达协作意向。",
+      "Learn Career Graveyard's goals, curation method, boundaries, and how to submit work or reach out about collaboration through the project inbox."
     ),
     detail: l(
       "阅读职业墓场中的职业详情、时间线、消逝因素与悼词节录。",
@@ -85,7 +85,20 @@ export const siteCopy = {
     all: l("全部", "All"),
     alphabetical: l("按名称", "Alphabetical"),
     timeline: l("按时间线", "Timeline"),
-    tail: l("更多记录仍在被挖掘中……", "More records are still being unearthed…")
+    tail: l("更多记录仍在被挖掘中……", "More records are still being unearthed…"),
+    searchEyebrow: l("搜索", "Search"),
+    searchPlaceholder: l("按名称或摘要关键词…", "Search by name or keywords…"),
+    searchAriaLabel: l("搜索展览条目", "Search the exhibition list"),
+    searchSubmit: l("搜索", "Search"),
+    searchSuggestionsLabel: l("匹配的职业", "Matching professions"),
+    searchClearAriaLabel: l("清空搜索框", "Clear search field"),
+    searchNoSuggestions: l("无匹配项", "No matches"),
+    emptyResults: l("没有匹配当前筛选与关键词的职业。", "No professions match the current filters and search."),
+    paginationPrev: l("上一页", "Previous"),
+    paginationNext: l("下一页", "Next"),
+    paginationNavAria: l("展览分页", "Exhibition pagination"),
+    paginationSummary: l("第 {from}–{to} 条，共 {total} 条", "Showing {from}–{to} of {total}"),
+    paginationPageStatus: l("第 {page} / {totalPages} 页", "Page {page} of {totalPages}")
   },
   detail: {
     statusEyebrow: l("状态", "Status"),
@@ -252,24 +265,18 @@ export const siteCopy = {
     },
     contact: {
       eyebrow: l("联系方式", "Contact"),
-      title: l("投稿走邮箱，改站走 GitHub", "Submit by Email, Collaborate on GitHub"),
+      title: l("投稿与协作入口", "Submissions and outreach"),
       paragraphs: [
         l(
           "如果你想给已收录职业留下悼词，或想为一个尚未收录的职业补充简介并发起投稿，请发送到项目邮箱：mahrovandrei@gmail.com。站点不会自动公开来稿，邮箱只是素材入口。",
           "If you want to leave a memorial for an archived profession, or introduce and submit an unlisted profession, send it to mahrovandrei@gmail.com. The site does not publish your submission automatically; the maintainers use the inbox as a raw material pool."
         ),
         l(
-          "如果你想参与代码、设计、文案、信息架构或测试，推荐直接在 GitHub 仓库发起 issue 或 pull request，这会比邮件往返更高效。",
-          "If you want to contribute code, design, copy, or structural improvements, GitHub issues and pull requests remain the preferred collaboration path."
+          "若你希望在代码、设计、文案、信息架构或测试方面提供支持，请先发送邮件说明意向与范围，维护者会视情况回复。",
+          "If you can help with code, design, copy, information architecture, or testing, email first with your intent and scope—maintainers will respond when appropriate."
         )
       ],
-      actions: [
-        { label: l("邮箱投稿", "Email Submission"), href: `mailto:${siteMeta.contactEmail}` },
-        {
-          label: l("协作仓库", "GitHub Repository"),
-          href: "https://github.com/yellowlix/career-graveyard-art"
-        }
-      ]
+      actions: [{ label: l("邮箱投稿", "Email Submission"), href: `mailto:${siteMeta.contactEmail}` }]
     }
   }
 };
@@ -861,7 +868,10 @@ export const aboutData = {
   ],
   stats: [
     { value: same(String(careers.length)), label: l("已收录职业样本", "Catalogued Careers") },
-    { value: l("2 种", "2"), label: l("参与入口：邮箱 / GitHub", "Ways to Contribute") },
+    {
+      value: l("邮箱", "Inbox"),
+      label: l("主要投稿与协作入口", "Primary channel for submissions and collaboration")
+    },
     { value: l("0 个", "0"), label: l("在线账户与后台系统", "Live Accounts / Admin") }
   ],
   contributors: [
@@ -870,7 +880,13 @@ export const aboutData = {
     { name: l("祭奠页", "Memorial"), role: l("通过邮件草稿提交悼词或新增职业建议。", "Submit memorial text or new profession suggestions through an email draft.") },
     { name: l("关于页", "About"), role: l("理解项目目标、收录方法、内容边界和协作方式。", "Understand the project's purpose, curation method, boundaries, and collaboration path.") },
     { name: l("当前限制", "Current Limits"), role: l("没有账户系统、在线存储、后台审核或实时社区流。", "There are no accounts, online storage, admin moderation, or real-time community features.") },
-    { name: l("欢迎协作", "Contribute"), role: l("如果你想改代码、文案或信息结构，GitHub issue 和 PR 是首选入口。", "If you want to improve code, copy, or information architecture, GitHub issues and PRs are the preferred path.") }
+    {
+      name: l("欢迎协作", "Contribute"),
+      role: l(
+        "若希望改进代码、文案或站点结构，请先通过邮件联系；维护者会按情况回复。",
+        "To propose improvements to code, copy, or structure, email the project inbox first—maintainers respond when appropriate."
+      )
+    }
   ]
 };
 
