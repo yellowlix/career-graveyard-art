@@ -27,10 +27,16 @@ const routes = {
   notFound: "/404.html"
 };
 
+const ARCHIVE_PAGE_SIZE_DEFAULT = 12;
+const ARCHIVE_PAGE_SIZE_WIDE = 16;
+const ARCHIVE_VIEWPORT_WIDE_MIN = 1440;
+
 const uiState = {
   archive: {
     status: "all",
-    sort: "alphabetical"
+    sort: "alphabetical",
+    query: "",
+    page: 1
   },
   memorial: {
     activeMode: "existing",
@@ -49,7 +55,49 @@ const uiState = {
   }
 };
 
+let archiveHydratedFromUrl = false;
+let archiveSearchDraft = "";
+let archiveResizeTimer = null;
+/** Set after each `renderArchive`; resize only re-renders when this crosses 12↔16. */
+let archiveResizePageSizeBucket = null;
+
 let currentLocale = readStoredLocale();
+
+function getArchivePageSize() {
+  if (typeof window === "undefined") {
+    return ARCHIVE_PAGE_SIZE_DEFAULT;
+  }
+
+  return window.innerWidth >= ARCHIVE_VIEWPORT_WIDE_MIN ? ARCHIVE_PAGE_SIZE_WIDE : ARCHIVE_PAGE_SIZE_DEFAULT;
+}
+
+function scheduleArchiveResizeRerender() {
+  if (page !== "archive") {
+    return;
+  }
+
+  if (archiveResizePageSizeBucket === null) {
+    return;
+  }
+
+  const nextBucket = getArchivePageSize();
+
+  if (nextBucket === archiveResizePageSizeBucket) {
+    return;
+  }
+
+  window.clearTimeout(archiveResizeTimer);
+  archiveResizeTimer = window.setTimeout(() => {
+    archiveResizeTimer = null;
+    const after = getArchivePageSize();
+
+    if (after === archiveResizePageSizeBucket) {
+      return;
+    }
+
+    renderArchive();
+  }, 120);
+}
 
 function readStoredLocale() {
   const stored = window.localStorage.getItem(localeStorageKey);
@@ -195,6 +243,174 @@ function getCareerBySlug(slug) {
   return careers.find((career) => career.slug === slug) ?? null;
 }
 
+function normalizeForSearch(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getCareerSearchHaystack(career) {
+  return normalizeForSearch(`${getCareerName(career)} ${t(career.teaser)} ${t(career.summary)}`);
+}
+
+function careerMatchesNormalizedQuery(career, normalizedQuery) {
+  if (!normalizedQuery) {
+    return true;
+  }
+
+  return getCareerSearchHaystack(career).includes(normalizedQuery);
+}
+
+function getArchiveSuggestionMatches(draft) {
+  const normalizedDraft = normalizeForSearch(draft);
+
+  if (!normalizedDraft) {
+    return [];
+  }
+
+  let list =
+    uiState.archive.status === "all"
+      ? [...careers]
+      : careers.filter((career) => career.status === uiState.archive.status);
+
+  list = list.filter((career) => careerMatchesNormalizedQuery(career, normalizedDraft));
+
+  if (uiState.archive.sort === "timeline") {
+    list.sort((left, right) => right.declineYear - left.declineYear);
+  } else {
+    const collator = getArchiveSorter();
+    list.sort((left, right) => collator.compare(getCareerName(left), getCareerName(right)));
+  }
+
+  return list.slice(0, 10);
+}
+
+function getArchivePathFromState() {
+  const params = new URLSearchParams();
+
+  if (uiState.archive.status !== "all") {
+    params.set("status", uiState.archive.status);
+  }
+
+  if (uiState.archive.sort !== "alphabetical") {
+    params.set("sort", uiState.archive.sort);
+  }
+
+  const trimmedQuery = uiState.archive.query.trim();
+
+  if (trimmedQuery) {
+    params.set("q", trimmedQuery);
+  }
+
+  if (uiState.archive.page > 1) {
+    params.set("page", String(uiState.archive.page));
+  }
+
+  const qs = params.toString();
+  return qs ? `${routes.archive}?${qs}` : routes.archive;
+}
+
+function syncArchiveFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get("status");
+  const sort = params.get("sort");
+  const q = params.get("q") ?? "";
+  const pageRaw = params.get("page");
+
+  if (!status || status === "all") {
+    uiState.archive.status = "all";
+  } else if (statusOrder.includes(status)) {
+    uiState.archive.status = status;
+  } else {
+    uiState.archive.status = "all";
+  }
+
+  if (sort === "timeline" || sort === "alphabetical") {
+    uiState.archive.sort = sort;
+  } else {
+    uiState.archive.sort = "alphabetical";
+  }
+
+  uiState.archive.query = q;
+  archiveSearchDraft = q;
+
+  const pageNum = parseInt(pageRaw ?? "1", 10);
+  uiState.archive.page = Number.isFinite(pageNum) && pageNum >= 1 ? pageNum : 1;
+}
+
+function syncArchiveToUrl() {
+  const path = getArchivePathFromState();
+  const current = window.location.pathname + window.location.search;
+
+  if (path !== current) {
+    history.replaceState(null, "", path);
+  }
+}
+
+function getArchiveFilteredSorted() {
+  let list =
+    uiState.archive.status === "all"
+      ? [...careers]
+      : careers.filter((career) => career.status === uiState.archive.status);
+
+  const normalizedQuery = normalizeForSearch(uiState.archive.query);
+
+  if (normalizedQuery) {
+    list = list.filter((career) => careerMatchesNormalizedQuery(career, normalizedQuery));
+  }
+
+  if (uiState.archive.sort === "timeline") {
+    return list.sort((left, right) => right.declineYear - left.declineYear);
+  }
+
+  const collator = getArchiveSorter();
+  return list.sort((left, right) => collator.compare(getCareerName(left), getCareerName(right)));
+}
+
+function getArchivePageSlice() {
+  const pageSize = getArchivePageSize();
+  const sorted = getArchiveFilteredSorted();
+  const totalCount = sorted.length;
+  const totalPages = Math.max(1, Math.ceil(totalCount / pageSize) || 1);
+
+  if (totalCount === 0) {
+    uiState.archive.page = 1;
+    return {
+      pageItems: [],
+      totalCount: 0,
+      totalPages: 1,
+      from: 0,
+      to: 0,
+      page: 1,
+      pageSize
+    };
+  }
+
+  if (uiState.archive.page > totalPages) {
+    uiState.archive.page = totalPages;
+  }
+
+  if (uiState.archive.page < 1) {
+    uiState.archive.page = 1;
+  }
+
+  const page = uiState.archive.page;
+  const start = (page - 1) * pageSize;
+  const end = Math.min(start + pageSize, totalCount);
+  const pageItems = sorted.slice(start, end);
+
+  return {
+    pageItems,
+    totalCount,
+    totalPages,
+    from: start + 1,
+    to: end,
+    page,
+    pageSize
+  };
+}
+
 function interpolateTemplate(template, values) {
   return t(template).replace(/\{(\w+)\}/g, (_, key) => values[key] ?? "");
 }
@@ -289,6 +505,7 @@ function renderFooter() {
           <a href="${routes.about}#legal">${escapeHtml(t(siteCopy.footer.legal))}</a>
           <a href="${routes.about}#policy">${escapeHtml(t(siteCopy.footer.policy))}</a>
           <a href="${routes.about}#contact">${escapeHtml(t(siteCopy.footer.connect))}</a>
+          <a href="${routes.about}#support">${escapeHtml(t(siteCopy.footer.support))}</a>
         </div>
       </div>
     </footer>
@@ -462,24 +679,65 @@ function getArchiveSorter() {
   });
 }
 
-function getFilteredCareers() {
-  const filtered =
-    uiState.archive.status === "all"
-      ? [...careers]
-      : careers.filter((career) => career.status === uiState.archive.status);
+function syncArchiveSearchClearVisibility() {
+  const wrap = document.querySelector("[data-archive-search-wrap]");
+  const input = document.querySelector("#archive-search-input");
 
-  if (uiState.archive.sort === "timeline") {
-    return filtered.sort((left, right) => right.declineYear - left.declineYear);
+  if (!wrap || !input) {
+    return;
   }
 
-  const collator = getArchiveSorter();
-  return filtered.sort((left, right) => collator.compare(getCareerName(left), getCareerName(right)));
+  wrap.classList.toggle("is-nonempty", input.value.trim().length > 0);
 }
 
-function renderArchiveGrid() {
-  return getFilteredCareers()
-    .map((career) => renderCareerCard(career, "archive"))
+function updateArchiveSearchSuggestionsUI() {
+  const ul = document.querySelector("#archive-search-suggestions");
+  const input = document.querySelector("#archive-search-input");
+
+  if (!ul || !input) {
+    return;
+  }
+
+  archiveSearchDraft = input.value;
+  const matches = getArchiveSuggestionMatches(archiveSearchDraft);
+  const normalizedDraft = normalizeForSearch(archiveSearchDraft);
+
+  if (!normalizedDraft || matches.length === 0) {
+    ul.hidden = true;
+    ul.innerHTML = "";
+    input.setAttribute("aria-expanded", "false");
+    syncArchiveSearchClearVisibility();
+    return;
+  }
+
+  ul.hidden = false;
+  input.setAttribute("aria-expanded", "true");
+  ul.innerHTML = matches
+    .map(
+      (career) => `
+    <li role="presentation">
+      <button type="button" class="archive-search-suggestions__option" role="option" data-suggestion-slug="${escapeHtml(
+        career.slug
+      )}">
+        ${escapeHtml(getCareerName(career))}
+      </button>
+    </li>
+  `
+    )
     .join("");
+  syncArchiveSearchClearVisibility();
+}
+
+function commitArchiveSearch() {
+  const input = document.querySelector("#archive-search-input");
+  archiveSearchDraft = (input?.value ?? "").trim();
+  uiState.archive.query = archiveSearchDraft;
+  uiState.archive.page = 1;
+  renderArchive();
+}
+
+function renderArchiveGrid(pageItems) {
+  return pageItems.map((career) => renderCareerCard(career, "archive")).join("");
 }
 
 function renderArchiveActions(options, currentValue, attribute) {
@@ -502,6 +760,7 @@ function bindArchiveControls() {
   document.querySelectorAll("[data-status-filter]").forEach((button) => {
     button.addEventListener("click", () => {
       uiState.archive.status = button.getAttribute("data-status-filter") ?? "all";
+      uiState.archive.page = 1;
       renderArchive();
     });
   });
@@ -509,16 +768,136 @@ function bindArchiveControls() {
   document.querySelectorAll("[data-sort-mode]").forEach((button) => {
     button.addEventListener("click", () => {
       uiState.archive.sort = button.getAttribute("data-sort-mode") ?? "alphabetical";
+      uiState.archive.page = 1;
+      renderArchive();
+    });
+  });
+
+  const form = document.querySelector("#archive-search-form");
+  const searchInput = document.querySelector("#archive-search-input");
+  const suggestions = document.querySelector("#archive-search-suggestions");
+
+  if (form && searchInput) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      commitArchiveSearch();
+    });
+
+    searchInput.addEventListener("input", () => {
+      updateArchiveSearchSuggestionsUI();
+    });
+
+    const clearBtn = document.querySelector("[data-archive-search-clear]");
+    if (clearBtn) {
+      clearBtn.addEventListener("mousedown", (event) => {
+        event.preventDefault();
+      });
+      clearBtn.addEventListener("click", () => {
+        searchInput.value = "";
+        archiveSearchDraft = "";
+        syncArchiveSearchClearVisibility();
+        updateArchiveSearchSuggestionsUI();
+        searchInput.focus();
+      });
+    }
+
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && suggestions && !suggestions.hidden) {
+        event.preventDefault();
+        suggestions.hidden = true;
+        suggestions.innerHTML = "";
+        searchInput.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    searchInput.addEventListener("blur", () => {
+      window.setTimeout(() => {
+        if (!form.contains(document.activeElement)) {
+          archiveSearchDraft = uiState.archive.query;
+          searchInput.value = archiveSearchDraft;
+
+          if (suggestions) {
+            suggestions.hidden = true;
+            suggestions.innerHTML = "";
+          }
+
+          searchInput.setAttribute("aria-expanded", "false");
+          syncArchiveSearchClearVisibility();
+        }
+      }, 0);
+    });
+  }
+
+  syncArchiveSearchClearVisibility();
+
+  if (suggestions) {
+    suggestions.addEventListener("mousedown", (event) => {
+      const option = event.target.closest("[data-suggestion-slug]");
+
+      if (!option) {
+        return;
+      }
+
+      event.preventDefault();
+      const slug = option.getAttribute("data-suggestion-slug");
+      const career = getCareerBySlug(slug);
+
+      if (!career) {
+        return;
+      }
+
+      const q = getCareerName(career);
+      archiveSearchDraft = q;
+      uiState.archive.query = q;
+      uiState.archive.page = 1;
+      suggestions.hidden = true;
+      suggestions.innerHTML = "";
+
+      if (searchInput) {
+        searchInput.value = q;
+        searchInput.setAttribute("aria-expanded", "false");
+        syncArchiveSearchClearVisibility();
+      }
+
+      renderArchive();
+    });
+  }
+
+  document.querySelectorAll("[data-archive-page]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const dir = button.getAttribute("data-archive-page");
+
+      if (dir === "prev") {
+        uiState.archive.page = Math.max(1, uiState.archive.page - 1);
+      } else if (dir === "next") {
+        uiState.archive.page = uiState.archive.page + 1;
+      }
+
       renderArchive();
     });
   });
 }
 
-function renderArchive() {
+function renderArchive(options = {}) {
+  if (options.rehydrateFromUrl) {
+    syncArchiveFromUrl();
+  } else if (!archiveHydratedFromUrl) {
+    syncArchiveFromUrl();
+    archiveHydratedFromUrl = true;
+  }
+
+  const activeEl = document.activeElement;
+  if (!activeEl || activeEl.id !== "archive-search-input") {
+    archiveSearchDraft = uiState.archive.query;
+  }
+
+  const slice = getArchivePageSlice();
+  const pathArchive = getArchivePathFromState();
+
   setPageMetadata({
     title: t(siteCopy.archive.title),
     description: siteCopy.pageDescriptions.archive,
-    path: routes.archive
+    path: pathArchive
   });
 
   const statusOptions = [
@@ -533,6 +912,59 @@ function renderArchive() {
     { value: "timeline", label: t(siteCopy.archive.timeline) }
   ];
 
+  const summary =
+    slice.totalCount > 0
+      ? interpolateTemplate(siteCopy.archive.paginationSummary, {
+          from: String(slice.from),
+          to: String(slice.to),
+          total: String(slice.totalCount)
+        })
+      : "";
+
+  const pageStatus =
+    slice.totalPages > 1
+      ? interpolateTemplate(siteCopy.archive.paginationPageStatus, {
+          page: String(slice.page),
+          totalPages: String(slice.totalPages)
+        })
+      : "";
+
+  const showArchiveTail =
+    slice.totalCount > 0 && slice.page === slice.totalPages && slice.totalPages >= 1;
+
+  const paginationBlock =
+    slice.totalCount > 0
+      ? `
+      <div class="archive-pagination reveal" style="--stagger:0.14s;">
+        <p class="archive-pagination__summary">${escapeHtml(summary)}</p>
+        ${
+          slice.totalPages > 1
+            ? `<nav class="archive-pagination__nav" aria-label="${escapeHtml(
+                t(siteCopy.archive.paginationNavAria)
+              )}">
+          <button
+            type="button"
+            class="text-button text-button--inline"
+            data-archive-page="prev"
+            ${slice.page <= 1 ? "disabled" : ""}
+          >
+            ${escapeHtml(t(siteCopy.archive.paginationPrev))}
+          </button>
+          <span class="archive-pagination__page">${escapeHtml(pageStatus)}</span>
+          <button
+            type="button"
+            class="text-button text-button--inline"
+            data-archive-page="next"
+            ${slice.page >= slice.totalPages ? "disabled" : ""}
+          >
+            ${escapeHtml(t(siteCopy.archive.paginationNext))}
+          </button>
+        </nav>`
+            : ""
+        }
+      </div>`
+      : "";
+
   renderShell(
     `
       <header class="page-header reveal">
@@ -542,27 +974,81 @@ function renderArchive() {
       </header>
 
       <section class="archive-controls reveal" style="--stagger:0.12s;">
-        <div class="archive-controls__group">
-          <p class="section-eyebrow">${escapeHtml(t(siteCopy.archive.filterEyebrow))}</p>
-          <div class="archive-controls__actions">
-            ${renderArchiveActions(statusOptions, uiState.archive.status, "status-filter")}
+        <div class="archive-controls__filters">
+          <div class="archive-controls__group">
+            <p class="section-eyebrow">${escapeHtml(t(siteCopy.archive.filterEyebrow))}</p>
+            <div class="archive-controls__actions">
+              ${renderArchiveActions(statusOptions, uiState.archive.status, "status-filter")}
+            </div>
+          </div>
+          <div class="archive-controls__group archive-controls__group--right">
+            <p class="section-eyebrow">${escapeHtml(t(siteCopy.archive.sortEyebrow))}</p>
+            <div class="archive-controls__actions">
+              ${renderArchiveActions(sortOptions, uiState.archive.sort, "sort-mode")}
+            </div>
           </div>
         </div>
-        <div class="archive-controls__group archive-controls__group--right">
-          <p class="section-eyebrow">${escapeHtml(t(siteCopy.archive.sortEyebrow))}</p>
-          <div class="archive-controls__actions">
-            ${renderArchiveActions(sortOptions, uiState.archive.sort, "sort-mode")}
-          </div>
+        <div class="archive-controls__search">
+          <p class="section-eyebrow">${escapeHtml(t(siteCopy.archive.searchEyebrow))}</p>
+          <form id="archive-search-form" class="archive-search-form" action="#" method="get">
+            <div class="archive-search-row">
+              <div class="archive-search-input-wrap" data-archive-search-wrap>
+                <input
+                  id="archive-search-input"
+                  class="archive-search-input"
+                  type="text"
+                  name="q"
+                  inputmode="search"
+                  enterkeyhint="search"
+                  role="searchbox"
+                  aria-label="${escapeHtml(t(siteCopy.archive.searchAriaLabel))}"
+                  aria-autocomplete="list"
+                  aria-controls="archive-search-suggestions"
+                  aria-expanded="false"
+                  placeholder="${escapeHtml(t(siteCopy.archive.searchPlaceholder))}"
+                  value="${escapeHtml(archiveSearchDraft)}"
+                  autocomplete="off"
+                />
+                <button
+                  type="button"
+                  class="archive-search-clear"
+                  data-archive-search-clear
+                  aria-label="${escapeHtml(t(siteCopy.archive.searchClearAriaLabel))}"
+                >
+                  <span class="archive-search-clear__glyph" aria-hidden="true">×</span>
+                </button>
+              </div>
+              <button type="submit" class="archive-search-submit outline-button outline-button--compact">
+                ${escapeHtml(t(siteCopy.archive.searchSubmit))}
+              </button>
+            </div>
+            <ul
+              id="archive-search-suggestions"
+              class="archive-search-suggestions"
+              role="listbox"
+              hidden
+              aria-label="${escapeHtml(t(siteCopy.archive.searchSuggestionsLabel))}"
+            ></ul>
+          </form>
         </div>
       </section>
 
       <section class="career-grid career-grid--archive">
-        ${renderArchiveGrid()}
+        ${
+          slice.totalCount === 0
+            ? `<p class="archive-empty reveal" role="status">${escapeHtml(t(siteCopy.archive.emptyResults))}</p>`
+            : `${renderArchiveGrid(slice.pageItems)}
+        ${
+          showArchiveTail
+            ? `<div class="archive-tail archive-tail--end reveal" style="--stagger:0.16s;">
+        <p>${escapeHtml(t(siteCopy.archive.tail))}</p>
+      </div>`
+            : ""
+        }`
+        }
       </section>
 
-      <div class="archive-tail reveal" style="--stagger:0.18s;">
-        <p>${escapeHtml(t(siteCopy.archive.tail))}</p>
-      </div>
+      ${paginationBlock}
     `,
     {
       active: "archive",
@@ -571,6 +1057,11 @@ function renderArchive() {
   );
 
   bindArchiveControls();
+  archiveResizePageSizeBucket = getArchivePageSize();
+
+  if (!options.skipUrlSync) {
+    syncArchiveToUrl();
+  }
 }
 
 function buildRelatedCareers(currentCareer) {
@@ -1201,6 +1692,29 @@ function renderAboutInfoSection(id, config) {
   `;
 }
 
+function renderAboutSupportSection() {
+  if (currentLocale !== "zh") {
+    return "";
+  }
+
+  return `
+    <section id="support" class="about-section about-section--support reveal" style="--stagger:0.28s;">
+      <div class="about-support">
+        <p class="section-eyebrow section-eyebrow--centered">${escapeHtml(t(siteCopy.about.supportEyebrow))}</p>
+        <div class="about-support__inner">
+          <blockquote>${escapeHtml(t(siteCopy.about.supportTitle))}</blockquote>
+          <p class="about-support__note">${escapeHtml(t(siteCopy.about.supportBody))}</p>
+        </div>
+        <div class="about-support__actions">
+          <a class="outline-button" href="${siteMeta.afdianUrl}" target="_blank" rel="noreferrer">
+            ${escapeHtml(t(siteCopy.about.supportCta))}
+          </a>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 function renderAbout() {
   setPageMetadata({
     title: t(siteCopy.navigation.about),
@@ -1308,6 +1822,8 @@ function renderAbout() {
           ${renderAboutInfoSection("contact", siteCopy.aboutInfo.contact)}
         </div>
       </section>
+
+      ${renderAboutSupportSection()}
     `,
     {
       active: "about",
@@ -1329,6 +1845,16 @@ function renderSite404() {
     showBack: false
   });
 }
+
+window.addEventListener("popstate", () => {
+  if (page !== "archive") {
+    return;
+  }
+
+  renderArchive({ rehydrateFromUrl: true });
+});
+
+window.addEventListener("resize", scheduleArchiveResizeRerender);
 
 function renderCurrentPage() {
   switch (page) {
