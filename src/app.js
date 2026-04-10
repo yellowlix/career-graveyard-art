@@ -501,6 +501,10 @@ function renderFooter() {
     <footer class="site-footer${page === "home" ? " site-footer--home" : ""}">
       <div class="site-footer__inner">
         <p class="site-footer__copy">${escapeHtml(t(siteCopy.footer.copyright))}</p>
+        <div class="site-footer__contact">
+          <span class="site-footer__contact-label">${escapeHtml(t(siteCopy.footer.contactLabel))}</span>
+          <a class="site-footer__contact-email" href="mailto:${siteMeta.contactEmail}">${siteMeta.contactEmail}</a>
+        </div>
         <div class="site-footer__links">
           <a href="${routes.about}#legal">${escapeHtml(t(siteCopy.footer.legal))}</a>
           <a href="${routes.about}#policy">${escapeHtml(t(siteCopy.footer.policy))}</a>
