@@ -795,9 +795,10 @@ function bindArchiveControls() {
       clearBtn.addEventListener("click", () => {
         searchInput.value = "";
         archiveSearchDraft = "";
-        syncArchiveSearchClearVisibility();
-        updateArchiveSearchSuggestionsUI();
-        searchInput.focus();
+        uiState.archive.query = "";
+        uiState.archive.page = 1;
+        renderArchive();
+        document.querySelector("#archive-search-input")?.focus();
       });
     }
 
