@@ -505,6 +505,7 @@ function renderFooter() {
           <a href="${routes.about}#legal">${escapeHtml(t(siteCopy.footer.legal))}</a>
           <a href="${routes.about}#policy">${escapeHtml(t(siteCopy.footer.policy))}</a>
           <a href="${routes.about}#contact">${escapeHtml(t(siteCopy.footer.connect))}</a>
+          <a href="${routes.about}#support">${escapeHtml(t(siteCopy.footer.support))}</a>
         </div>
       </div>
     </footer>
@@ -571,11 +572,11 @@ function renderCareerCard(career, variant = "home") {
       style="--slab-height:${career.slabHeight}px; --stagger:${0.08 * careers.indexOf(career)}s;"
       href="${routes.detail(career.slug)}"
     >
-      <div class="career-card__heading">
-        <p class="career-card__status">${escapeHtml(getStatusLabel(career.status))}</p>
-        <${headingTag}>${escapeHtml(getCareerName(career))}</${headingTag}>
+      <div class="career-card__cross">
+        <span class="career-card__bar career-card__bar--top" aria-hidden="true"></span>
+        <${headingTag} class="career-card__title">${escapeHtml(getCareerName(career))}</${headingTag}>
+        <span class="career-card__bar career-card__bar--bottom" aria-hidden="true"></span>
       </div>
-      <div class="career-card__slab" aria-hidden="true"></div>
       <div class="career-card__teaser">
         <p>${escapeHtml(t(career.teaser))}</p>
       </div>
@@ -1692,6 +1693,29 @@ function renderAboutInfoSection(id, config) {
   `;
 }
 
+function renderAboutSupportSection() {
+  if (currentLocale !== "zh") {
+    return "";
+  }
+
+  return `
+    <section id="support" class="about-section about-section--support reveal" style="--stagger:0.28s;">
+      <div class="about-support">
+        <p class="section-eyebrow section-eyebrow--centered">${escapeHtml(t(siteCopy.about.supportEyebrow))}</p>
+        <div class="about-support__inner">
+          <blockquote>${escapeHtml(t(siteCopy.about.supportTitle))}</blockquote>
+          <p class="about-support__note">${escapeHtml(t(siteCopy.about.supportBody))}</p>
+        </div>
+        <div class="about-support__actions">
+          <a class="outline-button" href="${siteMeta.afdianUrl}" target="_blank" rel="noreferrer">
+            ${escapeHtml(t(siteCopy.about.supportCta))}
+          </a>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
 function renderAbout() {
   setPageMetadata({
     title: t(siteCopy.navigation.about),
@@ -1799,6 +1823,8 @@ function renderAbout() {
           ${renderAboutInfoSection("contact", siteCopy.aboutInfo.contact)}
         </div>
       </section>
+
+      ${renderAboutSupportSection()}
     `,
     {
       active: "about",
