@@ -105,6 +105,7 @@ body[data-locale="zh"] .section-eyebrow,
 body[data-locale="zh"] .text-toggle,
 body[data-locale="zh"] .text-button,
 body[data-locale="zh"] .site-footer__copy,
+body[data-locale="zh"] .site-footer__contact-label,
 body[data-locale="zh"] .site-footer__links a,
 body[data-locale="zh"] .hero__subtitle,
 body[data-locale="zh"] .hero__question p,
@@ -1777,6 +1778,46 @@ body[data-page="about"] .site-footer {
   gap: 2rem;
 }
 
+.site-footer__contact {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.site-footer__contact-label {
+  font-size: var(--text-caption);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  white-space: nowrap;
+}
+
+.site-footer__contact-email {
+  font-size: var(--text-body);
+  color: var(--page-fg);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-bottom: 1px solid var(--line-soft);
+  padding-bottom: 0.1em;
+  transition: border-color 0.3s ease, opacity 0.3s ease;
+}
+
+.site-footer__contact-email:hover {
+  border-bottom-color: var(--page-fg);
+  opacity: 0.7;
+}
+
+.site-footer--home .site-footer__contact-label {
+  color: color-mix(in srgb, var(--muted) 88%, white);
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+}
+
+.site-footer--home .site-footer__contact-email {
+  font-size: var(--text-label);
+  color: color-mix(in srgb, var(--page-fg) 80%, white);
+}
+
 .site-footer__links {
   gap: 2.25rem;
 }
@@ -2157,12 +2198,17 @@ body[data-page="about"] .site-footer {
   }
 
   .site-footer__copy,
+  .site-footer__contact-label,
   .site-footer__links a,
   .section-eyebrow,
   .home-quote__author,
   .text-button {
     font-size: var(--text-caption);
     letter-spacing: var(--tracking-home-nav);
+  }
+
+  .site-footer__contact-email {
+    font-size: var(--text-label);
   }
 
   .hero {

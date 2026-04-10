@@ -45,7 +45,8 @@ export const siteCopy = {
     legal: l("使用说明", "Legal"),
     policy: l("内容说明", "Policy"),
     support: l("支持", "Support"),
-    connect: l("联系", "Contact")
+    connect: l("联系", "Contact"),
+    contactLabel: l("投稿与协作", "Submissions & Outreach")
   },
   pageDescriptions: {
     home: l(
