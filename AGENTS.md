@@ -17,7 +17,7 @@ Playwright config (`playwright.config.js`) expects the dev server at `http://127
 ### Testing
 
 - `npm run test:e2e` — runs all 60 Playwright tests across 4 viewports (desktop-1440, desktop-1280, tablet-768, mobile-390).
-- Visual regression snapshots are platform-specific. On a fresh Linux environment, run `npm run test:e2e:update` first to generate baseline screenshots before `npm run test:e2e` will pass the snapshot assertions.
+- Visual regression snapshots are platform-specific. Linux baselines are already committed in the repo, so `npm run test:e2e` should directly pass. Only when UI changes cause snapshot mismatches, run `npm run test:e2e:update` to regenerate baselines.
 - Playwright requires Chromium: `npx playwright install chromium --with-deps`.
 
 ### Build
