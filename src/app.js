@@ -68,7 +68,9 @@ function getArchivePageSize() {
     return ARCHIVE_PAGE_SIZE_DEFAULT;
   }
 
-  return window.innerWidth >= ARCHIVE_VIEWPORT_WIDE_MIN ? ARCHIVE_PAGE_SIZE_WIDE : ARCHIVE_PAGE_SIZE_DEFAULT;
+  return window.innerWidth >= ARCHIVE_VIEWPORT_WIDE_MIN
+    ? ARCHIVE_PAGE_SIZE_WIDE
+    : ARCHIVE_PAGE_SIZE_DEFAULT;
 }
 
 function scheduleArchiveResizeRerender() {
@@ -174,11 +176,13 @@ function setPageMetadata({
     "content",
     siteMeta.themeColor
   );
-  ensureHeadElement('meta[name="robots"]', "meta", { name: "robots" }).setAttribute("content", robots);
-  ensureHeadElement('meta[property="og:site_name"]', "meta", { property: "og:site_name" }).setAttribute(
+  ensureHeadElement('meta[name="robots"]', "meta", { name: "robots" }).setAttribute(
     "content",
-    t(siteMeta.siteName)
+    robots
   );
+  ensureHeadElement('meta[property="og:site_name"]', "meta", {
+    property: "og:site_name"
+  }).setAttribute("content", t(siteMeta.siteName));
   ensureHeadElement('meta[property="og:title"]', "meta", { property: "og:title" }).setAttribute(
     "content",
     pageTitle
@@ -213,11 +217,14 @@ function setPageMetadata({
     "content",
     siteMeta.socialImage
   );
-  ensureHeadElement('link[rel="canonical"]', "link", { rel: "canonical" }).setAttribute("href", absoluteUrl);
-  ensureHeadElement('link[rel="icon"]', "link", { rel: "icon", type: "image/svg+xml" }).setAttribute(
+  ensureHeadElement('link[rel="canonical"]', "link", { rel: "canonical" }).setAttribute(
     "href",
-    "/favicon.svg"
+    absoluteUrl
   );
+  ensureHeadElement('link[rel="icon"]', "link", {
+    rel: "icon",
+    type: "image/svg+xml"
+  }).setAttribute("href", "/favicon.svg");
 }
 
 function setLocale(locale) {
@@ -1071,7 +1078,9 @@ function renderArchive(options = {}) {
 
 function buildRelatedCareers(currentCareer) {
   const related = careers
-    .filter((career) => career.slug !== currentCareer.slug && career.status === currentCareer.status)
+    .filter(
+      (career) => career.slug !== currentCareer.slug && career.status === currentCareer.status
+    )
     .slice(0, 4);
 
   if (related.length >= 2) {
@@ -1251,32 +1260,13 @@ function buildExistingMemorialDraft({ careerSlug, signature, text }) {
   };
 }
 
-function buildUnlistedMemorialDraft({ careerName, introduction, signature, text, references }) {
-  const safeCareer = careerName.trim() || t(siteCopy.memorial.modes.unlisted.careerNamePlaceholder);
-  const safeIntroduction = introduction.trim() || t(siteCopy.contactEmail.emptyIntroduction);
-  const safeSignature = signature.trim() || t(siteCopy.contactEmail.emptySignature);
-  const safeText = text.trim() || t(siteCopy.contactEmail.emptyText);
-  const safeReferences = references.trim();
-  const referencesBlock = safeReferences
-    ? `${t(siteCopy.contactEmail.referencesLabel)}${currentLocale === "zh" ? "：" : ": "}${safeReferences}`
-    : "";
-
-  return {
-    subject: `${t(siteCopy.contactEmail.subjectPrefix)} ${safeCareer} - ${safeSignature}`,
-    body: interpolateTemplate(siteCopy.contactEmail.bodyTemplate, {
-      career: safeCareer,
-      introduction: safeIntroduction,
-      signature: safeSignature,
-      text: safeText,
-      referencesBlock
-    })
-      .replace(/\n{2,}/g, "\n")
-      .trim(),
-    email: siteMeta.contactEmail
-  };
-}
-
-function buildUnlistedMemorialDraftResolved({ careerName, introduction, signature, text, references }) {
+function buildUnlistedMemorialDraftResolved({
+  careerName,
+  introduction,
+  signature,
+  text,
+  references
+}) {
   const safeCareer = careerName.trim() || t(siteCopy.memorial.modes.unlisted.careerNamePlaceholder);
   const safeIntroduction = introduction.trim() || t(siteCopy.contactEmail.emptyIntroduction);
   const safeSignature = signature.trim() || t(siteCopy.contactEmail.emptySignature);
@@ -1307,14 +1297,19 @@ function isMemorialModeValid(modeKey, state) {
   }
 
   return Boolean(
-    state.careerName.trim() && state.introduction.trim() && state.signature.trim() && state.text.trim()
+    state.careerName.trim() &&
+    state.introduction.trim() &&
+    state.signature.trim() &&
+    state.text.trim()
   );
 }
 
 function buildMemorialDraft(modeKey = uiState.memorial.activeMode) {
   const state = getMemorialModeState(modeKey);
   const draft =
-    modeKey === "existing" ? buildExistingMemorialDraft(state) : buildUnlistedMemorialDraftResolved(state);
+    modeKey === "existing"
+      ? buildExistingMemorialDraft(state)
+      : buildUnlistedMemorialDraftResolved(state);
 
   return {
     ...draft,
