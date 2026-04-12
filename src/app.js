@@ -161,7 +161,8 @@ function setPageMetadata({
   description = siteMeta.defaultDescription,
   path = window.location.pathname + window.location.search,
   type = "website",
-  robots = "index,follow"
+  robots = "index,follow",
+  jsonLd = null
 }) {
   const pageTitle = title ? `${title} | ${t(siteMeta.siteName)}` : t(siteMeta.siteName);
   const pageDescription = t(description);
@@ -225,6 +226,57 @@ function setPageMetadata({
     rel: "icon",
     type: "image/svg+xml"
   }).setAttribute("href", "/favicon.svg");
+
+  setHreflangTags(absoluteUrl);
+  setJsonLd(jsonLd);
+}
+
+function setHreflangTags(absoluteUrl) {
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach((el) => el.remove());
+  ["zh", "en", "x-default"].forEach((lang) => {
+    const link = document.createElement("link");
+    link.setAttribute("rel", "alternate");
+    link.setAttribute("hreflang", lang);
+    link.setAttribute("href", absoluteUrl);
+    document.head.append(link);
+  });
+}
+
+function setJsonLd(schemas) {
+  document.querySelectorAll("script[data-jsonld]").forEach((el) => el.remove());
+  if (!schemas) return;
+  const items = Array.isArray(schemas) ? schemas : [schemas];
+  items.forEach((schema) => {
+    const script = document.createElement("script");
+    script.setAttribute("type", "application/ld+json");
+    script.setAttribute("data-jsonld", "");
+    script.textContent = JSON.stringify(schema);
+    document.head.append(script);
+  });
+}
+
+function buildWebSiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: t(siteMeta.siteName),
+    url: siteMeta.siteUrl,
+    inLanguage: currentLocale === "zh" ? "zh-CN" : "en",
+    description: t(siteMeta.defaultDescription)
+  };
+}
+
+function buildBreadcrumbSchema(items) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url
+    }))
+  };
 }
 
 function setLocale(locale) {
@@ -621,7 +673,8 @@ function renderHome() {
   setPageMetadata({
     title: "",
     description: siteCopy.pageDescriptions.home,
-    path: routes.home
+    path: routes.home,
+    jsonLd: buildWebSiteSchema()
   });
 
   const featured = careers.slice(0, 6);
@@ -909,7 +962,14 @@ function renderArchive(options = {}) {
   setPageMetadata({
     title: t(siteCopy.archive.title),
     description: siteCopy.pageDescriptions.archive,
-    path: pathArchive
+    path: pathArchive,
+    jsonLd: [
+      buildWebSiteSchema(),
+      buildBreadcrumbSchema([
+        { name: t(siteMeta.siteName), url: siteMeta.siteUrl },
+        { name: t(siteCopy.archive.title), url: toAbsoluteUrl(routes.archive) }
+      ])
+    ]
   });
 
   const statusOptions = [
@@ -1124,11 +1184,34 @@ function renderDetail() {
     return;
   }
 
+  const careerName = getCareerName(career);
+  const detailUrl = toAbsoluteUrl(routes.detail(career.slug));
+
   setPageMetadata({
-    title: getCareerName(career),
+    title: careerName,
     description: career.summary,
     path: window.location.pathname + window.location.search,
-    type: "article"
+    type: "article",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        headline: careerName,
+        description: t(career.summary),
+        url: detailUrl,
+        inLanguage: currentLocale === "zh" ? "zh-CN" : "en",
+        publisher: {
+          "@type": "Organization",
+          name: t(siteMeta.siteName),
+          url: siteMeta.siteUrl
+        }
+      },
+      buildBreadcrumbSchema([
+        { name: t(siteMeta.siteName), url: siteMeta.siteUrl },
+        { name: t(siteCopy.archive.title), url: toAbsoluteUrl(routes.archive) },
+        { name: careerName, url: detailUrl }
+      ])
+    ]
   });
 
   const related = buildRelatedCareers(career);
@@ -1571,7 +1654,14 @@ function renderMemorial() {
   setPageMetadata({
     title: t(siteCopy.memorial.title),
     description: siteCopy.pageDescriptions.memorial,
-    path: routes.memorial
+    path: routes.memorial,
+    jsonLd: [
+      buildWebSiteSchema(),
+      buildBreadcrumbSchema([
+        { name: t(siteMeta.siteName), url: siteMeta.siteUrl },
+        { name: t(siteCopy.memorial.title), url: toAbsoluteUrl(routes.memorial) }
+      ])
+    ]
   });
 
   const modeCopy = getMemorialModeCopy();
@@ -1719,7 +1809,14 @@ function renderAbout() {
   setPageMetadata({
     title: t(siteCopy.navigation.about),
     description: siteCopy.pageDescriptions.about,
-    path: routes.about
+    path: routes.about,
+    jsonLd: [
+      buildWebSiteSchema(),
+      buildBreadcrumbSchema([
+        { name: t(siteMeta.siteName), url: siteMeta.siteUrl },
+        { name: t(siteCopy.navigation.about), url: toAbsoluteUrl(routes.about) }
+      ])
+    ]
   });
 
   renderShell(
