@@ -11,11 +11,11 @@ export const statusMeta = {
 
 export const siteMeta = {
   siteName: l("职业墓场", "Career Graveyard"),
-  siteUrl: "https://career-graveyard.art",
+  siteUrl: "https://career-graveyard.com",
   contactEmail: "mahrovandrei@gmail.com",
   afdianUrl: "https://afdian.com/a/yellowaurora",
   themeColor: "#ffffff",
-  socialImage: "https://career-graveyard.art/favicon.svg",
+  socialImage: "https://career-graveyard.com/favicon.svg",
   defaultDescription: l(
     "职业墓场以数字档案、时间线与悼词的形式，记录那些正在衰退、冻结、被替代或被重新定价的职业。",
     "Career Graveyard records professions being eroded, frozen, replaced, or repriced through archival entries, decline timelines, and memorial texts."
