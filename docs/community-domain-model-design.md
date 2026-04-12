@@ -207,7 +207,7 @@
 
 当前文档阶段统一使用项目邮箱占位值：
 
-- `contact@career-graveyard.art`
+- `mahrovandrei@gmail.com`
 
 实现前应替换为真实项目邮箱，但页面和配置层都应只从单一配置源读取。
 
