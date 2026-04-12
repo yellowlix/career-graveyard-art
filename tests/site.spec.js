@@ -130,7 +130,7 @@ test("home page defaults to Chinese-only navigation and metadata", async ({ page
   );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://career-graveyard.art/"
+    "https://career-graveyard.com/"
   );
   await expectGridTrackCount(
     page.locator(".career-grid--home"),
@@ -269,7 +269,7 @@ test("career detail page localizes content and invalid slugs stay explicit", asy
   await expect(page.getByText(pick(designer.voices[0].author, "zh"))).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://career-graveyard.art/career.html?slug=graphic-designer"
+    "https://career-graveyard.com/career.html?slug=graphic-designer"
   );
   await expect(page).toHaveScreenshot("career-detail-page.png", {
     animations: "disabled",
@@ -285,7 +285,7 @@ test("career detail page localizes content and invalid slugs stay explicit", asy
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex,follow");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://career-graveyard.art/archive.html"
+    "https://career-graveyard.com/archive.html"
   );
 
   await switchLocale(page, "en");
