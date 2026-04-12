@@ -130,7 +130,7 @@ test("home page defaults to Chinese-only navigation and metadata", async ({ page
   );
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://career-graveyard.art/"
+    "https://career-graveyard.com/"
   );
   await expectGridTrackCount(
     page.locator(".career-grid--home"),
@@ -238,6 +238,26 @@ test("archive page can filter careers by localized status", async ({ page }, tes
   ).toBeVisible();
 });
 
+test("archive clear button should clear committed query and reset listing", async ({ page }, testInfo) => {
+  await visit(page, "/archive.html");
+
+  const expectedPageSize = getExpectedArchivePageSize(testInfo);
+  const searchInput = page.locator("#archive-search-input");
+  const clearButton = page.locator("[data-archive-search-clear]");
+
+  await searchInput.fill("平面");
+  await page.getByRole("button", { name: pick(siteCopy.archive.searchSubmit, "zh"), exact: true }).click();
+
+  await expect(page).toHaveURL(/\/archive\.html\?q=/);
+  await expect(page.locator(".career-card")).toHaveCount(1);
+
+  await clearButton.click();
+
+  await expect(page).toHaveURL("/archive.html");
+  await expect(searchInput).toHaveValue("");
+  await expect(page.locator(".career-card")).toHaveCount(Math.min(expectedPageSize, careers.length));
+});
+
 test("career detail page localizes content and invalid slugs stay explicit", async ({ page }) => {
   const designer = careers.find((career) => career.slug === "graphic-designer");
 
@@ -249,7 +269,7 @@ test("career detail page localizes content and invalid slugs stay explicit", asy
   await expect(page.getByText(pick(designer.voices[0].author, "zh"))).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://career-graveyard.art/career.html?slug=graphic-designer"
+    "https://career-graveyard.com/career.html?slug=graphic-designer"
   );
   await expect(page).toHaveScreenshot("career-detail-page.png", {
     animations: "disabled",
@@ -265,7 +285,7 @@ test("career detail page localizes content and invalid slugs stay explicit", asy
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", "noindex,follow");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    "https://career-graveyard.art/archive.html"
+    "https://career-graveyard.com/archive.html"
   );
 
   await switchLocale(page, "en");

@@ -51,7 +51,7 @@ npm run test:e2e:update
 
 - 祭奠留言仅保存在本地浏览器 `localStorage` 中，不会跨设备同步。
 - 当前版本没有后端、数据库、审核流、用户系统或 CMS。
-- `siteUrl`、canonical 和 sitemap 当前以 `https://career-graveyard.art` 作为公开站点基准，正式部署时应与实际域名保持一致。
+- `siteUrl`、canonical 和 sitemap 当前以 `https://career-graveyard.com` 作为公开站点基准，正式部署时应与实际域名保持一致。
 
 ## 后续扩展方向
 

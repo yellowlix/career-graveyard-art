@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://career-graveyard.art/sitemap.xml
+Sitemap: https://career-graveyard.com/sitemap.xml

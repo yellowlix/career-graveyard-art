@@ -11,10 +11,11 @@ export const statusMeta = {
 
 export const siteMeta = {
   siteName: l("职业墓场", "Career Graveyard"),
-  siteUrl: "https://career-graveyard.art",
+  siteUrl: "https://career-graveyard.com",
   contactEmail: "mahrovandrei@gmail.com",
+  afdianUrl: "https://afdian.com/a/yellowaurora",
   themeColor: "#ffffff",
-  socialImage: "https://career-graveyard.art/favicon.svg",
+  socialImage: "https://career-graveyard.com/favicon.svg",
   defaultDescription: l(
     "职业墓场以数字档案、时间线与悼词的形式，记录那些正在衰退、冻结、被替代或被重新定价的职业。",
     "Career Graveyard records professions being eroded, frozen, replaced, or repriced through archival entries, decline timelines, and memorial texts."
@@ -40,10 +41,12 @@ export const siteCopy = {
     about: l("查看项目方法、边界与协作方式。", "See the project's method, boundaries, and collaboration path.")
   },
   footer: {
-    copyright: l("© 2024 职业墓场", "© 2024 Career Graveyard"),
+    copyright: l("© 2026 职业墓场", "© 2026 Career Graveyard"),
     legal: l("使用说明", "Legal"),
     policy: l("内容说明", "Policy"),
-    connect: l("联系", "Contact")
+    support: l("支持", "Support"),
+    connect: l("联系", "Contact"),
+    contactLabel: l("投稿与协作", "Submissions & Outreach")
   },
   pageDescriptions: {
     home: l(
@@ -232,7 +235,14 @@ export const siteCopy = {
     methodologyEyebrow: l("我们如何收录", "Methodology"),
     standardsEyebrow: l("当前判断维度", "Standards"),
     timelineEyebrow: l("项目简史", "Timeline"),
-    contributorsEyebrow: l("这个版本包含什么", "This Version Includes")
+    contributorsEyebrow: l("这个版本包含什么", "This Version Includes"),
+    supportEyebrow: l("支持这座墓园", "Support"),
+    supportTitle: l("如果你愿意，可以为这座墓园添一束花。", "Support this archive."),
+    supportBody: l(
+      "你的支持会帮助新的职业档案、悼词与观察继续被写下去，也会让这座仍在扩建中的数字墓园有机会被维护得更久一点。",
+      "Your support helps keep new entries, memorials, and observations alive."
+    ),
+    supportCta: l("前往爱发电", "Support on Afdian")
   },
   aboutInfo: {
     legal: {
@@ -809,12 +819,12 @@ export const homeQuote = {
 
 export const aboutData = {
   missionTitle: l(
-    "职业墓场记录那些正在失去议价权、入口、稳定性与尊严的工作。",
-    "In an era ruled by algorithms and efficiency, we document the professional souls now disappearing."
+    "在这个算法与效率至上的时代，我们记录那些正在消逝的职业灵魂。",
+    "In this age of algorithms and efficiency above all else, we record the souls of professions now fading away."
   ),
   missionBody: l(
-    "它不是职业预测器，也不是焦虑制造机。我们把分散在新闻、平台规则、行业经验和个人叙述里的变化整理成可浏览的档案，让“一个职业如何慢慢被削弱”这件事，有证据、有语气，也有记忆。",
-    "Career Graveyard is not only an archive but a digital installation. By dismantling the very idea of a profession, it asks where human creativity can still rest under technological descent, platform rule, and computational power."
+    "它不是职业预测器，也不是焦虑制造机，而是让那些正在无声退场的职业，也能拥有被记录、被阅读、被悼念的权利。",
+    "It is neither a career predictor nor an anxiety machine, but a place where professions leaving the stage in silence may still claim the right to be recorded, read, and mourned."
   ),
   methodology: [
     {
