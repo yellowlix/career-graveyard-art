@@ -36,9 +36,18 @@ export const siteCopy = {
     about: l("关于", "About")
   },
   navigationHints: {
-    archive: l("浏览已收录职业与正在消逝的工作样本。", "Browse archived professions and disappearing work."),
-    memorial: l("为消失中的职业留下悼词或提交新样本。", "Leave a memorial or submit a new profession sample."),
-    about: l("查看项目方法、边界与协作方式。", "See the project's method, boundaries, and collaboration path.")
+    archive: l(
+      "浏览已收录职业与正在消逝的工作样本。",
+      "Browse archived professions and disappearing work."
+    ),
+    memorial: l(
+      "为消失中的职业留下悼词或提交新样本。",
+      "Leave a memorial or submit a new profession sample."
+    ),
+    about: l(
+      "查看项目方法、边界与协作方式。",
+      "See the project's method, boundaries, and collaboration path."
+    )
   },
   footer: {
     copyright: l("© 2026 职业墓场", "© 2026 Career Graveyard"),
@@ -82,7 +91,10 @@ export const siteCopy = {
   },
   archive: {
     title: l("展览", "Exhibition"),
-    subtitle: l("已收录职业与正在衰败岗位的完整展览索引", "A complete exhibition index of departed and decaying professions"),
+    subtitle: l(
+      "已收录职业与正在衰败岗位的完整展览索引",
+      "A complete exhibition index of departed and decaying professions"
+    ),
     filterEyebrow: l("按状态筛选", "Filter by status"),
     sortEyebrow: l("排序方式", "Sort by"),
     all: l("全部", "All"),
@@ -96,7 +108,10 @@ export const siteCopy = {
     searchSuggestionsLabel: l("匹配的职业", "Matching professions"),
     searchClearAriaLabel: l("清空搜索框", "Clear search field"),
     searchNoSuggestions: l("无匹配项", "No matches"),
-    emptyResults: l("没有匹配当前筛选与关键词的职业。", "No professions match the current filters and search."),
+    emptyResults: l(
+      "没有匹配当前筛选与关键词的职业。",
+      "No professions match the current filters and search."
+    ),
     paginationPrev: l("上一页", "Previous"),
     paginationNext: l("下一页", "Next"),
     paginationNavAria: l("展览分页", "Exhibition pagination"),
@@ -138,8 +153,14 @@ export const siteCopy = {
         signatureLabel: l("署名", "Signature"),
         signaturePlaceholder: l("匿名 / 你的职业身份", "Anonymous / your role"),
         textLabel: l("悼词正文", "Memorial Text"),
-        textPlaceholder: l("写下你对这个消逝职业的最后告别……", "Write your final goodbye to this disappearing profession…"),
-        validationHint: l("请至少填写署名与悼词后再生成邮件。", "Fill in at least the signature and memorial before generating the email."),
+        textPlaceholder: l(
+          "写下你对这个消逝职业的最后告别……",
+          "Write your final goodbye to this disappearing profession…"
+        ),
+        validationHint: l(
+          "请至少填写署名与悼词后再生成邮件。",
+          "Fill in at least the signature and memorial before generating the email."
+        ),
         submitLabel: l("生成祭奠邮件", "Generate Memorial Email"),
         curatedEyebrow: l("已收录职业祭奠示例", "Archived Profession Memorial Examples"),
         curatedNote: l(
@@ -162,14 +183,26 @@ export const siteCopy = {
         careerNameLabel: l("职业名称", "Profession Name"),
         careerNamePlaceholder: l("例如：AI 标注审核员", "For example: AI Annotation Reviewer"),
         careerIntroLabel: l("职业简介", "Profession Introduction"),
-        careerIntroPlaceholder: l("用一两句话说明这个职业在做什么，以及它为什么值得被记录。", "Use one or two sentences to explain what this profession does and why it deserves to be recorded."),
+        careerIntroPlaceholder: l(
+          "用一两句话说明这个职业在做什么，以及它为什么值得被记录。",
+          "Use one or two sentences to explain what this profession does and why it deserves to be recorded."
+        ),
         signatureLabel: l("署名", "Signature"),
         signaturePlaceholder: l("匿名 / 你的职业身份", "Anonymous / your role"),
         textLabel: l("悼词正文", "Memorial Text"),
-        textPlaceholder: l("写下你对这个新职业样本的悼词，或它正在消逝的原因。", "Write a memorial for this new profession sample, or explain how it is disappearing."),
+        textPlaceholder: l(
+          "写下你对这个新职业样本的悼词，或它正在消逝的原因。",
+          "Write a memorial for this new profession sample, or explain how it is disappearing."
+        ),
         referencesLabel: l("参考资料（选填）", "References (Optional)"),
-        referencesPlaceholder: l("可粘贴链接、报告名或案例线索。", "Paste links, report names, or case references if you have them."),
-        validationHint: l("请先填写职业名称、职业简介、署名与悼词后再生成邮件。", "Fill in the profession name, introduction, signature, and memorial before generating the email."),
+        referencesPlaceholder: l(
+          "可粘贴链接、报告名或案例线索。",
+          "Paste links, report names, or case references if you have them."
+        ),
+        validationHint: l(
+          "请先填写职业名称、职业简介、署名与悼词后再生成邮件。",
+          "Fill in the profession name, introduction, signature, and memorial before generating the email."
+        ),
         submitLabel: l("生成投稿邮件", "Generate Submission Email"),
         curatedEyebrow: l("新增职业投稿示例", "New Profession Submission Examples"),
         curatedNote: l(
@@ -195,7 +228,12 @@ export const siteCopy = {
     subjectPrefix: l("[职业墓场祭奠投稿]", "[Career Graveyard Memorial]"),
     bodyTemplate: l(
       ["职业：{career}", "署名：{signature}", "悼词：{text}", "来源页面：祭奠页"].join("\n"),
-      ["Career: {career}", "Signature: {signature}", "Memorial: {text}", "Source page: Memorial"].join("\n")
+      [
+        "Career: {career}",
+        "Signature: {signature}",
+        "Memorial: {text}",
+        "Source page: Memorial"
+      ].join("\n")
     ),
     emptySignature: l("匿名", "Anonymous"),
     emptyText: l("（请在这里写下你的悼词）", "(Write your memorial text here)")
@@ -203,13 +241,30 @@ export const siteCopy = {
   contactEmail: {
     subjectPrefix: l("[职业墓场新增职业投稿]", "[Career Graveyard Submission]"),
     bodyTemplate: l(
-      ["职业名称：{career}", "职业简介：{introduction}", "悼词：{text}", "署名：{signature}", "{referencesBlock}", "来源页面：祭奠页"].join("\n"),
-      ["Profession name: {career}", "Profession introduction: {introduction}", "Memorial: {text}", "Signature: {signature}", "{referencesBlock}", "Source page: Memorial"].join("\n")
+      [
+        "职业名称：{career}",
+        "职业简介：{introduction}",
+        "悼词：{text}",
+        "署名：{signature}",
+        "{referencesBlock}",
+        "来源页面：祭奠页"
+      ].join("\n"),
+      [
+        "Profession name: {career}",
+        "Profession introduction: {introduction}",
+        "Memorial: {text}",
+        "Signature: {signature}",
+        "{referencesBlock}",
+        "Source page: Memorial"
+      ].join("\n")
     ),
     referencesLabel: l("参考资料", "References"),
     emptySignature: l("匿名", "Anonymous"),
     emptyText: l("（请在这里写下你的悼词）", "(Write your memorial text here)"),
-    emptyIntroduction: l("（请在这里简要介绍这个职业）", "(Briefly introduce this profession here)"),
+    emptyIntroduction: l(
+      "（请在这里简要介绍这个职业）",
+      "(Briefly introduce this profession here)"
+    ),
     manualCopyHint: l(
       "新增职业与祭奠留言目前都通过项目邮箱处理。",
       "New profession suggestions and memorial submissions are currently handled through the project inbox."
@@ -261,7 +316,10 @@ export const siteCopy = {
     },
     policy: {
       eyebrow: l("内容说明", "Policy"),
-      title: l("当前版本只做静态发布，不提供在线留言存储", "This Version Is Static and Does Not Store Live Submissions"),
+      title: l(
+        "当前版本只做静态发布，不提供在线留言存储",
+        "This Version Is Static and Does Not Store Live Submissions"
+      ),
       paragraphs: [
         l(
           "站内的职业卡、时间线、项目说明和示例悼词都由维护者手动整理后发布。当前版本不接数据库，不保存在线投稿，也没有后台审核面板。",
@@ -286,7 +344,9 @@ export const siteCopy = {
           "If you can help with code, design, copy, information architecture, or testing, email first with your intent and scope—maintainers will respond when appropriate."
         )
       ],
-      actions: [{ label: l("邮箱投稿", "Email Submission"), href: `mailto:${siteMeta.contactEmail}` }]
+      actions: [
+        { label: l("邮箱投稿", "Email Submission"), href: `mailto:${siteMeta.contactEmail}` }
+      ]
     }
   }
 };
@@ -309,32 +369,50 @@ export const careers = [
     factors: [
       {
         title: l("技术降维", "Technical Compression"),
-        text: l("AI 不再需要繁琐的软件操作，意图理解取代了技能积累。", "AI no longer needs elaborate software rituals; intent interpretation is replacing accumulated craft.")
+        text: l(
+          "AI 不再需要繁琐的软件操作，意图理解取代了技能积累。",
+          "AI no longer needs elaborate software rituals; intent interpretation is replacing accumulated craft."
+        )
       },
       {
         title: l("价值归零", "Value Collapse"),
-        text: l("当输出成本接近零，创意劳动的商业溢价也随之崩塌。", "When output costs approach zero, the commercial premium on creative labor collapses with them.")
+        text: l(
+          "当输出成本接近零，创意劳动的商业溢价也随之崩塌。",
+          "When output costs approach zero, the commercial premium on creative labor collapses with them."
+        )
       },
       {
         title: l("审美趋同", "Aesthetic Convergence"),
-        text: l("大数据驱动的流行，让个体风格的生存空间被进一步压缩。", "Data-driven taste compresses the space where individual style can survive.")
+        text: l(
+          "大数据驱动的流行，让个体风格的生存空间被进一步压缩。",
+          "Data-driven taste compresses the space where individual style can survive."
+        )
       }
     ],
     timeline: [
       {
         year: same("2012"),
         title: l("黄金时代", "Golden Era"),
-        text: l("设计作为高门槛表达艺术，品牌愿意为风格与经验支付溢价。", "Design was still treated as a high-threshold expressive craft, and brands paid a premium for style and experience.")
+        text: l(
+          "设计作为高门槛表达艺术，品牌愿意为风格与经验支付溢价。",
+          "Design was still treated as a high-threshold expressive craft, and brands paid a premium for style and experience."
+        )
       },
       {
         year: same("2018"),
         title: l("模板泛滥", "Template Flood"),
-        text: l("在线设计工具与廉价素材站兴起，审美逐渐工业化与同质化。", "Online design tools and bargain asset libraries pushed aesthetics toward industrial sameness.")
+        text: l(
+          "在线设计工具与廉价素材站兴起，审美逐渐工业化与同质化。",
+          "Online design tools and bargain asset libraries pushed aesthetics toward industrial sameness."
+        )
       },
       {
         year: same("2023"),
         title: l("算力入侵", "Compute Invasion"),
-        text: l("生成式 AI 爆发，像素级创意被秒级产出的算法彻底覆盖。", "Generative AI broke out, and pixel-level craft was covered over by second-scale algorithmic output.")
+        text: l(
+          "生成式 AI 爆发，像素级创意被秒级产出的算法彻底覆盖。",
+          "Generative AI broke out, and pixel-level craft was covered over by second-scale algorithmic output."
+        )
       }
     ],
     voices: [
@@ -362,20 +440,62 @@ export const careers = [
     status: "decaying",
     declineYear: 2024,
     slabHeight: 140,
-    teaser: l("语言不再是桥梁，而是被流水线加工的原始物料。", "Language is no longer a bridge, but raw material fed through an assembly line."),
+    teaser: l(
+      "语言不再是桥梁，而是被流水线加工的原始物料。",
+      "Language is no longer a bridge, but raw material fed through an assembly line."
+    ),
     summary: l(
       "机器翻译已经足以覆盖大量标准化文本，剩下的人工岗位逐渐滑向校对、润色与低价质检。",
       "Machine translation now covers vast amounts of standardized text, leaving human roles to slide toward proofreading, polish, and low-cost quality control."
     ),
     factors: [
-      { title: l("自动化成熟", "Automation Maturity"), text: l("通用翻译场景中的机器可读性已经超过大多数基础岗位。", "In many routine translation contexts, machine readability already exceeds what most entry roles can offer.") },
-      { title: l("质量外包", "Quality Outsourcing"), text: l("翻译从生产变成纠错，职业自尊被切成小时计费。", "Translation has shifted from production to correction, and professional dignity has been sliced into hourly billing.") },
-      { title: l("语感稀释", "Erosion of Voice"), text: l("追求速度的平台逻辑，让表达被压缩成可复制模板。", "Platforms optimized for speed compress expression into repeatable templates.") }
+      {
+        title: l("自动化成熟", "Automation Maturity"),
+        text: l(
+          "通用翻译场景中的机器可读性已经超过大多数基础岗位。",
+          "In many routine translation contexts, machine readability already exceeds what most entry roles can offer."
+        )
+      },
+      {
+        title: l("质量外包", "Quality Outsourcing"),
+        text: l(
+          "翻译从生产变成纠错，职业自尊被切成小时计费。",
+          "Translation has shifted from production to correction, and professional dignity has been sliced into hourly billing."
+        )
+      },
+      {
+        title: l("语感稀释", "Erosion of Voice"),
+        text: l(
+          "追求速度的平台逻辑，让表达被压缩成可复制模板。",
+          "Platforms optimized for speed compress expression into repeatable templates."
+        )
+      }
     ],
     timeline: [
-      { year: same("2015"), title: l("外包繁荣", "Outsourcing Boom"), text: l("跨境业务增长，入门级翻译需求旺盛。", "Cross-border business grew and demand for entry-level translation expanded with it.") },
-      { year: same("2020"), title: l("平台压价", "Platform Price Compression"), text: l("大批项目转入众包市场，计价被持续向下拉平。", "A growing share of projects moved into crowdsourced platforms, flattening rates downward.") },
-      { year: same("2024"), title: l("机器主导", "Machine-Led"), text: l("人工角色被限定为最终审校与情绪修正。", "Human work is increasingly confined to final review and tonal correction.") }
+      {
+        year: same("2015"),
+        title: l("外包繁荣", "Outsourcing Boom"),
+        text: l(
+          "跨境业务增长，入门级翻译需求旺盛。",
+          "Cross-border business grew and demand for entry-level translation expanded with it."
+        )
+      },
+      {
+        year: same("2020"),
+        title: l("平台压价", "Platform Price Compression"),
+        text: l(
+          "大批项目转入众包市场，计价被持续向下拉平。",
+          "A growing share of projects moved into crowdsourced platforms, flattening rates downward."
+        )
+      },
+      {
+        year: same("2024"),
+        title: l("机器主导", "Machine-Led"),
+        text: l(
+          "人工角色被限定为最终审校与情绪修正。",
+          "Human work is increasingly confined to final review and tonal correction."
+        )
+      }
     ],
     voices: [
       {
@@ -394,20 +514,62 @@ export const careers = [
     status: "frozen",
     declineYear: 2021,
     slabHeight: 180,
-    teaser: l("知识的殿堂在一夜之间变成了沉默的废墟。", "The halls of knowledge turned into silent ruins overnight."),
+    teaser: l(
+      "知识的殿堂在一夜之间变成了沉默的废墟。",
+      "The halls of knowledge turned into silent ruins overnight."
+    ),
     summary: l(
       "政策转向与在线智能辅导并行，明星教师模式被切断，行业被封存在一段骤然中止的时代叙事里。",
       "Policy shifts and online tutoring systems severed the star-teacher model, freezing the industry inside an abruptly interrupted historical arc."
     ),
     factors: [
-      { title: l("监管冻结", "Regulatory Freeze"), text: l("政策骤变直接切断商业模式，职业生态瞬间塌陷。", "A sudden policy turn cut through the business model and collapsed the profession overnight.") },
-      { title: l("在线替身", "Online Substitutes"), text: l("直播课与智能题库让标准化辅导失去线下稀缺性。", "Livestream classes and intelligent exercise banks stripped standardized tutoring of its offline scarcity.") },
-      { title: l("信任断裂", "Trust Fracture"), text: l("家长从追逐名师转向追逐系统化提分工具。", "Parents moved from chasing star tutors to chasing systematic score-raising tools.") }
+      {
+        title: l("监管冻结", "Regulatory Freeze"),
+        text: l(
+          "政策骤变直接切断商业模式，职业生态瞬间塌陷。",
+          "A sudden policy turn cut through the business model and collapsed the profession overnight."
+        )
+      },
+      {
+        title: l("在线替身", "Online Substitutes"),
+        text: l(
+          "直播课与智能题库让标准化辅导失去线下稀缺性。",
+          "Livestream classes and intelligent exercise banks stripped standardized tutoring of its offline scarcity."
+        )
+      },
+      {
+        title: l("信任断裂", "Trust Fracture"),
+        text: l(
+          "家长从追逐名师转向追逐系统化提分工具。",
+          "Parents moved from chasing star tutors to chasing systematic score-raising tools."
+        )
+      }
     ],
     timeline: [
-      { year: same("2016"), title: l("扩张", "Expansion"), text: l("名师个人品牌带动机构规模化复制。", "Celebrity tutors drove large-scale institutional replication.") },
-      { year: same("2020"), title: l("线上加速", "Online Acceleration"), text: l("直播和录播成为新的主战场。", "Livestreams and recorded lessons became the new core battleground.") },
-      { year: same("2021"), title: l("戛然而止", "Abrupt Halt"), text: l("整条赛道进入冻结状态，个体声望无处安放。", "The entire sector entered a frozen state, leaving individual prestige with nowhere to land.") }
+      {
+        year: same("2016"),
+        title: l("扩张", "Expansion"),
+        text: l(
+          "名师个人品牌带动机构规模化复制。",
+          "Celebrity tutors drove large-scale institutional replication."
+        )
+      },
+      {
+        year: same("2020"),
+        title: l("线上加速", "Online Acceleration"),
+        text: l(
+          "直播和录播成为新的主战场。",
+          "Livestreams and recorded lessons became the new core battleground."
+        )
+      },
+      {
+        year: same("2021"),
+        title: l("戛然而止", "Abrupt Halt"),
+        text: l(
+          "整条赛道进入冻结状态，个体声望无处安放。",
+          "The entire sector entered a frozen state, leaving individual prestige with nowhere to land."
+        )
+      }
     ],
     voices: [
       {
@@ -426,20 +588,62 @@ export const careers = [
     status: "endangered",
     declineYear: 2024,
     slabHeight: 160,
-    teaser: l("当算法决定了阅读，文字便失去了它的灵魂与呼吸。", "When algorithms decide what gets read, text loses its soul and breath."),
+    teaser: l(
+      "当算法决定了阅读，文字便失去了它的灵魂与呼吸。",
+      "When algorithms decide what gets read, text loses its soul and breath."
+    ),
     summary: l(
       "内容生产仍然存在，但编辑从结构与判断的中枢，退化为流量阈值下的即时排版与修改接口。",
       "Content still gets produced, but editors have been demoted from structural decision-makers to rapid formatting and adjustment endpoints under traffic pressure."
     ),
     factors: [
-      { title: l("平台喂养", "Platform Feeding"), text: l("选题与标题越发由平台算法而非编辑判断驱动。", "Topics and headlines are increasingly driven by platform logic rather than editorial judgment.") },
-      { title: l("供给过剩", "Supply Overflow"), text: l("生成式内容让基础编辑岗位陷入无限竞争。", "Generative content has thrown basic editorial roles into an endless field of competition.") },
-      { title: l("价值错位", "Mispriced Value"), text: l("深度与耐心无法在短期点击回报中体现。", "Depth and patience do not register inside short-term click economics.") }
+      {
+        title: l("平台喂养", "Platform Feeding"),
+        text: l(
+          "选题与标题越发由平台算法而非编辑判断驱动。",
+          "Topics and headlines are increasingly driven by platform logic rather than editorial judgment."
+        )
+      },
+      {
+        title: l("供给过剩", "Supply Overflow"),
+        text: l(
+          "生成式内容让基础编辑岗位陷入无限竞争。",
+          "Generative content has thrown basic editorial roles into an endless field of competition."
+        )
+      },
+      {
+        title: l("价值错位", "Mispriced Value"),
+        text: l(
+          "深度与耐心无法在短期点击回报中体现。",
+          "Depth and patience do not register inside short-term click economics."
+        )
+      }
     ],
     timeline: [
-      { year: same("2018"), title: l("内容热潮", "Content Boom"), text: l("编辑被视为内容工业中的关键调度者。", "Editors were still treated as central coordinators inside the content economy.") },
-      { year: same("2022"), title: l("爆款公式", "Formula Era"), text: l("平台偏好把审美与节奏压成统一范式。", "Platform preference compressed taste and pacing into a narrow formula.") },
-      { year: same("2024"), title: l("文本流水线", "Text Assembly Line"), text: l("编辑的角色变成对模板化内容进行最终投喂。", "Editorial work became the final feeding stage for templated content.") }
+      {
+        year: same("2018"),
+        title: l("内容热潮", "Content Boom"),
+        text: l(
+          "编辑被视为内容工业中的关键调度者。",
+          "Editors were still treated as central coordinators inside the content economy."
+        )
+      },
+      {
+        year: same("2022"),
+        title: l("爆款公式", "Formula Era"),
+        text: l(
+          "平台偏好把审美与节奏压成统一范式。",
+          "Platform preference compressed taste and pacing into a narrow formula."
+        )
+      },
+      {
+        year: same("2024"),
+        title: l("文本流水线", "Text Assembly Line"),
+        text: l(
+          "编辑的角色变成对模板化内容进行最终投喂。",
+          "Editorial work became the final feeding stage for templated content."
+        )
+      }
     ],
     voices: [
       {
@@ -458,20 +662,62 @@ export const careers = [
     status: "obsolete",
     declineYear: 2019,
     slabHeight: 180,
-    teaser: l("冰冷的数字屏幕，彻底取代了那层玻璃后的体温。", "Cold digital screens have replaced the warmth once felt behind the glass."),
+    teaser: l(
+      "冰冷的数字屏幕，彻底取代了那层玻璃后的体温。",
+      "Cold digital screens have replaced the warmth once felt behind the glass."
+    ),
     summary: l(
       "网银、自助机与远程服务把面对面金融服务变成残留仪式，岗位被留在正在撤离的支行里。",
       "Mobile banking, kiosks, and remote service turned face-to-face finance into a residual ritual, leaving the role behind in branches already being withdrawn."
     ),
     factors: [
-      { title: l("服务迁移", "Service Migration"), text: l("绝大多数高频业务已被移动端和自助机吸收。", "Most high-frequency transactions have already been absorbed by mobile and self-service channels.") },
-      { title: l("成本淘汰", "Cost Elimination"), text: l("实体网点被要求极限瘦身，柜台成为最先被压缩的成本。", "Physical branches are pushed into radical downsizing, and counters are among the first costs to be cut.") },
-      { title: l("接触消失", "Disappearing Contact"), text: l("金融服务从关系转向接口，人的存在感被抹平。", "Finance shifted from relationship to interface, flattening the human presence out of the service.") }
+      {
+        title: l("服务迁移", "Service Migration"),
+        text: l(
+          "绝大多数高频业务已被移动端和自助机吸收。",
+          "Most high-frequency transactions have already been absorbed by mobile and self-service channels."
+        )
+      },
+      {
+        title: l("成本淘汰", "Cost Elimination"),
+        text: l(
+          "实体网点被要求极限瘦身，柜台成为最先被压缩的成本。",
+          "Physical branches are pushed into radical downsizing, and counters are among the first costs to be cut."
+        )
+      },
+      {
+        title: l("接触消失", "Disappearing Contact"),
+        text: l(
+          "金融服务从关系转向接口，人的存在感被抹平。",
+          "Finance shifted from relationship to interface, flattening the human presence out of the service."
+        )
+      }
     ],
     timeline: [
-      { year: same("2010"), title: l("排队大厅", "Queue Hall"), text: l("柜台仍是个人金融体验的核心入口。", "The counter was still the main entry point into personal banking.") },
-      { year: same("2016"), title: l("App 成熟", "App Maturity"), text: l("移动支付与手机银行改写交易习惯。", "Mobile payments and banking apps rewrote everyday transaction habits.") },
-      { year: same("2019"), title: l("柜台退场", "Counter Exit"), text: l("线下被保留为兜底方案，而不再是默认服务。", "Offline service remained only as a fallback, no longer the default.") }
+      {
+        year: same("2010"),
+        title: l("排队大厅", "Queue Hall"),
+        text: l(
+          "柜台仍是个人金融体验的核心入口。",
+          "The counter was still the main entry point into personal banking."
+        )
+      },
+      {
+        year: same("2016"),
+        title: l("App 成熟", "App Maturity"),
+        text: l(
+          "移动支付与手机银行改写交易习惯。",
+          "Mobile payments and banking apps rewrote everyday transaction habits."
+        )
+      },
+      {
+        year: same("2019"),
+        title: l("柜台退场", "Counter Exit"),
+        text: l(
+          "线下被保留为兜底方案，而不再是默认服务。",
+          "Offline service remained only as a fallback, no longer the default."
+        )
+      }
     ],
     voices: [
       {
@@ -490,20 +736,62 @@ export const careers = [
     status: "obsolete",
     declineYear: 2022,
     slabHeight: 220,
-    teaser: l("现场的尘土早已远去，只剩下公关稿的寂静回声。", "The dust of the scene is long gone, leaving only the quiet echo of press releases."),
+    teaser: l(
+      "现场的尘土早已远去，只剩下公关稿的寂静回声。",
+      "The dust of the scene is long gone, leaving only the quiet echo of press releases."
+    ),
     summary: l(
       "发布速度压倒了现场感，深度采访被压缩到无法维持的时间与预算中，记者逐渐变成转述接口。",
       "Publishing speed overran field presence. Deep reporting was compressed beyond sustainable time and budget, and reporters drifted toward becoming relay interfaces."
     ),
     factors: [
-      { title: l("事实外包", "Facts Outsourced"), text: l("平台与机构供稿替代了一线采访的成本结构。", "Platform feeds and institutional materials replaced the cost structure of frontline reporting.") },
-      { title: l("节奏失控", "Rhythm Collapse"), text: l("新闻速度战让调查性报道没有生长空间。", "The speed war in news left no room for investigative work to grow.") },
-      { title: l("信任流失", "Trust Drain"), text: l("读者更早接触原始碎片，职业中介价值被削弱。", "Readers reached raw fragments sooner, weakening the reporter’s mediating value.") }
+      {
+        title: l("事实外包", "Facts Outsourced"),
+        text: l(
+          "平台与机构供稿替代了一线采访的成本结构。",
+          "Platform feeds and institutional materials replaced the cost structure of frontline reporting."
+        )
+      },
+      {
+        title: l("节奏失控", "Rhythm Collapse"),
+        text: l(
+          "新闻速度战让调查性报道没有生长空间。",
+          "The speed war in news left no room for investigative work to grow."
+        )
+      },
+      {
+        title: l("信任流失", "Trust Drain"),
+        text: l(
+          "读者更早接触原始碎片，职业中介价值被削弱。",
+          "Readers reached raw fragments sooner, weakening the reporter’s mediating value."
+        )
+      }
     ],
     timeline: [
-      { year: same("2008"), title: l("纸媒惯性", "Print Momentum"), text: l("职业记者仍拥有稳定的机构支持与身份光环。", "Professional reporters still had stable institutional backing and a degree of public authority.") },
-      { year: same("2016"), title: l("平台时代", "Platform Era"), text: l("信息分发被算法平台主导，采写关系被重新切割。", "Information distribution fell under platform control, recutting the relationship between reporting and reading.") },
-      { year: same("2022"), title: l("残响", "Afterimage"), text: l("大量岗位退回到品牌内容与二次编译。", "Many roles retreated into branded content and second-hand compilation.") }
+      {
+        year: same("2008"),
+        title: l("纸媒惯性", "Print Momentum"),
+        text: l(
+          "职业记者仍拥有稳定的机构支持与身份光环。",
+          "Professional reporters still had stable institutional backing and a degree of public authority."
+        )
+      },
+      {
+        year: same("2016"),
+        title: l("平台时代", "Platform Era"),
+        text: l(
+          "信息分发被算法平台主导，采写关系被重新切割。",
+          "Information distribution fell under platform control, recutting the relationship between reporting and reading."
+        )
+      },
+      {
+        year: same("2022"),
+        title: l("残响", "Afterimage"),
+        text: l(
+          "大量岗位退回到品牌内容与二次编译。",
+          "Many roles retreated into branded content and second-hand compilation."
+        )
+      }
     ],
     voices: [
       {
@@ -525,20 +813,62 @@ careers.push(
     status: "decaying",
     declineYear: 2024,
     slabHeight: 120,
-    teaser: l("线条不再需要情感，只需要更快的自动补全。", "Lines no longer need emotion. They only need faster auto-complete."),
+    teaser: l(
+      "线条不再需要情感，只需要更快的自动补全。",
+      "Lines no longer need emotion. They only need faster auto-complete."
+    ),
     summary: l(
       "参数化建模、自动出图与标准构件库，正在削弱重复绘图岗位存在的理由。",
       "Parametric modeling, automated drafting, and standard component libraries are eroding the rationale for repetitive drawing roles."
     ),
     factors: [
-      { title: l("参数生成", "Parametric Generation"), text: l("标准图纸由规则自动展开，人工调整需求下降。", "Standard drawings now unfold automatically from rules, reducing the need for manual adjustment.") },
-      { title: l("模型优先", "Model First"), text: l("从二维制图向模型协作迁移，基础岗位被挤压。", "As workflows shift from 2D drafting to model collaboration, foundational roles are squeezed out.") },
-      { title: l("精度替代", "Precision Replacement"), text: l("软件的稳定产出比人的疲劳更容易管理。", "A stable software output is easier to manage than human fatigue.") }
+      {
+        title: l("参数生成", "Parametric Generation"),
+        text: l(
+          "标准图纸由规则自动展开，人工调整需求下降。",
+          "Standard drawings now unfold automatically from rules, reducing the need for manual adjustment."
+        )
+      },
+      {
+        title: l("模型优先", "Model First"),
+        text: l(
+          "从二维制图向模型协作迁移，基础岗位被挤压。",
+          "As workflows shift from 2D drafting to model collaboration, foundational roles are squeezed out."
+        )
+      },
+      {
+        title: l("精度替代", "Precision Replacement"),
+        text: l(
+          "软件的稳定产出比人的疲劳更容易管理。",
+          "A stable software output is easier to manage than human fatigue."
+        )
+      }
     ],
     timeline: [
-      { year: same("2014"), title: l("二维主导", "2D Dominance"), text: l("大量事务所依赖人工出图与细部修订。", "Many studios still relied on manual drawing and detailed revision.") },
-      { year: same("2021"), title: l("BIM 普及", "BIM Adoption"), text: l("工作开始从画线变成维护标准化信息。", "The work began shifting from drawing lines to maintaining standardized information.") },
-      { year: same("2024"), title: l("脚本接管", "Script Takeover"), text: l("可重复的线稿任务被自动流程吞没。", "Repeatable drafting tasks were swallowed by automated pipelines.") }
+      {
+        year: same("2014"),
+        title: l("二维主导", "2D Dominance"),
+        text: l(
+          "大量事务所依赖人工出图与细部修订。",
+          "Many studios still relied on manual drawing and detailed revision."
+        )
+      },
+      {
+        year: same("2021"),
+        title: l("BIM 普及", "BIM Adoption"),
+        text: l(
+          "工作开始从画线变成维护标准化信息。",
+          "The work began shifting from drawing lines to maintaining standardized information."
+        )
+      },
+      {
+        year: same("2024"),
+        title: l("脚本接管", "Script Takeover"),
+        text: l(
+          "可重复的线稿任务被自动流程吞没。",
+          "Repeatable drafting tasks were swallowed by automated pipelines."
+        )
+      }
     ],
     voices: [
       {
@@ -557,20 +887,62 @@ careers.push(
     status: "unworthy",
     declineYear: 2023,
     slabHeight: 115,
-    teaser: l("流量与补贴散去后，剩下的只是无法结算的辛劳。", "Once traffic and subsidies evaporate, only unpaid exhaustion remains."),
+    teaser: l(
+      "流量与补贴散去后，剩下的只是无法结算的辛劳。",
+      "Once traffic and subsidies evaporate, only unpaid exhaustion remains."
+    ),
     summary: l(
       "平台退潮后，最后一公里的临时职业被迅速抛弃，人与社区之间的关系也随之蒸发。",
       "When platforms retreated, this last-mile temporary profession was quickly discarded, and the social bond between people and neighborhood dissolved with it."
     ),
     factors: [
-      { title: l("平台退场", "Platform Exit"), text: l("补贴结束后，整个岗位失去存在前提。", "Once subsidies ended, the role lost the condition that made it possible.") },
-      { title: l("关系断裂", "Broken Ties"), text: l("社区熟人网络被平台效率短暂借用后又抛弃。", "Neighborhood trust networks were briefly borrowed by platform efficiency and then abandoned.") },
-      { title: l("劳动碎片", "Fragmented Labor"), text: l("收入被拆成碎片，难以支撑稳定职业身份。", "Income fragmented into pieces too small to sustain a stable professional identity.") }
+      {
+        title: l("平台退场", "Platform Exit"),
+        text: l(
+          "补贴结束后，整个岗位失去存在前提。",
+          "Once subsidies ended, the role lost the condition that made it possible."
+        )
+      },
+      {
+        title: l("关系断裂", "Broken Ties"),
+        text: l(
+          "社区熟人网络被平台效率短暂借用后又抛弃。",
+          "Neighborhood trust networks were briefly borrowed by platform efficiency and then abandoned."
+        )
+      },
+      {
+        title: l("劳动碎片", "Fragmented Labor"),
+        text: l(
+          "收入被拆成碎片，难以支撑稳定职业身份。",
+          "Income fragmented into pieces too small to sustain a stable professional identity."
+        )
+      }
     ],
     timeline: [
-      { year: same("2020"), title: l("极速膨胀", "Rapid Expansion"), text: l("依靠补贴与流量，岗位在社区密集出现。", "Fueled by subsidies and traffic, the role spread rapidly through neighborhoods.") },
-      { year: same("2022"), title: l("补贴收缩", "Subsidy Retrenchment"), text: l("平台开始选择性撤退，留下一地散碎劳动。", "Platforms began retreating selectively, leaving fragmented work behind.") },
-      { year: same("2023"), title: l("价值蒸发", "Value Evaporates"), text: l("职业本身失去长期存在的商业逻辑。", "The profession itself lost any long-term commercial logic.") }
+      {
+        year: same("2020"),
+        title: l("极速膨胀", "Rapid Expansion"),
+        text: l(
+          "依靠补贴与流量，岗位在社区密集出现。",
+          "Fueled by subsidies and traffic, the role spread rapidly through neighborhoods."
+        )
+      },
+      {
+        year: same("2022"),
+        title: l("补贴收缩", "Subsidy Retrenchment"),
+        text: l(
+          "平台开始选择性撤退，留下一地散碎劳动。",
+          "Platforms began retreating selectively, leaving fragmented work behind."
+        )
+      },
+      {
+        year: same("2023"),
+        title: l("价值蒸发", "Value Evaporates"),
+        text: l(
+          "职业本身失去长期存在的商业逻辑。",
+          "The profession itself lost any long-term commercial logic."
+        )
+      }
     ],
     voices: [
       {
@@ -589,20 +961,62 @@ careers.push(
     status: "endangered",
     declineYear: 2025,
     slabHeight: 105,
-    teaser: l("逻辑正在被逻辑自身吞噬，入门门槛被重新定义。", "Logic is being consumed by logic itself, and the entry threshold is being rewritten."),
+    teaser: l(
+      "逻辑正在被逻辑自身吞噬，入门门槛被重新定义。",
+      "Logic is being consumed by logic itself, and the entry threshold is being rewritten."
+    ),
     summary: l(
       "会写基础 CRUD 已不再稀缺，模型辅助开发正在抬高新人的有效门槛。",
       "Basic CRUD skills are no longer scarce, and model-assisted development is raising the effective threshold for newcomers."
     ),
     factors: [
-      { title: l("能力重估", "Capability Repriced"), text: l("企业需要的是能驾驭系统的人，而不是会补齐模板的人。", "Companies now want people who can steer systems, not just fill in templates.") },
-      { title: l("自动生成", "Automatic Generation"), text: l("基础代码生成让初级重复性任务大量缩减。", "Automatic code generation has sharply reduced the volume of repetitive junior work.") },
-      { title: l("竞争外溢", "Overflowing Competition"), text: l("全球化远程供给加剧了入门岗位拥挤。", "Global remote labor has intensified overcrowding at the entry level.") }
+      {
+        title: l("能力重估", "Capability Repriced"),
+        text: l(
+          "企业需要的是能驾驭系统的人，而不是会补齐模板的人。",
+          "Companies now want people who can steer systems, not just fill in templates."
+        )
+      },
+      {
+        title: l("自动生成", "Automatic Generation"),
+        text: l(
+          "基础代码生成让初级重复性任务大量缩减。",
+          "Automatic code generation has sharply reduced the volume of repetitive junior work."
+        )
+      },
+      {
+        title: l("竞争外溢", "Overflowing Competition"),
+        text: l(
+          "全球化远程供给加剧了入门岗位拥挤。",
+          "Global remote labor has intensified overcrowding at the entry level."
+        )
+      }
     ],
     timeline: [
-      { year: same("2019"), title: l("扩招", "Mass Hiring"), text: l("培训班与校招共同输送大量初级开发者。", "Bootcamps and campus hiring together produced a wave of junior developers.") },
-      { year: same("2023"), title: l("Copilot 普及", "Copilot Spread"), text: l("基础编码速度被工具极大压缩。", "Tools dramatically compressed the time needed for basic coding.") },
-      { year: same("2025"), title: l("门槛抬升", "Raised Bar"), text: l("公司更看重系统理解、产品抽象与调度能力。", "Firms increasingly value system thinking, product abstraction, and orchestration ability.") }
+      {
+        year: same("2019"),
+        title: l("扩招", "Mass Hiring"),
+        text: l(
+          "培训班与校招共同输送大量初级开发者。",
+          "Bootcamps and campus hiring together produced a wave of junior developers."
+        )
+      },
+      {
+        year: same("2023"),
+        title: l("Copilot 普及", "Copilot Spread"),
+        text: l(
+          "基础编码速度被工具极大压缩。",
+          "Tools dramatically compressed the time needed for basic coding."
+        )
+      },
+      {
+        year: same("2025"),
+        title: l("门槛抬升", "Raised Bar"),
+        text: l(
+          "公司更看重系统理解、产品抽象与调度能力。",
+          "Firms increasingly value system thinking, product abstraction, and orchestration ability."
+        )
+      }
     ],
     voices: [
       {
@@ -621,20 +1035,62 @@ careers.push(
     status: "obsolete",
     declineYear: 2022,
     slabHeight: 130,
-    teaser: l("预设话术的空洞回响，终于覆盖了真人安抚的温度。", "The hollow echo of scripted replies has finally smothered the warmth of real reassurance."),
+    teaser: l(
+      "预设话术的空洞回响，终于覆盖了真人安抚的温度。",
+      "The hollow echo of scripted replies has finally smothered the warmth of real reassurance."
+    ),
     summary: l(
       "聊天机器人和工单系统把高频客服场景彻底流程化，人工客服只在失控时短暂出现。",
       "Chatbots and ticket systems have fully proceduralized high-volume service scenarios, leaving human agents to appear only when the system fails."
     ),
     factors: [
-      { title: l("回复模板化", "Reply Templating"), text: l("大量咨询都能由规则与机器人覆盖。", "A large share of inquiries can now be covered by rules and bots.") },
-      { title: l("情绪最小化", "Emotion Minimized"), text: l("平台优化的是关闭工单速度，而不是理解顾客情绪。", "Platforms optimize for ticket closure speed, not emotional understanding.") },
-      { title: l("人力压缩", "Human Compression"), text: l("人工被保留为升级通道，而不再是主要触点。", "Human labor remains only as an escalation path, no longer the main point of contact.") }
+      {
+        title: l("回复模板化", "Reply Templating"),
+        text: l(
+          "大量咨询都能由规则与机器人覆盖。",
+          "A large share of inquiries can now be covered by rules and bots."
+        )
+      },
+      {
+        title: l("情绪最小化", "Emotion Minimized"),
+        text: l(
+          "平台优化的是关闭工单速度，而不是理解顾客情绪。",
+          "Platforms optimize for ticket closure speed, not emotional understanding."
+        )
+      },
+      {
+        title: l("人力压缩", "Human Compression"),
+        text: l(
+          "人工被保留为升级通道，而不再是主要触点。",
+          "Human labor remains only as an escalation path, no longer the main point of contact."
+        )
+      }
     ],
     timeline: [
-      { year: same("2017"), title: l("旺季战争", "Peak-Season Battles"), text: l("大促期间的人工客服仍是成交关键环节。", "During shopping festivals, human support still played a crucial role in closing sales.") },
-      { year: same("2020"), title: l("机器人常态化", "Bots Become Normal"), text: l("自动应答开始接管主流程。", "Automated replies began taking over the main service flow.") },
-      { year: same("2022"), title: l("人工退居后台", "Humans Step Back"), text: l("真人客服成为故障补丁，而非服务本体。", "Human agents became a patch for failures rather than the service itself.") }
+      {
+        year: same("2017"),
+        title: l("旺季战争", "Peak-Season Battles"),
+        text: l(
+          "大促期间的人工客服仍是成交关键环节。",
+          "During shopping festivals, human support still played a crucial role in closing sales."
+        )
+      },
+      {
+        year: same("2020"),
+        title: l("机器人常态化", "Bots Become Normal"),
+        text: l(
+          "自动应答开始接管主流程。",
+          "Automated replies began taking over the main service flow."
+        )
+      },
+      {
+        year: same("2022"),
+        title: l("人工退居后台", "Humans Step Back"),
+        text: l(
+          "真人客服成为故障补丁，而非服务本体。",
+          "Human agents became a patch for failures rather than the service itself."
+        )
+      }
     ],
     voices: [
       {
@@ -653,20 +1109,62 @@ careers.push(
     status: "obsolete",
     declineYear: 2020,
     slabHeight: 145,
-    teaser: l("印刷机的最后叹息，被一块发光的屏幕轻轻盖住。", "The printing press gave one last sigh before a glowing screen quietly covered it."),
+    teaser: l(
+      "印刷机的最后叹息，被一块发光的屏幕轻轻盖住。",
+      "The printing press gave one last sigh before a glowing screen quietly covered it."
+    ),
     summary: l(
       "排版、标题与版面节奏的职业技艺，在纸媒收缩与数字即时分发前逐渐失去舞台。",
       "The craft of layout, headline writing, and page rhythm gradually lost its stage as print contracted and digital instant distribution took over."
     ),
     factors: [
-      { title: l("版面消失", "Page Disappears"), text: l("屏幕分发打散了纸面的整体叙事。", "Screen-based distribution broke apart the unified narrative of the printed page.") },
-      { title: l("周期坍缩", "Cycle Collapse"), text: l("日报与周刊节奏无法匹配实时推送逻辑。", "Daily and weekly publishing rhythms could not keep pace with real-time distribution.") },
-      { title: l("工艺失效", "Craft Devalued"), text: l("版式功夫不再构成商业竞争优势。", "Layout craftsmanship no longer counts as a meaningful commercial edge.") }
+      {
+        title: l("版面消失", "Page Disappears"),
+        text: l(
+          "屏幕分发打散了纸面的整体叙事。",
+          "Screen-based distribution broke apart the unified narrative of the printed page."
+        )
+      },
+      {
+        title: l("周期坍缩", "Cycle Collapse"),
+        text: l(
+          "日报与周刊节奏无法匹配实时推送逻辑。",
+          "Daily and weekly publishing rhythms could not keep pace with real-time distribution."
+        )
+      },
+      {
+        title: l("工艺失效", "Craft Devalued"),
+        text: l(
+          "版式功夫不再构成商业竞争优势。",
+          "Layout craftsmanship no longer counts as a meaningful commercial edge."
+        )
+      }
     ],
     timeline: [
-      { year: same("2010"), title: l("版面秩序", "Page Order"), text: l("纸面仍然掌握公众阅读节奏。", "Print still controlled the public rhythm of reading.") },
-      { year: same("2017"), title: l("转向屏幕", "Shift to Screen"), text: l("大量内容先为移动端写作，后为纸面裁剪。", "Much of the content was first written for mobile, then trimmed for print.") },
-      { year: same("2020"), title: l("出版残响", "Publishing Afterimage"), text: l("编辑从职业主体退到文化记忆。", "Editing slipped from a living profession into cultural memory.") }
+      {
+        year: same("2010"),
+        title: l("版面秩序", "Page Order"),
+        text: l(
+          "纸面仍然掌握公众阅读节奏。",
+          "Print still controlled the public rhythm of reading."
+        )
+      },
+      {
+        year: same("2017"),
+        title: l("转向屏幕", "Shift to Screen"),
+        text: l(
+          "大量内容先为移动端写作，后为纸面裁剪。",
+          "Much of the content was first written for mobile, then trimmed for print."
+        )
+      },
+      {
+        year: same("2020"),
+        title: l("出版残响", "Publishing Afterimage"),
+        text: l(
+          "编辑从职业主体退到文化记忆。",
+          "Editing slipped from a living profession into cultural memory."
+        )
+      }
     ],
     voices: [
       {
@@ -685,20 +1183,62 @@ careers.push(
     status: "frozen",
     declineYear: 2020,
     slabHeight: 110,
-    teaser: l("风景先被录成素材，后来被压缩成路线模板。", "Landscapes were first captured as material, then compressed into route templates."),
+    teaser: l(
+      "风景先被录成素材，后来被压缩成路线模板。",
+      "Landscapes were first captured as material, then compressed into route templates."
+    ),
     summary: l(
       "旅行推荐、AI 语音讲解与标准化路线包，正在让导游的即时讲述能力被边缘化。",
       "Travel recommendation engines, AI audio guides, and standardized route packages are pushing the guide’s live storytelling ability to the margins."
     ),
     factors: [
-      { title: l("路线模板", "Route Templates"), text: l("平台把旅程拆成可购买、可复制的固定产品。", "Platforms break the trip into fixed, purchasable, repeatable products.") },
-      { title: l("讲解替换", "Narration Replacement"), text: l("语音导览与 AR 解释弱化了人的在场价值。", "Audio guides and AR interpretation weaken the value of a human presence.") },
-      { title: l("波动巨大", "Extreme Volatility"), text: l("行业对外部环境极度敏感，职业稳定性极弱。", "The sector is highly exposed to external shocks, leaving almost no professional stability.") }
+      {
+        title: l("路线模板", "Route Templates"),
+        text: l(
+          "平台把旅程拆成可购买、可复制的固定产品。",
+          "Platforms break the trip into fixed, purchasable, repeatable products."
+        )
+      },
+      {
+        title: l("讲解替换", "Narration Replacement"),
+        text: l(
+          "语音导览与 AR 解释弱化了人的在场价值。",
+          "Audio guides and AR interpretation weaken the value of a human presence."
+        )
+      },
+      {
+        title: l("波动巨大", "Extreme Volatility"),
+        text: l(
+          "行业对外部环境极度敏感，职业稳定性极弱。",
+          "The sector is highly exposed to external shocks, leaving almost no professional stability."
+        )
+      }
     ],
     timeline: [
-      { year: same("2015"), title: l("跟团仍稳", "Group Tours Hold"), text: l("线下导游在集体旅行中仍具稳定需求。", "Offline guides still held steady demand inside group travel.") },
-      { year: same("2020"), title: l("行业停摆", "Industry Halt"), text: l("外部冲击让大量导游离开原本的工作链条。", "External shocks pushed many guides out of the work chain altogether.") },
-      { year: same("2024"), title: l("数字讲解", "Digital Narration"), text: l("重新恢复的旅行已不再需要同样数量的人。", "Travel returned, but it no longer needed the same number of people.") }
+      {
+        year: same("2015"),
+        title: l("跟团仍稳", "Group Tours Hold"),
+        text: l(
+          "线下导游在集体旅行中仍具稳定需求。",
+          "Offline guides still held steady demand inside group travel."
+        )
+      },
+      {
+        year: same("2020"),
+        title: l("行业停摆", "Industry Halt"),
+        text: l(
+          "外部冲击让大量导游离开原本的工作链条。",
+          "External shocks pushed many guides out of the work chain altogether."
+        )
+      },
+      {
+        year: same("2024"),
+        title: l("数字讲解", "Digital Narration"),
+        text: l(
+          "重新恢复的旅行已不再需要同样数量的人。",
+          "Travel returned, but it no longer needed the same number of people."
+        )
+      }
     ],
     voices: [
       {
@@ -717,20 +1257,62 @@ careers.push(
     status: "unworthy",
     declineYear: 2024,
     slabHeight: 125,
-    teaser: l("滤镜越来越完美，真实的劳动却越来越廉价。", "Filters grow more perfect while real labor grows cheaper by the day."),
+    teaser: l(
+      "滤镜越来越完美，真实的劳动却越来越廉价。",
+      "Filters grow more perfect while real labor grows cheaper by the day."
+    ),
     summary: l(
       "拍摄不再稀缺，后期模板、短视频偏好与成本竞争，使这类职业加速滑向低价化。",
       "Shooting is no longer scarce. Post-production templates, short-form video preferences, and cost competition are pushing the profession rapidly toward commoditization."
     ),
     factors: [
-      { title: l("设备普及", "Equipment Ubiquity"), text: l("门槛降低后，大量低价供给涌入市场。", "As equipment barriers fell, low-cost supply flooded the market.") },
-      { title: l("后期模板", "Post-Production Templates"), text: l("统一滤镜与流水线修图让个体审美难以溢价。", "Standardized filters and assembly-line retouching made individual taste hard to price above the floor.") },
-      { title: l("需求缩短", "Compressed Demand"), text: l("纪念性消费被压缩成更快、更短、更可分享的内容。", "Commemorative consumption shrank into faster, shorter, more shareable content.") }
+      {
+        title: l("设备普及", "Equipment Ubiquity"),
+        text: l(
+          "门槛降低后，大量低价供给涌入市场。",
+          "As equipment barriers fell, low-cost supply flooded the market."
+        )
+      },
+      {
+        title: l("后期模板", "Post-Production Templates"),
+        text: l(
+          "统一滤镜与流水线修图让个体审美难以溢价。",
+          "Standardized filters and assembly-line retouching made individual taste hard to price above the floor."
+        )
+      },
+      {
+        title: l("需求缩短", "Compressed Demand"),
+        text: l(
+          "纪念性消费被压缩成更快、更短、更可分享的内容。",
+          "Commemorative consumption shrank into faster, shorter, more shareable content."
+        )
+      }
     ],
     timeline: [
-      { year: same("2016"), title: l("风格崛起", "Style Ascends"), text: l("婚礼影像被视为可长期留存的情绪纪念。", "Wedding imagery was treated as an emotional record meant to last.") },
-      { year: same("2021"), title: l("短视频主导", "Short Video Leads"), text: l("需求从完整记录转向即时传播素材。", "Demand moved from full documentation toward instantly shareable material.") },
-      { year: same("2024"), title: l("价格塌缩", "Price Collapse"), text: l("劳动密度仍高，市场支付意愿却持续走低。", "Labor intensity stayed high while willingness to pay continued to fall.") }
+      {
+        year: same("2016"),
+        title: l("风格崛起", "Style Ascends"),
+        text: l(
+          "婚礼影像被视为可长期留存的情绪纪念。",
+          "Wedding imagery was treated as an emotional record meant to last."
+        )
+      },
+      {
+        year: same("2021"),
+        title: l("短视频主导", "Short Video Leads"),
+        text: l(
+          "需求从完整记录转向即时传播素材。",
+          "Demand moved from full documentation toward instantly shareable material."
+        )
+      },
+      {
+        year: same("2024"),
+        title: l("价格塌缩", "Price Collapse"),
+        text: l(
+          "劳动密度仍高，市场支付意愿却持续走低。",
+          "Labor intensity stayed high while willingness to pay continued to fall."
+        )
+      }
     ],
     voices: [
       {
@@ -749,20 +1331,62 @@ careers.push(
     status: "decaying",
     declineYear: 2024,
     slabHeight: 135,
-    teaser: l("算法的秒表从未停下，而人只是在不断更换的制服里奔跑。", "The algorithmic stopwatch never stops; people just keep running in changing uniforms."),
+    teaser: l(
+      "算法的秒表从未停下，而人只是在不断更换的制服里奔跑。",
+      "The algorithmic stopwatch never stops; people just keep running in changing uniforms."
+    ),
     summary: l(
       "这不是消失最快的职业，却是被系统最深度吞噬的职业之一，价值与风险始终高度失衡。",
       "This is not the fastest-disappearing profession, but it is among the ones most deeply consumed by the system, with value and risk permanently out of balance."
     ),
     factors: [
-      { title: l("算法规训", "Algorithmic Discipline"), text: l("每一次路线与时长都由系统决定。", "Every route and every minute is assigned by the system.") },
-      { title: l("替代待命", "Replacement on Standby"), text: l("无人配送与站点自动化已在边缘逼近。", "Autonomous delivery and station automation are already approaching from the edge.") },
-      { title: l("身份脆弱", "Fragile Status"), text: l("高强度劳动与弱保障并存，职业尊严难以建立。", "High-intensity labor and weak protection coexist, making dignity difficult to sustain.") }
+      {
+        title: l("算法规训", "Algorithmic Discipline"),
+        text: l(
+          "每一次路线与时长都由系统决定。",
+          "Every route and every minute is assigned by the system."
+        )
+      },
+      {
+        title: l("替代待命", "Replacement on Standby"),
+        text: l(
+          "无人配送与站点自动化已在边缘逼近。",
+          "Autonomous delivery and station automation are already approaching from the edge."
+        )
+      },
+      {
+        title: l("身份脆弱", "Fragile Status"),
+        text: l(
+          "高强度劳动与弱保障并存，职业尊严难以建立。",
+          "High-intensity labor and weak protection coexist, making dignity difficult to sustain."
+        )
+      }
     ],
     timeline: [
-      { year: same("2018"), title: l("平台扩张", "Platform Expansion"), text: l("即时配送成为城市基础设施。", "Instant delivery became part of urban infrastructure.") },
-      { year: same("2022"), title: l("效率极限", "Efficiency Extreme"), text: l("规则越来越细，个人越发像系统末梢。", "Rules became more granular, and individuals felt more like terminals of the system.") },
-      { year: same("2024"), title: l("替代预演", "Replacement Rehearsal"), text: l("自动配送技术开始从实验走向真实运营。", "Automated delivery began moving from experiment to real operations.") }
+      {
+        year: same("2018"),
+        title: l("平台扩张", "Platform Expansion"),
+        text: l(
+          "即时配送成为城市基础设施。",
+          "Instant delivery became part of urban infrastructure."
+        )
+      },
+      {
+        year: same("2022"),
+        title: l("效率极限", "Efficiency Extreme"),
+        text: l(
+          "规则越来越细，个人越发像系统末梢。",
+          "Rules became more granular, and individuals felt more like terminals of the system."
+        )
+      },
+      {
+        year: same("2024"),
+        title: l("替代预演", "Replacement Rehearsal"),
+        text: l(
+          "自动配送技术开始从实验走向真实运营。",
+          "Automated delivery began moving from experiment to real operations."
+        )
+      }
     ],
     voices: [
       {
@@ -781,20 +1405,62 @@ careers.push(
     status: "endangered",
     declineYear: 2025,
     slabHeight: 100,
-    teaser: l("喂养未来模型的最后燃料，最终也会被模型自己吞下。", "The final fuel feeding future models will eventually be consumed by the models themselves."),
+    teaser: l(
+      "喂养未来模型的最后燃料，最终也会被模型自己吞下。",
+      "The final fuel feeding future models will eventually be consumed by the models themselves."
+    ),
     summary: l(
       "作为 AI 基础设施的一部分，标注岗位正在被主动学习、合成数据和自动审查逐步稀释。",
       "As part of the AI infrastructure stack, annotation work is being diluted by active learning, synthetic data, and automated review."
     ),
     factors: [
-      { title: l("自动标注", "Automatic Annotation"), text: l("模型开始参与生成并校验训练数据。", "Models are starting to generate and validate their own training data.") },
-      { title: l("隐形劳动", "Invisible Labor"), text: l("岗位对系统关键，却被长期低价对待。", "The role is crucial to the system, yet consistently treated as low-value labor.") },
-      { title: l("阶段性存在", "Transitional Existence"), text: l("它被设计成一种过渡性职业，而非长期职业身份。", "It is designed as a transitional role rather than a long-term professional identity.") }
+      {
+        title: l("自动标注", "Automatic Annotation"),
+        text: l(
+          "模型开始参与生成并校验训练数据。",
+          "Models are starting to generate and validate their own training data."
+        )
+      },
+      {
+        title: l("隐形劳动", "Invisible Labor"),
+        text: l(
+          "岗位对系统关键，却被长期低价对待。",
+          "The role is crucial to the system, yet consistently treated as low-value labor."
+        )
+      },
+      {
+        title: l("阶段性存在", "Transitional Existence"),
+        text: l(
+          "它被设计成一种过渡性职业，而非长期职业身份。",
+          "It is designed as a transitional role rather than a long-term professional identity."
+        )
+      }
     ],
     timeline: [
-      { year: same("2021"), title: l("需求激增", "Demand Surge"), text: l("大模型训练扩张带来海量标注任务。", "Large-model training expansion created a huge wave of annotation tasks.") },
-      { year: same("2024"), title: l("半自动化", "Semi-Automation"), text: l("人工从主标注退向抽检与修正。", "Human workers shifted from primary annotation to spot checks and corrections.") },
-      { year: same("2025"), title: l("自我取代", "Self-Replacement"), text: l("模型开始吞掉自己成长路上的人工环节。", "Models began swallowing the human steps that helped them grow.") }
+      {
+        year: same("2021"),
+        title: l("需求激增", "Demand Surge"),
+        text: l(
+          "大模型训练扩张带来海量标注任务。",
+          "Large-model training expansion created a huge wave of annotation tasks."
+        )
+      },
+      {
+        year: same("2024"),
+        title: l("半自动化", "Semi-Automation"),
+        text: l(
+          "人工从主标注退向抽检与修正。",
+          "Human workers shifted from primary annotation to spot checks and corrections."
+        )
+      },
+      {
+        year: same("2025"),
+        title: l("自我取代", "Self-Replacement"),
+        text: l(
+          "模型开始吞掉自己成长路上的人工环节。",
+          "Models began swallowing the human steps that helped them grow."
+        )
+      }
     ],
     voices: [
       {
@@ -865,15 +1531,24 @@ export const aboutData = {
   timeline: [
     {
       date: l("2026.3 / 概念立项", "2026.3 / Origin"),
-      text: l("项目最初只是一个关于“哪些工作正在被悄悄抽空”的内部备忘录，后来才发展成公开站点。", "The project was started by three former creatives to document professional collapse in the age of large models.")
+      text: l(
+        "项目最初只是一个关于“哪些工作正在被悄悄抽空”的内部备忘录，后来才发展成公开站点。",
+        "The project was started by three former creatives to document professional collapse in the age of large models."
+      )
     },
     {
       date: l("2026.4 / 静态页面上线", "2026.4 / Static Launch"),
-      text: l("展览、详情、祭奠和关于页逐步成形，项目从概念表达转向可浏览、可协作的前端成品。", "The exhibition, detail, memorial, and about pages gradually took shape as the project moved from concept expression to a browsable, collaborative frontend artifact.")
+      text: l(
+        "展览、详情、祭奠和关于页逐步成形，项目从概念表达转向可浏览、可协作的前端成品。",
+        "The exhibition, detail, memorial, and about pages gradually took shape as the project moved from concept expression to a browsable, collaborative frontend artifact."
+      )
     },
     {
       date: l("现在", "Now"),
-      text: l("当前版本继续以静态发布和邮箱整理为主，优先把收录标准、项目语气和页面结构打磨清楚。", "The current version is centered on static publishing and inbox curation, with no promise of online storage, moderation, or real-time community flow.")
+      text: l(
+        "当前版本继续以静态发布和邮箱整理为主，优先把收录标准、项目语气和页面结构打磨清楚。",
+        "The current version is centered on static publishing and inbox curation, with no promise of online storage, moderation, or real-time community flow."
+      )
     }
   ],
   stats: [
@@ -885,11 +1560,41 @@ export const aboutData = {
     { value: l("0 个", "0"), label: l("在线账户与后台系统", "Live Accounts / Admin") }
   ],
   contributors: [
-    { name: l("展览页", "Exhibition Page"), role: l("浏览展览中的职业、状态标签和衰落时间线。", "Browse professions in the exhibition, status labels, and decline timelines.") },
-    { name: l("详情页", "Career Detail"), role: l("查看每个职业的摘要、因素、节录与相关职业。", "Read each profession's summary, factors, excerpts, and related entries.") },
-    { name: l("祭奠页", "Memorial"), role: l("通过邮件草稿提交悼词或新增职业建议。", "Submit memorial text or new profession suggestions through an email draft.") },
-    { name: l("关于页", "About"), role: l("理解项目目标、收录方法、内容边界和协作方式。", "Understand the project's purpose, curation method, boundaries, and collaboration path.") },
-    { name: l("当前限制", "Current Limits"), role: l("没有账户系统、在线存储、后台审核或实时社区流。", "There are no accounts, online storage, admin moderation, or real-time community features.") },
+    {
+      name: l("展览页", "Exhibition Page"),
+      role: l(
+        "浏览展览中的职业、状态标签和衰落时间线。",
+        "Browse professions in the exhibition, status labels, and decline timelines."
+      )
+    },
+    {
+      name: l("详情页", "Career Detail"),
+      role: l(
+        "查看每个职业的摘要、因素、节录与相关职业。",
+        "Read each profession's summary, factors, excerpts, and related entries."
+      )
+    },
+    {
+      name: l("祭奠页", "Memorial"),
+      role: l(
+        "通过邮件草稿提交悼词或新增职业建议。",
+        "Submit memorial text or new profession suggestions through an email draft."
+      )
+    },
+    {
+      name: l("关于页", "About"),
+      role: l(
+        "理解项目目标、收录方法、内容边界和协作方式。",
+        "Understand the project's purpose, curation method, boundaries, and collaboration path."
+      )
+    },
+    {
+      name: l("当前限制", "Current Limits"),
+      role: l(
+        "没有账户系统、在线存储、后台审核或实时社区流。",
+        "There are no accounts, online storage, admin moderation, or real-time community features."
+      )
+    },
     {
       name: l("欢迎协作", "Contribute"),
       role: l(
@@ -904,7 +1609,10 @@ export const initialMemorials = {
   existing: [
     {
       careerSlug: "graphic-designer",
-      signature: l("匿名悼词者 / 前资深视觉设计", "Anonymous Tribute / Former Senior Visual Designer"),
+      signature: l(
+        "匿名悼词者 / 前资深视觉设计",
+        "Anonymous Tribute / Former Senior Visual Designer"
+      ),
       date: same("2024.03.20"),
       text: l(
         "在这个一切皆可生成的年代，我怀念那些通宵改稿、为了 1 像素的间距而争执的夜晚。那是我们作为“人”对审美的最后坚持。再见了，画笔。",
@@ -952,7 +1660,10 @@ export const initialMemorials = {
         "我们被要求教会机器如何理解世界，但没有人愿意记住是谁在深夜里一格格修正这些错误。这个职业还没来得及被命名，就已经开始消失。",
         "We were asked to teach machines how to read the world, yet no one cared who spent the night correcting these errors one box at a time. This profession began disappearing before it was ever properly named."
       ),
-      references: l("可参考：外包标注平台招募页面、生成式 AI 数据清洗案例。", "References: outsourced annotation platform postings and case studies on generative AI data cleaning.")
+      references: l(
+        "可参考：外包标注平台招募页面、生成式 AI 数据清洗案例。",
+        "References: outsourced annotation platform postings and case studies on generative AI data cleaning."
+      )
     },
     {
       careerName: l("直播脚本拼接师", "Livestream Script Stitcher"),
@@ -966,7 +1677,10 @@ export const initialMemorials = {
         "脚本越来越像算法生成前的垫片，我们只是把情绪和促销句子粘成一条流水线。等模型彻底接手后，连这层薄薄的人工痕迹也会被抹掉。",
         "The script increasingly feels like a spacer before full algorithmic generation. We merely glue emotion and sales lines into a conveyor belt, and once the model takes over, even this thin trace of human labor will disappear."
       ),
-      references: l("可参考：直播招聘 JD、带货脚本模板库。", "References: livestream job descriptions and commerce script template libraries.")
+      references: l(
+        "可参考：直播招聘 JD、带货脚本模板库。",
+        "References: livestream job descriptions and commerce script template libraries."
+      )
     }
   ]
 };
