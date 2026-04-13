@@ -3,11 +3,14 @@ import { LocaleProvider } from "../lib/i18n";
 import { siteMeta } from "../data";
 import { Shell } from "../components/Shell";
 
+export const viewport = {
+  themeColor: siteMeta.themeColor
+};
+
 export const metadata = {
   metadataBase: new URL(siteMeta.siteUrl),
   title: { template: "%s | 职业墓场", default: "职业墓场" },
   description: siteMeta.defaultDescription.zh,
-  themeColor: siteMeta.themeColor,
   openGraph: {
     siteName: "职业墓场",
     images: [siteMeta.socialImage],

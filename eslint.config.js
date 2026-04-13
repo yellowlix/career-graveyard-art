@@ -18,7 +18,7 @@ export default [
     }
   },
   {
-    files: ["vite.config.js", "eslint.config.js", "playwright.config.js"],
+    files: ["next.config.js", "eslint.config.js", "playwright.config.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
