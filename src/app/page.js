@@ -3,6 +3,9 @@ import Link from "next/link";
 import { useLocale, t } from "../lib/i18n";
 import { siteMeta, siteCopy, careers, homeQuote } from "../data";
 import { CareerCard } from "../components/CareerCard";
+import { PageMarker } from "../components/PageMarker";
+import { PageJsonLd } from "../components/PageJsonLd";
+import { buildWebSiteSchema } from "../lib/seo";
 
 export default function HomePage() {
   const { locale } = useLocale();
@@ -10,6 +13,8 @@ export default function HomePage() {
 
   return (
     <main id="main-content" className="page-main page-main--home">
+      <PageMarker page="home" />
+      <PageJsonLd buildSchemas={(loc) => buildWebSiteSchema(loc)} />
       <div className="home-snap-shell" aria-label={t(siteCopy.pageDescriptions.home, locale)}>
         <section className="home-panel home-panel--hero" data-home-panel="hero">
           <div className="home-panel__inner home-panel__inner--hero">

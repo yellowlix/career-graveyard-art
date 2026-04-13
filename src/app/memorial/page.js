@@ -2,6 +2,10 @@
 import { useState, useMemo, useCallback } from "react";
 import { useLocale, t } from "../../lib/i18n";
 import { siteMeta, siteCopy, careers, initialMemorials } from "../../data";
+import { PageMarker } from "../../components/PageMarker";
+import { PageJsonLd } from "../../components/PageJsonLd";
+import { buildWebSiteSchema, buildBreadcrumbSchema, toAbsoluteUrl } from "../../lib/seo";
+import { t as translate } from "../../lib/translate";
 
 function interpolate(template, values) {
   return template.replace(/\{(\w+)\}/g, (_, key) => values[key] ?? "");
@@ -136,6 +140,16 @@ export default function MemorialPage() {
 
   return (
     <main id="main-content" className="page-main page-main--exhibition">
+      <PageMarker page="memorial" />
+      <PageJsonLd
+        buildSchemas={(loc) => [
+          buildWebSiteSchema(loc),
+          buildBreadcrumbSchema([
+            { name: translate(siteMeta.siteName, loc), url: siteMeta.siteUrl },
+            { name: translate(siteCopy.memorial.title, loc), url: toAbsoluteUrl("/memorial") }
+          ])
+        ]}
+      />
       <header className="page-header reveal">
         <h1>{t(siteCopy.memorial.title, locale)}</h1>
         <p className="page-header__subtitle">{t(siteCopy.memorial.channelValue, locale)}</p>

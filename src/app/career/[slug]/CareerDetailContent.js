@@ -2,9 +2,13 @@
 
 import { useMemo } from "react";
 import { useLocale, t } from "../../../lib/i18n";
-import { careers, siteCopy, statusMeta } from "../../../data";
+import { careers, siteCopy, siteMeta, statusMeta } from "../../../data";
 import { CareerCard } from "../../../components/CareerCard";
 import { NotFoundPanel } from "../../../components/NotFoundPanel";
+import { PageMarker } from "../../../components/PageMarker";
+import { PageJsonLd } from "../../../components/PageJsonLd";
+import { buildBreadcrumbSchema, toAbsoluteUrl } from "../../../lib/seo";
+import { t as translate } from "../../../lib/translate";
 
 function buildRelatedCareers(currentCareer) {
   const sameStatus = careers.filter(
@@ -29,6 +33,7 @@ export function CareerDetailContent({ slug }) {
     };
     return (
       <main id="main-content" className="page-main page-main--detail">
+        <PageMarker page="detail" />
         <NotFoundPanel
           config={{
             eyebrow: siteCopy.notFound.eyebrow,
@@ -44,6 +49,29 @@ export function CareerDetailContent({ slug }) {
 
   return (
     <main id="main-content" className="page-main page-main--detail">
+      <PageMarker page="detail" />
+      <PageJsonLd
+        buildSchemas={(loc) => [
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: translate(career.name, loc),
+            description: translate(career.summary, loc),
+            url: toAbsoluteUrl(`/career/${career.slug}`),
+            inLanguage: loc === "zh" ? "zh-CN" : "en",
+            publisher: {
+              "@type": "Organization",
+              name: translate(siteMeta.siteName, loc),
+              url: siteMeta.siteUrl
+            }
+          },
+          buildBreadcrumbSchema([
+            { name: translate(siteMeta.siteName, loc), url: siteMeta.siteUrl },
+            { name: translate(siteCopy.archive.title, loc), url: toAbsoluteUrl("/archive") },
+            { name: translate(career.name, loc), url: toAbsoluteUrl(`/career/${career.slug}`) }
+          ])
+        ]}
+      />
       <header className="detail-header reveal">
         <div className="detail-header__row">
           <div>

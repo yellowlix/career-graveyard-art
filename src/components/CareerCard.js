@@ -6,12 +6,15 @@ import { careers } from "../data";
 export function CareerCard({ career, variant = "home" }) {
   const { locale } = useLocale();
   const HeadingTag = variant === "related" ? "h4" : "h2";
-  const index = careers.indexOf(career);
+  const index = careers.findIndex((c) => c.slug === career.slug);
 
   return (
     <Link
       className={`career-card career-card--${variant} reveal`}
-      style={{ "--slab-height": `${career.slabHeight}px`, "--stagger": `${0.08 * index}s` }}
+      style={{
+        "--slab-height": `${career.slabHeight}px`,
+        "--stagger": `${0.08 * Math.max(0, index)}s`
+      }}
       href={`/career/${career.slug}`}
     >
       <div className="career-card__cross">

@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState } from "react";
+export { t } from "./translate";
 
 const STORAGE_KEY = "career-graveyard-locale";
 const DEFAULT_LOCALE = "zh";
@@ -34,13 +35,4 @@ export function LocaleProvider({ children }) {
 
 export function useLocale() {
   return useContext(LocaleContext);
-}
-
-export function t(value, locale) {
-  if (value == null) return "";
-  if (typeof value === "string") return value;
-  if (typeof value === "object" && ("zh" in value || "en" in value)) {
-    return value[locale] ?? value.zh ?? "";
-  }
-  return String(value);
 }

@@ -1,5 +1,5 @@
 import { siteMeta } from "../data";
-import { t } from "./i18n";
+import { t } from "./translate";
 
 export function buildWebSiteSchema(locale) {
   return {

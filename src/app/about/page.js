@@ -1,6 +1,10 @@
 "use client";
 import { useLocale, t } from "../../lib/i18n";
 import { siteMeta, siteCopy, aboutData } from "../../data";
+import { PageMarker } from "../../components/PageMarker";
+import { PageJsonLd } from "../../components/PageJsonLd";
+import { buildWebSiteSchema, buildBreadcrumbSchema, toAbsoluteUrl } from "../../lib/seo";
+import { t as translate } from "../../lib/translate";
 
 function InfoCard({ id, config, locale }) {
   return (
@@ -34,6 +38,16 @@ export default function AboutPage() {
 
   return (
     <main id="main-content" className="page-main page-main--exhibition">
+      <PageMarker page="about" />
+      <PageJsonLd
+        buildSchemas={(loc) => [
+          buildWebSiteSchema(loc),
+          buildBreadcrumbSchema([
+            { name: translate(siteMeta.siteName, loc), url: siteMeta.siteUrl },
+            { name: translate(siteCopy.navigation.about, loc), url: toAbsoluteUrl("/about") }
+          ])
+        ]}
+      />
       <section className="about-hero reveal">
         <div className="about-hero__copy">
           <p className="section-eyebrow">{t(siteCopy.about.heroEyebrow, locale)}</p>

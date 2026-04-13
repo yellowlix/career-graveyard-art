@@ -3,8 +3,12 @@
 import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useLocale, t } from "../../lib/i18n";
-import { careers, siteCopy, statusMeta } from "../../data";
+import { careers, siteCopy, siteMeta, statusMeta } from "../../data";
 import { CareerCard } from "../../components/CareerCard";
+import { PageMarker } from "../../components/PageMarker";
+import { PageJsonLd } from "../../components/PageJsonLd";
+import { buildWebSiteSchema, buildBreadcrumbSchema, toAbsoluteUrl } from "../../lib/seo";
+import { t as translate } from "../../lib/translate";
 
 const ARCHIVE_PAGE_SIZE_DEFAULT = 12;
 const ARCHIVE_PAGE_SIZE_WIDE = 16;
@@ -187,6 +191,16 @@ function ArchiveContent() {
 
   return (
     <main id="main-content" className="page-main page-main--exhibition">
+      <PageMarker page="archive" />
+      <PageJsonLd
+        buildSchemas={(loc) => [
+          buildWebSiteSchema(loc),
+          buildBreadcrumbSchema([
+            { name: translate(siteMeta.siteName, loc), url: siteMeta.siteUrl },
+            { name: translate(siteCopy.archive.title, loc), url: toAbsoluteUrl("/archive") }
+          ])
+        ]}
+      />
       <header className="page-header reveal">
         <h1>{t(siteCopy.archive.title, locale)}</h1>
         <p className="page-header__subtitle">{t(siteCopy.archive.subtitle, locale)}</p>
