@@ -18,7 +18,7 @@ export default [
     }
   },
   {
-    files: ["next.config.js", "eslint.config.js", "playwright.config.js"],
+    files: ["next.config.js", "eslint.config.js", "playwright.config.js", "scripts/**/*.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",

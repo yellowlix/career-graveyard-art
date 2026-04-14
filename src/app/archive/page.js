@@ -297,6 +297,7 @@ function ArchiveContent() {
                 <button
                   type="button"
                   className="archive-search-clear"
+                  data-archive-search-clear=""
                   aria-label={t(siteCopy.archive.searchClearAriaLabel, locale)}
                   onMouseDown={(e) => e.preventDefault()}
                   onClick={handleClear}
