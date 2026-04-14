@@ -82,7 +82,7 @@ function buildArchiveHref(nextState) {
   if (normalized.page > 1) params.set("page", String(normalized.page));
 
   const queryString = params.toString();
-  return `/archive${queryString ? `?${queryString}` : ""}`;
+  return `/archive/${queryString ? `?${queryString}` : ""}`;
 }
 
 function ArchiveContent() {
