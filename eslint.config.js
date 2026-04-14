@@ -4,7 +4,7 @@ import prettier from "eslint-config-prettier";
 
 export default [
   {
-    ignores: ["dist/", "node_modules/"]
+    ignores: ["dist/", "node_modules/", ".next/", "out/"]
   },
   js.configs.recommended,
   prettier,
@@ -13,11 +13,12 @@ export default [
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
+      parserOptions: { ecmaFeatures: { jsx: true } },
       globals: globals.browser
     }
   },
   {
-    files: ["vite.config.js", "eslint.config.js", "playwright.config.js"],
+    files: ["next.config.js", "eslint.config.js", "playwright.config.js", "scripts/**/*.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",

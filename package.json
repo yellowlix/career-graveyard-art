@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "next dev",
+    "build": "next build && node scripts/generate-sitemap.js",
+    "preview": "npx serve out",
     "test:e2e": "playwright test",
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:update": "playwright test --update-snapshots",
@@ -21,7 +21,7 @@
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{html,css,json}": [
+    "*.{html,css,json,jsx}": [
       "prettier --write"
     ]
   },
@@ -33,7 +33,11 @@
     "globals": "^17.5.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "prettier": "^3.8.2",
-    "vite": "^7.1.0"
+    "prettier": "^3.8.2"
+  },
+  "dependencies": {
+    "next": "^16.2.3",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
   }
 }
