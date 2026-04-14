@@ -1,5 +1,6 @@
 import { careers, siteCopy } from "../../../data";
 import { CareerDetailContent } from "./CareerDetailContent";
+import { buildPageMetadata } from "../../../lib/pageMetadata";
 
 function interpolate(template, values) {
   return String(template ?? "").replace(/\{(\w+)\}/g, (_, key) => values[key] ?? "");
@@ -14,26 +15,22 @@ export async function generateMetadata({ params }) {
   const career = careers.find((c) => c.slug === slug);
 
   if (!career) {
-    return {
+    return buildPageMetadata({
       title: siteCopy.notFound.detailTitle.zh,
       description: interpolate(siteCopy.notFound.detailBodyTemplate.zh, { slug }),
-      alternates: {
-        canonical: "/archive"
-      },
+      path: "/archive",
       robots: {
         index: false,
         follow: true
       }
-    };
+    });
   }
 
-  return {
+  return buildPageMetadata({
     title: career.name.zh,
     description: career.summary.zh,
-    alternates: {
-      canonical: `/career/${career.slug}`
-    }
-  };
+    path: `/career/${career.slug}`
+  });
 }
 
 export default async function CareerPage({ params }) {
