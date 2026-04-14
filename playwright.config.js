@@ -12,7 +12,7 @@ export default defineConfig({
     navigationTimeout: 45000
   },
   webServer: {
-    command: "npm run dev -- --host 127.0.0.1 --port 4173",
+    command: "npm run dev -- -H 127.0.0.1 -p 4173",
     url: "http://127.0.0.1:4173",
     reuseExistingServer: true,
     timeout: 120000

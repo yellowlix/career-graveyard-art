@@ -131,10 +131,10 @@
 | --- | --- |
 | 站点中文名 | `职业墓场` |
 | 站点英文名 | `Career Graveyard` |
-| `siteUrl` | `https://career-graveyard.art` |
+| `siteUrl` | `https://career-graveyard.com` |
 | `contactEmail` | `mahrovandrei@gmail.com` |
 | `themeColor` | `#ffffff` |
-| `socialImage` | `https://career-graveyard.art/favicon.svg` |
+| `socialImage` | `https://career-graveyard.com/favicon.svg` |
 
 ## 10. `careers` 数据结构
 

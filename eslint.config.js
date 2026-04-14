@@ -1,0 +1,42 @@
+import js from "@eslint/js";
+import globals from "globals";
+import prettier from "eslint-config-prettier";
+
+export default [
+  {
+    ignores: ["dist/", "node_modules/", ".next/", "out/"]
+  },
+  js.configs.recommended,
+  prettier,
+  {
+    files: ["src/**/*.js"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      parserOptions: { ecmaFeatures: { jsx: true } },
+      globals: globals.browser
+    }
+  },
+  {
+    files: ["next.config.js", "eslint.config.js", "playwright.config.js", "scripts/**/*.js"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: globals.node
+    }
+  },
+  {
+    files: ["tests/**/*.js"],
+    languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      globals: {
+        ...globals.node,
+        ...globals.browser
+      }
+    },
+    rules: {
+      "no-unused-vars": ["error", { varsIgnorePattern: "^_" }]
+    }
+  }
+];

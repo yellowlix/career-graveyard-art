@@ -1,0 +1,8 @@
+dist/
+out/
+.next/
+node_modules/
+*.md
+tests/site.spec.js-snapshots/
+.superdesign/
+_old_src/
