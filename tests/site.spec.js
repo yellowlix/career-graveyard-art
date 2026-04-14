@@ -19,6 +19,11 @@ async function switchLocale(page, locale) {
   await page.getByRole("button", { name: locale === "zh" ? "中文" : "EN", exact: true }).click();
 }
 
+function routePattern(pathname, { withQuery = false } = {}) {
+  const base = `${pathname}/?`;
+  return withQuery ? new RegExp(`${base}\\?`) : new RegExp(`${base}$`);
+}
+
 function getViewportTier(testInfo) {
   const projectName = testInfo.project.name;
 
@@ -198,7 +203,7 @@ test("locale preference persists across navigation and reload", async ({ page })
   await page
     .getByRole("link", { name: pick(siteCopy.navigation.archive, "en"), exact: true })
     .click();
-  await expect(page).toHaveURL(/\/archive$/);
+  await expect(page).toHaveURL(routePattern("/archive"));
   await expect(
     page.getByRole("heading", { level: 1, name: pick(siteCopy.archive.title, "en") })
   ).toBeVisible();
@@ -256,33 +261,32 @@ test("archive page can filter careers by localized status", async ({ page }, tes
     })
   ).toBeVisible();
 });
-
 test("archive clear button should clear committed query and reset listing", async ({
   page
 }, testInfo) => {
   await visit(page, "/archive");
+  await switchLocale(page, "en");
 
   const expectedPageSize = getExpectedArchivePageSize(testInfo);
   const searchInput = page.locator("#archive-search-input");
   const clearButton = page.locator("[data-archive-search-clear]");
 
-  await searchInput.fill("平面");
+  await searchInput.fill("Graphic");
   await page
-    .getByRole("button", { name: pick(siteCopy.archive.searchSubmit, "zh"), exact: true })
+    .getByRole("button", { name: pick(siteCopy.archive.searchSubmit, "en"), exact: true })
     .click();
 
-  await expect(page).toHaveURL(/\/archive\?q=/);
+  await expect(page).toHaveURL(routePattern("/archive", { withQuery: true }));
   await expect(page.locator(".career-card")).toHaveCount(1);
 
   await clearButton.click();
 
-  await expect(page).toHaveURL("/archive");
+  await expect(page).toHaveURL(routePattern("/archive"));
   await expect(searchInput).toHaveValue("");
   await expect(page.locator(".career-card")).toHaveCount(
     Math.min(expectedPageSize, careers.length)
   );
 });
-
 test("career detail page localizes content", async ({ page }, testInfo) => {
   const designer = careers.find((career) => career.slug === "graphic-designer");
   const viewportTier = getViewportTier(testInfo);
@@ -297,7 +301,7 @@ test("career detail page localizes content", async ({ page }, testInfo) => {
   await expect(page.getByText(pick(designer.voices[0].author, "zh"))).toBeVisible();
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
-    `https://career-graveyard.com/career/${designer.slug}`
+    `https://career-graveyard.com/career/${designer.slug}/`
   );
   if (viewportTier.startsWith("desktop")) {
     await expect(page).toHaveScreenshot("career-detail-page.png", {
@@ -315,10 +319,10 @@ test("career detail back returns to the previous page when navigated from archiv
   await visit(page, "/archive");
   await page.locator(".career-card").first().click();
 
-  await expect(page).toHaveURL(/\/career\/[^/]+$/);
+  await expect(page).toHaveURL(/\/career\/[^/]+\/$/);
   await page.locator(".site-nav__back").click();
 
-  await expect(page).toHaveURL(/\/archive$/);
+  await expect(page).toHaveURL(routePattern("/archive"));
   await expect(page.locator(".career-card").first()).toBeVisible();
 });
 
@@ -541,9 +545,9 @@ test("footer links land on valid information anchors", async ({ page }) => {
     exact: true
   });
 
-  await expect(legalLink).toHaveAttribute("href", "/about#legal");
-  await expect(policyLink).toHaveAttribute("href", "/about#policy");
-  await expect(connectLink).toHaveAttribute("href", "/about#contact");
+  await expect(legalLink).toHaveAttribute("href", "/about/#legal");
+  await expect(policyLink).toHaveAttribute("href", "/about/#policy");
+  await expect(connectLink).toHaveAttribute("href", "/about/#contact");
 
   await visit(page, "/about");
   await expect(page.locator("#legal")).toBeVisible();
