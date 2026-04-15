@@ -8,9 +8,9 @@
 
 | 项目 | 当前值 | 用途 | 来源 |
 | --- | --- | --- | --- |
-| 主字体栈 | `"Archivo", "Noto Serif SC", sans-serif` | 全站正文、标题、导航、按钮 | `src/styles.css` |
-| 等宽字体栈 | `"IBM Plex Mono", "Courier New", monospace` | 祭奠页邮件正文预览 | `src/styles.css` |
-| 字体加载方式 | `@import` Google Fonts | 加载 `Archivo` 与 `Noto Serif SC` | `src/styles.css` |
+| 主字体栈 | `"Archivo", "Noto Serif SC", sans-serif` | 全站正文、标题、导航、按钮 | `src/app/globals.css` |
+| 等宽字体栈 | `"IBM Plex Mono", "Courier New", monospace` | 祭奠页邮件正文预览 | `src/app/globals.css` |
+| 字体加载方式 | `@import` Google Fonts | 加载 `Archivo` 与 `Noto Serif SC` | `src/app/globals.css` |
 | `Archivo` 字重 | `100, 300, 500, 700` | 英文与拉丁字符主视觉 | Google Fonts |
 | `Noto Serif SC` 字重 | `200, 400, 500` | 中文补位与衬线氛围 | Google Fonts |
 

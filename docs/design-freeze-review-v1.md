@@ -9,8 +9,9 @@
   - SuperDesign Project `b0537f78-0b6d-4097-a4b2-3aca11210ed9`
   - 首页、归档、详情、祭奠、关于 5 个 Draft
 - 代码实现：
-  - [src/app.js](F:\Work\Web\career-graveyard-art\src\app.js)
-  - [src/styles.css](F:\Work\Web\career-graveyard-art\src\styles.css)
+  - [src/app/layout.js](F:\Work\Web\career-graveyard-art\src\app\layout.js)
+  - [src/app/globals.css](F:\Work\Web\career-graveyard-art\src\app\globals.css)
+  - [src/components/Shell.js](F:\Work\Web\career-graveyard-art\src\components\Shell.js)
   - [src/data.js](F:\Work\Web\career-graveyard-art\src\data.js)
 - 验收体系：
   - [playwright.config.js](F:\Work\Web\career-graveyard-art\playwright.config.js)

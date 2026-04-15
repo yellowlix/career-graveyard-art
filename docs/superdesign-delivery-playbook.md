@@ -23,9 +23,11 @@
 - PageFooter: `cc865474-ff5c-41f4-8c20-8af3a6dfc5f2`
 
 ### 2.4 代码事实源
-- 运行结构: [src/app.js](F:\Work\Web\career-graveyard-art\src\app.js)
-- 视觉样式: [src/styles.css](F:\Work\Web\career-graveyard-art\src\styles.css)
+- 布局与路由壳层: [src/app/layout.js](F:\Work\Web\career-graveyard-art\src\app\layout.js)
+- 共享页面壳层: [src/components/Shell.js](F:\Work\Web\career-graveyard-art\src\components\Shell.js)
+- 视觉样式: [src/app/globals.css](F:\Work\Web\career-graveyard-art\src\app\globals.css)
 - 页面数据: [src/data.js](F:\Work\Web\career-graveyard-art\src\data.js)
+- 项目设计文档: [docs/project-design.md](F:\Work\Web\career-graveyard-art\docs\project-design.md)
 - 响应式规范: [docs/responsive-spec.md](F:\Work\Web\career-graveyard-art\docs\responsive-spec.md)
 - 字体规格: [docs/typography-tokens.md](F:\Work\Web\career-graveyard-art\docs\typography-tokens.md)
 
@@ -105,8 +107,8 @@ superdesign get-design --draft-id <draft-id> --output .superdesign\latest-html\<
 ## 5. 实施映射规则
 
 ### 5.1 优先修改文件
-- 共享导航与壳层: [src/app.js](F:\Work\Web\career-graveyard-art\src\app.js)
-- 全站视觉系统: [src/styles.css](F:\Work\Web\career-graveyard-art\src\styles.css)
+- 共享导航与壳层: [src/components/Shell.js](F:\Work\Web\career-graveyard-art\src\components\Shell.js)、[src/components/SiteNav.js](F:\Work\Web\career-graveyard-art\src\components\SiteNav.js)、[src/app/layout.js](F:\Work\Web\career-graveyard-art\src\app\layout.js)
+- 全站视觉系统: [src/app/globals.css](F:\Work\Web\career-graveyard-art\src\app\globals.css)
 - 数据驱动内容: [src/data.js](F:\Work\Web\career-graveyard-art\src\data.js)
 - 测试视口与回归矩阵: [playwright.config.js](F:\Work\Web\career-graveyard-art\playwright.config.js)
 - 验收脚本: [tests/site.spec.js](F:\Work\Web\career-graveyard-art\tests\site.spec.js)
