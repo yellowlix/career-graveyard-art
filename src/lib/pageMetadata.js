@@ -4,7 +4,9 @@ import { t } from "./translate";
 const DEFAULT_LOCALE = "zh";
 
 export const defaultSocialImage = {
-  url: siteMeta.socialImage,
+  url: "/og-default.png",
+  width: 1200,
+  height: 630,
   alt: "Career Graveyard social preview"
 };
 
