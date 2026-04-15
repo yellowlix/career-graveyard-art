@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useLocale, t } from "../lib/i18n";
 import { careers } from "../data";
+import { trackEvent } from "../lib/analytics";
 
 export function CareerCard({ career, variant = "home" }) {
   const { locale } = useLocale();
@@ -16,6 +17,12 @@ export function CareerCard({ career, variant = "home" }) {
         "--stagger": `${0.08 * Math.max(0, index)}s`
       }}
       href={`/career/${career.slug}`}
+      onClick={() =>
+        trackEvent("career-detail-click", {
+          slug: career.slug,
+          source: variant
+        })
+      }
     >
       <div className="career-card__cross">
         <span className="career-card__bar career-card__bar--top" aria-hidden="true" />
