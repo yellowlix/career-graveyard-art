@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import { useLocale, t } from "../../lib/i18n";
 import { siteMeta, siteCopy, careers, initialMemorials } from "../../data";
 import { PageMarker } from "../../components/PageMarker";
 import { PageJsonLd } from "../../components/PageJsonLd";
 import { buildWebSiteSchema, buildBreadcrumbSchema, toAbsoluteUrl } from "../../lib/seo";
 import { t as translate } from "../../lib/translate";
+import { trackEvent } from "../../lib/analytics";
 
 function interpolate(template, values) {
   return template.replace(/\{(\w+)\}/g, (_, key) => values[key] ?? "");
@@ -66,6 +67,10 @@ export default function MemorialPageClient() {
     text: "",
     references: ""
   });
+
+  useEffect(() => {
+    trackEvent("memorial-page-enter");
+  }, []);
 
   const updateExisting = useCallback((field, value) => {
     setExistingFields((prev) => ({ ...prev, [field]: value }));
@@ -299,7 +304,12 @@ export default function MemorialPageClient() {
                 href={draft.isValid ? buildMailtoUrl(draft) : "#"}
                 aria-disabled={draft.isValid ? "false" : "true"}
                 onClick={(e) => {
-                  if (!draft.isValid) e.preventDefault();
+                  if (!draft.isValid) {
+                    e.preventDefault();
+                    return;
+                  }
+
+                  trackEvent("memorial-submit-click", { mode: activeMode });
                 }}
               >
                 {t(modeCopy.submitLabel, locale)}
