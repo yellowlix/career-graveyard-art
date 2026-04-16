@@ -205,22 +205,16 @@ test("nav hint appears on hover and does not stay open after click", async ({ pa
   });
   const hint = page.locator("#site-nav-hint-archive");
 
-  await expect
-    .poll(async () => hint.evaluate((el) => getComputedStyle(el).opacity))
-    .toBe("0");
+  await expect.poll(async () => hint.evaluate((el) => getComputedStyle(el).opacity)).toBe("0");
 
   await archiveLink.hover();
-  await expect
-    .poll(async () => hint.evaluate((el) => getComputedStyle(el).opacity))
-    .toBe("1");
+  await expect.poll(async () => hint.evaluate((el) => getComputedStyle(el).opacity)).toBe("1");
 
   await archiveLink.click();
   await expect(page).toHaveURL(routePattern("/archive"));
 
   await page.mouse.move(0, 0);
-  await expect
-    .poll(async () => hint.evaluate((el) => getComputedStyle(el).opacity))
-    .toBe("0");
+  await expect.poll(async () => hint.evaluate((el) => getComputedStyle(el).opacity)).toBe("0");
 });
 
 test("locale preference persists across navigation and reload", async ({ page }) => {
