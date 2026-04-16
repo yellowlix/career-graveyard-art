@@ -453,7 +453,9 @@ button {
 
 @media (hover: hover) {
   .site-nav__item:hover .site-nav__hint,
-  .site-nav__item:focus-within .site-nav__hint {
+  /* :focus-within keeps the hint open after a mouse click because the link stays :focus.
+     Use :focus-visible so keyboard users still see it; pointer activation does not. */
+  .site-nav__link:focus-visible ~ .site-nav__hint {
     opacity: 1;
     transform: translateY(0);
   }
@@ -1265,6 +1267,33 @@ button {
   font-size: var(--text-caption);
 }
 
+/* Full-width row below the two-column detail block; matches home quote CTA sizing */
+.detail-memorial-cta {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  display: grid;
+  justify-items: center;
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  text-align: center;
+  width: 100%;
+}
+
+.detail-memorial-cta__text {
+  margin: 0;
+  max-width: 40rem;
+  font-size: var(--text-caption);
+  line-height: var(--line-height-body-relaxed);
+  color: var(--muted);
+  letter-spacing: var(--tracking-label);
+}
+
+.detail-memorial-cta .outline-button {
+  padding-inline: 2.4rem;
+  min-width: 14rem;
+  min-height: 42px;
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+}
+
 .related-section {
   margin-top: 12rem;
   padding-top: 8rem;
@@ -1644,11 +1673,11 @@ button {
 }
 
 body[data-page="about"] .info-card[id] {
-  scroll-margin-top: var(--anchor-scroll-padding);
+  scroll-margin-top: calc(var(--anchor-scroll-padding) + 3rem);
 }
 
 body[data-page="about"] #support {
-  scroll-margin-top: var(--anchor-scroll-padding);
+  scroll-margin-top: calc(var(--anchor-scroll-padding) + 3rem);
 }
 
 .info-card {
@@ -1720,6 +1749,9 @@ body[data-page="about"] #support {
 }
 
 .about-support__actions {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
   padding-top: 0;
 }
 
@@ -1729,6 +1761,17 @@ body[data-page="about"] #support {
   min-height: 42px;
   font-size: var(--text-caption);
   letter-spacing: var(--tracking-label);
+}
+
+.about-support__secondary-link {
+  color: var(--muted);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+.about-support__secondary-link:hover,
+.about-support__secondary-link:focus-visible {
+  color: var(--page-fg);
 }
 
 .contributor-card {

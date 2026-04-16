@@ -39,7 +39,7 @@
 
 ```bash
 npm install
-npm run dev -- --host 127.0.0.1 --port 4173
+npm run dev -- -H 127.0.0.1 -p 4173
 ```
 
 打开 [http://127.0.0.1:4173](http://127.0.0.1:4173) 查看。
@@ -88,6 +88,7 @@ npm run test:e2e:update
 ## 设计来源
 
 - SuperDesign Project ID: `b0537f78-0b6d-4097-a4b2-3aca11210ed9`
+- 项目设计文档：`docs/project-design.md`
 - 设计与交付流程说明：`docs/superdesign-delivery-playbook.md`
 - 响应式设计规格：`docs/responsive-spec.md`
 - 分支与提交协作规则：`docs/github-branch-policy.md`

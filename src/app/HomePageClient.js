@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useLocale, t } from "../lib/i18n";
 import { siteMeta, siteCopy, careers, homeQuote } from "../data";
 import { CareerCard } from "../components/CareerCard";
+import { SiteFooter } from "../components/SiteFooter";
 import { PageMarker } from "../components/PageMarker";
 import { PageJsonLd } from "../components/PageJsonLd";
 import { buildWebSiteSchema } from "../lib/seo";
@@ -65,6 +66,7 @@ export default function HomePageClient() {
           </div>
         </section>
       </div>
+      <SiteFooter />
     </main>
   );
 }

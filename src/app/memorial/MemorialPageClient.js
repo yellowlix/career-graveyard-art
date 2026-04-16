@@ -1,12 +1,14 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
+import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
 import { useLocale, t } from "../../lib/i18n";
 import { siteMeta, siteCopy, careers, initialMemorials } from "../../data";
 import { PageMarker } from "../../components/PageMarker";
 import { PageJsonLd } from "../../components/PageJsonLd";
 import { buildWebSiteSchema, buildBreadcrumbSchema, toAbsoluteUrl } from "../../lib/seo";
 import { t as translate } from "../../lib/translate";
+import { trackEvent } from "../../lib/analytics";
 
 function interpolate(template, values) {
   return template.replace(/\{(\w+)\}/g, (_, key) => values[key] ?? "");
@@ -53,6 +55,8 @@ function MemorialItem({ item, mode, locale }) {
 
 export default function MemorialPageClient() {
   const { locale } = useLocale();
+  const searchParams = useSearchParams();
+  const careerFromQuery = searchParams.get("career");
   const [activeMode, setActiveMode] = useState("existing");
   const [existingFields, setExistingFields] = useState({
     careerSlug: careers[0]?.slug ?? "",
@@ -66,6 +70,20 @@ export default function MemorialPageClient() {
     text: "",
     references: ""
   });
+
+  useEffect(() => {
+    trackEvent("memorial-page-enter");
+  }, []);
+
+  useLayoutEffect(() => {
+    if (!careerFromQuery || !careers.some((c) => c.slug === careerFromQuery)) {
+      return;
+    }
+    setActiveMode("existing");
+    setExistingFields((prev) =>
+      prev.careerSlug === careerFromQuery ? prev : { ...prev, careerSlug: careerFromQuery }
+    );
+  }, [careerFromQuery]);
 
   const updateExisting = useCallback((field, value) => {
     setExistingFields((prev) => ({ ...prev, [field]: value }));
@@ -299,7 +317,12 @@ export default function MemorialPageClient() {
                 href={draft.isValid ? buildMailtoUrl(draft) : "#"}
                 aria-disabled={draft.isValid ? "false" : "true"}
                 onClick={(e) => {
-                  if (!draft.isValid) e.preventDefault();
+                  if (!draft.isValid) {
+                    e.preventDefault();
+                    return;
+                  }
+
+                  trackEvent("memorial-submit-click", { mode: activeMode });
                 }}
               >
                 {t(modeCopy.submitLabel, locale)}

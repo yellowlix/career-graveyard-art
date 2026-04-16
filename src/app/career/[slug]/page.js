@@ -29,7 +29,8 @@ export async function generateMetadata({ params }) {
   return buildPageMetadata({
     title: career.name.zh,
     description: career.summary.zh,
-    path: `/career/${career.slug}`
+    path: `/career/${career.slug}`,
+    type: "article"
   });
 }
 

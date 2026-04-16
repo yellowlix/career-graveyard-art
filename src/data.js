@@ -14,6 +14,7 @@ export const siteMeta = {
   siteUrl: "https://career-graveyard.com",
   contactEmail: "mahrovandrei@gmail.com",
   afdianUrl: "https://afdian.com/a/yellowaurora",
+  kofiUrl: "https://ko-fi.com/yellowaurora",
   themeColor: "#ffffff",
   socialImage: "https://career-graveyard.com/favicon.svg",
   defaultDescription: l(
@@ -124,7 +125,12 @@ export const siteCopy = {
     profileEyebrow: l("职业讣告", "Obituary"),
     factorsEyebrow: l("消逝因素", "Factors"),
     voicesEyebrow: l("悼词节录", "Memorial Excerpts"),
-    relatedEyebrow: l("同病相怜", "Similar Fates")
+    relatedEyebrow: l("同病相怜", "Similar Fates"),
+    memorialCta: l("祭奠此职业", "Memorialize this profession"),
+    memorialVoicesBlurb: l(
+      "若你也曾身处这份职业的变化之中，可在此撰写悼词，经邮箱提交至项目收件箱。",
+      "If you have lived through this profession's changes, you can draft a memorial here and submit it by email."
+    )
   },
   memorial: {
     title: l("祭奠", "Memorial"),
@@ -297,7 +303,12 @@ export const siteCopy = {
       "你的支持会帮助新的职业档案、悼词与观察继续被写下去，也会让这座仍在扩建中的数字墓园有机会被维护得更久一点。",
       "Your support helps keep new entries, memorials, and observations alive."
     ),
-    supportCta: l("前往爱发电", "Support on Afdian")
+    supportChannelNote: l(
+      "你可以通过爱发电或 Ko-fi 支持这座墓园。",
+      "You can support this archive through Afdian or Ko-fi."
+    ),
+    supportAfdianCta: l("通过爱发电支持", "Support via Afdian"),
+    supportKofiCta: l("在 Ko-fi 上支持我", "Support on Ko-fi")
   },
   aboutInfo: {
     legal: {

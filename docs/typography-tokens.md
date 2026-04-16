@@ -8,7 +8,7 @@
 
 | 规则 | 说明 |
 | --- | --- |
-| 统一来源 | 业务样式中的字号、字重、行高、字距应优先来自 `src/styles.css` 中的 typography tokens。 |
+| 统一来源 | 业务样式中的字号、字重、行高、字距应优先来自 `src/app/globals.css` 中的 typography tokens。 |
 | 固定阶梯 | 正文与 UI 文本统一收敛到 `12 / 14 / 16 / 18 / 24 / 32` 六档。 |
 | Display 例外 | 首页 Hero 和页面主标题允许使用集中管理的 `display` token，并继续保持响应式 `clamp()`。 |
 | 禁止新增裸值 | 新组件默认不直接写裸 `font-size / font-weight / line-height / letter-spacing`；如确需例外，需在样式旁简短说明原因。 |
