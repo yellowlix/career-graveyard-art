@@ -128,8 +128,8 @@ export const siteCopy = {
     relatedEyebrow: l("同病相怜", "Similar Fates"),
     memorialCta: l("祭奠此职业", "Memorialize this profession"),
     memorialVoicesBlurb: l(
-      "若你也曾亲历这份职业的消逝，可在此撰写悼词，经邮箱提交至项目收件箱。",
-      "If you lived through this profession's decline, you can draft a memorial here and submit it by email."
+      "若你也曾身处这份职业的变化之中……可在此撰写悼词，经邮箱提交至项目收件箱。",
+      "If you have lived through this profession's changes, you can draft a memorial here and submit it by email."
     )
   },
   memorial: {
