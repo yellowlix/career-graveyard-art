@@ -192,6 +192,37 @@ test("home navigation stays readable with the locale switcher", async ({ page })
   });
 });
 
+test("nav hint appears on hover and does not stay open after click", async ({ page }, testInfo) => {
+  if (!testInfo.project.name.includes("desktop")) {
+    test.skip();
+  }
+
+  await visit(page, "/");
+
+  const archiveLink = page.getByRole("link", {
+    name: pick(siteCopy.navigation.archive, "zh"),
+    exact: true
+  });
+  const hint = page.locator("#site-nav-hint-archive");
+
+  await expect
+    .poll(async () => hint.evaluate((el) => getComputedStyle(el).opacity))
+    .toBe("0");
+
+  await archiveLink.hover();
+  await expect
+    .poll(async () => hint.evaluate((el) => getComputedStyle(el).opacity))
+    .toBe("1");
+
+  await archiveLink.click();
+  await expect(page).toHaveURL(routePattern("/archive"));
+
+  await page.mouse.move(0, 0);
+  await expect
+    .poll(async () => hint.evaluate((el) => getComputedStyle(el).opacity))
+    .toBe("0");
+});
+
 test("locale preference persists across navigation and reload", async ({ page }) => {
   await visit(page, "/");
   await switchLocale(page, "en");
