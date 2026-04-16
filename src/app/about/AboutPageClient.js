@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useLocale, t } from "../../lib/i18n";
 import { siteMeta, siteCopy, aboutData } from "../../data";
 import { PageMarker } from "../../components/PageMarker";
@@ -36,6 +37,70 @@ function InfoCard({ id, config, locale }) {
 
 export default function AboutPageClient() {
   const { locale } = useLocale();
+  const supportLinks =
+    locale === "zh"
+      ? [
+          {
+            href: siteMeta.afdianUrl,
+            label: siteCopy.about.supportAfdianCta,
+            primary: true
+          },
+          {
+            href: siteMeta.kofiUrl,
+            label: siteCopy.about.supportKofiCta,
+            primary: false
+          }
+        ]
+      : [
+          {
+            href: siteMeta.kofiUrl,
+            label: siteCopy.about.supportKofiCta,
+            primary: true
+          },
+          {
+            href: siteMeta.afdianUrl,
+            label: siteCopy.about.supportAfdianCta,
+            primary: false
+          }
+        ];
+
+  useEffect(() => {
+    const scrollToHashTarget = () => {
+      const hash = window.location.hash.slice(1);
+      if (!hash) return;
+
+      const target = document.getElementById(decodeURIComponent(hash));
+      if (!target) return;
+
+      const nav = document.querySelector(".site-nav");
+      const navHeight = nav?.getBoundingClientRect().height ?? 0;
+      const top = window.scrollY + target.getBoundingClientRect().top - navHeight - 24;
+
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: "auto"
+      });
+    };
+
+    let frameA = 0;
+    let frameB = 0;
+    const queueHashScroll = () => {
+      cancelAnimationFrame(frameA);
+      cancelAnimationFrame(frameB);
+      frameA = window.requestAnimationFrame(() => {
+        frameB = window.requestAnimationFrame(scrollToHashTarget);
+      });
+    };
+
+    queueHashScroll();
+    window.addEventListener("hashchange", queueHashScroll);
+
+    return () => {
+      cancelAnimationFrame(frameA);
+      cancelAnimationFrame(frameB);
+      window.removeEventListener("hashchange", queueHashScroll);
+    };
+  }, [locale]);
 
   return (
     <main id="main-content" className="page-main page-main--exhibition">
@@ -137,33 +202,39 @@ export default function AboutPageClient() {
         </div>
       </section>
 
-      {locale === "zh" && (
-        <section
-          id="support"
-          className="about-section about-section--support reveal"
-          style={{ "--stagger": "0.28s" }}
-        >
-          <div className="about-support">
-            <p className="section-eyebrow section-eyebrow--centered">
-              {t(siteCopy.about.supportEyebrow, locale)}
-            </p>
-            <div className="about-support__inner">
-              <blockquote>{t(siteCopy.about.supportTitle, locale)}</blockquote>
-              <p className="about-support__note">{t(siteCopy.about.supportBody, locale)}</p>
-            </div>
-            <div className="about-support__actions">
+      <section
+        id="support"
+        className="about-section about-section--support reveal"
+        style={{ "--stagger": "0.28s" }}
+      >
+        <div className="about-support">
+          <p className="section-eyebrow section-eyebrow--centered">
+            {t(siteCopy.about.supportEyebrow, locale)}
+          </p>
+          <div className="about-support__inner">
+            <blockquote>{t(siteCopy.about.supportTitle, locale)}</blockquote>
+            <p className="about-support__note">{t(siteCopy.about.supportBody, locale)}</p>
+            <p className="about-support__note">{t(siteCopy.about.supportChannelNote, locale)}</p>
+          </div>
+          <div className="about-support__actions">
+            {supportLinks.map((link) => (
               <a
-                className="outline-button"
-                href={siteMeta.afdianUrl}
+                key={link.href}
+                className={
+                  link.primary
+                    ? "outline-button"
+                    : "text-button text-button--inline about-support__secondary-link"
+                }
+                href={link.href}
                 target="_blank"
                 rel="noreferrer"
               >
-                {t(siteCopy.about.supportCta, locale)}
+                {t(link.label, locale)}
               </a>
-            </div>
+            ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
     </main>
   );
 }

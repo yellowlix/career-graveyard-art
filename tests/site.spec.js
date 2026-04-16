@@ -61,6 +61,30 @@ async function expectNoHorizontalOverflow(page) {
   expect(overflow).toBeLessThanOrEqual(1);
 }
 
+async function expectAnchorClearOfNav(page, selector, minimumGap = 12) {
+  await expect
+    .poll(
+      async () =>
+        page.evaluate(
+          ({ selector: targetSelector, minimumGap: gap }) => {
+            const target = document.querySelector(targetSelector);
+            const nav = document.querySelector(".site-nav");
+
+            if (!target || !nav) {
+              return false;
+            }
+
+            const targetTop = target.getBoundingClientRect().top;
+            const navBottom = nav.getBoundingClientRect().bottom;
+            return targetTop >= navBottom + gap;
+          },
+          { selector, minimumGap }
+        ),
+      { timeout: 5000 }
+    )
+    .toBe(true);
+}
+
 async function expectSharedHorizontalBounds(page, leftSelector, rightSelector) {
   const { leftDiff, rightDiff } = await page.evaluate(
     ({ leftSelector: left, rightSelector: right }) => {
@@ -499,6 +523,18 @@ test("about page keeps repo-truth wording in both locales", async ({ page }) => 
   );
   await expect(page.locator("#contact")).not.toContainText("github.com/yellowlix");
   await expect(page.getByText("42,901")).toHaveCount(0);
+  await expect(page.locator("#support")).toContainText(pick(siteCopy.about.supportEyebrow, "zh"));
+  await expect(page.locator("#support")).toContainText(
+    pick(siteCopy.about.supportChannelNote, "zh")
+  );
+  const zhSupportLinks = page.locator("#support .about-support__actions a");
+  await expect(zhSupportLinks).toHaveCount(2);
+  await expect(zhSupportLinks.nth(0)).toHaveText(pick(siteCopy.about.supportAfdianCta, "zh"));
+  await expect(zhSupportLinks.nth(0)).toHaveAttribute("href", siteMeta.afdianUrl);
+  await expect(zhSupportLinks.nth(0)).toHaveClass(/outline-button/);
+  await expect(zhSupportLinks.nth(1)).toHaveText(pick(siteCopy.about.supportKofiCta, "zh"));
+  await expect(zhSupportLinks.nth(1)).toHaveAttribute("href", siteMeta.kofiUrl);
+  await expect(zhSupportLinks.nth(1)).toHaveClass(/about-support__secondary-link/);
 
   await switchLocale(page, "en");
   await expect(
@@ -509,6 +545,18 @@ test("about page keeps repo-truth wording in both locales", async ({ page }) => 
     pick(siteCopy.aboutInfo.contact.title, "en")
   );
   await expect(page.locator("#contact")).not.toContainText("github.com/yellowlix");
+  await expect(page.locator("#support")).toContainText(pick(siteCopy.about.supportEyebrow, "en"));
+  await expect(page.locator("#support")).toContainText(
+    pick(siteCopy.about.supportChannelNote, "en")
+  );
+  const enSupportLinks = page.locator("#support .about-support__actions a");
+  await expect(enSupportLinks).toHaveCount(2);
+  await expect(enSupportLinks.nth(0)).toHaveText(pick(siteCopy.about.supportKofiCta, "en"));
+  await expect(enSupportLinks.nth(0)).toHaveAttribute("href", siteMeta.kofiUrl);
+  await expect(enSupportLinks.nth(0)).toHaveClass(/outline-button/);
+  await expect(enSupportLinks.nth(1)).toHaveText(pick(siteCopy.about.supportAfdianCta, "en"));
+  await expect(enSupportLinks.nth(1)).toHaveAttribute("href", siteMeta.afdianUrl);
+  await expect(enSupportLinks.nth(1)).toHaveClass(/about-support__secondary-link/);
 });
 
 test("about page adapts across the four viewport baselines", async ({ page }, testInfo) => {
@@ -544,15 +592,32 @@ test("footer links land on valid information anchors", async ({ page }) => {
     name: pick(siteCopy.footer.connect, "zh"),
     exact: true
   });
+  const supportLink = page.getByRole("link", {
+    name: pick(siteCopy.footer.support, "zh"),
+    exact: true
+  });
 
   await expect(legalLink).toHaveAttribute("href", "/about/#legal");
   await expect(policyLink).toHaveAttribute("href", "/about/#policy");
   await expect(connectLink).toHaveAttribute("href", "/about/#contact");
+  await expect(supportLink).toHaveAttribute("href", "/about/#support");
+  await expect(
+    page.locator(".site-footer a[href*='afdian.com'], .site-footer a[href*='ko-fi.com']")
+  ).toHaveCount(0);
 
   await visit(page, "/about");
   await expect(page.locator("#legal")).toBeVisible();
   await expect(page.locator("#policy")).toBeVisible();
   await expect(page.locator("#contact")).toBeVisible();
+  await expect(page.locator("#support")).toBeVisible();
+});
+
+test("about anchors clear the fixed nav on direct hash loads", async ({ page }) => {
+  for (const hash of ["legal", "policy", "contact", "support"]) {
+    await visit(page, `/about/#${hash}`);
+    await expect(page.locator(`#${hash}`)).toBeVisible();
+    await expectAnchorClearOfNav(page, `#${hash}`);
+  }
 });
 
 test("404 page is reachable as a standalone route in both locales", async ({ page }) => {

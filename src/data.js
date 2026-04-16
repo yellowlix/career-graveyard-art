@@ -14,6 +14,7 @@ export const siteMeta = {
   siteUrl: "https://career-graveyard.com",
   contactEmail: "mahrovandrei@gmail.com",
   afdianUrl: "https://afdian.com/a/yellowaurora",
+  kofiUrl: "https://ko-fi.com/yellowaurora",
   themeColor: "#ffffff",
   socialImage: "https://career-graveyard.com/favicon.svg",
   defaultDescription: l(
@@ -297,7 +298,12 @@ export const siteCopy = {
       "你的支持会帮助新的职业档案、悼词与观察继续被写下去，也会让这座仍在扩建中的数字墓园有机会被维护得更久一点。",
       "Your support helps keep new entries, memorials, and observations alive."
     ),
-    supportCta: l("前往爱发电", "Support on Afdian")
+    supportChannelNote: l(
+      "你可以通过爱发电或 Ko-fi 支持这座墓园。",
+      "You can support this archive through Afdian or Ko-fi."
+    ),
+    supportAfdianCta: l("通过爱发电支持", "Support via Afdian"),
+    supportKofiCta: l("在 Ko-fi 上支持我", "Support on Ko-fi")
   },
   aboutInfo: {
     legal: {
