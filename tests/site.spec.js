@@ -350,6 +350,26 @@ test("career detail back returns to the previous page when navigated from archiv
   await expect(page.locator(".career-card").first()).toBeVisible();
 });
 
+test("career detail memorial link opens memorial with profession pre-selected", async ({
+  page
+}) => {
+  const designer = careers.find((career) => career.slug === "graphic-designer");
+
+  await visit(page, `/career/${designer.slug}`);
+
+  await page
+    .getByRole("link", { name: pick(siteCopy.detail.memorialCta, "zh"), exact: true })
+    .click();
+
+  await expect(page).toHaveURL(/\/memorial\/\?career=graphic-designer/);
+  await expect(
+    page.getByRole("heading", { level: 1, name: pick(siteCopy.memorial.title, "zh") })
+  ).toBeVisible();
+
+  const careerSelect = page.locator("#memorial-career");
+  await expect(careerSelect).toHaveValue("graphic-designer");
+});
+
 test("memorial page switches between archived and new profession email drafts", async ({
   page
 }) => {

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import MemorialPageClient from "./MemorialPageClient";
 import { siteCopy } from "../../data";
 import { buildPageMetadata } from "../../lib/pageMetadata";
@@ -9,5 +10,9 @@ export const metadata = buildPageMetadata({
 });
 
 export default function MemorialPage() {
-  return <MemorialPageClient />;
+  return (
+    <Suspense fallback={null}>
+      <MemorialPageClient />
+    </Suspense>
+  );
 }

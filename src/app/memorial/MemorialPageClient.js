@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo, useCallback, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
+import { useState, useMemo, useCallback, useEffect, useLayoutEffect } from "react";
 import { useLocale, t } from "../../lib/i18n";
 import { siteMeta, siteCopy, careers, initialMemorials } from "../../data";
 import { PageMarker } from "../../components/PageMarker";
@@ -54,6 +55,8 @@ function MemorialItem({ item, mode, locale }) {
 
 export default function MemorialPageClient() {
   const { locale } = useLocale();
+  const searchParams = useSearchParams();
+  const careerFromQuery = searchParams.get("career");
   const [activeMode, setActiveMode] = useState("existing");
   const [existingFields, setExistingFields] = useState({
     careerSlug: careers[0]?.slug ?? "",
@@ -71,6 +74,16 @@ export default function MemorialPageClient() {
   useEffect(() => {
     trackEvent("memorial-page-enter");
   }, []);
+
+  useLayoutEffect(() => {
+    if (!careerFromQuery || !careers.some((c) => c.slug === careerFromQuery)) {
+      return;
+    }
+    setActiveMode("existing");
+    setExistingFields((prev) =>
+      prev.careerSlug === careerFromQuery ? prev : { ...prev, careerSlug: careerFromQuery }
+    );
+  }, [careerFromQuery]);
 
   const updateExisting = useCallback((field, value) => {
     setExistingFields((prev) => ({ ...prev, [field]: value }));
