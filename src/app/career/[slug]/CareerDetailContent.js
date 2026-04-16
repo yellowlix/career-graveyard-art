@@ -135,20 +135,21 @@ export function CareerDetailContent({ slug }) {
                 </article>
               ))}
             </div>
-            <div className="detail-memorial-cta reveal" style={{ "--stagger": "0.24s" }}>
-              <p className="detail-memorial-cta__text">
-                {t(siteCopy.detail.memorialVoicesBlurb, locale)}
-              </p>
-              <Link
-                className="outline-button outline-button--compact"
-                href={`/memorial/?career=${encodeURIComponent(career.slug)}`}
-              >
-                {t(siteCopy.detail.memorialCta, locale)}
-              </Link>
-            </div>
           </section>
         </div>
       </section>
+
+      <div className="detail-memorial-cta reveal" style={{ "--stagger": "0.24s" }}>
+        <p className="detail-memorial-cta__text">
+          {t(siteCopy.detail.memorialVoicesBlurb, locale)}
+        </p>
+        <Link
+          className="outline-button"
+          href={`/memorial/?career=${encodeURIComponent(career.slug)}`}
+        >
+          {t(siteCopy.detail.memorialCta, locale)}
+        </Link>
+      </div>
 
       <section className="related-section reveal" style={{ "--stagger": "0.28s" }}>
         <p className="section-eyebrow section-eyebrow--centered">
