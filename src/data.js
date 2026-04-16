@@ -125,7 +125,8 @@ export const siteCopy = {
     profileEyebrow: l("职业讣告", "Obituary"),
     factorsEyebrow: l("消逝因素", "Factors"),
     voicesEyebrow: l("悼词节录", "Memorial Excerpts"),
-    relatedEyebrow: l("同病相怜", "Similar Fates")
+    relatedEyebrow: l("同病相怜", "Similar Fates"),
+    memorialCta: l("祭奠此职业", "Memorialize this profession")
   },
   memorial: {
     title: l("祭奠", "Memorial"),

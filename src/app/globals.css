@@ -1090,6 +1090,10 @@ button {
   margin-bottom: 1rem;
 }
 
+.detail-header__actions {
+  margin-top: 0.25rem;
+}
+
 .detail-header__status {
   display: grid;
   justify-items: end;

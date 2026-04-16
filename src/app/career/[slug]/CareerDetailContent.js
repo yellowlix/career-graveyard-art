@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo } from "react";
 import { useLocale, t } from "../../../lib/i18n";
 import { careers, siteCopy, siteMeta, statusMeta } from "../../../data";
@@ -82,6 +83,14 @@ export function CareerDetailContent({ slug }) {
             <p className="section-eyebrow">{t(siteCopy.detail.statusEyebrow, locale)}</p>
             <span>{t(statusMeta[career.status]?.label, locale)}</span>
           </div>
+        </div>
+        <div className="detail-header__actions">
+          <Link
+            className="outline-button outline-button--compact"
+            href={`/memorial/?career=${encodeURIComponent(career.slug)}`}
+          >
+            {t(siteCopy.detail.memorialCta, locale)}
+          </Link>
         </div>
         <div className="detail-header__rule">
           <div className="detail-header__marker" aria-hidden="true" />
