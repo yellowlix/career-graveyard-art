@@ -126,7 +126,11 @@ export const siteCopy = {
     factorsEyebrow: l("消逝因素", "Factors"),
     voicesEyebrow: l("悼词节录", "Memorial Excerpts"),
     relatedEyebrow: l("同病相怜", "Similar Fates"),
-    memorialCta: l("祭奠此职业", "Memorialize this profession")
+    memorialCta: l("祭奠此职业", "Memorialize this profession"),
+    memorialVoicesBlurb: l(
+      "若你也曾亲历这份职业的消逝，可在此撰写悼词，经邮箱提交至项目收件箱。",
+      "If you lived through this profession's decline, you can draft a memorial here and submit it by email."
+    )
   },
   memorial: {
     title: l("祭奠", "Memorial"),

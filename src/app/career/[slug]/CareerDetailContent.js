@@ -84,14 +84,6 @@ export function CareerDetailContent({ slug }) {
             <span>{t(statusMeta[career.status]?.label, locale)}</span>
           </div>
         </div>
-        <div className="detail-header__actions">
-          <Link
-            className="outline-button outline-button--compact"
-            href={`/memorial/?career=${encodeURIComponent(career.slug)}`}
-          >
-            {t(siteCopy.detail.memorialCta, locale)}
-          </Link>
-        </div>
         <div className="detail-header__rule">
           <div className="detail-header__marker" aria-hidden="true" />
         </div>
@@ -142,6 +134,17 @@ export function CareerDetailContent({ slug }) {
                   </div>
                 </article>
               ))}
+            </div>
+            <div className="detail-memorial-cta reveal" style={{ "--stagger": "0.24s" }}>
+              <p className="detail-memorial-cta__text">
+                {t(siteCopy.detail.memorialVoicesBlurb, locale)}
+              </p>
+              <Link
+                className="outline-button outline-button--compact"
+                href={`/memorial/?career=${encodeURIComponent(career.slug)}`}
+              >
+                {t(siteCopy.detail.memorialCta, locale)}
+              </Link>
             </div>
           </section>
         </div>

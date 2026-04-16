@@ -1090,10 +1090,6 @@ button {
   margin-bottom: 1rem;
 }
 
-.detail-header__actions {
-  margin-top: 0.25rem;
-}
-
 .detail-header__status {
   display: grid;
   justify-items: end;
@@ -1269,6 +1265,23 @@ button {
   justify-content: space-between;
   gap: 1rem;
   font-size: var(--text-caption);
+}
+
+.detail-memorial-cta {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line-soft);
+  display: grid;
+  gap: 1.25rem;
+  max-width: 36rem;
+}
+
+.detail-memorial-cta__text {
+  margin: 0;
+  font-size: var(--text-caption);
+  line-height: var(--line-height-body-relaxed);
+  color: var(--muted);
+  letter-spacing: var(--tracking-label);
 }
 
 .related-section {
