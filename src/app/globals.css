@@ -453,7 +453,9 @@ button {
 
 @media (hover: hover) {
   .site-nav__item:hover .site-nav__hint,
-  .site-nav__item:focus-within .site-nav__hint {
+  /* :focus-within keeps the hint open after a mouse click because the link stays :focus.
+     Use :focus-visible so keyboard users still see it; pointer activation does not. */
+  .site-nav__link:focus-visible ~ .site-nav__hint {
     opacity: 1;
     transform: translateY(0);
   }
