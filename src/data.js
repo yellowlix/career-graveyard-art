@@ -437,7 +437,7 @@ export const careers = [
       },
       {
         author: l("自由职业插画师", "Freelance Illustrator"),
-        date: same("2026.01.05"),
+        date: same("2026.03.05"),
         text: l(
           "客户不再关心什么是好设计，他们只关心快。快意味着廉价，廉价意味着死亡。",
           "Clients no longer ask what good design is. They ask what is fast. Fast means cheap, and cheap means death."
@@ -807,7 +807,7 @@ export const careers = [
     voices: [
       {
         author: l("前都市报记者", "Former Metro Reporter"),
-        date: same("2026.02.09"),
+        date: same("2026.03.09"),
         text: l(
           "我怀念采访本上的笔迹。如今发生的一切像先天就被压扁成了标题。",
           "I miss the handwriting on my reporting notebook. Now everything seems born already flattened into a headline."
@@ -884,7 +884,7 @@ careers.push(
     voices: [
       {
         author: l("施工图绘图员", "Construction Drawing Drafter"),
-        date: same("2026.02.17"),
+        date: same("2026.03.17"),
         text: l(
           "我们曾靠细节吃饭，后来发现系统比人更愿意一遍又一遍地画线。",
           "We used to live off detail. Then we discovered that systems are far more willing than people to draw the same line again and again."
@@ -1106,7 +1106,7 @@ careers.push(
     voices: [
       {
         author: l("客服主管", "Customer Support Lead"),
-        date: same("2026.01.08"),
+        date: same("2026.03.08"),
         text: l(
           "我们不再被要求理解用户，只被要求在更短时间里关闭更多窗口。",
           "We are no longer asked to understand users. We are only asked to close more windows in less time."
@@ -1254,7 +1254,7 @@ careers.push(
     voices: [
       {
         author: l("前导游", "Former Tour Guide"),
-        date: same("2026.02.03"),
+        date: same("2026.03.03"),
         text: l(
           "我曾靠讲故事带队走路，后来故事被压进耳机里，而我被留在景点门口。",
           "I used to lead groups by telling stories. Then the stories were compressed into headphones, and I was left at the gate."
@@ -1328,7 +1328,7 @@ careers.push(
     voices: [
       {
         author: l("独立摄影师", "Independent Photographer"),
-        date: same("2026.01.21"),
+        date: same("2026.03.21"),
         text: l(
           "我越来越像一个素材供应商，而不是替别人留下时间的人。",
           "I increasingly feel like a raw-material supplier instead of someone who preserves time for other people."
@@ -1402,7 +1402,7 @@ careers.push(
     voices: [
       {
         author: l("骑手", "Rider"),
-        date: same("2026.02.26"),
+        date: same("2026.03.26"),
         text: l(
           "导航每天都更聪明一点，我每天都只是更累一点。",
           "Navigation gets smarter every day. I only get more tired."
