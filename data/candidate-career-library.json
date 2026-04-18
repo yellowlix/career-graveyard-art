@@ -4,6 +4,7 @@
     "datasetVersion": "candidate-career-library-empty-v1",
     "createdAt": "2026-04-18",
     "sourceIssue": "https://github.com/yellowlix/career-graveyard-art/issues/41",
+    "sourceIssueNumber": 41,
     "importStatus": "schema_only",
     "runtimeUsage": "not_imported_by_site",
     "goal": "Hold screened real job-title candidates before maintainers promote selected rows into src/data.js.",
