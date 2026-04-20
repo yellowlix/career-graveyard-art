@@ -8,3 +8,4 @@ playwright-report/
 .playwright/
 .superdesign/draft-html/
 .codex-temp/
+.codex-tmp/
