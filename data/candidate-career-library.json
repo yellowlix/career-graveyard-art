@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "schemaVersion": "candidate-career-library-v1",
+    "datasetVersion": "candidate-career-library-empty-v1",
+    "createdAt": "2026-04-18",
+    "sourceIssue": "https://github.com/yellowlix/career-graveyard-art/issues/41",
+    "sourceIssueNumber": 41,
+    "importStatus": "schema_only",
+    "runtimeUsage": "not_imported_by_site",
+    "goal": "Hold screened real job-title candidates before maintainers promote selected rows into src/data.js.",
+    "notes": [
+      "This file is a repository curation database, not a backend database.",
+      "Candidate rows are intentionally empty until the source dataset is imported.",
+      "Production pages must continue to read from src/data.js only."
+    ]
+  },
+  "statusMapping": {
+    "commoditized": "unworthy",
+    "declining": "decaying",
+    "frozen": "frozen",
+    "endangered": "endangered",
+    "obsolete": "obsolete"
+  },
+  "enums": {
+    "industry": [
+      "行政与后台",
+      "金融、保险与法务",
+      "客服、销售与市场",
+      "媒体、内容与语言",
+      "设计、软件与数字生产",
+      "教育、培训与知识服务",
+      "物流、交通与票务",
+      "零售、门店与现场服务",
+      "医疗、病案与健康信息",
+      "AI 数据与模型服务"
+    ],
+    "proposedStatus": ["commoditized", "declining", "frozen", "endangered", "obsolete"],
+    "siteStatus": ["unworthy", "decaying", "frozen", "endangered", "obsolete"],
+    "titleReality": [
+      "official_and_recruiting",
+      "recruiting_stable",
+      "title_variant_preferred",
+      "weak_task_label"
+    ],
+    "siteFit": ["high", "medium", "low"],
+    "recommendedAction": [
+      "include",
+      "rename",
+      "split_and_rename",
+      "rename_or_drop",
+      "rename_or_hold",
+      "hold_outside_main_archive"
+    ],
+    "sourceType": ["official", "job_board", "report", "article", "other"],
+    "sourceReviewStatus": ["needs_url", "needs_access_date", "reviewable", "accepted"],
+    "candidateReviewStatus": [
+      "needs_import",
+      "needs_sources",
+      "ready_for_review",
+      "approved",
+      "rejected"
+    ]
+  },
+  "schemas": {
+    "source": {
+      "id": "Stable source id, such as S01.",
+      "title": "Source title, official document title, or job-board search label.",
+      "type": "One of enums.sourceType.",
+      "url": "Optional URL. Required before production promotion when available.",
+      "accessedAt": "Optional YYYY-MM-DD access date. Required before production promotion when available.",
+      "searchKeywords": "Optional array of search terms used to reproduce a job-board result.",
+      "note": "Short explanation of what this source supports.",
+      "reviewStatus": "One of enums.sourceReviewStatus."
+    },
+    "candidate": {
+      "id": "Stable lower-kebab-case identifier.",
+      "slug": "Proposed public route slug if promoted.",
+      "title": "Canonical Chinese job title.",
+      "aliases": "Array of alternate recruitment titles.",
+      "industry": "One of enums.industry.",
+      "proposedStatus": "One of enums.proposedStatus.",
+      "siteStatus": "Mapped current site status from statusMapping.",
+      "titleReality": "One of enums.titleReality.",
+      "siteFit": "One of enums.siteFit.",
+      "recommendedAction": "One of enums.recommendedAction.",
+      "rationale": "Editorial reason for the recommendation.",
+      "evidenceIds": "Array of ids from sourceCatalog.",
+      "reviewStatus": "One of enums.candidateReviewStatus."
+    },
+    "renameSuggestion": {
+      "oldTitle": "Original proposed or narrative title.",
+      "decision": "rename, split_and_rename, rename_or_drop, or rename_or_hold.",
+      "preferredTitles": "Array of preferred real-market titles.",
+      "titleReality": "One of enums.titleReality.",
+      "siteFit": "One of enums.siteFit.",
+      "reason": "Why the original title should change.",
+      "evidenceIds": "Array of ids from sourceCatalog.",
+      "reviewStatus": "One of enums.candidateReviewStatus."
+    },
+    "holdout": {
+      "id": "Stable lower-kebab-case identifier.",
+      "slug": "Reserved slug if useful later.",
+      "title": "Canonical real job title.",
+      "aliases": "Array of alternate recruitment titles.",
+      "industry": "One of enums.industry.",
+      "titleReality": "One of enums.titleReality.",
+      "siteFit": "Usually low for the main archive.",
+      "recommendedAction": "hold_outside_main_archive.",
+      "officialRelatedTitle": "Optional official related title.",
+      "reason": "Why this real title should not be framed as a graveyard entry yet.",
+      "evidenceIds": "Array of ids from sourceCatalog.",
+      "reviewStatus": "One of enums.candidateReviewStatus."
+    }
+  },
+  "sourceCatalog": {},
+  "candidates": [],
+  "renameSuggestions": [],
+  "holdouts": []
+}
