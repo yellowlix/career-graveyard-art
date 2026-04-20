@@ -106,6 +106,7 @@ body {
 body[data-locale="zh"] .site-nav__logo,
 body[data-locale="zh"] .site-nav__back,
 body[data-locale="zh"] .site-nav__link,
+body[data-locale="zh"] .site-nav__share,
 body[data-locale="zh"] .memorial-mode-switch__button,
 body[data-locale="zh"] .section-eyebrow,
 body[data-locale="zh"] .text-toggle,
@@ -290,7 +291,10 @@ button {
   background: none;
   cursor: pointer;
   color: var(--muted);
-  font: inherit;
+  font-family: inherit;
+  font-size: var(--text-label);
+  font-weight: inherit;
+  line-height: inherit;
   letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
@@ -374,6 +378,7 @@ button {
 
 .site-nav__back,
 .site-nav__link,
+.site-nav__share,
 .section-eyebrow,
 .site-footer__copy,
 .site-footer__links a,
@@ -391,7 +396,8 @@ button {
 }
 
 .site-nav__back,
-.site-nav__link {
+.site-nav__link,
+.site-nav__share {
   font-size: var(--text-label);
 }
 
@@ -406,6 +412,7 @@ button {
 
 .site-nav__back,
 .site-nav__link,
+.site-nav__share,
 .site-footer__links a,
 .text-toggle,
 .text-button {
@@ -460,7 +467,8 @@ button {
   gap: clamp(1.2rem, 0.9rem + 0.7vw, 2.35rem);
 }
 
-.site-nav--home .site-nav__link {
+.site-nav--home .site-nav__link,
+.site-nav--home .site-nav__share {
   color: color-mix(in srgb, var(--muted) 86%, white);
   letter-spacing: var(--tracking-home-nav);
 }
@@ -470,6 +478,7 @@ button {
 }
 
 .site-nav__link,
+.site-nav__share,
 .site-footer__copy,
 .site-footer__links a,
 .section-eyebrow,
@@ -485,6 +494,7 @@ button {
 }
 
 .site-nav__link:hover,
+.site-nav__share:hover,
 .site-footer__links a:hover,
 .text-toggle:hover,
 .text-button:hover,
@@ -2251,7 +2261,8 @@ body[data-page="about"] .site-footer {
     gap: 0.65rem;
   }
 
-  .site-nav--home .site-nav__link {
+  .site-nav--home .site-nav__link,
+  .site-nav--home .site-nav__share {
     color: var(--muted);
     opacity: 1;
   }
@@ -2313,7 +2324,8 @@ body[data-page="about"] .site-footer {
   }
 
   .site-nav__link,
-  .site-nav__back {
+  .site-nav__back,
+  .site-nav__share {
     font-size: var(--text-label);
     letter-spacing: var(--tracking-home-nav);
   }

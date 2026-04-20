@@ -66,7 +66,7 @@ export function SiteNav() {
             <span className="site-nav__item site-nav__item--share">
               <CopyPageLinkButton
                 label={t(siteCopy.navigation.share, locale)}
-                className="site-nav__share text-button"
+                className="site-nav__share"
                 trackPayload={{ from: "nav", path: pathname }}
               />
             </span>
