@@ -34,7 +34,8 @@ export const siteCopy = {
     back: l("返回", "Back"),
     archive: l("展览", "Exhibition"),
     memorial: l("祭奠", "Memorial"),
-    about: l("关于", "About")
+    about: l("关于", "About"),
+    share: l("分享", "Share")
   },
   navigationHints: {
     archive: l(
@@ -126,7 +127,6 @@ export const siteCopy = {
     factorsEyebrow: l("消逝因素", "Factors"),
     voicesEyebrow: l("悼词节录", "Memorial Excerpts"),
     relatedEyebrow: l("同病相怜", "Similar Fates"),
-    shareNav: l("分享", "Share"),
     shareButton: l("分享此职业", "Share this career"),
     copyLinkToast: l("链接已复制", "Link copied"),
     copyLinkFail: l("复制失败，请手动复制地址栏", "Could not copy. Use the address bar."),

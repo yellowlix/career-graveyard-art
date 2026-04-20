@@ -159,6 +159,9 @@ test("home page defaults to Chinese-only navigation and metadata", async ({ page
   await expect(page.locator(".site-nav__links")).toContainText(
     pick(siteCopy.navigation.about, "zh")
   );
+  await expect(page.locator(".site-nav__links")).toContainText(
+    pick(siteCopy.navigation.share, "zh")
+  );
   await expect(page.locator(".site-nav__links")).not.toContainText("/");
   await expect(page.locator(".career-card")).toHaveCount(6);
   await expect(page.locator('meta[name="description"]')).toHaveAttribute(

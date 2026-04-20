@@ -63,15 +63,13 @@ export function SiteNav() {
                 </span>
               </span>
             ))}
-            {isDetail ? (
-              <span className="site-nav__item site-nav__item--share">
-                <CopyPageLinkButton
-                  label={t(siteCopy.detail.shareNav, locale)}
-                  className="site-nav__share text-button"
-                  trackPayload={{ from: "nav" }}
-                />
-              </span>
-            ) : null}
+            <span className="site-nav__item site-nav__item--share">
+              <CopyPageLinkButton
+                label={t(siteCopy.navigation.share, locale)}
+                className="site-nav__share text-button"
+                trackPayload={{ from: "nav", path: pathname }}
+              />
+            </span>
           </div>
           <div
             className="site-nav__locale-switch"
