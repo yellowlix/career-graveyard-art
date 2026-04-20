@@ -2172,11 +2172,6 @@ body[data-page="about"] .site-footer {
     justify-items: start;
   }
 
-  .detail-header__rule .detail-header__marker {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   .factor-grid,
   .method-grid,
   .info-grid,
