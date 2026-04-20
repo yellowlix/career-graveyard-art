@@ -8,6 +8,7 @@ import { CareerCard } from "../../../components/CareerCard";
 import { NotFoundPanel } from "../../../components/NotFoundPanel";
 import { PageMarker } from "../../../components/PageMarker";
 import { PageJsonLd } from "../../../components/PageJsonLd";
+import { CopyPageLinkButton } from "../../../components/CopyPageLinkButton";
 import { buildBreadcrumbSchema, toAbsoluteUrl } from "../../../lib/seo";
 import { t as translate } from "../../../lib/translate";
 
@@ -78,6 +79,13 @@ export function CareerDetailContent({ slug }) {
           <div>
             <h1>{t(career.name, locale)}</h1>
             <p className="detail-summary">{t(career.summary, locale)}</p>
+            <div className="detail-header__share">
+              <CopyPageLinkButton
+                label={t(siteCopy.detail.shareButton, locale)}
+                className="outline-button outline-button--compact"
+                trackPayload={{ from: "header", slug: career.slug }}
+              />
+            </div>
           </div>
           <div className="detail-header__status">
             <p className="section-eyebrow">{t(siteCopy.detail.statusEyebrow, locale)}</p>
