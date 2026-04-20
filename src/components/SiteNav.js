@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLocale, t } from "../lib/i18n";
 import { siteMeta, siteCopy } from "../data";
+import { CopyPageLinkButton } from "./CopyPageLinkButton";
 
 export function SiteNav() {
   const { locale, setLocale } = useLocale();
@@ -62,6 +63,13 @@ export function SiteNav() {
                 </span>
               </span>
             ))}
+            <span className="site-nav__item site-nav__item--share">
+              <CopyPageLinkButton
+                label={t(siteCopy.navigation.share, locale)}
+                className="site-nav__share"
+                trackPayload={{ from: "nav", path: pathname }}
+              />
+            </span>
           </div>
           <div
             className="site-nav__locale-switch"
