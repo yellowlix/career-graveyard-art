@@ -1,5 +1,6 @@
 import { siteMeta } from "../data";
 import { t } from "./translate";
+import { toAbsoluteSiteUrl } from "./url";
 
 export function buildWebSiteSchema(locale) {
   return {
@@ -26,7 +27,7 @@ export function buildBreadcrumbSchema(items) {
 }
 
 export function toAbsoluteUrl(pathname) {
-  return new URL(pathname, siteMeta.siteUrl).toString();
+  return toAbsoluteSiteUrl(pathname);
 }
 
 export function JsonLd({ data }) {

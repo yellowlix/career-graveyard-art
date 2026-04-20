@@ -1,27 +1,28 @@
-import { careers, siteMeta } from "../data";
+import { careers } from "../data";
+import { toAbsoluteSiteUrl } from "../lib/url";
 
 export const dynamic = "force-static";
 
 export default function sitemap() {
   return [
     {
-      url: siteMeta.siteUrl,
+      url: toAbsoluteSiteUrl("/"),
       priority: 1
     },
     {
-      url: `${siteMeta.siteUrl}/archive`,
+      url: toAbsoluteSiteUrl("/archive"),
       priority: 0.9
     },
     {
-      url: `${siteMeta.siteUrl}/memorial`,
+      url: toAbsoluteSiteUrl("/memorial"),
       priority: 0.7
     },
     {
-      url: `${siteMeta.siteUrl}/about`,
+      url: toAbsoluteSiteUrl("/about"),
       priority: 0.6
     },
     ...careers.map((career) => ({
-      url: `${siteMeta.siteUrl}/career/${career.slug}`,
+      url: toAbsoluteSiteUrl(`/career/${career.slug}`),
       priority: 0.8
     }))
   ];
