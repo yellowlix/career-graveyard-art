@@ -34,7 +34,8 @@ export const siteCopy = {
     back: l("返回", "Back"),
     archive: l("展览", "Exhibition"),
     memorial: l("祭奠", "Memorial"),
-    about: l("关于", "About")
+    about: l("关于", "About"),
+    share: l("分享", "Share")
   },
   navigationHints: {
     archive: l(
@@ -126,6 +127,9 @@ export const siteCopy = {
     factorsEyebrow: l("消逝因素", "Factors"),
     voicesEyebrow: l("悼词节录", "Memorial Excerpts"),
     relatedEyebrow: l("同病相怜", "Similar Fates"),
+    shareButton: l("分享此职业", "Share this career"),
+    copyLinkToast: l("链接已复制", "Link copied"),
+    copyLinkFail: l("复制失败，请手动复制地址栏", "Could not copy. Use the address bar."),
     memorialCta: l("祭奠此职业", "Memorialize this profession"),
     memorialVoicesBlurb: l(
       "若你也曾身处这份职业的变化之中，可在此撰写悼词，经邮箱提交至项目收件箱。",
@@ -429,7 +433,7 @@ export const careers = [
     voices: [
       {
         author: l("前 4A 公司美术指导", "Former 4A Art Director"),
-        date: same("2024.03.12"),
+        date: same("2026.03.12"),
         text: l(
           "我花了十年学习如何掌控光影和色彩，结果现在只需要敲出几个关键词。那十年的努力，像是一场自作多情的告白。",
           "I spent ten years learning how to control light, shadow, and color. Now it takes only a few prompts. Those ten years feel like a confession nobody asked for."
@@ -437,7 +441,7 @@ export const careers = [
       },
       {
         author: l("自由职业插画师", "Freelance Illustrator"),
-        date: same("2024.01.05"),
+        date: same("2026.03.05"),
         text: l(
           "客户不再关心什么是好设计，他们只关心快。快意味着廉价，廉价意味着死亡。",
           "Clients no longer ask what good design is. They ask what is fast. Fast means cheap, and cheap means death."
@@ -511,7 +515,7 @@ export const careers = [
     voices: [
       {
         author: l("翻译从业者", "Working Translator"),
-        date: same("2024.03.12"),
+        date: same("2026.03.12"),
         text: l(
           "翻译不再是信达雅的博弈，而是对模型输出的纠偏。我们从跨越文明的信使，变成给 AI 打工的质检员。",
           "Translation is no longer a game of fidelity and grace. It is error correction on model output. We have gone from messengers between cultures to quality inspectors for AI."
@@ -585,7 +589,7 @@ export const careers = [
     voices: [
       {
         author: l("某数学主讲老师", "Former Math Lecturer"),
-        date: same("2024.03.18"),
+        date: same("2026.03.18"),
         text: l(
           "孩子们也许还会记得那些周五晚上的热闹，但传授知识这件事，已经不再需要我们这些人的温度。",
           "The children may still remember those packed Friday nights, but the act of teaching no longer seems to require our human warmth."
@@ -659,7 +663,7 @@ export const careers = [
     voices: [
       {
         author: l("匿名内容运营", "Anonymous Content Operator"),
-        date: same("2024.03.15"),
+        date: same("2026.03.15"),
         text: l(
           "算法根据点击率切碎了文章，灵魂在 Feed 流中被无声湮没。如果字数决定了价值，那思考本身便是多余。",
           "Algorithms chopped articles into click-sized fragments. Their soul drowned in the feed. If word count determines value, then thought itself becomes excess."
@@ -807,7 +811,7 @@ export const careers = [
     voices: [
       {
         author: l("前都市报记者", "Former Metro Reporter"),
-        date: same("2024.02.09"),
+        date: same("2026.03.09"),
         text: l(
           "我怀念采访本上的笔迹。如今发生的一切像先天就被压扁成了标题。",
           "I miss the handwriting on my reporting notebook. Now everything seems born already flattened into a headline."
@@ -884,7 +888,7 @@ careers.push(
     voices: [
       {
         author: l("施工图绘图员", "Construction Drawing Drafter"),
-        date: same("2024.02.17"),
+        date: same("2026.03.17"),
         text: l(
           "我们曾靠细节吃饭，后来发现系统比人更愿意一遍又一遍地画线。",
           "We used to live off detail. Then we discovered that systems are far more willing than people to draw the same line again and again."
@@ -1106,7 +1110,7 @@ careers.push(
     voices: [
       {
         author: l("客服主管", "Customer Support Lead"),
-        date: same("2024.01.08"),
+        date: same("2026.03.08"),
         text: l(
           "我们不再被要求理解用户，只被要求在更短时间里关闭更多窗口。",
           "We are no longer asked to understand users. We are only asked to close more windows in less time."
@@ -1254,7 +1258,7 @@ careers.push(
     voices: [
       {
         author: l("前导游", "Former Tour Guide"),
-        date: same("2024.02.03"),
+        date: same("2026.03.03"),
         text: l(
           "我曾靠讲故事带队走路，后来故事被压进耳机里，而我被留在景点门口。",
           "I used to lead groups by telling stories. Then the stories were compressed into headphones, and I was left at the gate."
@@ -1328,7 +1332,7 @@ careers.push(
     voices: [
       {
         author: l("独立摄影师", "Independent Photographer"),
-        date: same("2024.01.21"),
+        date: same("2026.03.21"),
         text: l(
           "我越来越像一个素材供应商，而不是替别人留下时间的人。",
           "I increasingly feel like a raw-material supplier instead of someone who preserves time for other people."
@@ -1402,7 +1406,7 @@ careers.push(
     voices: [
       {
         author: l("骑手", "Rider"),
-        date: same("2024.02.26"),
+        date: same("2026.03.26"),
         text: l(
           "导航每天都更聪明一点，我每天都只是更累一点。",
           "Navigation gets smarter every day. I only get more tired."
@@ -1624,7 +1628,7 @@ export const initialMemorials = {
         "匿名悼词者 / 前资深视觉设计",
         "Anonymous Tribute / Former Senior Visual Designer"
       ),
-      date: same("2024.03.20"),
+      date: same("2026.03.20"),
       text: l(
         "在这个一切皆可生成的年代，我怀念那些通宵改稿、为了 1 像素的间距而争执的夜晚。那是我们作为“人”对审美的最后坚持。再见了，画笔。",
         "In an era where everything can be generated, I miss the nights of endless revisions and arguments over a single pixel. That was our final insistence on taste as humans. Goodbye, brush."
@@ -1633,7 +1637,7 @@ export const initialMemorials = {
     {
       careerSlug: "cram-school-teacher",
       signature: l("某数学主讲老师", "Former Math Lecturer"),
-      date: same("2024.03.18"),
+      date: same("2026.03.18"),
       text: l(
         "屏幕另一端的孩子，也许还会想起那些充满激情的周五晚上。知识没变，但传授它的方式，已不再需要我们这些“人”的温度。",
         "The children on the other side of the screen may still remember those electric Friday nights. Knowledge remains, but the method of delivering it no longer seems to need the warmth of people like us."
@@ -1642,7 +1646,7 @@ export const initialMemorials = {
     {
       careerSlug: "content-editor",
       signature: l("匿名内容运营", "Anonymous Content Operator"),
-      date: same("2024.03.15"),
+      date: same("2026.03.15"),
       text: l(
         "算法根据点击率切割了文章，灵魂在 Feed 流中被无声淹没。如果字数决定了价值，那思考本身便是多余。我决定离开这片名为“内容”的废墟。",
         "Algorithms sliced articles according to click-through rate, and their soul drowned quietly in the feed. If word count decides value, then thought itself becomes excess. I have decided to leave this ruin called content."
@@ -1651,7 +1655,7 @@ export const initialMemorials = {
     {
       careerSlug: "junior-translator",
       signature: l("翻译从业者", "Working Translator"),
-      date: same("2024.03.12"),
+      date: same("2026.03.12"),
       text: l(
         "翻译不再是信达雅的博弈，而是对模型输出的纠偏。我们从跨越文明的信使，变成了给 AI 打工的质检员。这不仅是职业的衰落，更是母语的退化。",
         "Translation is no longer a contest of fidelity and grace, but a correction layer over model output. We have gone from messengers between civilizations to quality inspectors for AI. This is not only the decline of a profession, but the erosion of the mother tongue itself."
@@ -1666,7 +1670,7 @@ export const initialMemorials = {
         "A role responsible for checking and correcting annotations before model training, squeezed between platform speed and low-cost outsourcing until it becomes a disposable layer of temporary labor."
       ),
       signature: l("匿名数据承包者", "Anonymous Data Contractor"),
-      date: same("2024.04.02"),
+      date: same("2026.04.02"),
       text: l(
         "我们被要求教会机器如何理解世界，但没有人愿意记住是谁在深夜里一格格修正这些错误。这个职业还没来得及被命名，就已经开始消失。",
         "We were asked to teach machines how to read the world, yet no one cared who spent the night correcting these errors one box at a time. This profession began disappearing before it was ever properly named."
@@ -1683,7 +1687,7 @@ export const initialMemorials = {
         "A role that rapidly stitches together script beats, emotional cues, and conversion phrases for livestream commerce teams, combining extreme templating with relentless content churn."
       ),
       signature: l("前直播内容执行", "Former Livestream Content Executor"),
-      date: same("2024.03.27"),
+      date: same("2026.03.27"),
       text: l(
         "脚本越来越像算法生成前的垫片，我们只是把情绪和促销句子粘成一条流水线。等模型彻底接手后，连这层薄薄的人工痕迹也会被抹掉。",
         "The script increasingly feels like a spacer before full algorithmic generation. We merely glue emotion and sales lines into a conveyor belt, and once the model takes over, even this thin trace of human labor will disappear."

@@ -1,15 +1,14 @@
-import { careers, siteMeta } from "../src/data.js";
+import { careers } from "../src/data.js";
+import { toAbsoluteSiteUrl } from "../src/lib/url.js";
 import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-const base = siteMeta.siteUrl;
-
 const urls = [
-  { loc: `${base}/`, priority: "1.0" },
-  { loc: `${base}/archive`, priority: "0.9" },
-  { loc: `${base}/memorial`, priority: "0.7" },
-  { loc: `${base}/about`, priority: "0.6" },
-  ...careers.map((c) => ({ loc: `${base}/career/${c.slug}`, priority: "0.8" }))
+  { loc: toAbsoluteSiteUrl("/"), priority: "1.0" },
+  { loc: toAbsoluteSiteUrl("/archive"), priority: "0.9" },
+  { loc: toAbsoluteSiteUrl("/memorial"), priority: "0.7" },
+  { loc: toAbsoluteSiteUrl("/about"), priority: "0.6" },
+  ...careers.map((c) => ({ loc: toAbsoluteSiteUrl(`/career/${c.slug}`), priority: "0.8" }))
 ];
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
