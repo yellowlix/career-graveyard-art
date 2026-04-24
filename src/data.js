@@ -1487,6 +1487,376 @@ careers.push(
         )
       }
     ]
+  },
+  {
+    slug: "cashier",
+    name: l("收银员", "Cashier"),
+    status: "endangered",
+    declineYear: 2025,
+    slabHeight: 112,
+    teaser: l(
+      "扫码声还在响，收银台后的人却越来越像备用方案。",
+      "The scanner still beeps, but the person behind the counter is becoming a fallback."
+    ),
+    summary: l(
+      "移动支付、自助结账、智能称重与扫码点餐，把原本集中在收银员身上的交易流程拆进设备和系统。",
+      "Mobile payment, self-checkout, smart scales, and QR ordering are splitting the checkout workflow into devices and software."
+    ),
+    factors: [
+      {
+        title: l("自助结账", "Self-Checkout"),
+        text: l(
+          "付款、称重与核单被机器前置处理，人工只在异常时出现。",
+          "Payment, weighing, and order checks move into machines, leaving humans to appear when something breaks."
+        )
+      },
+      {
+        title: l("门店兼岗", "Merged Store Roles"),
+        text: l(
+          "收银逐渐并入导购、理货、点单和客诉处理，独立岗位边界变薄。",
+          "Checkout work is merging into sales, restocking, ordering, and complaint handling."
+        )
+      },
+      {
+        title: l("现金退潮", "Cash Retreat"),
+        text: l(
+          "当支付动作变成扫码确认，收银台的专业性被压缩成流程兜底。",
+          "When payment becomes a QR confirmation, cashier expertise shrinks into process support."
+        )
+      }
+    ],
+    timeline: [
+      {
+        year: same("2016"),
+        title: l("移动支付普及", "Mobile Payment Spreads"),
+        text: l(
+          "门店交易从现金和刷卡转向手机确认，收银流程开始被重新分配。",
+          "Store transactions moved from cash and cards to phone confirmation, redistributing checkout work."
+        )
+      },
+      {
+        year: same("2021"),
+        title: l("扫码点餐", "QR Ordering"),
+        text: l(
+          "顾客开始自己完成点单、支付和备注，前台收银被系统提前吃掉一段。",
+          "Customers began completing ordering, payment, and notes themselves, letting systems absorb part of the counter."
+        )
+      },
+      {
+        year: same("2025"),
+        title: l("自助常态", "Self-Service Becomes Normal"),
+        text: l(
+          "智能称重和自助结算成为门店效率叙事的一部分，人工收银更像高峰和异常补位。",
+          "Smart weighing and self-checkout became part of store-efficiency narratives, turning cashiers into peak-hour and exception coverage."
+        )
+      }
+    ],
+    voices: [
+      {
+        author: l("门店店长", "Store Manager"),
+        date: same("2026.04.21"),
+        text: l(
+          "以前排班先看几个收银台要开，现在先看哪台机器需要人盯着。",
+          "We used to schedule around how many checkout counters to open. Now we schedule around which machines need watching."
+        )
+      }
+    ]
+  },
+  {
+    slug: "data-entry-clerk",
+    name: l("数据录入员", "Data Entry Clerk"),
+    status: "endangered",
+    declineYear: 2024,
+    slabHeight: 108,
+    teaser: l(
+      "表格还在等待填满，但键盘声已经被自动识别悄悄盖住。",
+      "The spreadsheet still waits to be filled, but keystrokes are being covered by automatic recognition."
+    ),
+    summary: l(
+      "OCR、RPA 与跨系统自动填报，正直接吞掉看单、核对、转抄和重复录入这些最标准化的办公室劳动。",
+      "OCR, RPA, and cross-system autofill are consuming the standardized office work of reading, checking, copying, and repetitive entry."
+    ),
+    factors: [
+      {
+        title: l("识别替手", "Recognition Replaces Hands"),
+        text: l(
+          "票据、表单和图片先被机器读取，人工录入从主流程退到复核。",
+          "Receipts, forms, and images are read by machines first, moving human entry from main workflow to review."
+        )
+      },
+      {
+        title: l("流程机器人", "Process Robots"),
+        text: l(
+          "重复打开系统、复制字段、比对结果的动作，被脚本化为后台流程。",
+          "Opening systems, copying fields, and comparing outputs are scripted into background workflows."
+        )
+      },
+      {
+        title: l("项目残存", "Project Residue"),
+        text: l(
+          "剩下的人工多集中在历史资料、脏数据和临时清洗项目里。",
+          "The remaining human work clusters around historical records, dirty data, and temporary cleanup projects."
+        )
+      }
+    ],
+    timeline: [
+      {
+        year: same("2018"),
+        title: l("共享中心", "Shared-Service Centers"),
+        text: l(
+          "票据和账务处理开始被集中化、模板化，为自动化打好地基。",
+          "Document and accounting work became centralized and templated, preparing the ground for automation."
+        )
+      },
+      {
+        year: same("2022"),
+        title: l("OCR 普及", "OCR Spreads"),
+        text: l(
+          "扫描、识别、回填逐渐从外包项目变成办公系统里的默认能力。",
+          "Scanning, recognition, and autofill moved from outsourced projects into default office-system capabilities."
+        )
+      },
+      {
+        year: same("2024"),
+        title: l("数字员工", "Digital Workers"),
+        text: l(
+          "RPA 被公开用于检索、汇总、比对和重复录入，录入员进入最直接的危险区。",
+          "RPA was publicly used for retrieval, aggregation, comparison, and repetitive entry, putting clerks in the direct danger zone."
+        )
+      }
+    ],
+    voices: [
+      {
+        author: l("前录入外包人员", "Former Data-Entry Contractor"),
+        date: same("2026.04.21"),
+        text: l(
+          "最先消失的不是岗位名字，而是那种按天计件、盯着表格敲一天的活。",
+          "The title did not disappear first. The day-rate work of staring at sheets and typing all day did."
+        )
+      }
+    ]
+  },
+  {
+    slug: "railway-ticket-agency-clerk",
+    name: l("火车票代售点售票员", "Rail Ticket Agency Clerk"),
+    status: "obsolete",
+    declineYear: 2024,
+    slabHeight: 98,
+    teaser: l(
+      "那扇贴着车次表的小窗口，被手机里的 12306 慢慢关上。",
+      "The small window with train schedules taped to it was slowly closed by 12306 on the phone."
+    ),
+    summary: l(
+      "电子客票、移动购票和电子发票，让火车票代售点从日常入口退成少数人的线下补丁。",
+      "E-tickets, mobile booking, and electronic invoices pushed rail ticket agencies from everyday gateways into offline patches for a shrinking minority."
+    ),
+    factors: [
+      {
+        title: l("平台收编", "Platform Absorption"),
+        text: l(
+          "官方购票平台把查询、下单、改签和支付集中到手机与网站。",
+          "The official platform concentrated search, booking, changes, and payment onto phones and the web."
+        )
+      },
+      {
+        title: l("凭证电子化", "Digital Receipts"),
+        text: l(
+          "电子发票继续削弱线下打印报销凭证的残余需求。",
+          "Electronic invoices further weaken the residual need to print reimbursement documents offline."
+        )
+      },
+      {
+        title: l("边缘服务", "Edge Service"),
+        text: l(
+          "代售点仍可能服务特殊证件、老人和县域客群，但不再是主流入口。",
+          "Agencies may still serve special documents, elderly passengers, and county-level demand, but they are no longer the main entrance."
+        )
+      }
+    ],
+    timeline: [
+      {
+        year: same("2012"),
+        title: l("线上购票", "Online Ticketing"),
+        text: l(
+          "旅客开始绕过代售点，在官方平台上完成越来越多购票动作。",
+          "Passengers began bypassing agencies and completing more ticketing actions on the official platform."
+        )
+      },
+      {
+        year: same("2020"),
+        title: l("电子客票", "E-Tickets"),
+        text: l(
+          "刷证进站和电子客票覆盖，带走了大量必须取票的理由。",
+          "ID-based entry and e-ticket coverage removed many reasons to collect a paper ticket."
+        )
+      },
+      {
+        year: same("2024"),
+        title: l("电子发票", "Electronic Invoices"),
+        text: l(
+          "报销凭证继续数字化，代售点又失去一个被需要的场景。",
+          "Reimbursement documents continued going digital, removing another reason to need agencies."
+        )
+      }
+    ],
+    voices: [
+      {
+        author: l("老代售点售票员", "Former Ticket Agency Clerk"),
+        date: same("2026.04.21"),
+        text: l(
+          "以前有人排队问车次、改签、打凭证，现在更多人只是路过，低头看手机。",
+          "People used to line up for schedules, changes, and receipts. Now most just pass by, looking at their phones."
+        )
+      }
+    ]
+  },
+  {
+    slug: "telesales-representative",
+    name: l("电话销售", "Telesales Representative"),
+    status: "endangered",
+    declineYear: 2025,
+    slabHeight: 118,
+    teaser: l(
+      "熟悉的话术还在响起，只是另一端可能已经没有人在呼吸。",
+      "The familiar script still rings out, but there may no longer be a breathing person on the other end."
+    ),
+    summary: l(
+      "AI 外呼、自动筛线索和话术机器人，把低客单价、强脚本化的电话销售推向更便宜、更高频的机器触达。",
+      "AI outbound calling, automated lead screening, and script bots are pushing low-ticket, highly scripted telesales toward cheaper and higher-volume machine contact."
+    ),
+    factors: [
+      {
+        title: l("机器外呼", "Machine Outbound"),
+        text: l(
+          "号码拨打、开场话术和首轮筛选被机器人批量执行。",
+          "Dialing, opening scripts, and first-round filtering are executed by bots at scale."
+        )
+      },
+      {
+        title: l("监管挤压", "Regulatory Pressure"),
+        text: l(
+          "骚扰电话治理让粗放外呼更难维持，也促使企业把风险转给系统。",
+          "Crackdowns on nuisance calls make rough outbound models harder to sustain and push firms toward systems."
+        )
+      },
+      {
+        title: l("人留难单", "Humans Keep Hard Deals"),
+        text: l(
+          "复杂成交和关系维护仍需要人，但基础触达席位被明显压缩。",
+          "Complex closing and relationship work still need people, but basic contact seats are being compressed."
+        )
+      }
+    ],
+    timeline: [
+      {
+        year: same("2018"),
+        title: l("电销脚本化", "Scripted Sales"),
+        text: l(
+          "外呼团队以号码池、固定话术和转化率报表扩张。",
+          "Outbound teams expanded through lead pools, fixed scripts, and conversion dashboards."
+        )
+      },
+      {
+        year: same("2024"),
+        title: l("AI 声音", "AI Voices"),
+        text: l(
+          "AI 语音外呼被主流媒体曝光，说明机器触达已经进入真实营销链条。",
+          "AI voice calling was exposed by mainstream media, showing that machine contact had entered real marketing chains."
+        )
+      },
+      {
+        year: same("2025"),
+        title: l("外呼成黑箱", "Outbound Becomes a Black Box"),
+        text: l(
+          "AI 外呼进入消费者权益舆论中心，低端电销岗位同时受到自动化和合规压力。",
+          "AI outbound calling became a consumer-rights issue, putting low-end telesales under both automation and compliance pressure."
+        )
+      }
+    ],
+    voices: [
+      {
+        author: l("前电销主管", "Former Telesales Supervisor"),
+        date: same("2026.04.21"),
+        text: l(
+          "当机器能一天打上万通电话，留下来的人工只剩最难啃的那一段。",
+          "When a machine can place ten thousand calls a day, humans are left with only the hardest part."
+        )
+      }
+    ]
+  },
+  {
+    slug: "highway-toll-collector",
+    name: l("高速收费员", "Highway Toll Collector"),
+    status: "obsolete",
+    declineYear: 2019,
+    slabHeight: 105,
+    teaser: l(
+      "栏杆抬起的速度越来越快，收费亭里的时间却停在过去。",
+      "The barrier rises faster and faster, while time inside the toll booth stays behind."
+    ),
+    summary: l(
+      "ETC 普及、省界收费站取消与智慧车道建设，把高速收费员从收费主流程推向巡检、引导和异常兜底。",
+      "ETC adoption, the removal of provincial toll booths, and smart lanes pushed toll collectors out of the main payment flow and toward patrol, guidance, and exception handling."
+    ),
+    factors: [
+      {
+        title: l("ETC 替代", "ETC Substitution"),
+        text: l(
+          "车辆识别和自动扣费让人工收费从标准流程中退场。",
+          "Vehicle recognition and automatic billing remove manual collection from the standard process."
+        )
+      },
+      {
+        title: l("岗亭转场", "Booth Role Shift"),
+        text: l(
+          "保留下来的人员更多处理设备故障、车道引导和应急现场。",
+          "Remaining workers increasingly handle equipment faults, lane guidance, and emergencies."
+        )
+      },
+      {
+        title: l("高速无感", "Frictionless Highways"),
+        text: l(
+          "车主越少停下，收费员这份职业越难被看见。",
+          "The less drivers stop, the harder this occupation is to see."
+        )
+      }
+    ],
+    timeline: [
+      {
+        year: same("2014"),
+        title: l("ETC 铺开", "ETC Rolls Out"),
+        text: l(
+          "自动扣费开始从便利选项变成高速收费体系的基础设施。",
+          "Automatic tolling began moving from a convenience option into basic highway infrastructure."
+        )
+      },
+      {
+        year: same("2019"),
+        title: l("省界站撤除", "Provincial Booths Removed"),
+        text: l(
+          "取消省界收费站成为行业节点，人工收费岗位进入集中转型期。",
+          "Removing provincial boundary toll stations became an industry marker, pushing manual toll work into transition."
+        )
+      },
+      {
+        year: same("2026"),
+        title: l("巡检替代坐亭", "Patrol Replaces Booth Work"),
+        text: l(
+          "收费员的残余价值转向巡检、引导和对自动系统的现场兜底。",
+          "The role's remaining value shifted toward patrol, guidance, and on-site backup for automated systems."
+        )
+      }
+    ],
+    voices: [
+      {
+        author: l("前高速收费员", "Former Highway Toll Collector"),
+        date: same("2026.04.21"),
+        text: l(
+          "真正过时的不是收费站，而是那个坐在小亭子里一辆车一辆车收钱的人。",
+          "What became obsolete was not the toll station, but the person in the booth taking payment one car at a time."
+        )
+      }
+    ]
   }
 );
 
