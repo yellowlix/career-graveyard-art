@@ -1857,6 +1857,376 @@ careers.push(
         )
       }
     ]
+  },
+  {
+    slug: "ecommerce-visual-designer",
+    name: l("电商美工", "E-commerce Visual Designer"),
+    status: "endangered",
+    declineYear: 2025,
+    slabHeight: 124,
+    teaser: l(
+      "白底图、抠图和换背景，正在从手艺活退化成商家后台里的按钮。",
+      "White-background shots, cutouts, and backdrop swaps are sliding from craft into merchant-console buttons."
+    ),
+    summary: l(
+      "基础电商美工最常处理的商品图、详情页套图和批量素材适配，正被 AI 作图、智能抠图与平台化设计工具持续压缩；高端品牌视觉仍在，但重复视觉劳动正在被重新定价。",
+      "The routine work of e-commerce visual designers, from product images to listing graphics and batch asset fitting, is being compressed by AI image generation, smart cutouts, and platform design tools. High-end brand direction remains, but repetitive visual labor is being repriced."
+    ),
+    factors: [
+      {
+        title: l("批量作图自动化", "Batch Image Automation"),
+        text: l(
+          "商品白底、抠图、换背景和尺寸适配越来越像平台能力，而不是单独外包给美工的任务。",
+          "White backgrounds, cutouts, scene swaps, and size variants increasingly look like platform features rather than tasks outsourced to a designer."
+        )
+      },
+      {
+        title: l("模板挤压", "Template Compression"),
+        text: l(
+          "详情页和促销图被模板库、商家工具和低价服务市场夹击，入门岗位的议价空间变窄。",
+          "Listing pages and promotion graphics are squeezed by templates, merchant tools, and low-cost service markets, narrowing entry-level bargaining power."
+        )
+      },
+      {
+        title: l("审美残余", "Residual Taste"),
+        text: l(
+          "真正保留下来的价值转向品牌把关、拍摄统筹和复杂合成，而不是每天重复处理商品图。",
+          "The remaining value shifts toward brand judgment, shoot coordination, and complex composition rather than processing product images all day."
+        )
+      }
+    ],
+    timeline: [
+      {
+        year: same("2018"),
+        title: l("店铺视觉外包", "Storefront Visual Outsourcing"),
+        text: l(
+          "中小商家把商品图、主图和详情页交给美工或外包团队处理，岗位需求被平台电商带动。",
+          "Small merchants outsourced product photos, hero images, and listing pages to designers or service teams as platform commerce expanded."
+        )
+      },
+      {
+        year: same("2025"),
+        title: l("商品图自动化", "Product Images Automated"),
+        text: l(
+          "云服务和电商图片工具开始把抠图、换景、上架适配做成批量功能。",
+          "Cloud services and e-commerce image tools turned cutouts, scene swaps, and listing adaptation into batch features."
+        )
+      },
+      {
+        year: same("2026"),
+        title: l("美工变审稿", "Designer Becomes Reviewer"),
+        text: l(
+          "低阶产出先由工具生成，人类更多负责挑错、统一风格和处理复杂素材。",
+          "Low-end output is generated first by tools, while humans increasingly catch errors, align style, and handle complex assets."
+        )
+      }
+    ],
+    voices: [
+      {
+        author: l("前淘宝美工", "Former Taobao Visual Designer"),
+        date: same("2026.04.21"),
+        text: l(
+          "以前最费工时的是抠图和换背景，现在这些先被工具卷成了默认功能。",
+          "The most time-consuming work used to be cutouts and background swaps. Now those are becoming default tool features."
+        )
+      }
+    ]
+  },
+  {
+    slug: "stenographer",
+    name: l("速录师", "Stenographer"),
+    status: "obsolete",
+    declineYear: 2024,
+    slabHeight: 150,
+    teaser: l(
+      "当会议软件自己吐出逐字稿，敲键盘追赶人声的职业开始安静退场。",
+      "When meeting software produces transcripts by itself, the job of racing speech with a keyboard begins to leave quietly."
+    ),
+    summary: l(
+      "通用会议速录的核心价值，是把现场语言快速变成可搜索、可整理的文字。语音转写、智能纪要和实时字幕普及后，这个核心动作已经从专业技能变成办公软件功能。",
+      "The core value of general meeting stenography was turning live speech into searchable, organized text. With speech-to-text, smart minutes, and live captions spreading, that core action has become an office-software feature."
+    ),
+    factors: [
+      {
+        title: l("语音转写普及", "Speech-to-Text Commoditization"),
+        text: l(
+          "录音转文字、会议纪要和实时字幕被嵌入日常办公流程，速录的技术门槛被迅速拉低。",
+          "Transcription, meeting minutes, and live captions are embedded into everyday office workflows, rapidly lowering the technical barrier."
+        )
+      },
+      {
+        title: l("逐字稿自助化", "Self-Serve Transcripts"),
+        text: l(
+          "参会者不再等待速录员交稿，而是会后直接搜索、摘录和生成待办。",
+          "Participants no longer wait for a stenographer's file; they search, excerpt, and generate action items directly after meetings."
+        )
+      },
+      {
+        title: l("保密场景残存", "Confidential Work Remains"),
+        text: l(
+          "法庭、纪检、保密会议和高准确率逐字稿仍需要人工兜底，但它们更像遗留场景。",
+          "Courts, investigations, confidential meetings, and high-accuracy transcripts still need human backup, but they look increasingly like residual cases."
+        )
+      }
+    ],
+    timeline: [
+      {
+        year: same("2016"),
+        title: l("会议记录专业化", "Professional Meeting Records"),
+        text: l(
+          "大型会议、培训和庭审仍依赖专门速录人员保证记录速度与格式。",
+          "Large meetings, trainings, and court sessions still relied on dedicated stenographers for speed and formatting."
+        )
+      },
+      {
+        year: same("2024"),
+        title: l("智能纪要标配", "Smart Minutes Become Standard"),
+        text: l(
+          "办公套件开始把自动转录、摘要和待办生成放进会议工作流。",
+          "Office suites began placing automatic transcription, summaries, and action-item generation inside meeting workflows."
+        )
+      },
+      {
+        year: same("2025"),
+        title: l("速录转向复核", "Stenography Shifts to Review"),
+        text: l(
+          "通用型速录从现场生产文字，转向修正机器稿和处理特殊场景。",
+          "General stenography shifted from producing text live to correcting machine drafts and handling special cases."
+        )
+      }
+    ],
+    voices: [
+      {
+        author: l("前会议速记员", "Former Meeting Stenographer"),
+        date: same("2026.04.21"),
+        text: l(
+          "当人人都能一键拿到逐字稿，通用型速录最先变成遗留需求。",
+          "Once everyone can get a transcript with one click, general stenography is the first to become legacy demand."
+        )
+      }
+    ]
+  },
+  {
+    slug: "question-bank-entry-clerk",
+    name: l("题库录入员", "Question Bank Entry Clerk"),
+    status: "obsolete",
+    declineYear: 2025,
+    slabHeight: 118,
+    teaser: l(
+      "把试卷一题题敲进系统的工作，正在被 OCR 和 AI 识题拆成机器预处理后的残工。",
+      "The work of typing exam questions into systems is being split into leftover cleanup after OCR and AI ingestion."
+    ),
+    summary: l(
+      "题库录入员曾经承担把纸质试卷、散乱文档和图片题目转成结构化题库的脏活。教育 OCR、公式识别和 AI 录题成熟后，岗位正在从录入生产者退成识别失败后的项目制修补者。",
+      "Question bank entry clerks once handled the messy work of turning paper exams, loose documents, and images into structured question banks. As education OCR, formula recognition, and AI ingestion mature, the role is retreating from data producer to project-based cleanup for failed recognition."
+    ),
+    factors: [
+      {
+        title: l("AI 录题", "AI Question Ingestion"),
+        text: l(
+          "平台已经能批量识别题干、选项和答案，把最机械的录入流程自动化。",
+          "Platforms can now batch-recognize prompts, options, and answers, automating the most mechanical ingestion work."
+        )
+      },
+      {
+        title: l("公式与版式识别", "Formula and Layout Recognition"),
+        text: l(
+          "教育 OCR 正面命中试卷录入场景，连公式和题型结构也越来越可被系统拆解。",
+          "Education OCR directly targets exam ingestion, with formulas and question structures increasingly parsed by systems."
+        )
+      },
+      {
+        title: l("项目残工", "Residual Project Cleanup"),
+        text: l(
+          "人类留下来的多是改错、查漏、版权清理和异常题型处理，不再是持续性录入岗位。",
+          "Human work increasingly means error correction, gap checks, rights cleanup, and unusual item handling, not a stable entry role."
+        )
+      }
+    ],
+    timeline: [
+      {
+        year: same("2014"),
+        title: l("题库平台扩张", "Question Banks Expand"),
+        text: l(
+          "在线教育和考试系统扩张，纸质题目需要被大量手工录进平台。",
+          "Online education and exam systems expanded, requiring large amounts of paper content to be manually entered into platforms."
+        )
+      },
+      {
+        year: same("2025"),
+        title: l("AI 识别录入", "AI Recognition Entry"),
+        text: l(
+          "教育平台把 AI 识题、批量录题和试卷 OCR 做成可直接使用的功能。",
+          "Education platforms turned AI question recognition, batch entry, and exam OCR into ready-to-use features."
+        )
+      },
+      {
+        year: same("2026"),
+        title: l("人工只修漏网题", "Humans Fix the Leftovers"),
+        text: l(
+          "人工录题从主流程退到机器识别失败、版权异常和复杂公式题的补丁环节。",
+          "Human entry retreated from the main workflow into patches for recognition failures, rights exceptions, and complex formulas."
+        )
+      }
+    ],
+    voices: [
+      {
+        author: l("前录题兼职", "Former Question Entry Freelancer"),
+        date: same("2026.04.21"),
+        text: l(
+          "最像体力活的那部分录题，现在已经越来越像机器预处理加人工挑错。",
+          "The most manual part of question entry now looks more like machine preprocessing plus human error picking."
+        )
+      }
+    ]
+  },
+  {
+    slug: "product-retoucher",
+    name: l("产品修图师", "Product Retoucher"),
+    status: "endangered",
+    declineYear: 2025,
+    slabHeight: 132,
+    teaser: l(
+      "每天几百张白底图的耐心，正在被批量修图平台压缩成进度条。",
+      "The patience behind hundreds of white-background images a day is being compressed into a progress bar."
+    ),
+    summary: l(
+      "产品修图师最容易计件的工作，包括白底、去瑕疵、换景、裁切和多平台适配，正在被 AI 产品摄影与批量编辑工具吃掉。留下来的高端后期更依赖质感、审美和品牌一致性。",
+      "The most piece-rate parts of product retouching, including white backgrounds, blemish removal, scene swaps, cropping, and multi-platform fitting, are being eaten by AI product photography and batch-editing tools. Higher-end retouching remains tied to texture, taste, and brand consistency."
+    ),
+    factors: [
+      {
+        title: l("批量精修自动化", "Automated Batch Retouching"),
+        text: l(
+          "去背景、换场景、清瑕疵和生成多尺寸素材，越来越像一次上传后的流水线。",
+          "Background removal, scene changes, blemish cleanup, and multi-size assets increasingly look like a pipeline after upload."
+        )
+      },
+      {
+        title: l("电商 SaaS 化", "E-commerce SaaS-ification"),
+        text: l(
+          "原本由修图师交付的标准图，正被产品摄影编辑平台打包成商家自助服务。",
+          "Standard images once delivered by retouchers are being packaged by product-photo platforms into merchant self-service."
+        )
+      },
+      {
+        title: l("高端后期残存", "High-End Retouching Remains"),
+        text: l(
+          "复杂材质、大片级广告图和品牌审美把关仍有人的位置，但基础修图已经明显掉价。",
+          "Complex materials, campaign-grade images, and brand-level judgment still leave room for humans, but basic retouching is clearly devalued."
+        )
+      }
+    ],
+    timeline: [
+      {
+        year: same("2017"),
+        title: l("图片工厂", "Image Factories"),
+        text: l(
+          "电商团队按件处理商品图，修图师用速度和稳定性换取订单。",
+          "E-commerce teams processed product images by the piece, and retouchers traded speed and consistency for orders."
+        )
+      },
+      {
+        year: same("2025"),
+        title: l("商品图云端处理", "Cloud Product Imaging"),
+        text: l(
+          "云服务把商品图处理、素材编辑和上架适配宣传为自动化能力。",
+          "Cloud services marketed product-image processing, asset editing, and listing adaptation as automated capabilities."
+        )
+      },
+      {
+        year: same("2026"),
+        title: l("产品摄影平台化", "Product Photography Platforms"),
+        text: l(
+          "AI 产品摄影和批量编辑平台进一步把修图劳动变成可订阅工具。",
+          "AI product photography and batch-editing platforms further turned retouching labor into subscribable tooling."
+        )
+      }
+    ],
+    voices: [
+      {
+        author: l("前商品精修师", "Former Product Retoucher"),
+        date: same("2026.04.21"),
+        text: l(
+          "最先被干掉的不是大片级后期，而是那种每天几百张白底图的活。",
+          "What disappeared first was not campaign-grade retouching, but the work of hundreds of white-background shots a day."
+        )
+      }
+    ]
+  },
+  {
+    slug: "invoicing-specialist",
+    name: l("开票专员", "Invoicing Specialist"),
+    status: "obsolete",
+    declineYear: 2025,
+    slabHeight: 112,
+    teaser: l(
+      "当发票随着支付自动生成，开票这件事不再需要一张专门的办公桌。",
+      "When invoices are generated along with payment, invoicing no longer needs its own desk."
+    ),
+    summary: l(
+      "开票专员的日常价值建立在人工开具、核对、传递和处理票据之上。数电发票、支付即开票和无人值守即时开票扩围后，岗位正在从日常流程岗位退成异常单、红冲作废和跨系统问题的兜底角色。",
+      "The daily value of invoicing specialists rested on manually issuing, checking, sending, and handling invoices. As digital invoices, pay-and-invoice flows, and unattended instant invoicing expand, the role is moving from routine workflow to backup for exceptions, reversals, voids, and cross-system problems."
+    ),
+    factors: [
+      {
+        title: l("数电发票", "Digital Invoicing"),
+        text: l(
+          "从人工开具转向系统自动生成，直接削弱了专门开票岗位的日常必要性。",
+          "The shift from manual issuance to system-generated invoices directly weakens the everyday need for a dedicated invoicing role."
+        )
+      },
+      {
+        title: l("支付即开票", "Pay-and-Invoice"),
+        text: l(
+          "开票被嵌进支付、结算和政务系统后，人的动作越来越像异常确认。",
+          "Once invoicing is embedded into payment, settlement, and government systems, human action increasingly looks like exception confirmation."
+        )
+      },
+      {
+        title: l("异常单兜底", "Exception Backup"),
+        text: l(
+          "红冲、作废、税务口径和系统对接仍需要人工，但这些不是过去那种稳定开票流水线。",
+          "Reversals, voids, tax-rule interpretation, and system integration still need humans, but they are not the old stable invoicing line."
+        )
+      }
+    ],
+    timeline: [
+      {
+        year: same("2015"),
+        title: l("人工票据流程", "Manual Invoice Flows"),
+        text: l(
+          "企业仍需要专人负责开具、登记、寄送和核对发票。",
+          "Companies still needed dedicated staff to issue, register, send, and check invoices."
+        )
+      },
+      {
+        year: same("2025"),
+        title: l("秒开秒得", "Issued in Seconds"),
+        text: l(
+          "数电发票改革把开票从人工窗口推向自动生成和线上流转。",
+          "Digital invoice reform pushed invoicing away from manual counters toward automatic generation and online circulation."
+        )
+      },
+      {
+        year: same("2025"),
+        title: l("支付即开票推广", "Pay-and-Invoice Promoted"),
+        text: l(
+          "无人值守即时开票让更多日常场景不再等待人工处理。",
+          "Unattended instant invoicing meant more everyday scenarios no longer waited for manual handling."
+        )
+      }
+    ],
+    voices: [
+      {
+        author: l("前发票专员", "Former Invoicing Specialist"),
+        date: same("2026.04.21"),
+        text: l(
+          "当开票被做成按钮，留下来的就只剩出错时谁来收拾残局。",
+          "Once invoicing becomes a button, what remains is deciding who cleans up when it goes wrong."
+        )
+      }
+    ]
   }
 );
 
