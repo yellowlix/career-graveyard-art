@@ -191,7 +191,8 @@ test("home page reveals the careers panel only after segmented scroll on desktop
   page
 }, testInfo) => {
   await visit(page, "/");
-  const _viewportTier = getViewportTier(testInfo);
+  const viewportTier = getViewportTier(testInfo);
+  test.skip(viewportTier === "mobile", "Segmented home-panel scrolling is desktop/tablet only.");
 
   const careersPanel = page.locator('[data-home-panel="careers"]');
   const careersGrid = page.locator(".career-grid--home");
@@ -298,7 +299,7 @@ test("archive clear button should clear committed query and reset listing", asyn
   const searchInput = page.locator("#archive-search-input");
   const clearButton = page.locator("[data-archive-search-clear]");
 
-  await searchInput.fill("Graphic");
+  await searchInput.fill("pixel-level");
   await page
     .getByRole("button", { name: pick(siteCopy.archive.searchSubmit, "en"), exact: true })
     .click();

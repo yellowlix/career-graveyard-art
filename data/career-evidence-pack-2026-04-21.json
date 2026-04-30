@@ -1,0 +1,3305 @@
+{
+  "meta": {
+    "project": "career-graveyard-art",
+    "generatedAt": "2026-04-21",
+    "researchScope": "candidate evidence pack for future formal career entries",
+    "sourceLanguagePriority": ["zh-CN", "en"],
+    "notes": [
+      "招聘平台证据主要用于证明岗位 title 真实存在，不单独作为衰退结论依据。",
+      "recommendedDecision 是研究阶段建议，不等于最终上线决定。",
+      "当岗位仍有明显人机协同、合规责任或强线下属性时，结论会降级为 needs_careful_wording、hold 或 needs_more_research。"
+    ],
+    "repoIntegration": {
+      "importedAt": "2026-04-30",
+      "sourceFileName": "career_graveyard_evidence_pack_2026-04-21 (1).json",
+      "issue": "https://github.com/yellowlix/career-graveyard-art/issues/41",
+      "firstPromotionPullRequest": "https://github.com/yellowlix/career-graveyard-art/pull/52",
+      "productionCareerCountAtImport": 20,
+      "roleCount": 35,
+      "holdoutAuditCount": 7,
+      "promotedFromThisPack": [
+        "电话销售",
+        "高速收费员",
+        "火车票代售点售票员",
+        "收银员",
+        "数据录入员"
+      ],
+      "pendingRoleCount": 30,
+      "notes": [
+        "This file is a repository evidence asset, not runtime data.",
+        "Formal public entries still live in src/data.js and are promoted manually in content PRs.",
+        "Job-board links may prove title existence but should not be treated as standalone decline evidence."
+      ]
+    }
+  },
+  "roles": [
+    {
+      "canonicalTitle": "客服专员",
+      "aliases": ["客服", "在线客服", "售后客服", "客户服务专员"],
+      "priority": "high",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "endangered",
+      "confidence": "B",
+      "whyThisTitleIsReal": "BOSS直聘仍能检索到大量“客服专员/在线客服/售后客服”岗位，title 在中国招聘市场持续存在。",
+      "whyItFitsCareerGraveyard": "该岗位的高频标准问答、工单分流和初步接待，正被 AI 客服、机器人托管和平台化服务系统快速吞掉，尤其是低复杂度、低授权的前线席位。",
+      "counterEvidenceOrCaution": "复杂投诉、跨系统问题、情绪安抚和高价值客户保留仍需要人工兜底；更适合写成“前线客服席位被压缩”，而不是“所有客服消失”。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“客服专员/在线客服”等岗位，证明该 title 真实存在。",
+          "sourceTitle": "客服专员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/5e45d6bb3181b7df03R-2dW_/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "招聘页只证明岗位存在，不能单独证明其衰退。"
+        },
+        {
+          "claim": "AI 客服被明确作为降本工具推销，报道中出现“一个 AI 超级客服可代替 50 个客服”等表述，指向基础客服席位的替代压力。",
+          "sourceTitle": "“一个AI客服代替50个客服”？AI客服失控谁来管",
+          "publisher": "中国新闻网",
+          "url": "https://www.chinanews.com.cn/sh/2025/12-06/10527992.shtml",
+          "sourceType": "news",
+          "publishedAt": "2025-12-06",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "更能支撑“替代压力/压价”叙事，而非岗位已经消失。"
+        },
+        {
+          "claim": "主流媒体指出 AI 客服普及后，复杂问题仍需要人工客服协同处理，说明岗位更像被压缩与分层，而非完全归零。",
+          "sourceTitle": "人工智能客服“上岗”，服务还能更贴心吗？",
+          "publisher": "新华网",
+          "url": "https://www.news.cn/tech/20250318/6837314b52da45029b4a8eb31f982ecc/c.html",
+          "sourceType": "news",
+          "publishedAt": "2025-03-18",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "适合放进谨慎点：复杂场景、情绪劳动和升级处理仍依赖人工。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "AI客服托管",
+          "titleEn": "AI customer service",
+          "oneSentenceRationale": "平台把 FAQ、接待和工单分流前置到机器人，先吃掉最低附加值的席位。"
+        },
+        {
+          "titleZh": "复杂问题人工兜底",
+          "titleEn": "Human fallback for complex cases",
+          "oneSentenceRationale": "真正保留下来的是升级处理、安抚和跨部门协调，而不是大批量基础客服。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "AI超级客服开始被公开包装成替代方案",
+          "titleEn": "AI super-agent framed as a replacement",
+          "evidenceUrl": "https://www.chinanews.com.cn/sh/2025/12-06/10527992.shtml",
+          "note": "适合当“岗位被重新定价”的媒体节点。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "主流媒体强调人机协同而非纯人工接待",
+          "titleEn": "Mainstream framing shifts to human-AI collaboration",
+          "evidenceUrl": "https://www.news.cn/tech/20250318/6837314b52da45029b4a8eb31f982ecc/c.html",
+          "note": "有助于把 status 写成 endangered 而非 obsolete。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前客服组长",
+          "speakerEn": "Former customer service team lead",
+          "angle": "最先被替掉的不是会处理客诉的人，而是只负责照脚本念话术的人。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "客服专员 招聘",
+        "AI 客服 替代 人工客服 中国",
+        "人工智能客服 复杂问题 仍需人工"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "收银员",
+      "aliases": ["收银", "门店收银员", "前台收银"],
+      "priority": "high",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "endangered",
+      "confidence": "A",
+      "whyThisTitleIsReal": "餐饮、商超、零售门店仍持续发布“收银员”招聘，岗位名称真实且广泛。",
+      "whyItFitsCareerGraveyard": "自助收银、智能称重、扫码点餐和移动支付把原本由收银台人工完成的流程拆解进系统；岗位没有立刻消失，但在大量门店中已从“必备岗”变成“可压缩岗”。",
+      "counterEvidenceOrCaution": "在高客流、老年客群、异常订单和门店兼岗场景下，人工仍常被保留；更适合写成“被自助系统和兼岗吸收”。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍能检索到大量“收银员”岗位，说明岗位真实存在。",
+          "sourceTitle": "收银员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/825e5aab75137c991XB40tW1/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "主流媒体报道“AI 超市”中的智能秤和自助结算提升效率，指向收银环节被设备和系统替代。",
+          "sourceTitle": "“AI超市”：购物新体验",
+          "publisher": "新华网",
+          "url": "https://www.news.cn/tech/20250620/9254f70ce7f5427b99125766c6ef9dd1/c.html",
+          "sourceType": "news",
+          "publishedAt": "2025-06-20",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "可直接支撑自助结账、无人称重对收银岗位的侵蚀。"
+        },
+        {
+          "claim": "央视报道扫码点餐可减少服务员和收银环节的人工投入，说明门店前台交易链条已被系统化压缩。",
+          "sourceTitle": "扫码点餐本是方便，不该算计消费者",
+          "publisher": "央视网",
+          "url": "https://news.cctv.com/2021/07/14/ARTIefyUIUdnXxyVHFvfVUGe210714.shtml",
+          "sourceType": "news",
+          "publishedAt": "2021-07-14",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "虽然较早，但能说明收银与点单岗位长期被“降本增效”逻辑挤压。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "自助结账",
+          "titleEn": "Self-checkout",
+          "oneSentenceRationale": "结账、称重和支付被机器自助化后，门店更倾向让一人兼顾多项杂务。"
+        },
+        {
+          "titleZh": "门店兼岗",
+          "titleEn": "Role merging in stores",
+          "oneSentenceRationale": "收银常被并进导购、理货、点单或前台，岗位边界越来越薄。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2021",
+          "titleZh": "扫码点餐与移动支付继续削弱传统收银台",
+          "titleEn": "QR ordering and mobile payment weaken cashier desks",
+          "evidenceUrl": "https://news.cctv.com/2021/07/14/ARTIefyUIUdnXxyVHFvfVUGe210714.shtml",
+          "note": "适合作为长期趋势起点。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "AI超市、自助结算被主流媒体常态化报道",
+          "titleEn": "AI supermarkets and self-checkout enter mainstream coverage",
+          "evidenceUrl": "https://www.news.cn/tech/20250620/9254f70ce7f5427b99125766c6ef9dd1/c.html",
+          "note": "可作为近年加速节点。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "门店店长",
+          "speakerEn": "Store manager",
+          "angle": "从前排一整班收银，现在更希望把人手放到补货、客诉和现场兜底。"
+        }
+      ],
+      "searchQueriesUsed": ["收银员 招聘", "自助收银 替代 收银员 中国", "扫码点餐 节约 人工 收银"],
+      "repoStatus": "promoted_to_src_data_js"
+    },
+    {
+      "canonicalTitle": "内容审核员",
+      "aliases": ["审核专员", "内容风控审核", "平台审核员", "社区审核"],
+      "priority": "high",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台持续出现“内容审核员/审核专员/社区内容审核”等岗位，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "内容审核的规则化部分正快速转向 AI 初审、批量识别和自动拦截，人类审核员更像在做升级复核、边界判定和异常样本兜底。",
+      "counterEvidenceOrCaution": "平台治理、合规标识、申诉复核和复杂灰区内容仍需要人类判断；更稳妥的叙事是“人工审核从大量初筛转向少量复杂复核”。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍能检索到“内容审核员”职位，证明岗位真实存在。",
+          "sourceTitle": "内容审核员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/42049cd0554c3c631nN42dq0/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "央视地方报道显示，智能审核平台让人工成本减少 50%，说明大规模初审工作已被机器替代。",
+          "sourceTitle": "AI助力无锡文旅内容审核提质增效",
+          "publisher": "央视网",
+          "url": "https://local.cctv.com/2025/09/23/ARTINqQDNW7N0SKSIbQ8sBIC250923.shtml",
+          "sourceType": "news",
+          "publishedAt": "2025-09-23",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "非常适合支撑“人工初审席位被压缩”的论点。"
+        },
+        {
+          "claim": "新华网报道大众点评用 AI 智能体辅助审核并处置千万级 AIGC 评价，说明平台审核已规模化算法先行。",
+          "sourceTitle": "大众点评“慧眼团”上线 AI智能审核员",
+          "publisher": "新华网",
+          "url": "https://www.news.cn/tech/20260323/b1ebc84e186b4b52bbba15059b229cbf/c.html",
+          "sourceType": "news",
+          "publishedAt": "2026-03-23",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可用来说明审核员角色从“逐条看”转向“处理机器筛出的疑难件”。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "AI初审先行",
+          "titleEn": "AI-first moderation",
+          "oneSentenceRationale": "模型先做大规模过滤和打标，人类审核转向少数疑难内容。"
+        },
+        {
+          "titleZh": "灰区复核",
+          "titleEn": "Edge-case review",
+          "oneSentenceRationale": "越靠近合规、申诉和语境理解，人工越难被完全替代。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "智能审核平台公开强调节省人工成本",
+          "titleEn": "Smart moderation platforms publicly emphasize labor savings",
+          "evidenceUrl": "https://local.cctv.com/2025/09/23/ARTINqQDNW7N0SKSIbQ8sBIC250923.shtml",
+          "note": "适合作为岗位被技术压缩的强节点。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "平台把 AI 审核员作为常态化基础设施",
+          "titleEn": "Platforms normalize AI moderation agents",
+          "evidenceUrl": "https://www.news.cn/tech/20260323/b1ebc84e186b4b52bbba15059b229cbf/c.html",
+          "note": "说明岗位仍在，但结构已变化。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前审核班组长",
+          "speakerEn": "Former moderation shift lead",
+          "angle": "以前人盯人看流，现在是模型先拦截，人工只接手最难判的那一层。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "内容审核员 招聘",
+        "智能审核 平台 人工成本 减少",
+        "AI 审核员 大众点评 审核"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "数据录入员",
+      "aliases": ["录入员", "信息录入员", "资料录入员", "数据整理录入"],
+      "priority": "high",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "endangered",
+      "confidence": "A",
+      "whyThisTitleIsReal": "招聘平台上仍能看到“数据录入员/资料录入员”等低门槛岗位，title 真实存在。",
+      "whyItFitsCareerGraveyard": "OCR、RPA 和跨系统自动填报直接瞄准的就是“看图/看单/看表后手工录入”这类流程，属于最典型的标准化替代场景。",
+      "counterEvidenceOrCaution": "少量高噪声、低质量纸面资料、历史档案清洗和临时项目仍会用到人工，但更像补丁式需求而非稳固职业路径。",
+      "declineYearCandidate": "2024",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“数据录入员”岗位，证明 title 真实存在。",
+          "sourceTitle": "数据录入员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/d2a6bfe7ee213fc10nxz39q1/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "中国日报报道企业引入 RPA 后，可自动完成检索、汇总、比对和重复录入，直指数据录入岗位的核心工作内容。",
+          "sourceTitle": "RPA机器人让“数字员工”走上岗位",
+          "publisher": "中国日报网",
+          "url": "https://cn.chinadaily.com.cn/a/202409/19/WS66eb8bc7a310a792b3abcc5d.html",
+          "sourceType": "news",
+          "publishedAt": "2024-09-19",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "是数据录入岗位最直接的替代证据之一。"
+        },
+        {
+          "claim": "苏宁财务共享中心通过 RPA 实现记账、对账、发票查伪等自动化，说明基础数据搬运正被系统化吞掉。",
+          "sourceTitle": "苏宁财务共享服务中心的RPA实践",
+          "publisher": "中国新闻网",
+          "url": "https://www.chinanews.com.cn/m/business/2018/06-29/8551571.shtml",
+          "sourceType": "news",
+          "publishedAt": "2018-06-29",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "虽较早，但能说明“录入工作机器化”并非概念，而是成熟降本路径。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "OCR+RPA接管录入",
+          "titleEn": "OCR + RPA takeover",
+          "oneSentenceRationale": "从纸质单据到系统回填，低复杂度录入流程天然适合自动化。"
+        },
+        {
+          "titleZh": "临时项目化残存",
+          "titleEn": "Residual project-based work",
+          "oneSentenceRationale": "岗位多留在脏数据、历史资料和短期清洗任务，不再像完整职业通道。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2018",
+          "titleZh": "财务共享中心把基础票据处理自动化",
+          "titleEn": "Shared service centers automate basic document handling",
+          "evidenceUrl": "https://www.chinanews.com.cn/m/business/2018/06-29/8551571.shtml",
+          "note": "可作为早期替代起点。"
+        },
+        {
+          "year": "2024",
+          "titleZh": "RPA 被公开用于检索、比对与重复录入",
+          "titleEn": "RPA publicly applied to retrieval, comparison, and repetitive entry",
+          "evidenceUrl": "https://cn.chinadaily.com.cn/a/202409/19/WS66eb8bc7a310a792b3abcc5d.html",
+          "note": "说明岗位进入明显危险区。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前录入项目外包人员",
+          "speakerEn": "Former data-entry outsourcing worker",
+          "angle": "最先消失的不是岗位名字，而是那种按天计件、盯着表格敲一天的活。"
+        }
+      ],
+      "searchQueriesUsed": ["数据录入员 招聘", "RPA 重复录入 自动化 中国", "OCR 数据录入 自动化"],
+      "repoStatus": "promoted_to_src_data_js"
+    },
+    {
+      "canonicalTitle": "行政助理",
+      "aliases": ["行政专员", "办公室助理", "综合行政助理"],
+      "priority": "high",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "C",
+      "whyThisTitleIsReal": "“行政助理/行政专员”在企业招聘中长期存在，岗位真实性没有问题。",
+      "whyItFitsCareerGraveyard": "该岗位里最容易被压缩的是会议纪要、文档汇总、报表整理、通知起草、流程跟进这类事务性部分；这些正被政务与办公 AI、RPA 和自动摘要工具不断接管。",
+      "counterEvidenceOrCaution": "行政助理常常还承担采购、访客接待、跨部门催办、现场事务和老板偏好的临时差事，纯线上替代率没有数据录入那样高。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍有大量“行政助理/行政专员”岗位，证明岗位真实存在。",
+          "sourceTitle": "行政助理招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/b723e2f177f09b6c1nxy0ti-/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "中国日报报道 DeepSeek 等大模型进入政务与办公场景，可辅助公文写作、知识检索和办事流程，压缩基础文书事务。",
+          "sourceTitle": "大模型助力政务办公提质增效",
+          "publisher": "中国日报网",
+          "url": "https://cn.chinadaily.com.cn/a/202502/25/WS67bd606fa310510f19ee8900.html",
+          "sourceType": "news",
+          "publishedAt": "2025-02-25",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "适合支撑行政岗位中“写、搜、整、汇”部分被替代。"
+        },
+        {
+          "claim": "RPA 已被公开用于办公室中的检索、汇总、比对和跨系统录入，说明行政助理的流程性工作存在持续自动化压力。",
+          "sourceTitle": "RPA机器人让“数字员工”走上岗位",
+          "publisher": "中国日报网",
+          "url": "https://cn.chinadaily.com.cn/a/202409/19/WS66eb8bc7a310a792b3abcc5d.html",
+          "sourceType": "news",
+          "publishedAt": "2024-09-19",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "更能证明事务性子任务被机器吸收，而非整个岗位立刻消失。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "事务性工作被AI化",
+          "titleEn": "Transactional work absorbed by AI",
+          "oneSentenceRationale": "会议纪要、通知、公文初稿和材料汇总率先被工具压缩。"
+        },
+        {
+          "titleZh": "线下杂务仍顽固",
+          "titleEn": "Persistent offline errands",
+          "oneSentenceRationale": "真正难替的是到场协调、突发杂务和人情化组织支持。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2024",
+          "titleZh": "RPA被公开用于检索汇总比对等办公室事务",
+          "titleEn": "RPA publicly used for office retrieval, summaries, and comparisons",
+          "evidenceUrl": "https://cn.chinadaily.com.cn/a/202409/19/WS66eb8bc7a310a792b3abcc5d.html",
+          "note": "可作为自动化节点。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "政务办公场景开始大规模接入大模型",
+          "titleEn": "Government-office scenarios begin large-scale LLM adoption",
+          "evidenceUrl": "https://cn.chinadaily.com.cn/a/202502/25/WS67bd606fa310510f19ee8900.html",
+          "note": "说明行政助理的低阶文书工作开始被重新定价。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前综合行政",
+          "speakerEn": "Former admin generalist",
+          "angle": "不是行政岗没了，而是那些最像“高级录入员”的部分越来越不值钱。"
+        }
+      ],
+      "searchQueriesUsed": ["行政助理 招聘", "政务办公 AI 写作 中国", "RPA 办公 自动化 汇总 比对"],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "电话销售",
+      "aliases": ["电销", "电话营销", "外呼销售", "电销专员"],
+      "priority": "high",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "endangered",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台持续存在“电话销售/电销专员”等岗位，说明 title 真实存在。",
+      "whyItFitsCareerGraveyard": "外呼脚本、号码触达、首轮问答和线索筛选已经被 AI 外呼机器人高度产品化；这类岗位既面临自动化，也面临更激进的压价。",
+      "counterEvidenceOrCaution": "复杂成交、关系维护和高客单价销售仍需要人工；另有监管对骚扰电话和违规营销持续收紧，这会影响岗位形态但不必然等于彻底消失。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到大量“电话销售”岗位，证明岗位名称真实存在。",
+          "sourceTitle": "电话销售招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/6e7e8fd019ab187a1nBy2du5/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "央视“3·15”报道指出 AI 外呼机器人已广泛用于营销场景，直指电话销售的标准化触达链条。",
+          "sourceTitle": "起底骚扰电话黑色产业链 AI外呼机器人成帮凶",
+          "publisher": "央视财经",
+          "url": "https://jingji.cctv.com/2025/03/15/ARTIcsqW51lWvHMhuwLAqMRH250315.shtml",
+          "sourceType": "news",
+          "publishedAt": "2025-03-15",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "是电话销售岗位遭遇技术替代的核心证据。"
+        },
+        {
+          "claim": "央视新闻曾曝光 AI 语音骚扰电话产业，说明“用系统替人工外呼”的模式已经成熟。",
+          "sourceTitle": "AI外呼电销成骚扰电话新源头",
+          "publisher": "央视新闻",
+          "url": "https://news.cctv.com/2024/08/20/ARTIQErMSMQvopUlZo9lHnSp240820.shtml",
+          "sourceType": "news",
+          "publishedAt": "2024-08-20",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "能说明岗位不仅被替代，还可能被更低成本的机器外呼重定价。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "AI外呼替代",
+          "titleEn": "AI outbound calling",
+          "oneSentenceRationale": "号码拨打、话术播报和首轮筛选已经被机器高度商品化。"
+        },
+        {
+          "titleZh": "监管挤压",
+          "titleEn": "Regulatory pressure",
+          "oneSentenceRationale": "违规外呼治理会进一步淘汰粗放型电销组织和席位。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2024",
+          "titleZh": "AI语音骚扰电话被央视曝光",
+          "titleEn": "AI voice robocalls exposed by state media",
+          "evidenceUrl": "https://news.cctv.com/2024/08/20/ARTIQErMSMQvopUlZo9lHnSp240820.shtml",
+          "note": "可作为机器外呼成熟节点。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "AI外呼机器人进入315舆论中心",
+          "titleEn": "AI outbound bots become a 315 consumer-rights issue",
+          "evidenceUrl": "https://jingji.cctv.com/2025/03/15/ARTIcsqW51lWvHMhuwLAqMRH250315.shtml",
+          "note": "说明替代路径已不再隐蔽。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前电销主管",
+          "speakerEn": "Former telesales supervisor",
+          "angle": "当机器能一天打上万通电话时，留下来的人工只剩最难啃的那一段。"
+        }
+      ],
+      "searchQueriesUsed": ["电话销售 招聘", "AI 外呼 机器人 中国", "AI 语音骚扰电话 电销"],
+      "repoStatus": "promoted_to_src_data_js"
+    },
+    {
+      "canonicalTitle": "出纳",
+      "aliases": ["现金出纳", "财务出纳", "出纳员"],
+      "priority": "high",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘市场中“出纳”岗位仍然常见，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "出纳最容易被压缩的是付款录入、票据核验、对账与发票处理等重复环节；财务共享、RPA 和数电发票正在持续把这些子任务从人手转向系统。",
+      "counterEvidenceOrCaution": "涉及现金、印鉴、线下银行往来、对公支付授权和合规责任的部分仍经常保留人工，不能写成“财务完全无人化”。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“出纳”岗位，证明 title 真实存在。",
+          "sourceTitle": "出纳招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/c0ff18cb527bce461XN-3Nm6/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "RPA 已被公开用于财务付款信息审核、检索、汇总与重复录入，直接压缩出纳事务性工作。",
+          "sourceTitle": "RPA机器人让“数字员工”走上岗位",
+          "publisher": "中国日报网",
+          "url": "https://cn.chinadaily.com.cn/a/202409/19/WS66eb8bc7a310a792b3abcc5d.html",
+          "sourceType": "news",
+          "publishedAt": "2024-09-19",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "更贴近出纳日常中的录入和审核动作。"
+        },
+        {
+          "claim": "税务系统推动数电发票后，官方媒体出现“从人工开具到秒开秒得”“办税服务厅人数锐减”等描述，显示基础财务票据工作被系统化替代。",
+          "sourceTitle": "数电发票让发票“秒开秒得”",
+          "publisher": "国家税务总局浙江省税务局",
+          "url": "https://zhejiang.chinatax.gov.cn/art/2025/9/28/art_13230_642964.html",
+          "sourceType": "official",
+          "publishedAt": "2025-09-28",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可支撑出纳、开票类岗位的基础事务收缩。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "财务共享与RPA",
+          "titleEn": "Finance shared services and RPA",
+          "oneSentenceRationale": "出纳里最标准化的录单、核验和回填工作率先被机器人接手。"
+        },
+        {
+          "titleZh": "合规责任保留人工",
+          "titleEn": "Human retention for compliance liability",
+          "oneSentenceRationale": "涉及授权、现金和责任签署的部分通常还要人来背书。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2024",
+          "titleZh": "RPA公开介入财务付款信息审核",
+          "titleEn": "RPA publicly moves into payment-info review",
+          "evidenceUrl": "https://cn.chinadaily.com.cn/a/202409/19/WS66eb8bc7a310a792b3abcc5d.html",
+          "note": "说明出纳事务开始被系统化吸收。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "数电发票被宣传为“秒开秒得”",
+          "titleEn": "Digital invoices promoted as instant issuance",
+          "evidenceUrl": "https://zhejiang.chinatax.gov.cn/art/2025/9/28/art_13230_642964.html",
+          "note": "是岗位被重定价的制度化节点。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前小企业出纳",
+          "speakerEn": "Former SME cashier-treasurer",
+          "angle": "最先没掉的是那种天天开票、录单、跑流程的人，不是最后签字的人。"
+        }
+      ],
+      "searchQueriesUsed": ["出纳 招聘", "财务 RPA 付款信息审核 中国", "数电发票 秒开秒得 官方"],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "网店运营助理",
+      "aliases": ["电商运营助理", "店铺运营助理", "淘宝运营助理", "电商助理"],
+      "priority": "high",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中“网店运营助理/电商运营助理”仍大量存在，岗位真实。",
+      "whyItFitsCareerGraveyard": "这类岗位的大量日常工作——商品上架、图片优化、标题关键词、选品提示、简单客服和基础数据复盘——正在被平台官方 AI 工具和一键托管功能吸收。",
+      "counterEvidenceOrCaution": "真正难替的是跨平台策略、活动协调、供应链博弈和异常履约；更适合写成“低阶运营助理被平台工具去技能化”。",
+      "declineYearCandidate": "2026",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“网店运营助理”岗位，证明岗位真实存在。",
+          "sourceTitle": "网店运营助理招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/15c62ecaa93afce41HFz29W8/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "人民日报报道京东向商家免费开放 14 款 AI 工具，覆盖从入驻、商品管理到营销和售后，说明大量基础运营动作被平台工具内建化。",
+          "sourceTitle": "京东“春晓计划”再升级",
+          "publisher": "人民日报",
+          "url": "https://paper.people.com.cn/rmrb/pc/content/202603/17/content_30145533.html",
+          "sourceType": "news",
+          "publishedAt": "2026-03-17",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "可直接支持“低阶运营被平台去技能化”。"
+        },
+        {
+          "claim": "媒体披露淘宝闪购商家端 AI Agent 已覆盖入驻、店装、发品、选品托管和营销，且大量新商家开通智能选品一键托管。",
+          "sourceTitle": "淘宝闪购商家端AI Agent全量上线语音搜索功能",
+          "publisher": "新浪财经",
+          "url": "https://finance.sina.cn/stock/jdts/2026-04-09/detail-inhtwhrf6000580.d.html",
+          "sourceType": "news",
+          "publishedAt": "2026-04-09",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "表明平台正把曾由运营助理负责的后台工作打包成产品功能。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "平台内建AI运营",
+          "titleEn": "Platform-native AI operations",
+          "oneSentenceRationale": "运营助理最常做的后台动作越来越直接写进商家工作台。"
+        },
+        {
+          "titleZh": "一键托管",
+          "titleEn": "One-click managed operations",
+          "oneSentenceRationale": "平台把标题、上新、选品和投放建议收编成默认能力，压缩助理岗位空间。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "平台开始高频强调 AI 经营提效",
+          "titleEn": "Platforms start emphasizing AI-driven merchant efficiency",
+          "evidenceUrl": "https://www.alimama.com/",
+          "note": "可作平台化背景节点。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "京东与淘宝公开把商家运营全流程AI化",
+          "titleEn": "JD and Taobao publicly AI-enable full merchant workflows",
+          "evidenceUrl": "https://paper.people.com.cn/rmrb/pc/content/202603/17/content_30145533.html",
+          "note": "说明网店运营助理被重新定价。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前淘宝运营助理",
+          "speakerEn": "Former e-commerce operations assistant",
+          "angle": "以前靠人盯标题、盯素材、盯上新节奏，现在很多平台直接把建议推到你脸上。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "网店运营助理 招聘",
+        "京东 商家 AI 工具 官方",
+        "淘宝 商家 AI Agent 店装 发品 选品托管"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "网站编辑/SEO编辑",
+      "aliases": ["网站编辑", "SEO编辑", "内容SEO编辑", "站点编辑"],
+      "priority": "high",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "decaying",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台仍有“网站编辑”“SEO编辑”等职位，证明 title 真实存在。",
+      "whyItFitsCareerGraveyard": "这类岗位的核心流水线——搜题、改写、排版、填关键词、批量铺内容——是 AIGC 最容易切入的环节；即便岗位未消失，也在快速掉价和去技能化。",
+      "counterEvidenceOrCaution": "高竞争领域仍需要选题、品牌语气、搜索策略和合规审校；更稳的写法是“内容农场型 SEO 编辑最危险”。",
+      "declineYearCandidate": "2024",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“网站编辑/SEO编辑”岗位，证明岗位真实存在。",
+          "sourceTitle": "SEO编辑招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/01a0e4bdddd2a1fd3nR709U~/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "《新闻战线》讨论 AI 编辑部与新闻机器人，说明内容采编与初稿生产早已进入机器化阶段。",
+          "sourceTitle": "人工智能时代编辑部的变与不变",
+          "publisher": "人民网《新闻战线》",
+          "url": "https://paper.people.com.cn/xwzx/html/2021-11/20/content_26015756.htm",
+          "sourceType": "news",
+          "publishedAt": "2021-11-20",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "可支撑网站编辑岗位中“初稿生产/简单改写”被工具化。"
+        },
+        {
+          "claim": "人民日报海外版讨论 AIGC 赋能广电内容生产，说明媒体内容流水线全面受生成式工具影响。",
+          "sourceTitle": "AIGC赋能广电新发展",
+          "publisher": "人民日报海外版",
+          "url": "https://paper.people.com.cn/rmrbhwb/html/2024-06/14/content_26063434.htm",
+          "sourceType": "news",
+          "publishedAt": "2024-06-14",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "适合作为 SEO/网站编辑被再定价的近年背景证据。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "AIGC批量生产",
+          "titleEn": "AIGC at scale",
+          "oneSentenceRationale": "搜集、改写、拼装和排版本来就是机器最擅长的内容工序。"
+        },
+        {
+          "titleZh": "内容农场受冲击",
+          "titleEn": "Content-farm exposure",
+          "oneSentenceRationale": "越标准化、越追量的站点编辑工作，越容易被模型和模板吞掉。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2021",
+          "titleZh": "AI编辑部进入主流讨论",
+          "titleEn": "AI newsroom enters mainstream discussion",
+          "evidenceUrl": "https://paper.people.com.cn/xwzx/html/2021-11/20/content_26015756.htm",
+          "note": "说明不是新概念。"
+        },
+        {
+          "year": "2024",
+          "titleZh": "AIGC被明确纳入广电内容生产叙事",
+          "titleEn": "AIGC explicitly enters broadcasting content production",
+          "evidenceUrl": "https://paper.people.com.cn/rmrbhwb/html/2024-06/14/content_26063434.htm",
+          "note": "可作为近年加速点。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前站群编辑",
+          "speakerEn": "Former site-network editor",
+          "angle": "最先不值钱的，是那种靠改写和铺关键词堆出来的内容。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "SEO编辑 招聘",
+        "AI 编辑部 新闻机器人 中国",
+        "AIGC 广电 内容生产 人民日报海外版"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "电商美工",
+      "aliases": ["淘宝美工", "网店美工", "电商设计师", "店铺美工"],
+      "priority": "high",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "endangered",
+      "confidence": "B",
+      "whyThisTitleIsReal": "“电商美工/淘宝美工”在招聘平台和电商服务市场中仍非常常见。",
+      "whyItFitsCareerGraveyard": "白底图、抠图、换背景、商品场景图、详情页套图等重复视觉劳动，正被 AI 作图、批量抠图和平台内建设计工具持续吃掉，岗位更像在被廉价化和模板化。",
+      "counterEvidenceOrCaution": "高端品牌视觉、复杂合成、拍摄统筹和审美把关仍保留人工价值；更适合写成“基础电商美工最危险”。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“电商美工/淘宝美工”岗位，证明岗位真实存在。",
+          "sourceTitle": "电商美工招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/d2f89b61f7c1f4d71nJ_29m5/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "阿里云智能视觉生产强调可自动、批量化完成商品编辑上架中的图像处理，并称为平台及商家节约大量运营时间和成本。",
+          "sourceTitle": "智能视觉生产_自动化_AI图像处理",
+          "publisher": "阿里云",
+          "url": "https://www.alibabacloud.com/zh/product/ivpd?_p_lc=1",
+          "sourceType": "official",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "对电商美工是非常直接的替代证据。"
+        },
+        {
+          "claim": "易可图等电商图片工具公开提供 AI 换背景、AI 模特试衣和批量编辑，说明原本要靠美工反复处理的任务正在产品化。",
+          "sourceTitle": "易可图-电商做图必备",
+          "publisher": "易可图",
+          "url": "https://www.yiketu.com/",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可用于说明岗位被模板化和工具化。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "批量作图自动化",
+          "titleEn": "Batch image automation",
+          "oneSentenceRationale": "电商最常见的白底图、抠图和场景图已经高度产品化。"
+        },
+        {
+          "titleZh": "审美残余",
+          "titleEn": "Residual aesthetic judgment",
+          "oneSentenceRationale": "留下来的更偏品牌把关和复杂视觉，而不是重复抠图修图。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "平台侧强调商品图自动化降本",
+          "titleEn": "Platform-side messaging emphasizes automated product-image cost cuts",
+          "evidenceUrl": "https://www.alibabacloud.com/zh/product/ivpd?_p_lc=1",
+          "note": "适合作为加速点。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "AI电商作图工具成为商家后台标配能力",
+          "titleEn": "AI e-commerce image tools become merchant-backend defaults",
+          "evidenceUrl": "https://www.linkfox.com/",
+          "note": "可作为行业扩散节点。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前淘宝美工",
+          "speakerEn": "Former Taobao designer",
+          "angle": "以前最费工时的是抠图和换背景，现在这些先被工具卷成了默认功能。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "电商美工 招聘",
+        "阿里云 商品图 自动化 AI",
+        "AI 电商作图 换背景 批量编辑"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "PPT设计师",
+      "aliases": ["PPT制作师", "演示设计师", "PPT美化设计师"],
+      "priority": "high",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "unworthy",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘与外包市场中仍能看到“PPT设计师/演示设计师”等岗位，title 真实存在。",
+      "whyItFitsCareerGraveyard": "模板化美化、版式生成、图文转演示稿和初步文案整理已被 AI PPT 工具大幅压缩；岗位不是立刻消失，而是更容易被平台化低价竞争吞没。",
+      "counterEvidenceOrCaution": "复杂汇报逻辑、咨询风格叙事、投委会材料和高保密项目仍需要资深人类设计与沟通。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“PPT设计师”岗位，证明岗位真实存在。",
+          "sourceTitle": "PPT设计师招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/339400a1fea431721HF_0ts~/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "Canva 在中文站直接提供 AI PPT 生成服务，说明基础演示文稿生产已被工具产品化。",
+          "sourceTitle": "Canva AI PPT",
+          "publisher": "Canva",
+          "url": "https://www.canva.cn/ai-ppt/",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "可用于支持“基础 PPT 生产被工具吞掉”。"
+        },
+        {
+          "claim": "Canva 帮助文档中的 Magic Presentations 说明输入主题即可自动生成演示内容与版式，进一步压缩基础 PPT 美化劳动。",
+          "sourceTitle": "使用 Magic Design 生成演示文稿",
+          "publisher": "Canva",
+          "url": "https://www.canva.com/zh_hk/help/using-magic-presentations/",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "证明这类能力已常态化，而非实验功能。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "AI生成演示稿",
+          "titleEn": "AI-generated decks",
+          "oneSentenceRationale": "从提纲到版式的一键生成直接冲击低阶PPT制作。"
+        },
+        {
+          "titleZh": "高端汇报仍有人",
+          "titleEn": "Humans remain for high-stakes decks",
+          "oneSentenceRationale": "高保密、高说服强度的材料仍需要资深顾问式能力。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "中文市场主流工具直接上线 AI PPT",
+          "titleEn": "Mainstream tools in Chinese market launch AI PPT directly",
+          "evidenceUrl": "https://www.canva.cn/ai-ppt/",
+          "note": "可作为明显拐点。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "一键生成版式和内容成为帮助文档常规功能",
+          "titleEn": "One-click layout and content generation becomes standard help-doc functionality",
+          "evidenceUrl": "https://www.canva.com/zh_hk/help/using-magic-presentations/",
+          "note": "说明职业门槛被压平。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前PPT外包接单者",
+          "speakerEn": "Former freelance deck designer",
+          "angle": "最先被压价的不是大会级提案，而是那些把字和图排漂亮的单子。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "PPT设计师 招聘",
+        "AI PPT 中文 Canva",
+        "Magic Presentations 演示 自动生成"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "速录师",
+      "aliases": ["会议速记员", "速录员", "会议记录员", "庭审速录"],
+      "priority": "high",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "obsolete",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘市场仍可见“速录师/会议速记员”等职位，岗位名并未彻底消失。",
+      "whyItFitsCareerGraveyard": "语音转文字、智能会议纪要、实时字幕和全文检索已经把“把人说的话快速打成字”这件事做成了大众软件功能，传统通用型速录岗位明显老化。",
+      "counterEvidenceOrCaution": "法庭、党委政府保密会议、纪检取证和高准确率逐字稿场景仍会保留人工或人工复核，因此更像 obsolete 而非全域归零。",
+      "declineYearCandidate": "2024",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“速录师”岗位，证明岗位名称真实存在。",
+          "sourceTitle": "速录师招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/34c4874b1fc714440XR52NS5/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "讯飞听见公开提供录音转文字、视频转文字、同声翻译等能力，说明传统速录核心工作已被软件产品化。",
+          "sourceTitle": "讯飞听见-在线录音转文字",
+          "publisher": "讯飞听见",
+          "url": "https://www.iflyrec.com/",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "是“速录工作大众化软件化”的直接证据。"
+        },
+        {
+          "claim": "飞书妙记可自动转录视频会议并生成可搜索逐字稿、纪要与待办，进一步挤压通用会议速录需求。",
+          "sourceTitle": "飞书妙记",
+          "publisher": "飞书",
+          "url": "https://www.feishu.cn/product/minutes",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可支撑“会议速录被办公软件吃掉”。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "语音转写普及",
+          "titleEn": "Speech-to-text commoditization",
+          "oneSentenceRationale": "速录的核心卖点被办公软件和消费级工具普及化。"
+        },
+        {
+          "titleZh": "保密场景残存",
+          "titleEn": "Residual confidential scenarios",
+          "oneSentenceRationale": "真正剩下的多是法律、纪检和高保密逐字稿。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2024",
+          "titleZh": "智能会议纪要成为办公套件标配",
+          "titleEn": "Smart meeting minutes become standard in office suites",
+          "evidenceUrl": "https://www.feishu.cn/product/minutes",
+          "note": "说明替代不再局限专业软件。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "实时转写、翻译与字幕被广泛嵌入工作流",
+          "titleEn": "Real-time transcription, translation, and subtitles spread across workflows",
+          "evidenceUrl": "https://www.iflyrec.com/",
+          "note": "推动传统速录师边缘化。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前会议速记员",
+          "speakerEn": "Former meeting stenographer",
+          "angle": "当人人都能一键拿到逐字稿，通用型速录最先变成遗留需求。"
+        }
+      ],
+      "searchQueriesUsed": ["速录师 招聘", "语音转文字 会议纪要 官方", "飞书妙记 逐字稿 自动总结"],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "题库录入员",
+      "aliases": ["试题录入员", "题目录入员", "试卷录入员"],
+      "priority": "high",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "obsolete",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中仍能看到“题库录入员/试题录入员”等岗位，说明职位名真实存在。",
+      "whyItFitsCareerGraveyard": "OCR 识题、公式识别、AI 录题和结构化题库导入正直接替代“把纸质题目或散乱文档手工录进系统”的工作，这类岗位高度标准化且最容易被吞掉。",
+      "counterEvidenceOrCaution": "复杂公式、错题纠偏、题型标准不统一和版权清洗仍可能需要人工复核，但更像项目制残留任务。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“题库录入员”岗位，证明岗位真实存在。",
+          "sourceTitle": "题库录入员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/86ca0f5616d1cd851n143d2-FQ~~/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "职教云帮助文档明确提供“AI识别录入”，支持一次最多录入 100 道题，说明题目录入已被系统产品化。",
+          "sourceTitle": "AI识别录入",
+          "publisher": "智慧职教/职教云",
+          "url": "https://help.icve.com.cn/help-doc/AI%E6%99%BA%E8%83%BD%E7%89%88%E5%9D%97/2AI%E8%AF%86%E5%88%AB%E5%BD%95%E5%85%A5/AI%E8%AF%86%E5%88%AB%E5%BD%95%E5%85%A5.html",
+          "sourceType": "official",
+          "publishedAt": "2025-01-09",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "与“题库录入员”高度同构，是强替代证据。"
+        },
+        {
+          "claim": "阿里云教育 OCR 场景直接把“试题录入”列为应用场景，强调自动识别试卷内容可节省人力成本。",
+          "sourceTitle": "教育场景识别_自动阅卷_试题录入",
+          "publisher": "阿里云",
+          "url": "https://ai.aliyun.com/ocr/edu",
+          "sourceType": "official",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "说明题库录入并不是抽象概念，而是典型的 AI/OCR 商业场景。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "AI录题",
+          "titleEn": "AI question-bank ingestion",
+          "oneSentenceRationale": "系统已经支持把散乱文档和试卷自动转成结构化题库。"
+        },
+        {
+          "titleZh": "项目残工",
+          "titleEn": "Residual cleanup work",
+          "oneSentenceRationale": "真正留下的是识别失败、格式异常和版权清理这类补丁工作。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "教育平台把 AI 录题做成标准功能",
+          "titleEn": "Education platforms standardize AI-assisted question ingestion",
+          "evidenceUrl": "https://help.icve.com.cn/help-doc/AI%E6%99%BA%E8%83%BD%E7%89%88%E5%9D%97/2AI%E8%AF%86%E5%88%AB%E5%BD%95%E5%85%A5/AI%E8%AF%86%E5%88%AB%E5%BD%95%E5%85%A5.html",
+          "note": "可作为强节点。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "试卷OCR被公开宣传为节省人力成本",
+          "titleEn": "Exam OCR publicly marketed as labor-saving",
+          "evidenceUrl": "https://ai.aliyun.com/ocr/edu",
+          "note": "说明岗位被工具正面命中。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前录题兼职",
+          "speakerEn": "Former question-bank entry freelancer",
+          "angle": "最像体力活的那部分录题，现在已经越来越像机器预处理加人工挑错。"
+        }
+      ],
+      "searchQueriesUsed": ["题库录入员 招聘", "AI 识别录入 题库 官方", "OCR 试题录入 阿里云"],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "火车票代售点售票员",
+      "aliases": ["铁路代售点售票员", "火车票售票员", "代售点售票员"],
+      "priority": "high",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "obsolete",
+      "confidence": "A",
+      "whyThisTitleIsReal": "招聘平台仍能检索到少量“火车票代售点售票员”岗位，说明这类 title 还未完全绝迹。",
+      "whyItFitsCareerGraveyard": "但铁路购票主渠道早已转向 12306 和移动端，且铁路电子发票制度进一步削弱了代售点在报销打印上的残余价值；这已经非常接近遗留岗位。",
+      "counterEvidenceOrCaution": "部分县域、老年旅客和特殊证件办理场景仍可能需要线下窗口或代售点，但更像边缘性补丁服务。",
+      "declineYearCandidate": "2024",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可见“火车票代售点售票员”岗位，证明 title 真实存在但已稀薄。",
+          "sourceTitle": "火车票代售点售票员岗位详情",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/job_detail/2b498f3727d1db3003V839y-GFdT.html",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据，但稀缺本身也有叙事价值。"
+        },
+        {
+          "claim": "12306 官方关于电子发票（铁路电子客票）的说明明确排除了代售点开具报销凭证的核心价值，线下打印需求被进一步削弱。",
+          "sourceTitle": "关于铁路电子客票报销凭证有关事项的公告",
+          "publisher": "中国铁路12306",
+          "url": "https://www.12306.cn/mormhweb/zxdt/202410/t20241023_43048.html",
+          "sourceType": "official",
+          "publishedAt": "2024-10-23",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "制度变化直接削弱代售点售票员的残余存在基础。"
+        },
+        {
+          "claim": "中国新闻网报道 2026 年铁路线上购票占比已超九成，窗口职能正从纯售票转向综合服务，说明代售点售票员已明显过时。",
+          "sourceTitle": "大都网络购票了，铁路售票员在忙啥？",
+          "publisher": "中国新闻网",
+          "url": "https://www.chinanews.com.cn/sh/2026/02-02/10564227.shtml",
+          "sourceType": "news",
+          "publishedAt": "2026-02-02",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "非常适合作为 obsolete 的近年证据。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "12306平台化",
+          "titleEn": "12306 platformization",
+          "oneSentenceRationale": "购票主路径被官方平台收编后，代售点的核心交易价值被持续抽空。"
+        },
+        {
+          "titleZh": "报销功能削弱",
+          "titleEn": "Reimbursement function shrinks",
+          "oneSentenceRationale": "电子发票进一步消解了“去线下打印报销凭证”的理由。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2020",
+          "titleZh": "电子客票全面覆盖带走大量线下售票需求",
+          "titleEn": "Nationwide e-ticketing removes large volumes of offline ticketing demand",
+          "evidenceUrl": "https://opinion.people.com.cn/n1/2020/0429/c1003-31693291.html",
+          "note": "可作为长期衰退起点。"
+        },
+        {
+          "year": "2024",
+          "titleZh": "铁路电子发票制度削弱线下代售场景",
+          "titleEn": "Rail e-invoice regime weakens offline agency scenarios",
+          "evidenceUrl": "https://www.12306.cn/mormhweb/zxdt/202410/t20241023_43048.html",
+          "note": "适合作为最近一轮加速节点。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "老代售点售票员",
+          "speakerEn": "Former rail-ticket agency clerk",
+          "angle": "以前卖票、改签、打报销凭证都靠窗口，现在手机把大头都拿走了。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "火车票代售点售票员 招聘",
+        "12306 电子发票 代售点 官方",
+        "铁路 网络购票 占比 超九成"
+      ],
+      "repoStatus": "promoted_to_src_data_js"
+    },
+    {
+      "canonicalTitle": "机票操作员",
+      "aliases": ["机票预订操作员", "机票出票员", "机票客服操作"],
+      "priority": "high",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中仍可见“机票操作员/出票操作员”等岗位，title 真实存在。",
+      "whyItFitsCareerGraveyard": "传统票务代理链条在直销、零佣金、NDC 分发和在线预订系统冲击下长期收缩；岗位没有立刻消失，但低附加值出票操作持续被平台和接口替代。",
+      "counterEvidenceOrCaution": "复杂改期改签、国际联程、企业差旅与异常航变仍需要人工，因此更稳妥的是写成 decaying，而不是 obsolete。",
+      "declineYearCandidate": "2016",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“机票操作员”岗位，证明 title 真实存在。",
+          "sourceTitle": "机票操作员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/a3c8b589941cdd181XF-3NW_/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "民航业内研究回顾指出，2016 年三大航取消代理费，机票代理进入零佣金时代，传统出票链条被重构。",
+          "sourceTitle": "机票销售代理行业问题研究",
+          "publisher": "中国民航报/中国航协研究",
+          "url": "https://att.caacnews.com.cn/mhfzzcgjyxb/mhfzzcgjyxb4th/202110/t20211029_59495.html",
+          "sourceType": "report",
+          "publishedAt": "2021-10-29",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "是传统机票操作岗位长期衰退的关键行业背景。"
+        },
+        {
+          "claim": "民航媒体讨论 NDC 等新分发模式改变机票销售方式，说明简单出票操作进一步被系统和接口吞没。",
+          "sourceTitle": "NDC将如何改变机票分销",
+          "publisher": "中国民航报",
+          "url": "https://www.caacnews.com.cn/1/88/201906/t20190603_1274953.html",
+          "sourceType": "news",
+          "publishedAt": "2019-06-03",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "适合支持“岗位还在，但价值链位置下移”。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "零佣金时代",
+          "titleEn": "Zero-commission era",
+          "oneSentenceRationale": "代理费被取消后，单纯出票操作更难支撑独立岗位价值。"
+        },
+        {
+          "titleZh": "分发接口化",
+          "titleEn": "Distribution via APIs",
+          "oneSentenceRationale": "越标准化的出票、改签和查询，越容易被在线系统吸收。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2016",
+          "titleZh": "三大航取消代理费",
+          "titleEn": "Major airlines cancel agency commissions",
+          "evidenceUrl": "https://att.caacnews.com.cn/mhfzzcgjyxb/mhfzzcgjyxb4th/202110/t20211029_59495.html",
+          "note": "可作为传统票务衰退起点。"
+        },
+        {
+          "year": "2019",
+          "titleZh": "NDC等新分发方式冲击传统代理",
+          "titleEn": "NDC-style distribution disrupts traditional agents",
+          "evidenceUrl": "https://www.caacnews.com.cn/1/88/201906/t20190603_1274953.html",
+          "note": "强化岗位 decaying 叙事。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前票务操作员",
+          "speakerEn": "Former air-ticketing operator",
+          "angle": "最先不需要人的，是那种只会按系统指令出票改签的岗位。"
+        }
+      ],
+      "searchQueriesUsed": ["机票操作员 招聘", "三大航 取消代理费 机票 代理", "NDC 机票 分销 中国"],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "国际机票操作员",
+      "aliases": ["国际票务操作员", "国际机票出票员", "国际机票预订操作"],
+      "priority": "high",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "C",
+      "whyThisTitleIsReal": "招聘平台仍能检索到“国际机票操作员”等 title，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "国际票务比国内票务更复杂，但其低附加值部分同样受到直销、在线系统和分发接口变化影响；岗位更像被抬高门槛、缩小数量，而不是彻底消失。",
+      "counterEvidenceOrCaution": "多航司联程、签证与规则差异、特殊行程和企业差旅异常处理仍保留较高人工价值，因此需要比国内票务更谨慎措辞。",
+      "declineYearCandidate": "2019",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“国际机票操作员”岗位，证明 title 真实存在。",
+          "sourceTitle": "国际机票操作员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/d930f0fe100a1f0f0HR939i1/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "传统机票代理在零佣金后进入长期重构，国际票务虽然更复杂，但同样身处这一行业背景。",
+          "sourceTitle": "机票销售代理行业问题研究",
+          "publisher": "中国民航报/中国航协研究",
+          "url": "https://att.caacnews.com.cn/mhfzzcgjyxb/mhfzzcgjyxb4th/202110/t20211029_59495.html",
+          "sourceType": "report",
+          "publishedAt": "2021-10-29",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可作为国际票务岗位被缩量的行业背景。"
+        },
+        {
+          "claim": "旅游行业媒体讨论 NDC 对分销渠道的持续改变，说明国际票务中标准化分发环节也在被系统重写。",
+          "sourceTitle": "NDC革命如何影响机票分销",
+          "publisher": "环球旅讯",
+          "url": "https://m.traveldaily.cn/article/173554",
+          "sourceType": "news",
+          "publishedAt": "2023-12-12",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "支持“复杂岗位仍在，但低端操作被接口化”。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "复杂度抬高门槛",
+          "titleEn": "Complexity raises the bar",
+          "oneSentenceRationale": "国际票务没那么容易消失，但更简单的出票动作会先被系统吞掉。"
+        },
+        {
+          "titleZh": "岗位数量收缩",
+          "titleEn": "Headcount contraction",
+          "oneSentenceRationale": "保留下来的更偏高经验处理，基础操作席位会被压薄。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2016",
+          "titleZh": "行业进入零佣金时代",
+          "titleEn": "The industry enters a zero-commission era",
+          "evidenceUrl": "https://att.caacnews.com.cn/mhfzzcgjyxb/mhfzzcgjyxb4th/202110/t20211029_59495.html",
+          "note": "国际票务也受其牵引。"
+        },
+        {
+          "year": "2023",
+          "titleZh": "新分销模式继续改写国际票务流程",
+          "titleEn": "New distribution models keep rewriting international ticketing workflows",
+          "evidenceUrl": "https://m.traveldaily.cn/article/173554",
+          "note": "说明岗位并非安全。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前国际票务操作",
+          "speakerEn": "Former international ticketing operator",
+          "angle": "不会先死的是懂规则的人，会先少掉的是只会按流程出票的人。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "国际机票操作员 招聘",
+        "机票 代理 零佣金 行业研究",
+        "NDC 国际机票 分销"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "航空票务员",
+      "aliases": ["航空票务", "机票票务员", "航空票务操作员"],
+      "priority": "high",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中仍有“航空票务员/机票票务员”等 title，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "其低阶工作和机票操作员高度重合，长期面临直销平台、OTA、自助系统和分发模式变更的挤压；更多是在被压价和兼岗化。",
+      "counterEvidenceOrCaution": "若岗位实际包含企业差旅、签证协助、客诉处理或线下门店服务，则人力需求会更顽固，需避免写得过满。",
+      "declineYearCandidate": "2016",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“航空票务员”岗位，证明 title 真实存在。",
+          "sourceTitle": "航空票务员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/f1ce9b364d86fe1733d93tS1/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "民航行业研究指出零佣金时代重塑机票代理行业，航空票务员所在链条长期承压。",
+          "sourceTitle": "机票销售代理行业问题研究",
+          "publisher": "中国民航报/中国航协研究",
+          "url": "https://att.caacnews.com.cn/mhfzzcgjyxb/mhfzzcgjyxb4th/202110/t20211029_59495.html",
+          "sourceType": "report",
+          "publishedAt": "2021-10-29",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "适合说明职位不是突然消失，而是长期衰退。"
+        },
+        {
+          "claim": "2026 年媒体报道三大航严禁代理向 OTA 供货，说明票务分销链条仍在继续收紧和重整。",
+          "sourceTitle": "三大航严禁机票代理向OTA供货",
+          "publisher": "新浪财经/21世纪经济报道",
+          "url": "https://finance.sina.com.cn/wm/2026-04-20/doc-inhvczzy6770738.shtml",
+          "sourceType": "news",
+          "publishedAt": "2026-04-20",
+          "accessedAt": "2026-04-21",
+          "supports": "narrative_detail",
+          "relevanceNote": "更适合作为近年行业继续收缩的补充细节。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "分销链收缩",
+          "titleEn": "Shrinking distribution chains",
+          "oneSentenceRationale": "航空票务岗位所在的中间环节长期被直销和平台化挤压。"
+        },
+        {
+          "titleZh": "兼岗化",
+          "titleEn": "Role merging",
+          "oneSentenceRationale": "很多票务岗位开始叠加客服、差旅或签证事务，不再是纯出票工种。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2016",
+          "titleZh": "零佣金时代确立",
+          "titleEn": "The zero-commission era is established",
+          "evidenceUrl": "https://att.caacnews.com.cn/mhfzzcgjyxb/mhfzzcgjyxb4th/202110/t20211029_59495.html",
+          "note": "构成长期背景。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "航司继续收紧代理供货链",
+          "titleEn": "Airlines further tighten agency supply chains",
+          "evidenceUrl": "https://finance.sina.com.cn/wm/2026-04-20/doc-inhvczzy6770738.shtml",
+          "note": "说明不是过去式，而是继续收缩。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前航空票务门店员工",
+          "speakerEn": "Former airline-ticket office staff",
+          "angle": "岗位还叫票务，但真正值钱的已经不是“会出票”，而是能兜住异常。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "航空票务员 招聘",
+        "机票代理 零佣金 中国民航报",
+        "三大航 严禁 代理 OTA 供货"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "产品修图师",
+      "aliases": ["商品修图师", "产品精修师", "电商修图师"],
+      "priority": "high",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "endangered",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台仍能检索到“产品修图师/商品修图师”等岗位，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "白底图、抠图、瑕疵清理、简单换景和批量精修正被 AI 修图平台迅速产品化，典型地压缩了产品修图师最重复、最可计件的部分。",
+      "counterEvidenceOrCaution": "高端广告图、复杂材质表现、品牌一致性和高审美后期仍有人类空间，但基础修图已经明显掉价。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“产品修图师”岗位，证明岗位真实存在。",
+          "sourceTitle": "产品修图师招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/e5c0194800b21e3d03Z409S9/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "阿里云视觉生产强调可自动、批量化完成图像素材处理和商品编辑上架，适用于商品图处理场景。",
+          "sourceTitle": "智能视觉生产_自动化_AI图像处理",
+          "publisher": "阿里云",
+          "url": "https://www.alibabacloud.com/zh/product/ivpd?_p_lc=1",
+          "sourceType": "official",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "直接命中商品修图的重复性工作。"
+        },
+        {
+          "claim": "产品摄影编辑平台公开承诺可自动化大规模图像创建和多平台适配，说明原本由修图师承担的工作正在 SaaS 化。",
+          "sourceTitle": "AI驱动的产品摄影编辑与上架平台",
+          "publisher": "Photoroom",
+          "url": "https://www.photoroom.com/zh",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可支撑岗位被廉价化和自助化。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "批量精修自动化",
+          "titleEn": "Automated batch retouching",
+          "oneSentenceRationale": "批量白底、去瑕疵和适配尺寸是最先被AI接管的工作。"
+        },
+        {
+          "titleZh": "高端后期残存",
+          "titleEn": "High-end retouching remains",
+          "oneSentenceRationale": "真正保留给人的更多是质感、审美和品牌级把控。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "商品图自动化成为主流云服务能力",
+          "titleEn": "Product-image automation becomes a mainstream cloud capability",
+          "evidenceUrl": "https://www.alibabacloud.com/zh/product/ivpd?_p_lc=1",
+          "note": "可作为明显行业节点。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "AI产品摄影与多平台适配被进一步SaaS化",
+          "titleEn": "AI product photography and multi-platform fitting become more SaaS-ified",
+          "evidenceUrl": "https://www.photoroom.com/zh",
+          "note": "说明岗位被进一步产品化。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前商品精修师",
+          "speakerEn": "Former product retoucher",
+          "angle": "最先被干掉的不是大片级后期，而是那种每天几百张白底图的活。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "产品修图师 招聘",
+        "商品图 AI 自动化 阿里云",
+        "AI 产品摄影 编辑 上架 平台"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "字幕翻译",
+      "aliases": ["字幕译者", "视频字幕翻译", "影视字幕翻译"],
+      "priority": "high",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "endangered",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中仍能看到“字幕翻译/视频字幕翻译”等岗位，title 真实存在。",
+      "whyItFitsCareerGraveyard": "自动语音识别、机器翻译和双语字幕生成已把“先转写再初译”的大量底层工作交给系统；岗位并未立刻消失，但低价初稿市场正被迅速压缩。",
+      "counterEvidenceOrCaution": "影视台本理解、双关梗、本地化审美、时间轴细修和最终审校仍需要人类，尤其在正式发行场景下。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“字幕翻译”岗位，证明岗位真实存在。",
+          "sourceTitle": "字幕翻译招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/ff78c031e2151bfa1nJ-2dm6EQ~~/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "新华网报道 AI 翻译正加速商用，实时字幕翻译与多语种交流成为典型场景，说明字幕翻译的基础工序被机器吞掉。",
+          "sourceTitle": "AI翻译加速规模化商用",
+          "publisher": "新华网",
+          "url": "https://www.news.cn/tech/20250425/06ad86fadfa343c8954dc06abf68ddf8/c.html",
+          "sourceType": "news",
+          "publishedAt": "2025-04-25",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "适合支撑“先转写再初译”的底层工作被技术替代。"
+        },
+        {
+          "claim": "界面新闻采访显示，网文与翻译从业者已因 AI 转向审校角色、收入缩水，反映字幕翻译等低阶翻译劳动的掉价趋势。",
+          "sourceTitle": "AI翻译冲击下，译者转向审校",
+          "publisher": "界面新闻",
+          "url": "https://www.jiemian.com/article/12331956.html",
+          "sourceType": "news",
+          "publishedAt": "2025-02-06",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可用于说明岗位并非消失，而是被压价和后移到审校环节。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "ASR+机器翻译",
+          "titleEn": "ASR plus machine translation",
+          "oneSentenceRationale": "字幕翻译的前半段流水线已经几乎完全自动化。"
+        },
+        {
+          "titleZh": "人工终审后移",
+          "titleEn": "Human work shifts to final QA",
+          "oneSentenceRationale": "保留下来的更像语言润色、文化本地化和最终校准。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "AI翻译被报道为加速商用",
+          "titleEn": "AI translation is reported as scaling commercially",
+          "evidenceUrl": "https://www.news.cn/tech/20250425/06ad86fadfa343c8954dc06abf68ddf8/c.html",
+          "note": "可作为近年加速点。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "译者角色公开转向AI译文审校",
+          "titleEn": "Translators publicly shift toward AI-output review",
+          "evidenceUrl": "https://www.jiemian.com/article/12331956.html",
+          "note": "适合支持 endangered 而非 obsolete。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前字幕组译者",
+          "speakerEn": "Former subtitling translator",
+          "angle": "最先掉价的是初译，不是最后那层让字幕真正像人话的修订。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "字幕翻译 招聘",
+        "AI 翻译 实时字幕 中国",
+        "译者 转向 审校 AI 收入 缩水"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "高速收费员",
+      "aliases": ["收费站收费员", "高速公路收费员", "收费岗"],
+      "priority": "reserve",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "obsolete",
+      "confidence": "A",
+      "whyThisTitleIsReal": "招聘市场和地方劳务市场仍偶见“高速收费员”或相关收费岗位，title 尚未绝迹。",
+      "whyItFitsCareerGraveyard": "但 ETC 普及、取消省界收费站、无人值守智慧车道和收费机器人，已经把高速收费员从主流程岗位推向遗留与转型岗位。",
+      "counterEvidenceOrCaution": "异常车型、设备故障、现场疏导和应急处置仍保留人工；更适合写成“收费亭内人工值守过时，人员转向巡检引导”。",
+      "declineYearCandidate": "2019",
+      "evidence": [
+        {
+          "claim": "招聘平台仍能检索到“高速收费员”岗位，证明 title 仍偶有存在。",
+          "sourceTitle": "高速收费员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://m.zhipin.com/zhaopin/fe14d36417ea86910H180ti8/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据，但已偏稀薄。"
+        },
+        {
+          "claim": "央视报道 2019 年取消省界收费站并全面建设 ETC 车道，是收费员被技术替代的关键制度节点。",
+          "sourceTitle": "取消高速公路省界收费站工程顺利实施",
+          "publisher": "央视新闻",
+          "url": "https://m.news.cctv.com/2019/12/23/ARTI0GuXTzEdwN0s1y2hQnr5191223.shtml",
+          "sourceType": "news",
+          "publishedAt": "2019-12-23",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "是高速收费员进入长期衰退的核心证据。"
+        },
+        {
+          "claim": "云南交通系统报道收费站人员已从亭内值守转向巡检、引导和特情处置，说明传统收费员工作形态已明显过时。",
+          "sourceTitle": "智慧收费站里的新工种",
+          "publisher": "云南省交通运输厅",
+          "url": "https://jtyst.yn.gov.cn/html/2026/xingyexinwen_0224/3136546.html",
+          "sourceType": "official",
+          "publishedAt": "2026-02-24",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "非常适合作为岗位从“收费”转为“服务巡检”的近年证据。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "ETC制度替代",
+          "titleEn": "ETC-driven substitution",
+          "oneSentenceRationale": "高速主收费流程被 ETC 和自动识别收编后，人工岗位基础被抽空。"
+        },
+        {
+          "titleZh": "岗亭转巡检",
+          "titleEn": "Booth-to-patrol shift",
+          "oneSentenceRationale": "保留下来的更多是设备兜底和现场引导，而不是坐亭收费。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2019",
+          "titleZh": "取消省界收费站与ETC普及",
+          "titleEn": "Provincial toll booths removed and ETC scaled",
+          "evidenceUrl": "https://m.news.cctv.com/2019/12/23/ARTI0GuXTzEdwN0s1y2hQnr5191223.shtml",
+          "note": "适合作为长期衰退起点。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "收费员角色公开转向巡检与引导",
+          "titleEn": "Toll workers publicly shift toward patrol and guidance",
+          "evidenceUrl": "https://jtyst.yn.gov.cn/html/2026/xingyexinwen_0224/3136546.html",
+          "note": "可作为 obsolete 的现代注脚。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前高速收费员",
+          "speakerEn": "Former toll collector",
+          "angle": "真正过时的不是收费站，而是那个坐在小亭子里一辆车一辆车收钱的人。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "高速收费员 招聘",
+        "取消省界收费站 ETC 央视",
+        "智慧收费站 收费员 巡检 引导"
+      ],
+      "repoStatus": "promoted_to_src_data_js"
+    },
+    {
+      "canonicalTitle": "会计助理",
+      "aliases": ["财务助理", "会计文员", "助理会计"],
+      "priority": "reserve",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中“会计助理/财务助理”仍是高频 title，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "其基础工作如票据整理、凭证录入、发票处理、对账配合和报表汇总，正在被财务共享、RPA 和数电发票持续压缩。",
+      "counterEvidenceOrCaution": "完整会计判断、税务筹划、审计配合和合规责任仍需要人；更适合写成“低阶会计助理被自动化吸收”。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“会计助理”岗位，证明岗位真实存在。",
+          "sourceTitle": "会计助理招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/4d699a45e4e46d4103N52NS5/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "数电发票改革被官方媒体描述为“从人工开具到秒开秒得”，并伴随办税服务厅人数锐减，说明会计助理的基础票据工作被系统化替代。",
+          "sourceTitle": "数电发票让发票“秒开秒得”",
+          "publisher": "国家税务总局浙江省税务局",
+          "url": "https://zhejiang.chinatax.gov.cn/art/2025/9/28/art_13230_642964.html",
+          "sourceType": "official",
+          "publishedAt": "2025-09-28",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "非常适合支撑会计助理的事务性工作被压缩。"
+        },
+        {
+          "claim": "企业 RPA 已被公开用于记账、对账、发票查伪等财务共享流程，基础财务助理工作面临持续自动化压力。",
+          "sourceTitle": "苏宁财务共享服务中心的RPA实践",
+          "publisher": "中国新闻网",
+          "url": "https://www.chinanews.com.cn/m/business/2018/06-29/8551571.shtml",
+          "sourceType": "news",
+          "publishedAt": "2018-06-29",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "说明会计助理的低阶工作早已是机器替代对象。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "财务共享",
+          "titleEn": "Finance shared services",
+          "oneSentenceRationale": "凭证、对账和查验被集中化后，会计助理更容易被工具和中心化流程吞掉。"
+        },
+        {
+          "titleZh": "专业判断留给会计",
+          "titleEn": "Judgment remains with accountants",
+          "oneSentenceRationale": "真正难替的是合规判断与责任承担，不是基础票据搬运。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2018",
+          "titleZh": "财务共享RPA开始大规模处理基础流程",
+          "titleEn": "Finance-shared-service RPA begins handling basic workflows at scale",
+          "evidenceUrl": "https://www.chinanews.com.cn/m/business/2018/06-29/8551571.shtml",
+          "note": "可作为长期背景。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "数电发票进一步削弱人工票据处理",
+          "titleEn": "Digital invoices further weaken manual invoice handling",
+          "evidenceUrl": "https://zhejiang.chinatax.gov.cn/art/2025/9/28/art_13230_642964.html",
+          "note": "说明岗位被明显重定价。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前会计助理",
+          "speakerEn": "Former accounting assistant",
+          "angle": "真正危险的不是会计这个职业，而是那些天天围着票据和录单转的人。"
+        }
+      ],
+      "searchQueriesUsed": ["会计助理 招聘", "数电发票 秒开秒得 官方", "财务共享 RPA 记账 对账"],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "开票专员",
+      "aliases": ["发票专员", "票据专员", "开票员"],
+      "priority": "reserve",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "obsolete",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台仍能检索到“开票专员/发票专员”等岗位，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "但数电发票、支付即开票和无人值守即时开票等制度与产品，正直接消解“专门有人负责开票”的必要性。",
+      "counterEvidenceOrCaution": "部分行业仍有复杂税务口径、红冲作废和跨系统对接问题，人工可能保留在异常处理而非日常开票。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“开票专员”岗位，证明 title 真实存在。",
+          "sourceTitle": "开票专员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/f6ec4ca4c79eb2151HB83Nm5/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "官方税务媒体用“从人工开具到秒开秒得”描述数电发票改革，并提到办税厅人数锐减，显示开票工作被显著系统化。",
+          "sourceTitle": "数电发票让发票“秒开秒得”",
+          "publisher": "国家税务总局浙江省税务局",
+          "url": "https://zhejiang.chinatax.gov.cn/art/2025/9/28/art_13230_642964.html",
+          "sourceType": "official",
+          "publishedAt": "2025-09-28",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "是开票专员职业叙事里最直接的制度证据。"
+        },
+        {
+          "claim": "福建政务公开介绍“支付即开票”“无人值守即时开票”，说明很多场景已不再需要人工手动开票。",
+          "sourceTitle": "“支付即开票”助企提效",
+          "publisher": "福建省人民政府",
+          "url": "https://www.fujian.gov.cn/zwgk/ztzl/zswzjjylzzccs/sj/zx/202509/t20250919_7012086.htm",
+          "sourceType": "official",
+          "publishedAt": "2025-09-19",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可直接支撑“专门开票岗位被流程嵌入支付系统”。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "数电发票",
+          "titleEn": "Digital invoicing",
+          "oneSentenceRationale": "从人工开具转向系统自动生成，直接削弱开票专员的日常必要性。"
+        },
+        {
+          "titleZh": "异常单人工兜底",
+          "titleEn": "Humans handle exception cases",
+          "oneSentenceRationale": "真正还留给人的多是红冲、作废、规则例外和系统异常。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2024",
+          "titleZh": "铁路与税务电子发票制度继续扩围",
+          "titleEn": "Rail and tax e-invoice regimes continue expanding",
+          "evidenceUrl": "https://fgk.chinatax.gov.cn/zcfgk/c100012/c5235333/content.html",
+          "note": "可作为政策背景。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "支付即开票、无人值守即时开票被官方推广",
+          "titleEn": "Pay-and-invoice and unattended instant invoicing are officially promoted",
+          "evidenceUrl": "https://www.fujian.gov.cn/zwgk/ztzl/zswzjjylzzccs/sj/zx/202509/t20250919_7012086.htm",
+          "note": "是岗位过时化的近年节点。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前发票专员",
+          "speakerEn": "Former invoicing specialist",
+          "angle": "当开票被做成按钮，留下来的就只剩出错时谁来收拾残局。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "开票专员 招聘",
+        "数电发票 秒开秒得 浙江税务",
+        "支付即开票 无人值守 即时开票"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "审单员",
+      "aliases": ["订单审核员", "单据审核员", "审单专员"],
+      "priority": "reserve",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中“审单员/订单审核员”仍较常见，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "无论是物流单证、订单资料还是规则比对，AI+OCR+RPA 的组合都在直接瞄准“逐票审单”这类岗位，人工更趋向处理例外件。",
+      "counterEvidenceOrCaution": "高风险单、复杂异常、跨系统纠错和责任追溯仍可能需要人工，因此不宜写成一刀切的消失叙事。",
+      "declineYearCandidate": "2026",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“审单员”岗位，证明岗位真实存在。",
+          "sourceTitle": "审单员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/7126d5453095d72c0nd_2dy-/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "华为面向物流单证场景的方案称可自动识别与审核单证，并显著减少人工处理，说明审单工作正被系统改写。",
+          "sourceTitle": "智慧物流单证解决方案",
+          "publisher": "华为",
+          "url": "https://e.huawei.com/cn/news/2026/industries/transportation/logistics/smart-logistics-documentation-solution",
+          "sourceType": "company",
+          "publishedAt": "2026-04-08",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "是审单员岗位的直接替代证据。"
+        },
+        {
+          "claim": "媒体转述该方案时使用“彻底告别单票人工审核”等表述，说明行业正把审单自动化作为明确目标。",
+          "sourceTitle": "AI+RPA让物流单证处理提效",
+          "publisher": "腾讯新闻",
+          "url": "https://news.qq.com/rain/a/20260408A06UTW00",
+          "sourceType": "news",
+          "publishedAt": "2026-04-08",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "适合做 narrative detail，但最好与原厂资料配套使用。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "AI审单",
+          "titleEn": "AI document review",
+          "oneSentenceRationale": "规则明确、字段固定的审单流程非常适合 OCR+RPA 自动化。"
+        },
+        {
+          "titleZh": "异常件人工处理",
+          "titleEn": "Humans for exception cases",
+          "oneSentenceRationale": "真正留下来的更偏疑难件和责任界定，而非海量常规件。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2026",
+          "titleZh": "物流场景开始公开强调告别单票人工审核",
+          "titleEn": "Logistics scenarios publicly emphasize ending ticket-by-ticket manual review",
+          "evidenceUrl": "https://news.qq.com/rain/a/20260408A06UTW00",
+          "note": "可作为近年强节点。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "AI物流单证方案进入主流厂商方案集",
+          "titleEn": "AI logistics-document solutions enter mainstream vendor portfolios",
+          "evidenceUrl": "https://e.huawei.com/cn/news/2026/industries/transportation/logistics/smart-logistics-documentation-solution",
+          "note": "说明岗位受压不是孤例。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前审单专员",
+          "speakerEn": "Former order-review specialist",
+          "angle": "最先没的不是判断，而是那种一天看几百单、只比字段规则的工位。"
+        }
+      ],
+      "searchQueriesUsed": ["审单员 招聘", "物流 单证 AI 审核 华为", "彻底告别 单票 人工审核"],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "风控审核专员",
+      "aliases": ["风控审核员", "风险审核专员", "反欺诈审核专员"],
+      "priority": "reserve",
+      "recommendedDecision": "hold",
+      "proposedSiteStatus": null,
+      "confidence": "C",
+      "whyThisTitleIsReal": "招聘平台仍能检索到“风控审核专员/风险审核”岗位，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "风控里的规则筛查、初步打分和资料核验确实在被模型与自动审核系统吞掉，但高损失、高责任、高监管的判断仍高度依赖人工和制度兜底。",
+      "counterEvidenceOrCaution": "更适合暂缓：如果未来要写，应聚焦“低阶审核席位被自动化压缩”，而非把整个风控岗位推进墓场。",
+      "declineYearCandidate": "",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“风控审核专员”岗位，证明 title 真实存在。",
+          "sourceTitle": "风控审核专员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/d7dc376831d770de0XB-2t8~/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "供应链金融报道提到 AI 可实现秒级审核和智能风控，说明基础审核动作有自动化压力。",
+          "sourceTitle": "AI让供应链金融实现秒级审核",
+          "publisher": "界面新闻",
+          "url": "https://www.jiemian.com/article/14229190.html",
+          "sourceType": "news",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "可支持低阶风险审核被工具吞掉，但不足以证明整个岗位衰退。"
+        },
+        {
+          "claim": "保险数字化报道显示风控模型和数字员工正在进入理赔与审核流程，但仍以“辅助决策”叙事为主。",
+          "sourceTitle": "险企数字化转型提速",
+          "publisher": "新华网",
+          "url": "https://www.news.cn/money/20230609/12ec3032fc3747dfaf6821f26a11b141/c.html",
+          "sourceType": "news",
+          "publishedAt": "2023-06-09",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "适合说明人机协同强于纯替代。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "模型先筛",
+          "titleEn": "Models screen first",
+          "oneSentenceRationale": "评分卡、规则引擎和模型先吃掉简单风控审核。"
+        },
+        {
+          "titleZh": "责任判断留人",
+          "titleEn": "Humans retain accountable judgment",
+          "oneSentenceRationale": "越接近欺诈争议、合规责任和资金损失，越难完全交给机器。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2023",
+          "titleZh": "数字员工进入保险风控与理赔流程",
+          "titleEn": "Digital workers enter insurance risk-control and claims workflows",
+          "evidenceUrl": "https://www.news.cn/money/20230609/12ec3032fc3747dfaf6821f26a11b141/c.html",
+          "note": "说明自动化已在路上。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "秒级审核被作为AI金融卖点传播",
+          "titleEn": "Second-level approvals marketed as AI-finance capability",
+          "evidenceUrl": "https://www.jiemian.com/article/14229190.html",
+          "note": "但仍不足以直接推进主墓场。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前风控审核员",
+          "speakerEn": "Former risk-review specialist",
+          "angle": "机器能先拦掉最明显的坏单，但谁来背真正的风险责任，通常还不是机器。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "风控审核专员 招聘",
+        "AI 秒级 审核 智能风控",
+        "数字员工 风控 审核 辅助"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "理赔审核员",
+      "aliases": ["理赔审核专员", "理赔资料审核员", "保险理赔审核"],
+      "priority": "reserve",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "C",
+      "whyThisTitleIsReal": "招聘平台中“理赔审核员/理赔资料审核”仍然存在。",
+      "whyItFitsCareerGraveyard": "材料真伪识别、标准赔案处理和规则化审核已经被保险公司数字化系统大量吸收，但复杂赔案、争议案件和责任认定依然保留人工。",
+      "counterEvidenceOrCaution": "建议慎写：适合聚焦“标准件自动审核增加，人工向疑难件集中”，而不是写成理赔审核整体消亡。",
+      "declineYearCandidate": "2024",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“理赔审核员”岗位，证明岗位真实存在。",
+          "sourceTitle": "理赔审核员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://m.zhipin.com/zhaopin/72c566872b4b557a1HN52di8GA~~/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "新华网报道智能理赔可识别材料真实性并降低赔付成本，说明理赔审核中的基础核验环节正被系统接手。",
+          "sourceTitle": "数字化推动保险服务升级",
+          "publisher": "新华网",
+          "url": "https://www.news.cn/tech/20240903/3a27d1c38965416884e26d0b4b7fc117/c.html",
+          "sourceType": "news",
+          "publishedAt": "2024-09-03",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "是理赔审核岗位的直接自动化证据。"
+        },
+        {
+          "claim": "新华网此前报道险企把理赔模型与自动审核引入流程，说明理赔审核的人机协同已是现实而非概念。",
+          "sourceTitle": "险企数字化转型提速",
+          "publisher": "新华网",
+          "url": "https://www.news.cn/money/20230609/12ec3032fc3747dfaf6821f26a11b141/c.html",
+          "sourceType": "news",
+          "publishedAt": "2023-06-09",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "更适合支撑“人工缩到疑难件”而不是“岗位已死”。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "标准件自动审核",
+          "titleEn": "Automated review for standard claims",
+          "oneSentenceRationale": "材料齐全、规则清晰的理赔越来越先由系统通过。"
+        },
+        {
+          "titleZh": "争议赔案保留人工",
+          "titleEn": "Humans stay for disputed claims",
+          "oneSentenceRationale": "责任认定和复杂案件仍需要人工判断与问责。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2023",
+          "titleZh": "自动审核进入险企理赔流程",
+          "titleEn": "Automated review enters insurer claims workflows",
+          "evidenceUrl": "https://www.news.cn/money/20230609/12ec3032fc3747dfaf6821f26a11b141/c.html",
+          "note": "长期背景。"
+        },
+        {
+          "year": "2024",
+          "titleZh": "智能理赔被公开描述为识别真伪与降本",
+          "titleEn": "Smart claims processing is publicly framed as authenticity detection and cost reduction",
+          "evidenceUrl": "https://www.news.cn/tech/20240903/3a27d1c38965416884e26d0b4b7fc117/c.html",
+          "note": "近年加速点。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前保险理赔审核员",
+          "speakerEn": "Former claims reviewer",
+          "angle": "被机器先拿走的，是那些材料齐全、规则一眼能判的赔案。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "理赔审核员 招聘",
+        "智能理赔 识别 材料真实性 新华网",
+        "理赔 自动审核 保险 数字化"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "银行大堂引导员",
+      "aliases": ["银行大堂助理", "大堂引导员", "银行大堂服务人员"],
+      "priority": "reserve",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "frozen",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘市场中仍能看到“银行大堂引导员/大堂助理”等岗位，title 真实存在。",
+      "whyItFitsCareerGraveyard": "智能柜员机、远程柜员、网点自助化和网点数量收缩，持续削弱单纯“指路、取号、教客户办自助”的基础大堂岗位。",
+      "counterEvidenceOrCaution": "适老化服务、投诉安抚和复杂业务分流仍会保留人工，建议写成 frozen 或 decaying，而不是直接 obsolete。",
+      "declineYearCandidate": "2024",
+      "evidence": [
+        {
+          "claim": "招聘平台仍能检索到“银行大堂引导员”岗位，证明 title 真实存在。",
+          "sourceTitle": "银行大堂引导员岗位详情",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/job_detail/f0f46d1f09d0f56103Z_29u7E1FX.html",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "中国银行介绍智能化网点时强调大部分常见业务可由自助设备完成，大堂经理主要负责引导客户使用自助渠道。",
+          "sourceTitle": "中国银行智能化网点服务升级",
+          "publisher": "中国银行",
+          "url": "https://www.boc.cn/aboutboc/ab8/201603/t20160301_6472247.html",
+          "sourceType": "official",
+          "publishedAt": "2016-03-01",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "说明大堂人工职能已被重新定义为“辅导自助”。"
+        },
+        {
+          "claim": "人民日报海外版曾报道 ATM 和网点数量下降，说明银行线下服务网络整体在收缩。",
+          "sourceTitle": "ATM机、银行网点为何减少",
+          "publisher": "人民日报海外版",
+          "url": "https://paper.people.com.cn/rmrbhwb/html/2020-10/20/content_2013914.htm",
+          "sourceType": "news",
+          "publishedAt": "2020-10-20",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可支撑岗位扩招与流动性收缩。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "网点自助化",
+          "titleEn": "Self-service branches",
+          "oneSentenceRationale": "大堂引导岗位越来越像“教客户用机器”的过渡工种。"
+        },
+        {
+          "titleZh": "适老兜底",
+          "titleEn": "Support for elderly customers",
+          "oneSentenceRationale": "银行不能完全无人化，因此岗位更像冻结和压缩，而非瞬间消失。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2016",
+          "titleZh": "智能化网点把常见业务迁往自助设备",
+          "titleEn": "Smart branches move routine business to self-service devices",
+          "evidenceUrl": "https://www.boc.cn/aboutboc/ab8/201603/t20160301_6472247.html",
+          "note": "长期背景。"
+        },
+        {
+          "year": "2020",
+          "titleZh": "ATM与网点数量下降被主流媒体报道",
+          "titleEn": "Declining ATM and branch counts are reported by mainstream media",
+          "evidenceUrl": "https://paper.people.com.cn/rmrbhwb/html/2020-10/20/content_2013914.htm",
+          "note": "支撑 frozen/decaying。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前银行大堂助理",
+          "speakerEn": "Former bank lobby aide",
+          "angle": "岗位还在，但越来越像给机器打辅助，而不是替客户真正办业务。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "银行大堂引导员 招聘",
+        "中国银行 智能化 网点 自助",
+        "银行 网点 减少 ATM 人民日报海外版"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "文案策划",
+      "aliases": ["文案", "策划文案", "广告文案策划", "品牌文案"],
+      "priority": "reserve",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "unworthy",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中“文案策划/品牌文案”等岗位仍很常见，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "但产品文案、广告初稿、营销标题和提纲型素材正被 AI 写作模板快速吞掉，岗位更像被去技能化和低价化，而非立刻消失。",
+      "counterEvidenceOrCaution": "品牌洞察、Campaign Big Idea、访谈提炼和长期语气资产仍较难完全自动化，因此更适合写 unworthy 而非 obsolete。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“文案策划”岗位，证明岗位真实存在。",
+          "sourceTitle": "文案策划招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/52f02c84b609e2da1X192A~~/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "飞书模板直接提供 AI 广告文案生成，说明大量营销文案初稿已经被办公工具产品化。",
+          "sourceTitle": "AI广告文案生成模板",
+          "publisher": "飞书",
+          "url": "https://www.feishu.cn/template/ai-ad-copywriting-template",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "适合支撑“文案初稿被工具化”。"
+        },
+        {
+          "claim": "AWS 中国博客面向广告行业总结 AI 智能体可在几分钟内生成营销活动概要、创意文案和素材指导，说明文案策划流程正在被重写。",
+          "sourceTitle": "AI智能体赋能广告行业：创意素材生成解决方案实践",
+          "publisher": "AWS 中国",
+          "url": "https://aws.amazon.com/cn/blogs/china/ai-agents-empower-advertising-industry-practice-of-creative-asset-generation-solutions/",
+          "sourceType": "company",
+          "publishedAt": "2026-01-07",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "更能支撑岗位被压价，而不是完全消失。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "AI先写初稿",
+          "titleEn": "AI writes the first draft",
+          "oneSentenceRationale": "标题、卖点和广告文案初稿越来越先由工具生成。"
+        },
+        {
+          "titleZh": "策略残存",
+          "titleEn": "Strategy remains human",
+          "oneSentenceRationale": "真正还难替的是洞察、判断和长期品牌一致性。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "办公工具把广告文案生成功能常态化",
+          "titleEn": "Office tools normalize AI ad-copy generation",
+          "evidenceUrl": "https://www.feishu.cn/template/ai-ad-copywriting-template",
+          "note": "近年可见的低门槛替代。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "广告行业开始讨论AI智能体重写创意流程",
+          "titleEn": "Advertising starts discussing AI agents rewriting creative workflows",
+          "evidenceUrl": "https://aws.amazon.com/cn/blogs/china/ai-agents-empower-advertising-industry-practice-of-creative-asset-generation-solutions/",
+          "note": "适合支持 unworthy。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前品牌文案",
+          "speakerEn": "Former brand copywriter",
+          "angle": "最先不值钱的是把卖点拼成句子的活，不是把一句话变成品牌记忆。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "文案策划 招聘",
+        "AI 广告 文案 生成 飞书",
+        "广告 行业 AI 智能体 创意 文案"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "新媒体编辑",
+      "aliases": ["新媒体运营编辑", "公众号编辑", "内容运营编辑"],
+      "priority": "reserve",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中“新媒体编辑/公众号编辑”等 title 仍大量存在。",
+      "whyItFitsCareerGraveyard": "但选题助手、AI 写稿、自动排版、多平台分发和图文诊断已经把新媒体编辑最标准化的生产链路打包成工具，岗位正在明显掉价。",
+      "counterEvidenceOrCaution": "平台嗅觉、热点判断、账号人格、采访能力和分发策略仍有人类价值，因此更像 decaying 或 unworthy，而非 obsolete。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“新媒体编辑”岗位，证明岗位真实存在。",
+          "sourceTitle": "新媒体编辑招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/2822ef33bcc6df5a0nR63t61/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "135编辑器公开提供 AI 排版与 AI 文案生成，说明公众号编辑的基础排版与改写已被工具吸收。",
+          "sourceTitle": "135编辑器",
+          "publisher": "135编辑器",
+          "url": "https://www.135editor.com/",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "非常适合支撑“新媒体编辑被去技能化”。"
+        },
+        {
+          "claim": "《新闻战线》对 AI 编辑部的讨论，说明新闻与内容生产的基础流程早已进入机器辅助阶段。",
+          "sourceTitle": "人工智能时代编辑部的变与不变",
+          "publisher": "人民网《新闻战线》",
+          "url": "https://paper.people.com.cn/xwzx/html/2021-11/20/content_26015756.htm",
+          "sourceType": "news",
+          "publishedAt": "2021-11-20",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可作为新媒体编辑被持续压缩的背景证据。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "AI写稿+自动排版",
+          "titleEn": "AI writing plus auto layout",
+          "oneSentenceRationale": "新媒体编辑最耗时的基础工序正在被平台与插件吸收。"
+        },
+        {
+          "titleZh": "平台判断仍留人",
+          "titleEn": "Platform judgment remains human",
+          "oneSentenceRationale": "真正难替的是对账号调性、热点和分发时机的把握。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2021",
+          "titleZh": "AI编辑部成为媒体生产公开议题",
+          "titleEn": "AI newsrooms become a public media-production topic",
+          "evidenceUrl": "https://paper.people.com.cn/xwzx/html/2021-11/20/content_26015756.htm",
+          "note": "长期背景。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "公众号编辑工具全面加入AI写作与排版",
+          "titleEn": "WeChat editing tools fully add AI writing and layout",
+          "evidenceUrl": "https://www.135editor.com/",
+          "note": "近年明显加速。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前公众号编辑",
+          "speakerEn": "Former WeChat editor",
+          "angle": "最先被工具吃掉的不是选题会，而是那条从起标题到排版群发的流水线。"
+        }
+      ],
+      "searchQueriesUsed": ["新媒体编辑 招聘", "公众号 编辑器 AI 排版 文案", "AI 编辑部 新闻战线"],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "校对",
+      "aliases": ["文字校对", "审校", "文字校改"],
+      "priority": "reserve",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "endangered",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中仍存在“校对/审校”岗位，title 真实存在。",
+      "whyItFitsCareerGraveyard": "错别字、语法、格式、一致性检查等机械校对任务，已经被 AI 校对平台高度产品化；人工更多后移到终审和专业领域把关。",
+      "counterEvidenceOrCaution": "出版“三审三校”、法律文书、学术与高风险文本仍需要人工负责，因此更适合 endangered 而不是 obsolete。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“校对”岗位，证明岗位真实存在。",
+          "sourceTitle": "校对招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/6f8a3bc66d58b8ea1XB50ty7/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "讯飞公开提供 AI 智能校对平台，面向政务、媒体等场景做错别字、语法和规范检测，说明基础校对已被产品化。",
+          "sourceTitle": "AI智能校对平台",
+          "publisher": "科大讯飞",
+          "url": "https://www.xfyun.cn/solutions/gwjd",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "是校对岗位被工具直接命中的证据。"
+        },
+        {
+          "claim": "蜜度、爱校对等工具进一步把审校流程标准化，说明机械校对工作正被持续压价。",
+          "sourceTitle": "校对通",
+          "publisher": "蜜度",
+          "url": "https://www.midu.com/jdt/",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可支撑“校对从职业转向工具功能”。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "基础校改产品化",
+          "titleEn": "Basic proofreading becomes a product",
+          "oneSentenceRationale": "错别字、格式和一致性检查越来越先交给工具。"
+        },
+        {
+          "titleZh": "高风险终审残存",
+          "titleEn": "High-risk final review remains",
+          "oneSentenceRationale": "真正留下来的更多是责任审校和专业文本把关。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "AI校对平台在中文市场成熟化",
+          "titleEn": "AI proofreading platforms mature in the Chinese market",
+          "evidenceUrl": "https://www.xfyun.cn/solutions/gwjd",
+          "note": "适合作为显著拐点。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "多家工具把校对能力常态化服务化",
+          "titleEn": "Multiple vendors normalize proofreading as a service",
+          "evidenceUrl": "https://www.midu.com/jdt/",
+          "note": "说明岗位被工具功能化。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前文字校对",
+          "speakerEn": "Former proofreader",
+          "angle": "最先被拿走的，是找错字和统一格式这层耐心活，不是最后拍板的人。"
+        }
+      ],
+      "searchQueriesUsed": ["校对 招聘", "AI 智能 校对 官方", "校对通 蜜度 讯飞"],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "视频剪辑师",
+      "aliases": ["剪辑师", "后期剪辑", "短视频剪辑师"],
+      "priority": "reserve",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中“视频剪辑师/后期剪辑”仍广泛存在，岗位真实性强。",
+      "whyItFitsCareerGraveyard": "但模板化短视频、图文成片、AI 一键成片、AI 配音和文生视频正在持续吞掉初级剪辑劳动，岗位更像被压价和低端化，而非立刻消失。",
+      "counterEvidenceOrCaution": "广告片、纪录片、品牌片和复杂叙事仍需要人类节奏、判断和协作，因此需要谨慎措辞。",
+      "declineYearCandidate": "2026",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“视频剪辑师”岗位，证明岗位真实存在。",
+          "sourceTitle": "视频剪辑师招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/fb4767f414895a050nx70t-1/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "中新社报道 AI 短视频生产效率可明显提升，说明低成本宣传视频链路正被生成式工具重写。",
+          "sourceTitle": "AI让短视频生产更高效",
+          "publisher": "中国新闻网",
+          "url": "https://www.chinanews.com.cn/cj/2026/03-12/10585530.shtml",
+          "sourceType": "news",
+          "publishedAt": "2026-03-12",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "适合作为初级剪辑工作被压缩的近年证据。"
+        },
+        {
+          "claim": "万兴喵影等主流工具已把 AI 智能辅助与一键拖放式操作作为核心卖点，说明剪辑门槛持续被拉低。",
+          "sourceTitle": "万兴喵影2026_视频免费剪，AI更出片",
+          "publisher": "万兴喵影",
+          "url": "https://miao.wondershare.cn/",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "可支撑“岗位未死，但入门劳动被模板化”。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "一键成片",
+          "titleEn": "One-click editing",
+          "oneSentenceRationale": "对短视频和宣传片而言，最初级的剪辑工作越来越像模板填充。"
+        },
+        {
+          "titleZh": "复杂叙事仍靠人",
+          "titleEn": "Humans remain for complex narratives",
+          "oneSentenceRationale": "真正难替的是节奏、情绪、素材判断和协作迭代。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "AI图文成片与自动剪辑成为常见功能",
+          "titleEn": "AI text-to-video and auto-editing become common features",
+          "evidenceUrl": "https://onlinemanual.insta360.com/app/zh-cn/operation_tutorial/edit_function/auto-edit",
+          "note": "说明初级剪辑被工具覆盖。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "主流媒体报道AI短视频生产效率跃升",
+          "titleEn": "Mainstream media report jumps in AI short-video production efficiency",
+          "evidenceUrl": "https://www.chinanews.com.cn/cj/2026/03-12/10585530.shtml",
+          "note": "近年加速点。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前短视频剪辑师",
+          "speakerEn": "Former short-video editor",
+          "angle": "先被卷没的是把素材拼成成片的人，不是能决定片子情绪和节奏的人。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "视频剪辑师 招聘",
+        "AI 短视频 生产 效率 中新网",
+        "万兴喵影 AI 一键成片"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "呼叫中心客服",
+      "aliases": ["呼叫中心坐席", "客服坐席", "呼叫中心专员"],
+      "priority": "reserve",
+      "recommendedDecision": "promote_candidate",
+      "proposedSiteStatus": "endangered",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台仍有大量“呼叫中心客服/坐席”岗位，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "相较一般客服，呼叫中心的话术、流程、质检和排班更标准化，因此更容易被 AI 语音机器人和智能客服平台吞掉。",
+      "counterEvidenceOrCaution": "复杂投诉、工单升级和服务体验管理仍需要人工；更适合写成“基础坐席被收缩”。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“呼叫中心客服”岗位，证明岗位真实存在。",
+          "sourceTitle": "呼叫中心客服招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/5ef83df934db682a03153Nu-/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "中国新闻网报道 AI 客服被包装为可替代大批人工席位，呼叫中心是其最典型落地场景之一。",
+          "sourceTitle": "“一个AI客服代替50个客服”？AI客服失控谁来管",
+          "publisher": "中国新闻网",
+          "url": "https://www.chinanews.com.cn/sh/2025/12-06/10527992.shtml",
+          "sourceType": "news",
+          "publishedAt": "2025-12-06",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "可直接映射呼叫中心的批量席位替代压力。"
+        },
+        {
+          "claim": "新华网报道 AI 客服普及但复杂问题仍需人工协同，说明呼叫中心更像席位压缩而非彻底消失。",
+          "sourceTitle": "人工智能客服“上岗”，服务还能更贴心吗？",
+          "publisher": "新华网",
+          "url": "https://www.news.cn/tech/20250318/6837314b52da45029b4a8eb31f982ecc/c.html",
+          "sourceType": "news",
+          "publishedAt": "2025-03-18",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "适合作为谨慎点。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "标准化坐席最危险",
+          "titleEn": "Standardized seats are most exposed",
+          "oneSentenceRationale": "越像脚本和流程管理的客服中心，越容易被机器人接管。"
+        },
+        {
+          "titleZh": "升级工单残存",
+          "titleEn": "Escalation work remains",
+          "oneSentenceRationale": "留下来的更多是复杂申诉、留存和体验兜底。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "AI客服被公开包装为显著节省席位成本",
+          "titleEn": "AI customer service is publicly pitched as a major seat-cost saver",
+          "evidenceUrl": "https://www.chinanews.com.cn/sh/2025/12-06/10527992.shtml",
+          "note": "强替代节点。"
+        },
+        {
+          "year": "2025",
+          "titleZh": "复杂问题被明确保留给人工协同",
+          "titleEn": "Complex issues are explicitly retained for human collaboration",
+          "evidenceUrl": "https://www.news.cn/tech/20250318/6837314b52da45029b4a8eb31f982ecc/c.html",
+          "note": "支持 endangered 而非 obsolete。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前呼叫中心班长",
+          "speakerEn": "Former call-center shift lead",
+          "angle": "坐席数量会先掉，但总会留下一层专门接机器人兜不住的电话。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "呼叫中心客服 招聘",
+        "AI 客服 替代 人工席位 中国",
+        "人工智能客服 复杂问题 仍需人工"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "仓库文员",
+      "aliases": ["仓储文员", "仓库单证文员", "仓库资料员"],
+      "priority": "reserve",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中“仓库文员/仓储文员”岗位仍常见，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "其核心工作常是单证整理、出入库登记、对单、异常跟踪和系统回填；这些正在被智能物流单证、OCR 和仓储系统持续吸收。",
+      "counterEvidenceOrCaution": "现场盘点、异常货损、跨部门沟通和仓储高峰期的杂务仍需要人工，因此更适合写成 decaying。",
+      "declineYearCandidate": "2026",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“仓库文员”岗位，证明岗位真实存在。",
+          "sourceTitle": "仓库文员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/422c8194486848603nx82dS4/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "华为方案说明物流单证处理可自动识别、匹配与审核，直接压缩仓库文员常见的单据工作。",
+          "sourceTitle": "智慧物流单证解决方案",
+          "publisher": "华为",
+          "url": "https://e.huawei.com/cn/news/2026/industries/transportation/logistics/smart-logistics-documentation-solution",
+          "sourceType": "company",
+          "publishedAt": "2026-04-08",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "与仓库文员工作强相关。"
+        },
+        {
+          "claim": "人民日报海外版对无人仓的报道说明仓储场景整体在走向自动化，文员岗位也更容易被系统收编。",
+          "sourceTitle": "“无人仓”越来越聪明",
+          "publisher": "人民日报海外版",
+          "url": "https://paper.people.com.cn/rmrbhwb/html/2022-07/08/content_25927797.htm",
+          "sourceType": "news",
+          "publishedAt": "2022-07-08",
+          "accessedAt": "2026-04-21",
+          "supports": "narrative_detail",
+          "relevanceNote": "更适合作为行业背景，而非直接替代证据。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "单证自动化",
+          "titleEn": "Document automation in warehouses",
+          "oneSentenceRationale": "仓库文员的单据录入和对账越来越像系统内建功能。"
+        },
+        {
+          "titleZh": "现场杂务残存",
+          "titleEn": "On-site chores remain",
+          "oneSentenceRationale": "异常件、盘点和跨班组沟通仍会留给人工。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2022",
+          "titleZh": "无人仓叙事进入大众媒体",
+          "titleEn": "Unmanned warehouses enter mainstream media narratives",
+          "evidenceUrl": "https://paper.people.com.cn/rmrbhwb/html/2022-07/08/content_25927797.htm",
+          "note": "行业背景。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "仓储单证审核被公开宣传为AI+RPA场景",
+          "titleEn": "Warehouse document review is publicly pitched as an AI+RPA scenario",
+          "evidenceUrl": "https://e.huawei.com/cn/news/2026/industries/transportation/logistics/smart-logistics-documentation-solution",
+          "note": "岗位受压的近年节点。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前仓库文员",
+          "speakerEn": "Former warehouse clerk",
+          "angle": "最先被系统吃掉的是抄单和回填，不是跑现场处理异常。"
+        }
+      ],
+      "searchQueriesUsed": ["仓库文员 招聘", "仓储 单证 AI 审核 华为", "无人仓 人民日报海外版"],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "档案管理员",
+      "aliases": ["档案管理专员", "档案员", "档案资料管理员"],
+      "priority": "reserve",
+      "recommendedDecision": "hold",
+      "proposedSiteStatus": null,
+      "confidence": "C",
+      "whyThisTitleIsReal": "招聘平台中“档案管理员/档案员”岗位真实存在。",
+      "whyItFitsCareerGraveyard": "AI 在自动分类、归档、检索和标签抽取方面已开始进入档案工作流，但保密、真实性、制度合规和历史资料责任链使该岗位不宜轻率推进墓场。",
+      "counterEvidenceOrCaution": "更适合暂缓：可记为“工具强辅助、岗位形态重构中”，但现阶段不足以判定为主墓场优先候选。",
+      "declineYearCandidate": "",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“档案管理员”岗位，证明岗位真实存在。",
+          "sourceTitle": "档案管理员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/ef00a1de4ddce80503Vy09u1/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "国家档案局讨论 AI+档案工作，说明自动分类、整理和检索已进入行业视野。",
+          "sourceTitle": "AI赋能档案工作高质量发展",
+          "publisher": "国家档案局",
+          "url": "https://www.saac.gov.cn/daj/yaow/202604/da31545521874292ab14de024e91ce35.shtml",
+          "sourceType": "official",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "可以说明工具压力，但不足以证明岗位衰退。"
+        },
+        {
+          "claim": "中国标准化研究院总结 AI 在档案自动识别、分类和归档中的作用，同时强调标准与规范建设，提示岗位仍有制度性刚需。",
+          "sourceTitle": "人工智能赋能档案管理标准化",
+          "publisher": "中国标准化研究院",
+          "url": "https://www.cnis.ac.cn/ynbm/bzhssypg/zhxw/202601/t20260104_62243.html",
+          "sourceType": "official",
+          "publishedAt": "2026-01-04",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "更适合作为暂缓理由：行业正在升级，不是简单消失。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "AI辅助归档",
+          "titleEn": "AI-assisted archiving",
+          "oneSentenceRationale": "归档、标签和检索自动化确实在改写岗位日常。"
+        },
+        {
+          "titleZh": "制度责任锁定人工",
+          "titleEn": "Institutional responsibility locks humans in",
+          "oneSentenceRationale": "保密、真实性和合规审计让档案岗位难以直接墓场化。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2026",
+          "titleZh": "AI+档案进入国家档案部门讨论",
+          "titleEn": "AI plus archives enters national archive-department discussions",
+          "evidenceUrl": "https://www.saac.gov.cn/daj/yaow/202604/da31545521874292ab14de024e91ce35.shtml",
+          "note": "说明行业正在变化。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "标准化机构强调AI归档与规范并行",
+          "titleEn": "Standards bodies emphasize AI archiving alongside norms",
+          "evidenceUrl": "https://www.cnis.ac.cn/ynbm/bzhssypg/zhxw/202601/t20260104_62243.html",
+          "note": "支撑 hold。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "档案室管理员",
+          "speakerEn": "Archive-room administrator",
+          "angle": "工具会先帮我们找、分、标，但最后谁来背档案真伪和保密责任，还是人。"
+        }
+      ],
+      "searchQueriesUsed": ["档案管理员 招聘", "国家档案局 AI 档案", "档案 管理 标准化 人工智能"],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "CAD施工图绘图员",
+      "aliases": ["施工图绘图员", "CAD绘图员", "施工图深化绘图员"],
+      "priority": "reserve",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "endangered",
+      "confidence": "B",
+      "whyThisTitleIsReal": "招聘平台中“CAD施工图绘图员/施工图绘图员”岗位仍大量存在，岗位真实。",
+      "whyItFitsCareerGraveyard": "文本到 CAD、AI 审图、BIM 联动和一键出图正在蚕食最标准化、最机械的施工图绘制与规范比对劳动，尤其冲击初级绘图席位。",
+      "counterEvidenceOrCaution": "方案判断、现场协调、专业会签和责任签章仍依赖人类；更稳妥的写法是“初级施工图绘图位最危险”。",
+      "declineYearCandidate": "2026",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“CAD施工图绘图员”岗位，证明岗位真实存在。",
+          "sourceTitle": "CAD施工图绘图员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/5ab7f4338cf88b3e1XJ-39U~/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "科技日报报道 AI+CAD 平台可实现从文字描述到生成 CAD 图纸，说明基础绘图工作已进入自动生成阶段。",
+          "sourceTitle": "AI+CAD让一键绘图成为现实",
+          "publisher": "科技日报",
+          "url": "https://www.stdaily.com/web/gdxw/2026-04/20/content_504972.html",
+          "sourceType": "news",
+          "publishedAt": "2026-04-20",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "是对绘图员岗位非常直接的替代信号。"
+        },
+        {
+          "claim": "武汉住建系统介绍 AI 审图与 BIM 应用，说明施工图校核与规范比对也在被自动化吸收。",
+          "sourceTitle": "AI+BIM助力建设领域数字化",
+          "publisher": "武汉住房公积金/住建信息",
+          "url": "https://gjj.wuhan.gov.cn/xxfw/zdgz/gzbsjz/ynxw/202508/t20250805_2629518.html",
+          "sourceType": "official",
+          "publishedAt": "2025-08-05",
+          "accessedAt": "2026-04-21",
+          "supports": "decline_or_repricing",
+          "relevanceNote": "有助于说明不仅是“画图”，连“校图”也在被机器重写。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "文本到CAD",
+          "titleEn": "Text-to-CAD",
+          "oneSentenceRationale": "最机械的施工图生成开始从“人画”转向“人提需求+系统出图”。"
+        },
+        {
+          "titleZh": "初级绘图位先受冲击",
+          "titleEn": "Junior drafting roles get hit first",
+          "oneSentenceRationale": "真正危险的是按规范出图和改图的初级工位。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "AI审图/BIM在住建场景扩散",
+          "titleEn": "AI review and BIM spread in construction scenarios",
+          "evidenceUrl": "https://gjj.wuhan.gov.cn/xxfw/zdgz/gzbsjz/ynxw/202508/t20250805_2629518.html",
+          "note": "可作背景。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "文字生成CAD进入主流科技媒体报道",
+          "titleEn": "Text-generated CAD enters mainstream tech-media coverage",
+          "evidenceUrl": "https://www.stdaily.com/web/gdxw/2026-04/20/content_504972.html",
+          "note": "适合作为近年拐点。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前施工图绘图员",
+          "speakerEn": "Former construction drafter",
+          "angle": "最先危险的不是总工，而是那种天天照着规范改图出图的人。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "CAD施工图绘图员 招聘",
+        "AI+CAD 文字生成 图纸 科技日报",
+        "AI 审图 BIM 施工图"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    },
+    {
+      "canonicalTitle": "前台接待",
+      "aliases": ["前台", "前厅接待", "前台文员", "接待员"],
+      "priority": "reserve",
+      "recommendedDecision": "needs_careful_wording",
+      "proposedSiteStatus": "decaying",
+      "confidence": "C",
+      "whyThisTitleIsReal": "招聘市场中“前台接待/前台文员”岗位仍极常见，岗位真实存在。",
+      "whyItFitsCareerGraveyard": "酒店与服务业的自助入住、机器人迎宾和数字前台，正在压缩纯登记、发卡、引导型前台岗位；很多组织也把前台与行政、销售支持并岗。",
+      "counterEvidenceOrCaution": "访客体验、异常核验、安保要求和高端服务场景仍会保留人工前台，因此需要谨慎，不宜写成“一概过时”。",
+      "declineYearCandidate": "2025",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“前台接待”岗位，证明岗位真实存在。",
+          "sourceTitle": "前台接待招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/5a09c4e8fd125a6a1HR52Nu5GA~~/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "华住公开推广“10秒入住”等新前台模式，强调通过数字化把员工从固定前台岗位解放出来。",
+          "sourceTitle": "华住发布新前台模式",
+          "publisher": "华住集团",
+          "url": "https://www.hworld.com/news/detail?c=53f2edcccb064a3fbb9be072e391008e",
+          "sourceType": "company",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "automation_pressure",
+          "relevanceNote": "适合支撑前台接待被数字前台压缩。"
+        },
+        {
+          "claim": "腾讯新闻援引旅业报道指出酒店仍难彻底无人化，政策核验和服务体验让人工前台尚未消失。",
+          "sourceTitle": "无人酒店离全面落地还有多远",
+          "publisher": "腾讯新闻/环球旅讯",
+          "url": "https://news.qq.com/rain/a/20260203A01KTE00",
+          "sourceType": "news",
+          "publishedAt": "2026-02-03",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "适合作为谨慎点和人类兜底证据。"
+        }
+      ],
+      "suggestedFactors": [
+        {
+          "titleZh": "数字前台",
+          "titleEn": "Digital front desks",
+          "oneSentenceRationale": "登记、发卡和基础引导被自助机与数字流程吞掉。"
+        },
+        {
+          "titleZh": "服务与核验留人",
+          "titleEn": "Service and verification remain human",
+          "oneSentenceRationale": "真正留下来的是异常核验、礼宾体验和现场兜底。"
+        }
+      ],
+      "suggestedTimeline": [
+        {
+          "year": "2025",
+          "titleZh": "酒店业高频宣传自助入住与新前台模式",
+          "titleEn": "Hospitality industry frequently promotes self check-in and new front-desk models",
+          "evidenceUrl": "https://www.hworld.com/news/detail?c=53f2edcccb064a3fbb9be072e391008e",
+          "note": "近年明显加速。"
+        },
+        {
+          "year": "2026",
+          "titleZh": "行业同时强调仍难完全无人化",
+          "titleEn": "The industry simultaneously stresses the difficulty of full unmanning",
+          "evidenceUrl": "https://news.qq.com/rain/a/20260203A01KTE00",
+          "note": "支撑 needs_careful_wording。"
+        }
+      ],
+      "voiceAngleIdeas": [
+        {
+          "speakerZh": "前酒店前台",
+          "speakerEn": "Former hotel front-desk clerk",
+          "angle": "机器能办入住，但客人发火、证件出错、半夜异常，最后还是会回到前台的人。"
+        }
+      ],
+      "searchQueriesUsed": [
+        "前台接待 招聘",
+        "酒店 10秒入住 新前台 华住",
+        "无人酒店 仍难 全面 落地"
+      ],
+      "repoStatus": "pending_future_content_pr"
+    }
+  ],
+  "holdoutAudit": [
+    {
+      "canonicalTitle": "病案编码员",
+      "recommendedDecision": "hold",
+      "reasonNotToPromoteYet": "病案编码与 DRG/DIP、医保结算、医院质控强绑定，公开资料更像在强调持证人才紧缺和规范化建设，而不是岗位被技术淘汰。",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“病案编码员”岗位，说明 title 真实存在。",
+          "sourceTitle": "病案编码员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/4c6b4c59ce8bf3671nF_2N-5EQ~~/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "人民网报道病案编码和质控人才缺乏，说明行业更接近缺人而不是过时。",
+          "sourceTitle": "一本病案到底有多重要",
+          "publisher": "人民网",
+          "url": "https://health.people.com.cn/n1/2019/1216/c14739-31508507.html",
+          "sourceType": "news",
+          "publishedAt": "2019-12-16",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "是暂缓的重要反证。"
+        },
+        {
+          "claim": "陕西省病案质控中心在 2026 年继续强调专职编码员持证率和复合型人才需求，显示岗位受政策与支付改革强化。",
+          "sourceTitle": "病案管理人才队伍建设交流",
+          "publisher": "陕西省人民医院/病案质控中心",
+          "url": "https://www.spph-sx.com/info/1066/51193.htm",
+          "sourceType": "official",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "说明岗位更像升级而不是墓场化。"
+        }
+      ],
+      "repoStatus": "holdout_audit_only"
+    },
+    {
+      "canonicalTitle": "病案管理员",
+      "recommendedDecision": "hold",
+      "reasonNotToPromoteYet": "病案管理涉及合规、病历完整性、质量控制和医院运营指标，公开证据更支持“规范化和人才建设”而非衰退。",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“病案管理员”岗位，说明 title 真实存在。",
+          "sourceTitle": "病案管理员招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://m.zhipin.com/zhaopin/726145dbc60df84a03Z40t66Ew~~/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "人民网曾强调病案管理与编码、质控人才缺口，说明其制度性需求仍强。",
+          "sourceTitle": "一本病案到底有多重要",
+          "publisher": "人民网",
+          "url": "https://health.people.com.cn/n1/2019/1216/c14739-31508507.html",
+          "sourceType": "news",
+          "publishedAt": "2019-12-16",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "可作为暂缓反证。"
+        },
+        {
+          "claim": "陕西省病案质控中心继续强调复合型病案人才建设，显示岗位仍受政策和质量管理驱动。",
+          "sourceTitle": "病案管理人才队伍建设交流",
+          "publisher": "陕西省人民医院/病案质控中心",
+          "url": "https://www.spph-sx.com/info/1066/51193.htm",
+          "sourceType": "official",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "说明岗位在升级，不宜直接入主墓场。"
+        }
+      ],
+      "repoStatus": "holdout_audit_only"
+    },
+    {
+      "canonicalTitle": "病案专员",
+      "recommendedDecision": "hold",
+      "reasonNotToPromoteYet": "“病案专员”与病案编码/管理岗位边界重叠，且行业公开材料强调医院质控和支付改革下的人才需求，不适合作为衰退岗位直接推进。",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“病案专员”岗位，说明 title 真实存在。",
+          "sourceTitle": "病案专员岗位详情",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/job_detail/070457a5a58abb601XZ629-7E1ZU.html",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "人民网报道病案相关人才缺口，说明该类岗位更接近稀缺与规范化。",
+          "sourceTitle": "一本病案到底有多重要",
+          "publisher": "人民网",
+          "url": "https://health.people.com.cn/n1/2019/1216/c14739-31508507.html",
+          "sourceType": "news",
+          "publishedAt": "2019-12-16",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "反证强。"
+        },
+        {
+          "claim": "地方病案质控机构在 2026 年仍强调建设专职队伍和持证率，显示岗位受到制度强化。",
+          "sourceTitle": "病案管理人才队伍建设交流",
+          "publisher": "陕西省人民医院/病案质控中心",
+          "url": "https://www.spph-sx.com/info/1066/51193.htm",
+          "sourceType": "official",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "暂缓更稳妥。"
+        }
+      ],
+      "repoStatus": "holdout_audit_only"
+    },
+    {
+      "canonicalTitle": "数据标注员",
+      "recommendedDecision": "hold",
+      "reasonNotToPromoteYet": "项目边界原因：该职业已是正式站点条目，本轮不应作为新增候选重复推进。",
+      "evidence": [],
+      "repoStatus": "holdout_audit_only"
+    },
+    {
+      "canonicalTitle": "人工智能训练师",
+      "recommendedDecision": "hold",
+      "reasonNotToPromoteYet": "这是国家职业目录中的新职业，公开报道强调需求增长、培训扩张和就业吸纳，更像增长岗位而非墓场对象。",
+      "evidence": [
+        {
+          "claim": "新华网报道人工智能训练师需求旺盛，说明岗位处于扩张而非衰退叙事中。",
+          "sourceTitle": "人工智能训练师走俏就业市场",
+          "publisher": "新华网",
+          "url": "https://www.news.cn/tech/20260405/2cd73e3c79354720bb9077589fd13fa4/c.html",
+          "sourceType": "news",
+          "publishedAt": "2026-04-05",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "强反证。"
+        },
+        {
+          "claim": "新华网另有报道提到相关岗位需求增长 30% 以上，说明市场景气度较高。",
+          "sourceTitle": "新职业观察：人工智能训练师",
+          "publisher": "新华网",
+          "url": "https://www.news.cn/20260125/9821bfe790174e659d2dc00767559402/c.html",
+          "sourceType": "news",
+          "publishedAt": "2026-01-25",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "进一步支持 hold。"
+        },
+        {
+          "claim": "中新网报道人工智能训练师已进入职业技能竞赛和地方认定体系，说明职业仍在建设和扩张中。",
+          "sourceTitle": "长沙举办职工职业技能竞赛人工智能训练师成新工种",
+          "publisher": "中国新闻网",
+          "url": "https://www.chinanews.com/cj/2024/07-25/10257406.shtml",
+          "sourceType": "news",
+          "publishedAt": "2024-07-25",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "与墓场叙事方向相反。"
+        }
+      ],
+      "repoStatus": "holdout_audit_only"
+    },
+    {
+      "canonicalTitle": "AI测试开发工程师",
+      "recommendedDecision": "hold",
+      "reasonNotToPromoteYet": "公开证据显示这类岗位属于新技术扩张期职业，招聘量和薪酬都在上升，不适合作为衰退岗位推进。",
+      "evidence": [
+        {
+          "claim": "招聘平台仍可检索到“AI测试开发工程师”岗位，说明 title 真实存在。",
+          "sourceTitle": "AI测试开发工程师招聘页",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/zhaopin/e8c84d19de42717d1Hd-0tS6/",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "岗位存在证据。"
+        },
+        {
+          "claim": "新华网报道 2024 年 AI 测试岗位招聘量同比激增 320%，平均薪资增幅 35%，明显属于增长赛道。",
+          "sourceTitle": "新职业透视：AI测试工程师",
+          "publisher": "新华网",
+          "url": "https://www.news.cn/politics/20250911/2dad40379a184d21a9fcc44ebd36ba8c/c.html",
+          "sourceType": "news",
+          "publishedAt": "2025-09-11",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "是强反证，不宜推进主墓场。"
+        }
+      ],
+      "repoStatus": "holdout_audit_only"
+    },
+    {
+      "canonicalTitle": "智能仓储运维工程师",
+      "recommendedDecision": "hold",
+      "reasonNotToPromoteYet": "目前更像自动化扩张催生的新型运维岗位，而不是被替代的老岗位；证据倾向“增长中的配套工种”。",
+      "evidence": [
+        {
+          "claim": "招聘平台可检索到“AGV运维工程师（智能物流方向）”等岗位，说明智能仓储运维方向真实存在。",
+          "sourceTitle": "AGV运维工程师（智能物流方向）",
+          "publisher": "BOSS直聘",
+          "url": "https://www.zhipin.com/job_detail/7e8944255dda397c03B_3dy6FFtY.html",
+          "sourceType": "job_board",
+          "publishedAt": "",
+          "accessedAt": "2026-04-21",
+          "supports": "job_existence",
+          "relevanceNote": "可作为智能仓储运维方向的岗位存在证据。"
+        },
+        {
+          "claim": "人民日报海外版报道“无人仓”越来越聪明，说明仓储自动化在扩张，往往会带出新的运维与保障需求。",
+          "sourceTitle": "“无人仓”越来越聪明",
+          "publisher": "人民日报海外版",
+          "url": "https://paper.people.com.cn/rmrbhwb/html/2022-07/08/content_25927797.htm",
+          "sourceType": "news",
+          "publishedAt": "2022-07-08",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "自动化扩张更像在创造而非消灭该类岗位。"
+        },
+        {
+          "claim": "中国日报对智能粮仓和仓储数字化的报道同样说明设备与系统升级在持续推进，需要配套运维能力。",
+          "sourceTitle": "智能粮仓让储粮更高效",
+          "publisher": "中国日报网",
+          "url": "https://cn.chinadaily.com.cn/a/202509/08/WS68bed6f4a310f072577475c9.html",
+          "sourceType": "news",
+          "publishedAt": "2025-09-08",
+          "accessedAt": "2026-04-21",
+          "supports": "counter_evidence",
+          "relevanceNote": "更支持 hold 而不是墓场化。"
+        }
+      ],
+      "repoStatus": "holdout_audit_only"
+    }
+  ]
+}
