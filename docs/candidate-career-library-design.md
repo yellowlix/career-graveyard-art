@@ -157,3 +157,13 @@ Future PRs that import real rows should add a schema validation script before th
 - Add a small validation script if the candidate file becomes large.
 - Promote selected candidates to `src/data.js` in separate content PRs.
 - Keep high-risk or growing roles in `holdouts` instead of publishing them as graveyard entries too early.
+
+## 12. Supplemental Evidence Pack
+
+The repository also keeps `data/career-evidence-pack-2026-04-21.json` as a supplemental research asset for issue #41. It contains the web-researched evidence pack used after the candidate library import:
+
+- 35 researched roles with source URLs, recommended decisions, confidence grades, suggested factors, timeline ideas, and voice angles.
+- 7 holdout audit rows for real jobs that should not be promoted directly into the main archive yet.
+- A `repoIntegration` block that marks which evidence-pack roles have already been promoted to `src/data.js` and which remain pending for later content PRs.
+
+This evidence pack is not imported by the Next.js runtime. Public career pages still come only from `src/data.js`, and promotion remains a manual editorial step.
